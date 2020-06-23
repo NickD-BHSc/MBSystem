@@ -1,8 +1,11 @@
 package comp3350.mbs.objects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class ViewingTime {
+public class ViewingTime implements Parcelable {
     private String showTime;
     private String showDate;
     private List<Integer> seats;
@@ -19,5 +22,52 @@ public class ViewingTime {
         this.seats = seats;
     }//end constructor
 
+    protected ViewingTime(Parcel in) {
+        showTime = in.readString();
+        showDate = in.readString();
+    }
 
+    public static final Creator<ViewingTime> CREATOR = new Creator<ViewingTime>() {
+        @Override
+        public ViewingTime createFromParcel(Parcel in) {
+            return new ViewingTime(in);
+        }
+
+        @Override
+        public ViewingTime[] newArray(int size) {
+            return new ViewingTime[size];
+        }
+    };
+
+    public String getShowTime() {
+        return showTime;
+    }//end getShowTime
+
+    public String getShowDate() {
+        return showDate;
+    }//end getShowDate
+
+    public List<Integer> getSeats() {
+        return seats;
+    }//end getSeats
+
+    @Override
+    public String toString() {
+        return "ViewingTime{" +
+                "showTime='" + showTime + '\'' +
+                ", showDate='" + showDate + '\'' +
+                ", seats=" + seats +
+                '}';
+    }//end toString
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(showTime);
+        parcel.writeString(showDate);
+    }
 }//end ViewingTime

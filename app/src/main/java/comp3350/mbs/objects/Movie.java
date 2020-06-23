@@ -1,8 +1,12 @@
 package comp3350.mbs.objects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.widget.ListView;
+
 import java.util.List;
 
-public class Movie {
+public class Movie implements Parcelable {
 
     private String title;
     private int poster;
@@ -25,6 +29,28 @@ public class Movie {
         this.showingTime = showingTime;
         this.mainActors = mainActors;
     }//end constructor
+
+
+    protected Movie(Parcel in) {
+        title = in.readString();
+        poster = in.readInt();
+        description = in.readString();
+        //make sure that ViewingTime class also implements Parcelable!
+        showingTime = in.createTypedArrayList(ViewingTime.CREATOR);
+        mainActors = in.createStringArrayList();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -57,4 +83,17 @@ public class Movie {
                 '}';
     }//end toString
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeInt(poster);
+        parcel.writeString(description);
+        parcel.writeTypedList(showingTime);
+        parcel.writeStringList(mainActors);
+    }
 }//end Movie class

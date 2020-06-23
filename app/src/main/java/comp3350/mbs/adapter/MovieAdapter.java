@@ -14,16 +14,18 @@ import comp3350.mbs.objects.Movie;
 public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MovieViewHolder>{
 
     private List<Movie> listMovies;
+    private OnItemClickListener mListener;//needed when a movie (card view) is clicked.
+
+
     public MovieAdapter(List<Movie> listMovies){
         this.listMovies = listMovies;
     }//end constructor
-
 
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_movie,parent,false);
-        MovieViewHolder mvh = new MovieViewHolder(view);
+        MovieViewHolder mvh = new MovieViewHolder(view, mListener);
         return mvh;
     }//end onCreateViewHolder
 
@@ -44,17 +46,40 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MovieViewHo
         return listMovies.size();
     }//end getItemCount
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder{
-        public ImageView movieImgVw;
-        public TextView titleTxtVw;
 
-        public MovieViewHolder(@NonNull View itemView) {
+    public static class MovieViewHolder extends RecyclerView.ViewHolder{
+        private ImageView movieImgVw;
+        private TextView titleTxtVw;
+
+        public MovieViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             movieImgVw = itemView.findViewById(R.id.moviePicImageView);
             titleTxtVw = itemView.findViewById(R.id.movieTitleTxtView);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }//end if
+                    }//end if
+                }
+            });
+
         }//end constructor
 
     }//end MovieViewHolder class
+
+
+    //These are for the click events (When a card view is clicked, it will go to a different layout)
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }//end onItemClickListener
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }//end setOnItemClickListener
 
 }//end MovieAdapter

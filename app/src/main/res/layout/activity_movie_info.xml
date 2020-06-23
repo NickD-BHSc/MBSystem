@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context=".presentation.MovieInfoActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/movieInfoRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/movieInfoPicImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:focusableInTouchMode="true"/>
+
+        <TextView
+            android:id="@+id/movieInfoTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:text="Movie Title"
+            android:textStyle="bold"
+            android:layout_below="@id/movieInfoPicImageView"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/movieInfoDescTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_below="@+id/movieInfoTitleTextView"
+            android:text="Movie Description"
+            android:layout_margin="5dp"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/movieInfoShowTimeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:textSize="20dp"
+            android:text="Show Time"
+            android:textStyle="bold"
+            android:layout_below="@id/movieInfoDescTextView"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movieInfoRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_below="@id/movieInfoShowTimeTextView"/>
+    </RelativeLayout>
+
+</ScrollView>
