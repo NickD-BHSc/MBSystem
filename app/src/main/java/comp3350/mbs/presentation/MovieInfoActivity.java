@@ -34,22 +34,39 @@ public class MovieInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
-        Intent intent = getIntent();
-        Movie item = intent.getParcelableExtra("Movie item");
+        assignWidgets();
+        addMovieInfo();
+        buildRecyclerView();
+
+
+    }//end onCreate
+
+    /**
+     * assignWidgets - a method that gets the widgets from the activity_movie_info which are
+     *              2 textviews and 1 imageview.
+     */
+    private void assignWidgets(){
 
         movieTitleTextView = findViewById(R.id.movieInfoTitleTextView);
         movieDescTextView = findViewById(R.id.movieInfoDescTextView);
         moviePosterImageView = findViewById(R.id.movieInfoPicImageView);
 
+    }//end assignWidgets
 
-        viewingTimeList = new ArrayList<>(item.getShowingTime());
+    /**
+     * addMovieInfo - a method that gets the information from the previous activity (MainActivity)
+     *              and put the information to the assigned widgets.
+     */
+    private void addMovieInfo(){
+        //getting the item info from the previous activity.
+        Intent intent = getIntent();
+        Movie item = intent.getParcelableExtra("Movie item");
+
+        viewingTimeList = item.getShowingTime();
         movieDescTextView.setText(item.getDescription());
         movieTitleTextView.setText(item.getTitle());
         moviePosterImageView.setImageResource(item.getPoster());
-        buildRecyclerView();
-
-
-    }//end onCreate
+    }//end addMovieInfo
 
     private void buildRecyclerView(){
 
