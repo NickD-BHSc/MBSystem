@@ -16,11 +16,12 @@ public class Movie implements Parcelable {
 
     /**
      * Constructor of Movie class
-     * @param title is the name of the movie.
-     * @param poster is the picture of the movie.
+     *
+     * @param title       is the name of the movie.
+     * @param poster      is the picture of the movie.
      * @param description is the description of the movie.
      * @param showingTime is the list of showing time of the movie.
-     * @param mainActors is the list of main actors of the movie.
+     * @param mainActors  is the list of main actors of the movie.
      */
     public Movie(String title, int poster, String description, List<ViewingTime> showingTime, List<String> mainActors) {
         this.title = title;
@@ -30,7 +31,8 @@ public class Movie implements Parcelable {
         this.mainActors = mainActors;
     }//end constructor
 
-
+    //================================================================
+    //Parcelable methods
     protected Movie(Parcel in) {
         title = in.readString();
         poster = in.readInt();
@@ -52,6 +54,22 @@ public class Movie implements Parcelable {
         }
     };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeInt(poster);
+        parcel.writeString(description);
+        parcel.writeTypedList(showingTime);
+        parcel.writeStringList(mainActors);
+    }
+
+    //================================================================
+    //Getter methods
     public String getTitle() {
         return title;
     }//end getTitle
@@ -83,17 +101,5 @@ public class Movie implements Parcelable {
                 '}';
     }//end toString
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(title);
-        parcel.writeInt(poster);
-        parcel.writeString(description);
-        parcel.writeTypedList(showingTime);
-        parcel.writeStringList(mainActors);
-    }
 }//end Movie class

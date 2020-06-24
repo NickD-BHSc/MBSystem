@@ -13,7 +13,7 @@ import comp3350.mbs.objects.Movie;
 
 public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MovieViewHolder>{
 
-    private List<Movie> listMovies;
+    private List<Movie> listMovies; //data that will be displayed within the recyclerview.
     private OnItemClickListener mListener;//needed when a movie (card view) is clicked.
 
 
@@ -21,6 +21,13 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MovieViewHo
         this.listMovies = listMovies;
     }//end constructor
 
+    /**
+     * onCreateViewHolder - method used to display the content of the items to the assigned layout activity.
+     * @param parent is the ViewGroup into which the new View will be added after it is bounded to an adapter
+     *               position.
+     * @param viewType is the view type of the new View.
+     * @return it will return a new ViewHolder (MovieViewHolder) that holds a View of the given type.
+     */
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,6 +36,14 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MovieViewHo
         return mvh;
     }//end onCreateViewHolder
 
+    /**
+     * onBindViewHolder - a method called by the RecyclerView to display the data at the specified position.
+     *                  This method should update the contents of the MovieViewHolder (item) to reflect the item
+     *                  at the given position.
+     * @param holder is the view holder which should be updated to represent the contents of the item at the
+     *               given position in the data set.
+     * @param position is the position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movieItem = listMovies.get(position); // get the item using the given position.
@@ -46,8 +61,19 @@ public class MovieAdapter extends RecyclerView.Adapter <MovieAdapter.MovieViewHo
         return listMovies.size();
     }//end getItemCount
 
+    /**
+     * getListMovies - a getter method for listMovies.
+     * @return it will return the field listMovies.
+     */
+    public List<Movie> getListMovies(){
+        return listMovies;
+    }//end getListMovies
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder{
+    /**
+     * Class responsible for assigning the widgets (ImageView and TextView) from the layout activity which
+     * is activity_movie layout and assigning a click event for the card view (i.e. when a movie picture is clicked)
+     */
+    public class MovieViewHolder extends RecyclerView.ViewHolder{
         private ImageView movieImgVw;
         private TextView titleTxtVw;
 

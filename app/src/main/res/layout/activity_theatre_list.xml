@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity">
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    tools:context=".presentation.TheatreActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movieRecyclerView"
+        android:id="@+id/theatreRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"/>
-
-
 </RelativeLayout>

@@ -12,9 +12,10 @@ public class ViewingTime implements Parcelable {
 
     /**
      * Constructor of ViewingTime class
+     *
      * @param showTime is the showing time of the movie.
      * @param showDate is the date of viewing the movie.
-     * @param seats is the list of seats available for the movie.
+     * @param seats    is the list of seats available for the movie.
      */
     public ViewingTime(String showTime, String showDate, List<Integer> seats) {
         this.showTime = showTime;
@@ -22,6 +23,9 @@ public class ViewingTime implements Parcelable {
         this.seats = seats;
     }//end constructor
 
+
+    //================================================================
+    //Parcelable methods
     protected ViewingTime(Parcel in) {
         showTime = in.readString();
         showDate = in.readString();
@@ -39,6 +43,20 @@ public class ViewingTime implements Parcelable {
         }
     };
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(showTime);
+        parcel.writeString(showDate);
+    }
+
+    //================================================================
+    //Getter methods
     public String getShowTime() {
         return showTime;
     }//end getShowTime
@@ -60,14 +78,4 @@ public class ViewingTime implements Parcelable {
                 '}';
     }//end toString
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(showTime);
-        parcel.writeString(showDate);
-    }
 }//end ViewingTime

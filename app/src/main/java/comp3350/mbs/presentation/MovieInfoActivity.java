@@ -1,5 +1,6 @@
 package comp3350.mbs.presentation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,18 +35,31 @@ public class MovieInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
-        assignWidgets();
+        init();
         addMovieInfo();
         buildRecyclerView();
 
 
     }//end onCreate
 
+    //TODO need to save the data for the activity when going back (2).
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("KEY",new ArrayList<>(viewingTimeAdapter.getViewingTimeList()));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        viewingTimeList = savedInstanceState.getParcelableArrayList("KEY");
+    }
+
     /**
-     * assignWidgets - a method that gets the widgets from the activity_movie_info which are
-     *              2 textviews and 1 imageview.
+     * init - a method that initialize the widgets from the activity_movie_info which are
+     * 2 textviews and 1 imageview.
      */
-    private void assignWidgets(){
+    private void init() {
 
         movieTitleTextView = findViewById(R.id.movieInfoTitleTextView);
         movieDescTextView = findViewById(R.id.movieInfoDescTextView);
@@ -55,24 +69,33 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     /**
      * addMovieInfo - a method that gets the information from the previous activity (MainActivity)
-     *              and put the information to the assigned widgets.
+     * and put the information to the assigned widgets.
      */
-    private void addMovieInfo(){
+    private void addMovieInfo() {
         //getting the item info from the previous activity.
         Intent intent = getIntent();
         Movie item = intent.getParcelableExtra("Movie item");
 
-        viewingTimeList = item.getShowingTime();
-        movieDescTextView.setText(item.getDescription());
-        movieTitleTextView.setText(item.getTitle());
-        moviePosterImageView.setImageResource(item.getPoster());
+        if(item != null && item.getShowingTime() != null) {
+            viewingTimeList = new ArrayList<>(item.getShowingTime());
+            movieDescTextView.setText(item.getDescription());
+            movieTitleTextView.setText(item.getTitle());
+            moviePosterImageView.setImageResource(item.getPoster());
+        }else{
+            viewingTimeList = new ArrayList<>();
+            movieDescTextView.setText("Empty");
+            movieTitleTextView.setText("Empty");
+            moviePosterImageView.setImageResource(R.drawable.ic_launcher_background);
+        }
+
     }//end addMovieInfo
 
-    private void buildRecyclerView(){
+    /**
+     * buildRecyclerView - a method that builds the layout for the list of viewing time.
+     */
+    private void buildRecyclerView() {
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
-        viewingTimeRecyclerView.setHasFixedSize(true);
-
 
         viewingTimeAdapter = new ViewingTimeAdapter(viewingTimeList);
         viewingTimeRecyclerView.setAdapter(viewingTimeAdapter);
