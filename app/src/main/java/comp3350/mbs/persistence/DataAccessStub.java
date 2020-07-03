@@ -54,12 +54,13 @@ public class DataAccessStub {
 
         List<Movie> movieLists = new ArrayList<>();//list of movies available in the theatre
 
+        //TODO should also add the trailer as a parameter when Movie class accepts a Trailer parameter.
         String m1Summary = "Adrift in space with no food or water, Tony Stark sends a message to Pepper Potts as his oxygen supply starts to dwindle. Meanwhile, the remaining Avengers -- Thor, Black Widow, Captain America and Bruce Banner -- must figure out a way to bring back their vanquished allies for an epic showdown with Thanos -- the evil demigod who decimated the planet and the universe.";
-        Movie m1 = new Movie("Avengers Endgame", R.drawable.avengers_endgame, m1Summary, viewingTimes, null);
-        Movie m2 = new Movie("The Incredibles", R.drawable.incredibles, "movie2", viewingTimes, null);
-        Movie m3 = new Movie("The Lion King", R.drawable.lion_king, "movie3", viewingTimes, null);
-        Movie m4 = new Movie("Star Wars", R.drawable.starwars, "movie4", viewingTimes, null);
-        Movie m5 = new Movie("Superman", R.drawable.superman, "movie5", viewingTimes, null);
+        Movie m1 = new Movie("Avengers Endgame", R.drawable.avengers_endgame, m1Summary, viewingTimes, 12.50,null);
+        Movie m2 = new Movie("The Incredibles", R.drawable.incredibles, "movie2", viewingTimes,11.50, null);
+        Movie m3 = new Movie("The Lion King", R.drawable.lion_king, "movie3", viewingTimes, 9.50, null);
+        Movie m4 = new Movie("Star Wars", R.drawable.starwars, "movie4", viewingTimes, 10.96,null);
+        Movie m5 = new Movie("Superman", R.drawable.superman, "movie5", viewingTimes, 13.13,null);
 
         movieLists.add(m1);
         movieLists.add(m2);

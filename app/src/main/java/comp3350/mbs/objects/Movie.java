@@ -12,7 +12,10 @@ public class Movie implements Parcelable {
     private int poster;
     private String description;
     private List<ViewingTime> showingTime;
+    private double price;
     private List<String> mainActors;
+
+    //private Trailer trailer;
 
     /**
      * Constructor of Movie class
@@ -23,13 +26,14 @@ public class Movie implements Parcelable {
      * @param showingTime is the list of showing time of the movie.
      * @param mainActors  is the list of main actors of the movie.
      */
-    public Movie(String title, int poster, String description, List<ViewingTime> showingTime, List<String> mainActors) {
+    public Movie(String title, int poster, String description, List<ViewingTime> showingTime, double price, List<String> mainActors) {
         this.title = title;
         this.poster = poster;
         this.description = description;
         this.showingTime = showingTime;
+        this.price = price;
         this.mainActors = mainActors;
-    }//end constructor
+    }
 
     //================================================================
     //Parcelable methods
@@ -86,9 +90,15 @@ public class Movie implements Parcelable {
         return showingTime;
     }//end getShowingTime
 
+    public double getPrice() {
+        return price;
+    }//end getPrice
+
     public List<String> getMainActors() {
         return mainActors;
     }//end getMainActors
+
+
 
     /**
      * equals - a method that determines if the given object (Movie) has the same title name as the instance title.
