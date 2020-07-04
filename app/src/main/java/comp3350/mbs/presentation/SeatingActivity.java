@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.adapter.MovieAdapter;
+import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;

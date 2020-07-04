@@ -2,6 +2,7 @@ package comp3350.mbs.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.presentation.MovieActivity;
 import comp3350.mbs.presentation.MovieInfoActivity;
 import comp3350.mbs.presentation.TheatreActivity;
+import comp3350.mbs.presentation.SeatingActivity;
 
 public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
@@ -62,6 +64,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof MovieInfoActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time,parent,false);
 
+        }else if( context instanceof SeatingActivity) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seating,parent,false);
+
         }else{
             throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
         }//end if-else
@@ -96,6 +101,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Log.i("Tag1","Made Intent");
                         Intent intent = new Intent(context, MovieActivity.class);
                         intent.putExtra("Theatre MovieLists", item);
                         context.startActivity(intent);
@@ -138,10 +144,18 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //TODO start a new activity here
+						Intent intent = new Intent(context,SeatingActivity.class);
+						Log.i("Tag1","Made Intent");
+						intent.putExtra("Seats", item );
+						context.startActivity(intent);
+                        
                     }
                 });
-                */
+                
+                 */
+
+
+                
 
             }else{
                 throw new Error("an item from the list is expected to be a ViewingTime object.");
