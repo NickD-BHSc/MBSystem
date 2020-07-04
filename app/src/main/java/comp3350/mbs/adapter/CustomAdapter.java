@@ -21,8 +21,8 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.presentation.MovieActivity;
 import comp3350.mbs.presentation.MovieInfoActivity;
-import comp3350.mbs.presentation.TheatreActivity;
 import comp3350.mbs.presentation.SeatingActivity;
+import comp3350.mbs.presentation.TheatreActivity;
 
 public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
@@ -61,11 +61,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof MovieActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_movie,parent,false);
 
-        }else if(context instanceof MovieInfoActivity){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time,parent,false);
-
-        }else if( context instanceof SeatingActivity) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seating,parent,false);
+        }else if(context instanceof MovieInfoActivity) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time, parent, false);
 
         }else{
             throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
@@ -101,7 +98,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i("Tag1","Made Intent");
                         Intent intent = new Intent(context, MovieActivity.class);
                         intent.putExtra("Theatre MovieLists", item);
                         context.startActivity(intent);
@@ -140,22 +136,18 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
                 //TODO There should be a new activity here when a show time is selected (activity for Interface 4 where it shows the seats).
 
-                /*
+
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-						Intent intent = new Intent(context,SeatingActivity.class);
-						Log.i("Tag1","Made Intent");
-						intent.putExtra("Seats", item );
-						context.startActivity(intent);
-                        
+                        //TODO start a new activity here
+
+                        Intent intent = new Intent(context,SeatingActivity.class);
+                        intent.putExtra("seats", item);
+                        context.startActivity(intent);
                     }
                 });
-                
-                 */
 
-
-                
 
             }else{
                 throw new Error("an item from the list is expected to be a ViewingTime object.");
@@ -216,7 +208,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             }else if(context instanceof MovieInfoActivity){
                 viewTimeTextVw = itemView.findViewById(R.id.viewTimeTextView);
-                relativeLayout = itemView.findViewById(R.id.movieInfoRelativeLayout);
+                relativeLayout = itemView.findViewById(R.id.viewingTimeRelativeLayout);
             }else{
                 throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
             }//end if-else
