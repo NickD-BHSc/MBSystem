@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +36,18 @@ public class MovieInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
+
+        Button viewTrailerBtn = (Button) findViewById(R.id.trailerViewBtn);
+        viewTrailerBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent startIntent = new Intent(getApplicationContext(), TrailerActivity.class);
+                String movieTitle = movieTitleTextView.getText().toString();
+                startIntent.putExtra("comp3350.mbs.presentation.TITLE", movieTitle);
+                startActivity(startIntent);
+
+            }
+        });
 
         init();
         addMovieInfo();
