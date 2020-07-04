@@ -13,7 +13,7 @@ public class Calculate {
 
         if(movies != null) {
 
-            //TODO may also include the Snacks  (add another parameter which is list of snacks.)
+            //TODO may also include the Snacks  (add another parameter which is a list of snacks.)
             for (int i = 0; i < movies.size(); i++) {
                 totalOrder += movies.get(i).getPrice();
             }//end for
