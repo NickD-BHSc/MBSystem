@@ -90,6 +90,33 @@ public class Movie implements Parcelable {
         return mainActors;
     }//end getMainActors
 
+    /**
+     * equals - a method that determines if the given object (Movie) has the same title name as the instance title.
+     * @param object is the object that will be compared to the instance's title.
+     * @return it will return true if the given object's title is the same as the instance's title.
+     *          Otherwise, it will return false.
+     */
+    public boolean equals(Object object){
+        boolean result = false;
+
+        if(object instanceof Movie){
+            Movie movieItem = (Movie)object;//cast the object to Movie
+
+            if(((movieItem.getTitle() == null) && (title == null))
+                    || (movieItem.getTitle().equals(title))){
+                result = true;
+            }//end nested if
+
+        }//end if
+
+        return result;
+
+    }//end equals
+
+    /**
+     * toString - a method that represents the Movie information in text.
+     * @return it will return an information about the Movie (fields).
+     */
     @Override
     public String toString() {
         return "Movie{" +
