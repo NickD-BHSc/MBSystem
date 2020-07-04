@@ -26,7 +26,7 @@
 
         <activity
             android:name=".presentation.SeatingActivity"
-            android:label="Seat Activity"></activity>
+            android:label="@string/title_activity_seating"></activity>
 
         <activity
             android:name=".presentation.MovieInfoActivity"

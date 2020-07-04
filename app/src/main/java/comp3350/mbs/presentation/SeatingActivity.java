@@ -88,6 +88,10 @@ public class SeatingActivity extends AppCompatActivity {
         cntinueBtn.setOnClickListener( new View.OnClickListener() {
             public void onClick( View v){
                 System.out.println( storeObj.getBookedSeats().toString());
+                Intent intent = new Intent(SeatingActivity.this, MovieActivity.class);
+                intent.putExtra("item",storeObj);
+
+
             }
         });
 
