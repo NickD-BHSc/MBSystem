@@ -43,19 +43,39 @@
             android:id="@+id/movieInfoShowTimeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/movieInfoDescTextView"
+            android:layout_marginTop="107dp"
+            android:layout_marginBottom="5dp"
             android:padding="10dp"
-            android:layout_margin="5dp"
-            android:textSize="20dp"
             android:text="Show Time"
-            android:textStyle="bold"
-            android:layout_below="@id/movieInfoDescTextView"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieInfoRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:layout_below="@id/movieInfoShowTimeTextView"/>
+            android:layout_below="@id/movieInfoShowTimeTextView"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="5dp" />
+
+        <Button
+            android:id="@+id/trailerViewBtn"
+            android:layout_width="130dp"
+            android:layout_height="159dp"
+            android:layout_above="@+id/movieInfoShowTimeTextView"
+            android:layout_below="@+id/movieInfoDescTextView"
+            android:layout_alignEnd="@+id/movieInfoPicImageView"
+            android:layout_alignRight="@+id/movieInfoPicImageView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="135dp"
+            android:layout_marginRight="135dp"
+            android:layout_marginBottom="-72dp"
+            android:text="View Trailer" />
 
     </RelativeLayout>
 
