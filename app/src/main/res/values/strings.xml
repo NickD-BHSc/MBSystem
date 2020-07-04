@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Movie Booking System</string>
+    <string name="title_activity_theatre">Theatres</string>
+    <string name="title_activity_movie">Movies</string>
+    <string name="title_activity_movie_info">Movie Information</string>
 </resources>

@@ -13,7 +13,6 @@ public class Theatre implements Parcelable {
 
     /**
      * Constructor of Theatre class.
-     *
      * @param name      is the name of the theatre.
      * @param address   is the address of the theatre.
      * @param movieList is the list of movies available in the theatre.
@@ -77,5 +76,43 @@ public class Theatre implements Parcelable {
     public String getDistance() {
         return distance;
     }//end getDistance
+
+    /**
+     * equals - a method that determines if the given object (Theatre) has the same theatre name as the instance name.
+     * @param object is the object that will be compared to the instance's name.
+     * @return it will return true if the given object's name is the same as the instance's name.
+     *          Otherwise, it will return false.
+     */
+    public boolean equals(Object object){
+        boolean result = false;
+
+        if(object instanceof Theatre){
+            Theatre theatreItem = (Theatre) object;//cast the object to Theatre
+
+            if(((theatreItem.getName() == null) && (name == null))||
+                    (theatreItem.getName().equals(name))){
+                result = true;
+            }//end nested if
+
+        }//end if
+
+        return result;
+
+    }//end equals
+
+
+    /**
+     * toString - a method that represents the Theatre information in text.
+     * @return it will return an information about the Theatre (fields).
+     */
+    @Override
+    public String toString() {
+        return "Theatre{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", movieList=" + movieList +
+                ", distance='" + distance + '\'' +
+                '}';
+    }//end toString
 
 }//end Theatre
