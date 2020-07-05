@@ -28,7 +28,10 @@
 
         <activity
             android:name=".presentation.MovieInfoActivity"
+
             android:label="@string/title_activity_movie_info" />
+            android:label="@string/title_activity_movie_info"></activity>
+
     </application>
 
 </manifest>
