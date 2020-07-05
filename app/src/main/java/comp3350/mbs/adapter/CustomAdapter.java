@@ -2,7 +2,6 @@ package comp3350.mbs.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.presentation.MovieActivity;
 import comp3350.mbs.presentation.MovieInfoActivity;
-import comp3350.mbs.presentation.SeatActivity;
 import comp3350.mbs.presentation.SeatingActivity;
 import comp3350.mbs.presentation.TheatreActivity;
 
@@ -67,7 +65,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof MovieInfoActivity) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time, parent, false);
 
-        }else if(context instanceof SeatActivity){
+        }else if(context instanceof SeatingActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seat, parent, false);
         }else {
             throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
@@ -144,7 +142,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(context,SeatActivity.class);
+                        Intent intent = new Intent(context,SeatingActivity.class);
                         intent.putExtra("seats", item);
                         context.startActivity(intent);
                     }
@@ -155,7 +153,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 throw new Error("an item from the list is expected to be a ViewingTime object.");
             }//end nested if-else
 
-        }else if(context instanceof SeatActivity){
+        }else if(context instanceof SeatingActivity){
 
             if(itemLists.get(position) instanceof Seat){
                 final Seat item = (Seat) itemLists.get(position);
@@ -177,9 +175,11 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                             if(item.getSeatImage() == R.drawable.seat) {
                                 item.setSeatImage(R.drawable.seat_selected);
                                 holder.seatImageView.setImageResource(item.getSeatImage());
+                                ((SeatingActivity)context).addSeat( item );
                             }else if(item.getSeatImage() == R.drawable.seat_selected){
                                 item.setSeatImage(R.drawable.seat);
                                 holder.seatImageView.setImageResource(item.getSeatImage());
+                                ((SeatingActivity)context).removeSeat( item );
                             }//end nested-nested if-else
                         }
                     });
@@ -252,7 +252,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 viewTimeTextView = itemView.findViewById(R.id.viewTimeTextView);
                 relativeLayout = itemView.findViewById(R.id.viewingTimeRelativeLayout);
 
-            }else if(context instanceof SeatActivity){
+            }else if(context instanceof SeatingActivity){
                 seatImageView = itemView.findViewById(R.id.seatImageView);
                 relativeLayout = itemView.findViewById(R.id.seatRelativeLayout);
 

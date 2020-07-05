@@ -22,11 +22,8 @@
         <activity
             android:name=".presentation.MovieActivity"
             android:label="@string/title_activity_movie" />
-        <activity
-            android:name=".presentation.SeatingActivity"
-            android:label="@string/title_activity_seating" />
 
-        <activity android:name=".presentation.SeatActivity"></activity>
+        <activity android:name=".presentation.SeatingActivity"></activity>
 
 
         <activity
