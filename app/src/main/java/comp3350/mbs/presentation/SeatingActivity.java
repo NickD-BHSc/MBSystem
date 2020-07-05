@@ -27,32 +27,40 @@ public class SeatingActivity extends AppCompatActivity {
     private List<Seat> seatingList;
     private List<Integer> bookedSeats;
 
+    private Button seatConfirmButton;
+
+    //Only used for debugging. (Delete later)
+    private TextView showResultTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_list);
         init();
         buildRecyclerView();
-        Button ctnueButton = (Button)findViewById(R.id.seatConfirmButton);
-        final TextView result = (TextView)findViewById(R.id.showResult);
 
-        ctnueButton.setOnClickListener(new View.OnClickListener() {
+
+        seatConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                result.setText( bookedSeats.toString() );
-
-
+                //TODO add Amy's code to move to the next activity.
+                
+                showResultTextView.setText( bookedSeats.toString());
             }
         });
 
     }//end onCreate
 
-
-
-
+    /**
+     * init - a method that initializes the widgets and the lists. It also creates a sample data for the seats.
+     */
     private void init(){
-        seatingList = new ArrayList<>();
-        bookedSeats = new ArrayList<Integer>();
+        seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
+        showResultTextView = (TextView)findViewById(R.id.showResult);//delete later.
+
+        //initialize the lists.
+        seatingList = new ArrayList<>();//sample data that will be passed to the CustomAdapter.
+        bookedSeats = new ArrayList<>();//list that contains the booked seats.
 
         //some sample data
         for(int i = 0; i < 32; i++) {
@@ -64,17 +72,6 @@ public class SeatingActivity extends AppCompatActivity {
             }//end if-else
             seatingList.add(seat);
         }//end for loop
-
-        //Simply checks the sample data in the text for debugging.
-        /*
-        TextView txtVw = findViewById(R.id.seatPromptTextView);
-        String result = "";
-        for(int i = 0; i < seatingList.size(); i ++){
-            result += "seat " + i + ": booked? " + seatingList.get(i).isBooked() + "\n";
-        }//end for
-
-        txtVw.setText(result);
-        */
 
     }//end init
 
@@ -92,13 +89,21 @@ public class SeatingActivity extends AppCompatActivity {
         seatRecyclerView.setLayoutManager(layoutManager);
     }//end buildRecyclerView
 
+    /**
+     * addSeat - a method that adds the chosen seat in the bookedSeats.
+     * @param seat is the object that is going to be added.
+     */
     public void addSeat( Seat seat ){
         bookedSeats.add( seat.getSeatNumber() );
-    }
+    }//end addSeat
 
+    /**
+     * removeSeat - a method that removes the chosen seat in the bookedList.
+     * @param seat is the object that is going to be removed.
+     */
     public void removeSeat( Seat seat ){
         bookedSeats.remove( bookedSeats.indexOf( seat.getSeatNumber() ));
-    }
+    }//end removeSeat
 
 
 }//end SeatActivity class

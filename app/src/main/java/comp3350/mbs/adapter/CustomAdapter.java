@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
@@ -68,7 +67,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof SeatingActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seat, parent, false);
         }else {
-            throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
+            throw new Error("given context is neither Theatre, Movie, or Seating Activity.");
         }//end if-else
         cvh = new CustomViewHolder(view);
 
@@ -166,19 +165,24 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     //seat is available since it is not booked yet.
                     holder.seatImageView.setImageResource(item.getSeatImage());
 
-                    //When you click an available seat, it changes color to yellow.
+                    //When you click the red seat, it changes color to yellow indicating that the seat has been selected.
+                    //When you click the yellow seat, it changed color to red indicating that the seat is available again.
                     holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            List<Seat> seatsChosen = new ArrayList<>();//this list will be passed to the next activity so that we know which seats are chosen.
-                            //TODO Keep track which seats are chosen so that we could pass it to the next activity.
+
                             if(item.getSeatImage() == R.drawable.seat) {
                                 item.setSeatImage(R.drawable.seat_selected);
                                 holder.seatImageView.setImageResource(item.getSeatImage());
+
+                                //we add the seat that has been selected to the bookedSeats from the SeatingActivity.
                                 ((SeatingActivity)context).addSeat( item );
+
                             }else if(item.getSeatImage() == R.drawable.seat_selected){
                                 item.setSeatImage(R.drawable.seat);
                                 holder.seatImageView.setImageResource(item.getSeatImage());
+
+                                //we remove the seat that has been selected to the bookedSeats from the SeatingActivity.
                                 ((SeatingActivity)context).removeSeat( item );
                             }//end nested-nested if-else
                         }
@@ -186,7 +190,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
                 }//end nested if-else
 
-                //holder.relativeLayout.setOnClickListener();
             }else{
                 throw new Error("an item from the list is expected to be a Seat object.");
             }//end nested if-else
