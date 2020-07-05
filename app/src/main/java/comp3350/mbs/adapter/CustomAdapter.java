@@ -13,14 +13,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.objects.Movie;
+import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.presentation.MovieActivity;
 import comp3350.mbs.presentation.MovieInfoActivity;
+import comp3350.mbs.presentation.SeatActivity;
 import comp3350.mbs.presentation.SeatingActivity;
 import comp3350.mbs.presentation.TheatreActivity;
 
@@ -64,7 +67,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof MovieInfoActivity) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time, parent, false);
 
-        }else{
+        }else if(context instanceof SeatActivity){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seat, parent, false);
+        }else {
             throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
         }//end if-else
         cvh = new CustomViewHolder(view);
@@ -83,13 +88,13 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
      * @param position is the position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
         //first is to check which context (Activity) is being used.
         if(context instanceof TheatreActivity){
 
             if(itemLists.get(position) instanceof Theatre){
                 final Theatre item = (Theatre) itemLists.get(position);//get the item using the given position.
-                //set the following info about the theatre to the textviews
+                //set the following info about the theatre to the TextViews.
                 holder.theatreNameTxtView.setText(item.getName());
                 holder.theatreAddressTxtView.setText(item.getAddress());
                 holder.theatreDistTxtView.setText(item.getDistance());
@@ -111,9 +116,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             if(itemLists.get(position) instanceof Movie){
                 final Movie item = (Movie)itemLists.get(position); // get the item using the given position.
-                //set the following info about Movie to the textviews
-                holder.titleTxtVw.setText(item.getTitle());
-                holder.movieImgVw.setImageResource(item.getPoster());
+                //set the following info about Movie to the TextViews.
+                holder.titleTxtView.setText(item.getTitle());
+                holder.movieImageView.setImageResource(item.getPoster());
 
                 //Moves to the MovieInfoActivity (activity that holds the viewing time of the movie) when a movie is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -131,18 +136,15 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof MovieInfoActivity){
 
             if(itemLists.get(position) instanceof ViewingTime){
+                //seat the following info about the ViewingTime to the TextViews.
                 final ViewingTime item = (ViewingTime)itemLists.get(position);
-                holder.viewTimeTextVw.setText(item.getShowTime() + "\n" + item.getShowDate());
-
-                //TODO There should be a new activity here when a show time is selected (activity for Interface 4 where it shows the seats).
+                holder.viewTimeTextView.setText(item.getShowTime() + "\n" + item.getShowDate());
 
 
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //TODO start a new activity here
-
-                        Intent intent = new Intent(context,SeatingActivity.class);
+                        Intent intent = new Intent(context,SeatActivity.class);
                         intent.putExtra("seats", item);
                         context.startActivity(intent);
                     }
@@ -151,6 +153,42 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             }else{
                 throw new Error("an item from the list is expected to be a ViewingTime object.");
+            }//end nested if-else
+
+        }else if(context instanceof SeatActivity){
+
+            if(itemLists.get(position) instanceof Seat){
+                final Seat item = (Seat) itemLists.get(position);
+
+                //Check to see if the seat (item) is booked or not.
+                if(item.isBooked()){
+                    holder.seatImageView.setImageResource(item.getSeatImage());
+                    holder.relativeLayout.setClickable(false);//make the seat non-clickable since the seat is already booked!
+                }else{
+                    //seat is available since it is not booked yet.
+                    holder.seatImageView.setImageResource(item.getSeatImage());
+
+                    //When you click an available seat, it changes color to yellow.
+                    holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            List<Seat> seatsChosen = new ArrayList<>();//this list will be passed to the next activity so that we know which seats are chosen.
+                            //TODO Keep track which seats are chosen so that we could pass it to the next activity.
+                            if(item.getSeatImage() == R.drawable.seat) {
+                                item.setSeatImage(R.drawable.seat_selected);
+                                holder.seatImageView.setImageResource(item.getSeatImage());
+                            }else if(item.getSeatImage() == R.drawable.seat_selected){
+                                item.setSeatImage(R.drawable.seat);
+                                holder.seatImageView.setImageResource(item.getSeatImage());
+                            }//end nested-nested if-else
+                        }
+                    });
+
+                }//end nested if-else
+
+                //holder.relativeLayout.setOnClickListener();
+            }else{
+                throw new Error("an item from the list is expected to be a Seat object.");
             }//end nested if-else
 
         }else{
@@ -184,11 +222,15 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         private TextView theatreDistTxtView;
 
         //for MovieActivity
-        private ImageView movieImgVw;
-        private TextView titleTxtVw;
+        private ImageView movieImageView;
+        private TextView titleTxtView;
 
-        //For viewing time
-        private TextView viewTimeTextVw;
+        //For viewing time (MovieInfoActivity)
+        private TextView viewTimeTextView;
+
+        //For SeatActivity
+        private ImageView seatImageView;
+
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -201,14 +243,19 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 relativeLayout = itemView.findViewById(R.id.theatreRelativeLayout);
 
             }else if(context instanceof MovieActivity){
-                movieImgVw = itemView.findViewById(R.id.moviePicImageView);
-                titleTxtVw = itemView.findViewById(R.id.movieTitleTxtView);
+                movieImageView = itemView.findViewById(R.id.moviePicImageView);
+                titleTxtView = itemView.findViewById(R.id.movieTitleTxtView);
                 relativeLayout = itemView.findViewById(R.id.movieRelativeLayout);
 
 
             }else if(context instanceof MovieInfoActivity){
-                viewTimeTextVw = itemView.findViewById(R.id.viewTimeTextView);
+                viewTimeTextView = itemView.findViewById(R.id.viewTimeTextView);
                 relativeLayout = itemView.findViewById(R.id.viewingTimeRelativeLayout);
+
+            }else if(context instanceof SeatActivity){
+                seatImageView = itemView.findViewById(R.id.seatImageView);
+                relativeLayout = itemView.findViewById(R.id.seatRelativeLayout);
+
             }else{
                 throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
             }//end if-else
