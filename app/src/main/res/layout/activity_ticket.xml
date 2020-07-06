@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="false">
 
     <Button
         android:id="@+id/BackButton"
@@ -25,48 +25,88 @@
 
     <TextView
         android:id="@+id/ticketTaxTextView"
-        android:layout_width="39dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="111dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="12dp"
         android:text="@string/_0_00"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/TaxLabel"
         app:layout_constraintTop_toBottomOf="@+id/ticketSubtotalTextView" />
 
     <TextView
         android:id="@+id/ticketTotalTextView"
-        android:layout_width="39dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="109dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="8dp"
         android:text="@string/_0_00"
+        android:textColor="#000000"
+        android:textIsSelectable="false"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/TotalLabel"
         app:layout_constraintTop_toBottomOf="@+id/ticketTaxTextView" />
 
     <TextView
         android:id="@+id/ticketPriceTextView"
-        android:layout_width="32dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="144dp"
+        android:layout_width="113dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="128dp"
         android:text="@string/_0_00"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/PriceLabel"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/TotalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:text="Total"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TaxLabel" />
+
+    <EditText
+        android:id="@+id/TaxLabel"
+        android:layout_width="208dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:text="@string/tax"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QuantityLabel" />
 
     <EditText
         android:id="@+id/PriceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="316dp"
-        android:layout_marginRight="316dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
         android:clickable="false"
         android:editable="false"
         android:ems="10"
         android:enabled="true"
+        android:focusable="false"
         android:importantForAutofill="no"
         android:inputType="none"
         android:text="@string/ticket_price"
@@ -74,30 +114,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/QuantityLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="316dp"
-        android:layout_marginRight="316dp"
-        android:editable="false"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="none"
-        android:text="@string/quantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PriceLabel" />
-
-    <EditText
         android:id="@+id/SubtotalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="316dp"
-        android:layout_marginRight="316dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
         android:layout_marginBottom="20dp"
         android:duplicateParentState="false"
         android:editable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="none"
         android:text="Subtotal:"
         app:layout_constraintBottom_toTopOf="@+id/TaxLabel"
@@ -106,36 +132,23 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/TaxLabel"
-        android:layout_width="211dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="316dp"
-        android:layout_marginRight="316dp"
-        android:editable="false"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="none"
-        android:text="@string/tax"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/QuantityLabel" />
-
-    <EditText
-        android:id="@+id/TotalLabel"
+        android:id="@+id/QuantityLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="316dp"
-        android:layout_marginRight="316dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
+        android:editable="false"
         android:ems="10"
+        android:focusable="false"
         android:importantForAutofill="no"
         android:inputType="none"
-        android:text="Total"
+        android:text="@string/quantity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TaxLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/PriceLabel" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/paymentLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="360dp"
@@ -143,6 +156,7 @@
         android:layout_marginBottom="320dp"
         android:editable="false"
         android:ems="10"
+        android:focusable="auto"
         android:importantForAutofill="no"
         android:inputType="none"
         android:text="@string/payment"
@@ -151,23 +165,27 @@
 
     <TextView
         android:id="@+id/ticketQuantityTextView"
-        android:layout_width="44dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="71dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginTop="12dp"
         android:text="@string/_0"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/QuantityLabel"
         app:layout_constraintTop_toBottomOf="@+id/ticketPriceTextView" />
 
     <TextView
         android:id="@+id/ticketSubtotalTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="111dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="4dp"
         android:text="@string/_0_00"
+        android:textColor="#0E0D0D"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/SubtotalLabel"
         app:layout_constraintTop_toBottomOf="@+id/ticketQuantityTextView" />
 
@@ -183,7 +201,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/cardInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
@@ -194,16 +212,16 @@
         android:editable="true"
         android:ems="10"
         android:enabled="true"
-        android:focusable="auto"
+        android:focusable="true"
         android:hint="1234-1234-1234-1234"
-        android:inputType="textPersonName"
-        android:maxLength="19"
-        android:textColor="#4C2323"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName4"
+        android:inputType="number"
+        android:maxLength="16"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/expiryInput"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/cardNumberLabel"
         android:layout_width="137dp"
         android:layout_height="44dp"
         android:layout_marginEnd="108dp"
@@ -212,13 +230,14 @@
         android:duplicateParentState="false"
         android:editable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="none"
         android:text="Card Number:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName" />
+        app:layout_constraintBottom_toTopOf="@+id/expiryDateLabel"
+        app:layout_constraintEnd_toStartOf="@+id/cardInput" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/expiryDateLabel"
         android:layout_width="135dp"
         android:layout_height="45dp"
         android:layout_marginEnd="224dp"
@@ -226,10 +245,11 @@
         android:layout_marginBottom="16dp"
         android:editable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="none"
         android:text="Expiry Date:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintBottom_toTopOf="@+id/securityCodeLabel"
+        app:layout_constraintEnd_toStartOf="@+id/expiryInput" />
 
     <View
         android:id="@+id/divider"
@@ -237,12 +257,12 @@
         android:layout_height="1dp"
         android:layout_marginTop="28dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName6"
+        app:layout_constraintBottom_toTopOf="@+id/paymentLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TotalLabel" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/expiryInput"
         android:layout_width="96dp"
         android:layout_height="51dp"
         android:layout_marginEnd="72dp"
@@ -250,39 +270,42 @@
         android:layout_marginBottom="12dp"
         android:editable="true"
         android:ems="10"
+        android:focusable="auto"
         android:hint="MM/YY"
-        android:inputType="textPersonName"
-        android:maxLength="5"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName7"
+        android:inputType="number"
+        android:maxLength="4"
+        app:layout_constraintBottom_toTopOf="@+id/codeInput"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/securityCodeLabel"
         android:layout_width="137dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="224dp"
-        android:layout_marginRight="224dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginRight="256dp"
         android:layout_marginBottom="124dp"
         android:duplicateParentState="false"
         android:editable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="none"
         android:text="Security Code"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName7" />
+        app:layout_constraintEnd_toStartOf="@+id/codeInput" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
-        android:layout_width="98dp"
-        android:layout_height="47dp"
+        android:id="@+id/codeInput"
+        android:layout_width="65dp"
+        android:layout_height="51dp"
         android:layout_marginEnd="68dp"
         android:layout_marginRight="68dp"
         android:layout_marginBottom="124dp"
         android:clickable="true"
         android:editable="true"
         android:ems="10"
+        android:focusable="auto"
         android:hint="123"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
