@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.objects.Seat;
-import comp3350.mbs.objects.Ticket;
 
 public class SeatingActivity extends AppCompatActivity {
 

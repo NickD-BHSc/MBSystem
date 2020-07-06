@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Ticket implements Parcelable {
     private double price;
-    private String type = "General";
+    private String type;
     private int quantity = 0;
     DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
