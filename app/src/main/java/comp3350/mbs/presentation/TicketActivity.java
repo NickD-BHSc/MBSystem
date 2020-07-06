@@ -63,6 +63,23 @@ public class TicketActivity extends AppCompatActivity {
      * and puts the information to the assigned widgets.
      */
     private void addTicketInfo() {
+
+        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
+        int seatCount= intent.getIntExtra("seats", 0);
+        Ticket ticket;
+        Ticket generalTicket = accessTickets.getTicket("General");
+        Ticket emptyTicket = accessTickets.getTicket("Empty");
+        if(seatCount > 0) {
+            ticket = new Ticket(generalTicket.getPrice(), generalTicket.getType(), seatCount);
+        }else{
+            ticket = emptyTicket;
+        }
+        ticketPriceTextView.setText(ticket.getPriceAsString());
+        ticketQuantityTextView.setText(String.valueOf(ticket.getQuantity()));
+        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticket));
+        ticketTaxTextView.setText(Calculate.calculateTax(ticket));
+        ticketTotalTextView.setText(Calculate.calculateTotal(ticket));
+
     }//end addTicketInfo
 
 }//end TicketActivity class

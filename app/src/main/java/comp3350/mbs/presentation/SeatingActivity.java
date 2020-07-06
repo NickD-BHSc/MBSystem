@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.objects.Seat;
+import comp3350.mbs.objects.Ticket;
 
 public class SeatingActivity extends AppCompatActivity {
 
@@ -43,9 +45,9 @@ public class SeatingActivity extends AppCompatActivity {
         seatConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO add Amy's code to move to the next activity.
-                
-                showResultTextView.setText( bookedSeats.toString());
+                Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
+                intent.putExtra("seats", bookedSeats.size());
+                startActivity(intent);
             }
         });
 
