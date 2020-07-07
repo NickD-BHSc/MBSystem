@@ -1,15 +1,15 @@
 package comp3350.mbs.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private ImageView moviePosterImageView;
     private TextView movieTitleTextView;
     private TextView movieDescTextView;
+    private Movie movie;
 
 
     @Override
@@ -76,15 +77,15 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        Movie item = intent.getParcelableExtra("Movie item");
+        movie = intent.getParcelableExtra("Movie item");
 
-        if(item != null) {
-            if(item.getShowingTime() != null) {
+        if(movie != null) {
+            if(movie.getShowingTime() != null) {
                 //put the information to the TextViews and ImageView
-                viewingTimeList = new ArrayList<>(item.getShowingTime());
-                movieDescTextView.setText(item.getDescription());
-                movieTitleTextView.setText(item.getTitle());
-                moviePosterImageView.setImageResource(item.getPoster());
+                viewingTimeList = new ArrayList<>(movie.getShowingTime());
+                movieDescTextView.setText(movie.getDescription());
+                movieTitleTextView.setText(movie.getTitle());
+                moviePosterImageView.setImageResource(movie.getPoster());
             }//end nested if
         }//end if
         //do nothing when no item was retrieved.
@@ -98,7 +99,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
 
-        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList);
+        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movie);
         viewingTimeRecyclerView.setAdapter(customAdapter);
 
         layoutManager = new LinearLayoutManager(this);

@@ -15,6 +15,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
+import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 
 public class SeatingActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class SeatingActivity extends AppCompatActivity {
     private List<Integer> bookedSeats;
 
     private Button seatConfirmButton;
+    private Movie movie;
 
     //Only used for debugging. (Delete later)
     private TextView showResultTextView;
@@ -45,6 +47,7 @@ public class SeatingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                 intent.putExtra("seats", bookedSeats.size());
+                intent.putExtra("movie", movie);
                 startActivity(intent);
             }
         });
@@ -55,6 +58,9 @@ public class SeatingActivity extends AppCompatActivity {
      * init - a method that initializes the widgets and the lists. It also creates a sample data for the seats.
      */
     private void init(){
+        Intent intent = getIntent();
+        movie = intent.getParcelableExtra("movie");
+
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
         showResultTextView = (TextView)findViewById(R.id.showResult);//delete later.
 
