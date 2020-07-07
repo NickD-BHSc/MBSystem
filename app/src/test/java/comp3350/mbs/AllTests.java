@@ -3,6 +3,7 @@ package comp3350.mbs;
 import junit.framework.TestSuite;
 
 import comp3350.mbs.business.CalculateTotalsTest;
+import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TicketTest;
 
 /**
@@ -25,6 +26,7 @@ public class AllTests {
     private static void testObjects()
     {
         suite.addTestSuite(TicketTest.class);
+        suite.addTestSuite( SeatingTest.class);
     }
 
     private static void testBusiness()
