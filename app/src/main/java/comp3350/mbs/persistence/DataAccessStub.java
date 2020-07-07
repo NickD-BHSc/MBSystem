@@ -103,17 +103,17 @@ public class DataAccessStub {
         //adding tickets to ticketList.
         ticketList = new ArrayList<>();
 
-        Ticket ticketGeneral = new Ticket(10.00, "General");
-        Ticket ticketChild = new Ticket(5.00, "Child");
-        Ticket ticketSenior = new Ticket(20.00, "Senior");
-        Ticket ticketStudent = new Ticket(5.00, "Student");
-        Ticket ticketEmpty = new Ticket(0.00, "Empty");
+        Ticket ticket1 = new Ticket(10.00, "Avengers Endgame");
+        Ticket ticket2 = new Ticket(5.00, "The Incredibles");
+        Ticket ticket3 = new Ticket(20.00, "The Lion King");
+        Ticket ticket4 = new Ticket(15.00, "Star Wars");
+        Ticket ticket5 = new Ticket(3.00, "Superman");
 
-        ticketList.add(ticketGeneral);
-        ticketList.add(ticketChild);
-        ticketList.add(ticketSenior);
-        ticketList.add(ticketStudent);
-        ticketList.add(ticketEmpty);
+        ticketList.add(ticket1);
+        ticketList.add(ticket2);
+        ticketList.add(ticket3);
+        ticketList.add(ticket4);
+        ticketList.add(ticket5);
 
 
         //adding seats to the seatList.

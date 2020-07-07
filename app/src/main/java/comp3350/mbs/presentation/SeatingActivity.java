@@ -21,7 +21,11 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
+
 import comp3350.mbs.business.AccessSeats;
+
+import comp3350.mbs.objects.Movie;
+
 import comp3350.mbs.objects.Seat;
 
 public class SeatingActivity extends AppCompatActivity {
@@ -35,6 +39,7 @@ public class SeatingActivity extends AppCompatActivity {
     private List<Seat> bookedSeats;
 
     private Button seatConfirmButton;
+    private Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,6 @@ public class SeatingActivity extends AppCompatActivity {
                 }else {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
-                    //intent.putParcelableArrayListExtra("chosen seats", (ArrayList<? extends Parcelable>) bookedSeats);
                     intent.putExtra("seats", bookedSeats.size());
                     startActivity(intent);
                 }//end if-else
@@ -66,6 +70,9 @@ public class SeatingActivity extends AppCompatActivity {
      * init - a method that initializes the widgets and the lists. It also creates a sample data for the seats.
      */
     private void init(){
+        Intent intent = getIntent();
+        movie = intent.getParcelableExtra("movie");
+
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
 
         //initialize the lists.
