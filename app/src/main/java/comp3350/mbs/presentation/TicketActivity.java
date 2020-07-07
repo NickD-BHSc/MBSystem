@@ -1,17 +1,19 @@
 package comp3350.mbs.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.objects.Ticket;
-
-import android.widget.Button;
 
 public class TicketActivity extends AppCompatActivity {
 
@@ -66,19 +68,19 @@ public class TicketActivity extends AppCompatActivity {
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
         int seatCount= intent.getIntExtra("seats", 0);
-        Ticket ticket;
+
+        ArrayList<Ticket> ticketList= new ArrayList<>();
         Ticket generalTicket = accessTickets.getTicket("General");
-        Ticket emptyTicket = accessTickets.getTicket("Empty");
-        if(seatCount > 0) {
-            ticket = new Ticket(generalTicket.getPrice(), generalTicket.getType(), seatCount);
-        }else{
-            ticket = emptyTicket;
+        for(int i = 0; i < seatCount; i++)
+        {
+            ticketList.add(generalTicket);
         }
-        ticketPriceTextView.setText(ticket.getPriceAsString());
-        ticketQuantityTextView.setText(String.valueOf(ticket.getQuantity()));
-        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticket));
-        ticketTaxTextView.setText(Calculate.calculateTax(ticket));
-        ticketTotalTextView.setText(Calculate.calculateTotal(ticket));
+
+        ticketPriceTextView.setText(generalTicket.getPriceAsString());
+        ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
+        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
+        ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
+        ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
 
     }//end addTicketInfo
 
