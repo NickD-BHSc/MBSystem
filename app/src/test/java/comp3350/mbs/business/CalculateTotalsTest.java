@@ -15,6 +15,7 @@ public class CalculateTotalsTest extends TestCase {
         super(arg0);
     }
 
+
     String resultTotal;
     ArrayList<Ticket> list;
     Ticket ticket;
@@ -144,5 +145,6 @@ public class CalculateTotalsTest extends TestCase {
 
         System.out.println("Finished testCalculateTotals: list with invalid objects");
     }
+
 
 }

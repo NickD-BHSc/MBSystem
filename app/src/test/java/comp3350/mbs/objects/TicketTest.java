@@ -11,6 +11,7 @@ public class TicketTest extends TestCase {
         super(arg0);
     }
 
+
     @Test
     public void testTicket1()
     {
@@ -44,4 +45,5 @@ public class TicketTest extends TestCase {
 
         System.out.println("Finished testTicket2");
     }
+
 }
