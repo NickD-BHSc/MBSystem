@@ -4,12 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
 public class Ticket implements Parcelable {
     private double price;
     private String type;
-    private int quantity = 0;
+    private int quantity = 1;
     DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
     /**
