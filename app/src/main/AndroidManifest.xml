@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".presentation.TheatreActivity"
+        <activity
+            android:name=".presentation.TheatreActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,18 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity android:name=".presentation.TrailerActivity" />
         <activity
             android:name=".presentation.MovieActivity"
-            android:label="@string/title_activity_movie"></activity>
+            android:label="@string/title_activity_movie" />
+
+        <activity android:name=".presentation.SeatingActivity"></activity>
+
 
         <activity
             android:name=".presentation.MovieInfoActivity"
-            android:label="@string/title_activity_movie_info"></activity>
-
-
-
+            android:label="@string/title_activity_movie_info" />
     </application>
 
 </manifest>

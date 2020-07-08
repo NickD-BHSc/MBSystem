@@ -44,8 +44,7 @@ public class MovieActivity extends AppCompatActivity {
         movieRecyclerView = findViewById(R.id.movieRecyclerView);
 
         customAdapter = new CustomAdapter(MovieActivity.this,movieLists);
-        movieRecyclerView.setAdapter(customAdapter)
-        ;
+        movieRecyclerView.setAdapter(customAdapter);
         layoutManager = new GridLayoutManager(this,1);
         movieRecyclerView.setLayoutManager(layoutManager);
 
