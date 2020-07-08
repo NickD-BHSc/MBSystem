@@ -60,13 +60,13 @@ public class MovieActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
         AccessMovies accessMovies = new AccessMovies();
-        
         if (theatreItem != null) {
             /*
             if(theatreItem.getMovieList() != null) {
                 movieLists = theatreItem.getMovieList();
             }
              */
+
             movieLists = accessMovies.getMovieList(theatreItem);
 
         }//end if
