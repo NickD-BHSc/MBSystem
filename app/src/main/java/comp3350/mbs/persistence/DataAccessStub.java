@@ -6,14 +6,17 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessStub {
+ //TODO Add Consistency in this file
 
     private String dbName;
     private String dbType = "stub";
 
     private List<Theatre> theatreList;
+    private List<Ticket> ticketList;
 
     //Constructors
     public DataAccessStub(){
@@ -88,7 +91,19 @@ public class DataAccessStub {
         theatreList.add(t8);
         theatreList.add(t9);
 
+        ticketList = new ArrayList<>();
 
+        Ticket ticketGeneral = new Ticket(10.00, "General");
+        Ticket ticketChild = new Ticket(5.00, "Child");
+        Ticket ticketSenior = new Ticket(20.00, "Senior");
+        Ticket ticketStudent = new Ticket(5.00, "Student");
+        Ticket ticketEmpty = new Ticket(0.00, "Empty");
+
+        ticketList.add(ticketGeneral);
+        ticketList.add(ticketChild);
+        ticketList.add(ticketSenior);
+        ticketList.add(ticketStudent);
+        ticketList.add(ticketEmpty);
 
         System.out.println("Opened " + dbType + " database " + dbName + ".");
 
@@ -112,6 +127,32 @@ public class DataAccessStub {
 
 
     /**
+     * getTicket -a getter method for a ticket from the list.
+     * @return it will return the ticket.
+     */
+    public Ticket getTicket(String ticketType){
+        Ticket ticket = null;
+        for(int i = 0; i <ticketList.size(); i++){
+
+            if(ticketList.get(i).getType().equals(ticketType)){
+                ticket = ticketList.get(i);
+            }//end if
+
+        }//end for
+        return ticket;
+    }//end getTicket
+
+
+    /**
+     * getTicketList -a getter method for a the complete list of tickets.
+     * @return it will return the ticketList.
+     */
+    public List<Ticket> getTicketList(){
+        return ticketList;
+    }//end getTicketList
+
+
+    /**
      * getMovieList - a getter method for the movieList for the given theatre.
      * @param whichTheatre is the theatre that contains the list of movies.
      * @return it will return the movieList for the given theatre if it exists.
@@ -130,6 +171,7 @@ public class DataAccessStub {
         return movieList;
 
     }//end getMovieList
+
 
     /**
      * getViewingTimeList - a getter method for the viewingTimeList for the given movie
