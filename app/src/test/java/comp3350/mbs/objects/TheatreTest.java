@@ -1,10 +1,13 @@
 package comp3350.mbs.objects;
 
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
-public class TheatreTest {
+import org.junit.Test;
+
+public class TheatreTest extends TestCase {
+
+    public TheatreTest(String arg0){super(arg0);}
 
     @Test
     public void testOneTheatre(){

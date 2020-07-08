@@ -1,13 +1,15 @@
 package comp3350.mbs.objects;
 
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import comp3350.mbs.R;
 
-import static org.junit.Assert.*;
 
-public class MovieTest {
+public class MovieTest extends TestCase {
 
+    public MovieTest(String arg0){super(arg0);}
     @Test
     public void testOneMovie(){
 

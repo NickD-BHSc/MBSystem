@@ -5,6 +5,8 @@ import junit.framework.TestSuite;
 import comp3350.mbs.business.CalculateTotalsTest;
 import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TicketTest;
+import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.objects.ViewingTimeTest;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -27,6 +29,7 @@ public class AllTests {
     {
         suite.addTestSuite(TicketTest.class);
         suite.addTestSuite( SeatingTest.class);
+        suite.addTestSuite(ViewingTimeTest.class);
     }
 
     private static void testBusiness()

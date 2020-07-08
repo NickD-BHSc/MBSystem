@@ -1,9 +1,12 @@
 package comp3350.mbs.objects;
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-public class ViewingTimeTest {
+public class ViewingTimeTest extends TestCase {
 
+    public ViewingTimeTest(String arg0){super(arg0);}
 
     @Test
     public void testViewingTime1(){
