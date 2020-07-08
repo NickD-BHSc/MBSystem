@@ -1,6 +1,5 @@
 package comp3350.mbs.presentation;
 
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.w3c.dom.Text;
 
 import comp3350.mbs.R;
+import comp3350.mbs.business.AccessTrailer;
 
 public class TrailerActivity extends AppCompatActivity {
     private Button playVideo;
@@ -42,8 +42,7 @@ public class TrailerActivity extends AppCompatActivity {
     }
 
     public void videoPlay(View v){
-        String clean = cleanString(movieTitle);
-
+        String clean = AccessTrailer.cleanString(movieTitle);
         int movie = getResources().getIdentifier("raw/"+clean, null, getPackageName());
         String videoPath = "android.resource://comp3350.mbs/";
         String cookedPath = videoPath+movie;
@@ -53,15 +52,6 @@ public class TrailerActivity extends AppCompatActivity {
         trailerView.setMediaController(trailerController);
         trailerController.setAnchorView(trailerView);
         trailerView.start();
-    }
-
-    /*
-    * Cleaned string to call the appropriate video file
-    * */
-    public String cleanString(String title){
-        String ns = title.replaceAll("\\s+","");
-        String lc = ns.toLowerCase();
-        return lc;
     }
 
 }
