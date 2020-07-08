@@ -4,4 +4,15 @@
     <string name="title_activity_movie">Movies</string>
     <string name="title_activity_movie_info">Movie Information</string>
     <string name="title_activity_seating">Select a seat</string>
+    <string name="title_activity_ticket">Movie Information</string>
+    <string name="back">Back</string>
+    <string name="total">Total:</string>
+    <string name="tax">Tax:</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="ticket_price">Ticket Price:</string>
+    <string name="quantity">Quantity:</string>
+    <string name="_0">0</string>
+    <string name="_0_00">0.00</string>
+    <string name="payment">Payment</string>
+    <string name="show_time">Show Time</string>
 </resources>
