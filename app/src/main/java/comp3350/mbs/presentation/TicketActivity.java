@@ -2,8 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +24,6 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketTotalTextView;
     private TextView movieTitleTextView;
 
-    Button backButton;
-
     private Movie movie;
     private int seatCount;
 
@@ -37,17 +33,9 @@ public class TicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         accessTickets = new AccessTickets();
         setContentView(R.layout.activity_ticket);
-        backButton = findViewById(R.id.BackButton);
         init();
         addTicketInfo();
 
-        backButton.setOnClickListener( new View.OnClickListener() {
-            public void onClick( View v){
-            Intent intent = new Intent(TicketActivity.this, SeatingActivity.class);
-            intent.putExtra("movie", movie);
-            startActivity(intent);
-            }
-        });
     }//end onCreate
 
 
