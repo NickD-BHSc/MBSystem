@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -31,9 +32,6 @@ public class SeatingActivity extends AppCompatActivity {
 
     private Button seatConfirmButton;
 
-    //Only used for debugging. (Delete later)
-    private TextView showResultTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +43,16 @@ public class SeatingActivity extends AppCompatActivity {
         seatConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-                intent.putParcelableArrayListExtra("chosen seats", (ArrayList<? extends Parcelable>) bookedSeats);
-                startActivity(intent);
+                //make sure that the user has chosen at least one seat to be able to move to the next page.
+                if(bookedSeats.size() == 0){
+                    Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
+                    //passing the whole list.
+                    //intent.putParcelableArrayListExtra("chosen seats", (ArrayList<? extends Parcelable>) bookedSeats);
+                    intent.putExtra("seats", bookedSeats.size());
+                    startActivity(intent);
+                }//end if-else
             }
         });
 
@@ -58,7 +63,6 @@ public class SeatingActivity extends AppCompatActivity {
      */
     private void init(){
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
-        showResultTextView = (TextView)findViewById(R.id.showResult);//delete later.
 
         //initialize the lists.
         AccessSeats accessSeats = new AccessSeats();
