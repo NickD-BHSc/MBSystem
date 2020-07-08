@@ -12,6 +12,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
+import comp3350.mbs.business.AccessMovies;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
 
@@ -57,14 +58,19 @@ public class MovieActivity extends AppCompatActivity {
     private void init() {
         //getting the item info from the previous activity.
         Intent intent = getIntent();
-        Theatre item = intent.getParcelableExtra("Theatre MovieLists");
-
-        if (item != null) {
-            if(item.getMovieList() != null) {
-                movieLists = item.getMovieList();
+        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
+        AccessMovies accessMovies = new AccessMovies();
+        
+        if (theatreItem != null) {
+            /*
+            if(theatreItem.getMovieList() != null) {
+                movieLists = theatreItem.getMovieList();
             }
+             */
+            movieLists = accessMovies.getMovieList(theatreItem);
 
         }//end if
+
         //do nothing when there is no item retrieved.
 
     }//end addMovieInfo
