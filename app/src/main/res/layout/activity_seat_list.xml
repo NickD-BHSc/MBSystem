@@ -32,17 +32,5 @@
         android:id="@+id/seatConfirmButton"
         android:layout_below="@id/seatRecyclerView"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id = "@+id/showResult"
-        android:layout_below = "@id/seatConfirmButton"
-        android:text = "Result">
-
-    </TextView>
-
-
-
-
 
 </RelativeLayout>

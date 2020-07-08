@@ -3,24 +3,20 @@ package comp3350.mbs.objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.List;
 
 public class ViewingTime implements Parcelable {
     private String showTime;
     private String showDate;
-    private List<Integer> seats;
 
     /**
      * Constructor of ViewingTime class
      *
      * @param showTime is the showing time of the movie.
      * @param showDate is the date of viewing the movie.
-     * @param seats    is the list of seats available for the movie.
      */
-    public ViewingTime(String showTime, String showDate, List<Integer> seats) {
+    public ViewingTime(String showTime, String showDate) {
         this.showTime = showTime;
         this.showDate = showDate;
-        this.seats = seats;
     }//end constructor
 
 
@@ -65,10 +61,6 @@ public class ViewingTime implements Parcelable {
         return showDate;
     }//end getShowDate
 
-    public List<Integer> getSeats() {
-        return seats;
-    }//end getSeats
-
 
     /**
      * equals - a method that determines if the given object (ViewingTime) has the same time and date as the fields showTime and showData.
@@ -104,7 +96,6 @@ public class ViewingTime implements Parcelable {
         return "ViewingTime{" +
                 "showTime='" + showTime + '\'' +
                 ", showDate='" + showDate + '\'' +
-                ", seats=" + seats +
                 '}';
     }//end toString
 
