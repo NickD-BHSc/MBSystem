@@ -2,8 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +11,7 @@ import java.util.ArrayList;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
+import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Ticket;
 
 public class TicketActivity extends AppCompatActivity {
@@ -23,8 +22,10 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketSubtotalTextView;
     private TextView ticketTaxTextView;
     private TextView ticketTotalTextView;
+    private TextView movieTitleTextView;
 
-    Button backButton;
+    private Movie movie;
+    private int seatCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +33,9 @@ public class TicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         accessTickets = new AccessTickets();
         setContentView(R.layout.activity_ticket);
-        backButton = findViewById(R.id.BackButton);
         init();
         addTicketInfo();
 
-        backButton.setOnClickListener( new View.OnClickListener() {
-            public void onClick( View v){
-            Intent intent = new Intent(TicketActivity.this, SeatingActivity.class);
-            startActivity(intent);
-            }
-        });
     }//end onCreate
 
 
@@ -56,7 +50,11 @@ public class TicketActivity extends AppCompatActivity {
         ticketSubtotalTextView = findViewById(R.id.ticketSubtotalTextView);
         ticketTaxTextView = findViewById(R.id.ticketTaxTextView);
         ticketTotalTextView = findViewById(R.id.ticketTotalTextView);
+        movieTitleTextView = findViewById(R.id.movieTitleTextView);
 
+        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
+        seatCount= intent.getIntExtra("seats", 0);
+        movie = intent.getParcelableExtra("movie"); //get the movie so we know the price
     }//end init
 
 
@@ -66,21 +64,19 @@ public class TicketActivity extends AppCompatActivity {
      */
     private void addTicketInfo() {
 
-        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
-        int seatCount= intent.getIntExtra("seats", 0);
-
         ArrayList<Ticket> ticketList= new ArrayList<>();
-        Ticket generalTicket = accessTickets.getTicket("General");
+        Ticket ticket = accessTickets.getTicket(movie.getTitle());
         for(int i = 0; i < seatCount; i++)
         {
-            ticketList.add(generalTicket);
-        }
+            ticketList.add(ticket);
+        }//end for
 
-        ticketPriceTextView.setText(generalTicket.getPriceAsString());
+        ticketPriceTextView.setText(ticket.getPriceAsString());
         ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
         ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
         ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
         ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
+        movieTitleTextView.setText("Order Summary - " + ticket.getType());
 
     }//end addTicketInfo
 
