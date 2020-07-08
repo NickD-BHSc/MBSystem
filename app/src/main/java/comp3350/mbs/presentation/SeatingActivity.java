@@ -2,6 +2,7 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
+import comp3350.mbs.business.AccessSeats;
 import comp3350.mbs.objects.Seat;
 
 public class SeatingActivity extends AppCompatActivity {
@@ -25,7 +27,7 @@ public class SeatingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     private List<Seat> seatingList;
-    private List<Integer> bookedSeats;
+    private List<Seat> bookedSeats;
 
     private Button seatConfirmButton;
 
@@ -44,7 +46,7 @@ public class SeatingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-                intent.putExtra("seats", bookedSeats.size());
+                intent.putParcelableArrayListExtra("chosen seats", (ArrayList<? extends Parcelable>) bookedSeats);
                 startActivity(intent);
             }
         });
@@ -59,19 +61,10 @@ public class SeatingActivity extends AppCompatActivity {
         showResultTextView = (TextView)findViewById(R.id.showResult);//delete later.
 
         //initialize the lists.
-        seatingList = new ArrayList<>();//sample data that will be passed to the CustomAdapter.
-        bookedSeats = new ArrayList<>();//list that contains the booked seats.
+        AccessSeats accessSeats = new AccessSeats();
+        seatingList = accessSeats.getSeatList();//data that will be passed to the CustomAdapter.
 
-        //some sample data
-        for(int i = 0; i < 32; i++) {
-            Seat seat;
-            if( i%5 != 0){
-                seat = new Seat(i,false, R.drawable.seat);
-            }else{
-                seat = new Seat(i,true, R.drawable.seat_taken);
-            }//end if-else
-            seatingList.add(seat);
-        }//end for loop
+        bookedSeats = new ArrayList<>();//list that contains the booked seats.
 
     }//end init
 
@@ -94,7 +87,7 @@ public class SeatingActivity extends AppCompatActivity {
      * @param seat is the object that is going to be added.
      */
     public void addSeat( Seat seat ){
-        bookedSeats.add( seat.getSeatNumber() );
+        bookedSeats.add( seat );
     }//end addSeat
 
     /**
@@ -102,7 +95,7 @@ public class SeatingActivity extends AppCompatActivity {
      * @param seat is the object that is going to be removed.
      */
     public void removeSeat( Seat seat ){
-        bookedSeats.remove( bookedSeats.indexOf( seat.getSeatNumber() ));
+        bookedSeats.remove(seat);
     }//end removeSeat
 
 

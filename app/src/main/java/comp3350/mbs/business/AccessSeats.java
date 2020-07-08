@@ -13,7 +13,7 @@ public class AccessSeats {
     public AccessSeats(){
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
-    
+
     /**
      * getSeatList -a getter method for the seatList field from the DataAccessStub.
      * @return it will return a list of seats.
