@@ -8,6 +8,12 @@ public class Seat implements Parcelable {
     private boolean isBooked;
     private int seatImage;
 
+    /**
+     * Seat constructor
+     * @param seatNumber is the number of the seat.
+     * @param isBooked determines if the seat object is booked or not.
+     * @param seatImage is the image of the seat.
+     */
     public Seat(int seatNumber,boolean isBooked, int seatImage) {
         this.seatNumber = seatNumber;
         this.isBooked = isBooked;
