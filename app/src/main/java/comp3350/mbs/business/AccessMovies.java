@@ -10,11 +10,10 @@ import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessMovies {
     private DataAccessStub dataAccess;
-    private List<Movie> movieList;
+
     //Constructor
     public AccessMovies(){
         dataAccess = Services.getDataAccessService(Main.dbName);
-        movieList = null;
     }//end constructor
 
     /**
@@ -24,8 +23,7 @@ public class AccessMovies {
      *          Otherwise it will return null.
      */
     public List<Movie> getMovieList(Theatre whichTheatre){
-        movieList = dataAccess.getMovieList(whichTheatre);
-        return movieList;
+        return dataAccess.getMovieList(whichTheatre);
     }//end getMovieList
 
 
