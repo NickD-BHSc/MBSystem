@@ -160,6 +160,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
             if(itemLists.get(position) instanceof Seat){
                 final Seat item = (Seat) itemLists.get(position);
 
+                holder.seatNumberTextView.setText("#" + item.getSeatNumber());
+
                 //Check to see if the seat (item) is booked or not.
                 if(item.isBooked()){
                     holder.seatImageView.setImageResource(item.getSeatImage());
@@ -236,6 +238,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
         //For SeatActivity
         private ImageView seatImageView;
+        private TextView seatNumberTextView;
 
 
         public CustomViewHolder(@NonNull View itemView) {
@@ -260,6 +263,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             }else if(context instanceof SeatingActivity){
                 seatImageView = itemView.findViewById(R.id.seatImageView);
+                seatNumberTextView = itemView.findViewById(R.id.seatNumTextView);
                 relativeLayout = itemView.findViewById(R.id.seatRelativeLayout);
 
             }else{
