@@ -16,7 +16,9 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
+import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.Movie;
+import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;
 
 public class MovieInfoActivity extends AppCompatActivity {
@@ -76,16 +78,26 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        Movie item = intent.getParcelableExtra("Movie item");
+        Movie movieItem = intent.getParcelableExtra("Movie_Selected");
+        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
 
-        if(item != null) {
-            if(item.getShowingTime() != null) {
+        if(movieItem != null && theatreItem != null) {
+            /* OLD VERSION
+            if(movieItem.getShowingTime() != null) {
                 //put the information to the TextViews and ImageView
-                viewingTimeList = new ArrayList<>(item.getShowingTime());
-                movieDescTextView.setText(item.getDescription());
-                movieTitleTextView.setText(item.getTitle());
-                moviePosterImageView.setImageResource(item.getPoster());
+                viewingTimeList = new ArrayList<>(movieItem.getShowingTime());
+                movieDescTextView.setText(movieItem.getDescription());
+                movieTitleTextView.setText(movieItem.getTitle());
+                moviePosterImageView.setImageResource(movieItem.getPoster());
             }//end nested if
+             */
+
+            AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
+            viewingTimeList = accessViewingTimes.getViewingTimeList(theatreItem,movieItem);
+            movieDescTextView.setText(movieItem.getDescription());
+            movieTitleTextView.setText(movieItem.getTitle());
+            moviePosterImageView.setImageResource(movieItem.getPoster());
+
         }//end if
         //do nothing when no item was retrieved.
 

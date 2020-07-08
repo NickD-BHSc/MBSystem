@@ -123,6 +123,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
                         intent.putExtra("Movie_Selected", item);
+
+                        Theatre selectedTheatre = ((MovieActivity)context).getSelectedTheatre();
+                        intent.putExtra("Chosen_Theatre",selectedTheatre);
                         context.startActivity(intent);
                     }
                 });

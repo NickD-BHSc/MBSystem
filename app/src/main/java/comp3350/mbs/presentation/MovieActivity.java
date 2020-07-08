@@ -23,7 +23,7 @@ public class MovieActivity extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager;
     private List<Movie> movieLists;
-
+    private Theatre selectedTheatre;
 
 
     @Override
@@ -56,24 +56,34 @@ public class MovieActivity extends AppCompatActivity {
      * and put the information to the movieList.
      */
     private void init() {
+        selectedTheatre = null;
         //getting the item info from the previous activity.
         Intent intent = getIntent();
         Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
         AccessMovies accessMovies = new AccessMovies();
         if (theatreItem != null) {
-            /*
+            /* OLD VERSION
             if(theatreItem.getMovieList() != null) {
                 movieLists = theatreItem.getMovieList();
             }
              */
 
             movieLists = accessMovies.getMovieList(theatreItem);
+            selectedTheatre = theatreItem;
 
         }//end if
 
         //do nothing when there is no item retrieved.
 
     }//end addMovieInfo
+
+    /**
+     * getSelectedTheatre - a getter method for the field selectedTheatre.
+     * @return it will return the selectedTheatre.
+     */
+    public Theatre getSelectedTheatre(){
+        return selectedTheatre;
+    }//end getSelectedTheatre
 
 
 
