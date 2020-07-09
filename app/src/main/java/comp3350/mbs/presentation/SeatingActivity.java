@@ -2,15 +2,9 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,11 +15,8 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
-
 import comp3350.mbs.business.AccessSeats;
-
 import comp3350.mbs.objects.Movie;
-
 import comp3350.mbs.objects.Seat;
 
 public class SeatingActivity extends AppCompatActivity {
@@ -59,6 +50,7 @@ public class SeatingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
+                    intent.putExtra("movie", movie);
                     startActivity(intent);
                 }//end if-else
             }
@@ -89,7 +81,7 @@ public class SeatingActivity extends AppCompatActivity {
     private void buildRecyclerView(){
         seatRecyclerView = findViewById(R.id.seatRecyclerView);
 
-        customAdapter = new CustomAdapter(SeatingActivity.this,seatingList);
+        customAdapter = new CustomAdapter(SeatingActivity.this,seatingList,movie);
         seatRecyclerView.setAdapter(customAdapter);
 
         //5 column

@@ -31,6 +31,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private ImageView moviePosterImageView;
     private TextView movieTitleTextView;
     private TextView movieDescTextView;
+    private Movie movieItem;
 
 
     @Override
@@ -77,7 +78,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        Movie movieItem = intent.getParcelableExtra("Movie_Selected");
+        movieItem = intent.getParcelableExtra("Movie_Selected");
         Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
 
         if(movieItem != null && theatreItem != null) {
@@ -100,7 +101,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
 
-        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movie);
+        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movieItem);
         viewingTimeRecyclerView.setAdapter(customAdapter);
 
         layoutManager = new LinearLayoutManager(this);
