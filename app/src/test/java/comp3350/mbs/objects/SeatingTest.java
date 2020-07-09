@@ -17,13 +17,17 @@ public class SeatingTest extends TestCase{
 
         seat = new Seat( 0, false, 0);
 
-        assertTrue( seat.getSeatNumber() == 0 && !seat.isBooked() && seat.getSeatImage() == 0);
+        assertEquals( seat.getSeatNumber(), 0 );
+        assertTrue( !seat.isBooked() );
+        assertEquals(  seat.getSeatImage(), 0);
 
         seat.setSeatNumber( 1 );
         seat.setBooked( true );
         seat.setSeatImage( 1 );
 
-        assertTrue( seat.getSeatNumber() == 1 && seat.isBooked() && seat.getSeatImage() == 1);
+        assertEquals( seat.getSeatNumber(), 1);
+        assertTrue( seat.isBooked() );
+        assertEquals( seat.getSeatImage(), 1);
 
         System.out.println( "Setter/Getter Test Complete");
     }
