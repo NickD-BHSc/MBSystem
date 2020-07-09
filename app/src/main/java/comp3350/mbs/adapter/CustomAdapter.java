@@ -101,7 +101,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, MovieActivity.class);
-                        intent.putExtra("Theatre MovieLists", item);
+                        intent.putExtra("Chosen_Theatre", item);
                         context.startActivity(intent);
                     }
                 });
@@ -122,7 +122,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
-                        intent.putExtra("Movie item", item);
+                        intent.putExtra("Movie_Selected", item);
+
+                        Theatre selectedTheatre = ((MovieActivity)context).getSelectedTheatre();
+                        intent.putExtra("Chosen_Theatre",selectedTheatre);
                         context.startActivity(intent);
                     }
                 });
@@ -156,6 +159,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             if(itemLists.get(position) instanceof Seat){
                 final Seat item = (Seat) itemLists.get(position);
+
+                holder.seatNumberTextView.setText("#" + item.getSeatNumber());
 
                 //Check to see if the seat (item) is booked or not.
                 if(item.isBooked()){
@@ -233,6 +238,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
         //For SeatActivity
         private ImageView seatImageView;
+        private TextView seatNumberTextView;
 
 
         public CustomViewHolder(@NonNull View itemView) {
@@ -257,6 +263,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             }else if(context instanceof SeatingActivity){
                 seatImageView = itemView.findViewById(R.id.seatImageView);
+                seatNumberTextView = itemView.findViewById(R.id.seatNumTextView);
                 relativeLayout = itemView.findViewById(R.id.seatRelativeLayout);
 
             }else{

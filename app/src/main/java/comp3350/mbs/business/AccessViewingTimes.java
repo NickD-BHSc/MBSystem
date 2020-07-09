@@ -11,12 +11,9 @@ import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessViewingTimes {
     private DataAccessStub dataAccess;
-    private List<ViewingTime> viewingTimeList;
-
     //Constructor
     public AccessViewingTimes(){
         dataAccess = Services.getDataAccessService(Main.dbName);
-        viewingTimeList = null;
     }//end constructor
 
     /**
@@ -28,8 +25,7 @@ public class AccessViewingTimes {
      *          Otherwise it will return null.
      */
     public List<ViewingTime> getViewingTimeList(Theatre whichTheatre, Movie whichMovie){
-        viewingTimeList = dataAccess.getViewingTimeList(whichTheatre,whichMovie);
-        return viewingTimeList;
+        return dataAccess.getViewingTimeList(whichTheatre,whichMovie);
     }//end getViewingTimeList
 
 }//end AccessViewingTimes

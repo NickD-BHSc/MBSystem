@@ -10,12 +10,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <!--the image seat on the ImageView is only temporary. It is changed when the app is running.-->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/seatImageView"
-            android:src="@drawable/seat"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#"
+                android:layout_marginVertical="5dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/seatNumTextView"/>
+            <!--the image seat on the ImageView is only temporary. It is changed when the app is running.-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seatImageView"
+                android:layout_below="@id/seatNumTextView"
+                android:src="@drawable/seat"/>
+
+
+
+        </RelativeLayout>
+
 
 
 
