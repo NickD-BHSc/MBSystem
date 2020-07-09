@@ -3,16 +3,11 @@ package comp3350.mbs;
 import junit.framework.TestSuite;
 
 import comp3350.mbs.business.CalculateTotalsTest;
-
-
 import comp3350.mbs.objects.MovieTest;
 import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TheatreTest;
 import comp3350.mbs.objects.TicketTest;
 import comp3350.mbs.objects.ViewingTimeTest;
-
-import comp3350.mbs.objects.SeatingTest;
-import comp3350.mbs.objects.TicketTest;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -35,7 +30,6 @@ public class AllTests {
     {
         suite.addTestSuite(TicketTest.class);
         suite.addTestSuite( SeatingTest.class);
-
         suite.addTestSuite(TheatreTest.class);
         suite.addTestSuite(MovieTest.class);
         suite.addTestSuite(ViewingTimeTest.class);
