@@ -2,15 +2,9 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,6 +16,7 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessSeats;
+import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 
 public class SeatingActivity extends AppCompatActivity {
@@ -35,6 +30,7 @@ public class SeatingActivity extends AppCompatActivity {
     private List<Seat> bookedSeats;
 
     private Button seatConfirmButton;
+    private Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +49,8 @@ public class SeatingActivity extends AppCompatActivity {
                 }else {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
-                    //intent.putParcelableArrayListExtra("chosen seats", (ArrayList<? extends Parcelable>) bookedSeats);
                     intent.putExtra("seats", bookedSeats.size());
+                    intent.putExtra("movie", movie);
                     startActivity(intent);
                 }//end if-else
             }
@@ -66,6 +62,9 @@ public class SeatingActivity extends AppCompatActivity {
      * init - a method that initializes the widgets and the lists. It also creates a sample data for the seats.
      */
     private void init(){
+        Intent intent = getIntent();
+        movie = intent.getParcelableExtra("movie");
+
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
 
         //initialize the lists.
@@ -82,7 +81,7 @@ public class SeatingActivity extends AppCompatActivity {
     private void buildRecyclerView(){
         seatRecyclerView = findViewById(R.id.seatRecyclerView);
 
-        customAdapter = new CustomAdapter(SeatingActivity.this,seatingList);
+        customAdapter = new CustomAdapter(SeatingActivity.this,seatingList,movie);
         seatRecyclerView.setAdapter(customAdapter);
 
         //5 column

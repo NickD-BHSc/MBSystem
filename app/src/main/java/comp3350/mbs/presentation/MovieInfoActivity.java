@@ -1,9 +1,5 @@
 package comp3350.mbs.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +7,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import comp3350.mbs.R;
@@ -32,6 +31,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private ImageView moviePosterImageView;
     private TextView movieTitleTextView;
     private TextView movieDescTextView;
+    private Movie movieItem;
 
 
     @Override
@@ -78,19 +78,10 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        Movie movieItem = intent.getParcelableExtra("Movie_Selected");
+        movieItem = intent.getParcelableExtra("Movie_Selected");
         Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
 
         if(movieItem != null && theatreItem != null) {
-            /* OLD VERSION
-            if(movieItem.getShowingTime() != null) {
-                //put the information to the TextViews and ImageView
-                viewingTimeList = new ArrayList<>(movieItem.getShowingTime());
-                movieDescTextView.setText(movieItem.getDescription());
-                movieTitleTextView.setText(movieItem.getTitle());
-                moviePosterImageView.setImageResource(movieItem.getPoster());
-            }//end nested if
-             */
 
             AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
             viewingTimeList = accessViewingTimes.getViewingTimeList(theatreItem,movieItem);
@@ -110,7 +101,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
 
-        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList);
+        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movieItem);
         viewingTimeRecyclerView.setAdapter(customAdapter);
 
         layoutManager = new LinearLayoutManager(this);
