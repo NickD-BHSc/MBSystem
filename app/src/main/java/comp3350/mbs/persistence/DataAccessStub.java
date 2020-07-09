@@ -12,7 +12,6 @@ import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessStub {
-    //TODO Add Consistency in this file
 
     private String dbName;
     private String dbType = "stub";
