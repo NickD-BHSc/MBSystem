@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import comp3350.mbs.R;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
@@ -26,6 +28,8 @@ public class DataAccessObject implements DataAccess {
     private String result;
     private static String EOF = "  ";
 
+    private List<Theatre> theatreList;
+
     public DataAccessObject(String dbName)
     {
         this.dbName = dbName;
@@ -42,8 +46,8 @@ public class DataAccessObject implements DataAccess {
             url = "jdbc:hsqldb:file:" + dbPath; // stored on disk mode
             c1 = DriverManager.getConnection(url, "SA", "");
             st1 = c1.createStatement();
-            st2 = c1.createStatement();
-            st3 = c1.createStatement();
+            //st2 = c1.createStatement();
+            //st3 = c1.createStatement();
 
         } catch (Exception e) {
             processSQLError(e);
@@ -70,6 +74,27 @@ public class DataAccessObject implements DataAccess {
 
     @Override
     public List<Theatre> getTheatreList() {
+        theatreList = new ArrayList<>();
+        String name;
+        String address;
+        String distance;
+
+        try {
+            cmdString = "SELECT NAME, ADDRESS, DISTANCE FROM THEATRES";
+            rs2 =st1.executeQuery(cmdString);
+
+            while(rs2.next()){
+                name =rs2.getString("NAME");
+                address = rs2.getString("ADDRESS");
+                distance = rs2.getString("DISTANCE");
+                Theatre theatre = new Theatre(name,address,null,distance);
+                theatreList.add(theatre);
+            }
+        }catch(Exception e){
+            processSQLError(e);
+        }//end try-catch
+
+
         return null;
     }
 
