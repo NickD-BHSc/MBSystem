@@ -13,8 +13,10 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessMovies;
+import comp3350.mbs.business.AccessTheatreMovies;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.objects.TheatreMovies;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -22,7 +24,7 @@ public class MovieActivity extends AppCompatActivity {
     private CustomAdapter customAdapter;
 
     private RecyclerView.LayoutManager layoutManager;
-    private List<Movie> movieLists;
+    private List<TheatreMovies> movieLists;
     private Theatre selectedTheatre;
 
 
@@ -60,15 +62,11 @@ public class MovieActivity extends AppCompatActivity {
         //getting the item info from the previous activity.
         Intent intent = getIntent();
         Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
-        AccessMovies accessMovies = new AccessMovies();
-        if (theatreItem != null) {
-            /* OLD VERSION
-            if(theatreItem.getMovieList() != null) {
-                movieLists = theatreItem.getMovieList();
-            }
-             */
+        AccessTheatreMovies accessMovies = new AccessTheatreMovies();
 
-            movieLists = accessMovies.getMovieList(theatreItem);
+        if (theatreItem != null) {
+
+            movieLists = accessMovies.getMoviesFromTheatre(theatreItem.getName());
             selectedTheatre = theatreItem;
 
         }//end if

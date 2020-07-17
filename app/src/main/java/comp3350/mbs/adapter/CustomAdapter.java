@@ -18,6 +18,7 @@ import comp3350.mbs.R;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.presentation.MovieActivity;
 import comp3350.mbs.presentation.MovieInfoActivity;
@@ -123,11 +124,11 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
         }else if(context instanceof MovieActivity){
 
-            if(itemLists.get(position) instanceof Movie){
-                final Movie item = (Movie)itemLists.get(position); // get the item using the given position.
+            if(itemLists.get(position) instanceof TheatreMovies){
+                final TheatreMovies item = (TheatreMovies)itemLists.get(position); // get the item using the given position.
                 //set the following info about Movie to the TextViews.
-                holder.titleTxtView.setText(item.getTitle());
-                holder.movieImageView.setImageResource(item.getPoster());
+                holder.titleTxtView.setText(item.getMovieName());
+                holder.movieImageView.setImageResource(item.getMoviePoster());
 
                 //Moves to the MovieInfoActivity (activity that holds the viewing time of the movie) when a movie is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {

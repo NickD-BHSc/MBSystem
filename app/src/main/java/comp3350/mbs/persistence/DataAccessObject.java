@@ -88,7 +88,7 @@ public class DataAccessObject implements DataAccess {
                 name =rs2.getString("NAME");
                 address = rs2.getString("ADDRESS");
                 distance = rs2.getString("DISTANCE");
-                Theatre theatre = new Theatre(name,address,null,distance);
+                Theatre theatre = new Theatre(name,address,distance);
                 theatreList.add(theatre);
             }
         }catch(Exception e){
@@ -99,15 +99,6 @@ public class DataAccessObject implements DataAccess {
         return theatreList;
     }
 
-    @Override
-    public List<Movie> getMovieList(Theatre whichTheatre) {
-        return null;
-    }
-
-    @Override
-    public List<ViewingTime> getViewingTimeList(Theatre whichTheatre, Movie whichMovie) {
-        return null;
-    }
 
     @Override
     public List<Seat> getSeatList() {

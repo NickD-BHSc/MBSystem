@@ -26,7 +26,8 @@ public class AccessViewingTimes {
      *          Otherwise it will return null.
      */
     public List<ViewingTime> getViewingTimeList(Theatre whichTheatre, Movie whichMovie){
-        return dataAccess.getViewingTimeList(whichTheatre,whichMovie);
+       // return dataAccess.getViewingTimeList(whichTheatre,whichMovie);
+        return null;
     }//end getViewingTimeList
 
 }//end AccessViewingTimes
