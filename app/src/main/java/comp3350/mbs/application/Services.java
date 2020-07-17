@@ -16,13 +16,26 @@ public class Services {
     public static DataAccess createDataAccess(String dbName){
 
         if(dataAccessService == null){
-            //dataAccessService = new DataAccessStub(dbName);
+            //dataAccessService = new DataAccessStub(dbName);//stub database
             dataAccessService = new DataAccessObject(dbName); //Actual database
-            dataAccessService.open(Main.dbName);
+            dataAccessService.open(Main.getDBPathName());
         }//end if
 
         return dataAccessService;
 
+    }//end createDataAccess
+
+    /**
+     * createDataAccess - a static method that creates a database with an alternate dataAccess service.
+     * @param alternateDataAccessService is the alternate dataAccess that will be assigned to the field dataAccessService.
+     * @return it will return the dataAccessService.
+     */
+    public static DataAccess createDataAccess(DataAccess alternateDataAccessService) {
+        if (dataAccessService == null) {
+            dataAccessService = alternateDataAccessService;
+            dataAccessService.open(Main.getDBPathName());
+        }
+        return dataAccessService;
     }//end createDataAccess
 
     /**
