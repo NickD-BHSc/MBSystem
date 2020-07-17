@@ -1,17 +1,18 @@
 package comp3350.mbs.application;
 
+import comp3350.mbs.persistence.DataAccess;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class Services {
 
-    private static DataAccessStub dataAccessService = null;
+    private static DataAccess dataAccessService = null;
 
     /**
      * createDataAccess - a static method that creates a database with the specified name.
      * @param dbName is the name of the database.
      * @return it will return the data stored in the database (DataAccessStub).
      */
-    public static DataAccessStub createDataAccess(String dbName){
+    public static DataAccess createDataAccess(String dbName){
 
         if(dataAccessService == null){
             dataAccessService = new DataAccessStub(dbName);
@@ -27,7 +28,7 @@ public class Services {
      * @param dbName is the name of the database.
      * @return it will return the data stored in the given database.
      */
-    public static DataAccessStub getDataAccessService(String dbName){
+    public static DataAccess getDataAccessService(String dbName){
 
         if(dataAccessService == null){
             System.out.println("Connection to data access has not been established.");
