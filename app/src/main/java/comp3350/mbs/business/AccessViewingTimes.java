@@ -7,10 +7,11 @@ import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.persistence.DataAccess;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessViewingTimes {
-    private DataAccessStub dataAccess;
+    private DataAccess dataAccess;
     //Constructor
     public AccessViewingTimes(){
         dataAccess = Services.getDataAccessService(Main.dbName);

@@ -11,7 +11,7 @@ import comp3350.mbs.objects.ViewingTime;
 public class DataAccessObject implements DataAccess {
     @Override
     public void open(String dbName) {
-        
+
     }
 
     @Override

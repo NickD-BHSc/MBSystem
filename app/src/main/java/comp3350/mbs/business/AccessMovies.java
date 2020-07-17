@@ -6,10 +6,11 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.persistence.DataAccess;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessMovies {
-    private DataAccessStub dataAccess;
+    private DataAccess dataAccess;
 
     //Constructor
     public AccessMovies(){
