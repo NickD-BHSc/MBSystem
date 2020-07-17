@@ -3,7 +3,7 @@ package comp3350.mbs.application;
 public class Main {
 
     public static final String dbName = "MBS";
-    private static String dbPathName = "database/SC";
+    private static String dbPathName = "database/MBS";
 
     public static void main(String [] args){
         startUp();
