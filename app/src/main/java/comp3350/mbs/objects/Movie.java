@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class Movie implements Parcelable {
-
+    //Class may be deleted.
     private String title;
     private int poster;
     private String description;
