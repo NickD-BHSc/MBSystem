@@ -3,6 +3,7 @@ package comp3350.mbs.application;
 public class Main {
 
     public static final String dbName = "MBS";
+    private static String dbPathName = "database/SC";
 
     public static void main(String [] args){
         startUp();
@@ -26,5 +27,10 @@ public class Main {
     public static void shutDown(){
         Services.closeDataAccess();
     }//end shutDown
+
+    public static void setDBPathName(String pathName) {
+        System.out.println("Setting DB path to: " + pathName);
+        dbPathName = pathName;
+    }
 
 }//end Main class
