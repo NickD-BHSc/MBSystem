@@ -91,9 +91,9 @@ public class DataAccessStub implements DataAccess{
         movieListThree.add(m1);
 
         theatreList = new ArrayList<>();
-        Theatre theatre1 = new Theatre("Scotiabank Theatre", "817 St.James", movieListOne, "15.7km");
-        Theatre theatre2 = new Theatre("Cinema City Northgate", "1399 McPhillips St.", movieListTwo, "10km");
-        Theatre theatre3 = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd", movieListThree, "19.8km");
+        Theatre theatre1 = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
+        Theatre theatre2 = new Theatre("Cinema City Northgate", "1399 McPhillips St.","10km");
+        Theatre theatre3 = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
 
         //adding theatres to the theatreList.
         theatreList.add(theatre1);
@@ -135,30 +135,30 @@ public class DataAccessStub implements DataAccess{
         TheatreMovies tm;
 
         //Theatre1
-        tm = new TheatreMovies("Theatre1","Avengers Endgame",R.drawable.avengers_endgame,"movie1");
+        tm = new TheatreMovies("Scotiabank Theatre","Avengers Endgame",R.drawable.avengers_endgame,"movie1");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre1","The Incredibles",R.drawable.incredibles,"movie2");
+        tm = new TheatreMovies("Scotiabank Theatre","The Incredibles",R.drawable.incredibles,"movie2");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre1","Superman",R.drawable.superman,"movie3");
+        tm = new TheatreMovies("Scotiabank Theatre","Superman",R.drawable.superman,"movie3");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre1","Lion King",R.drawable.lion_king,"movie4");
+        tm = new TheatreMovies("Scotiabank Theatre","Lion King",R.drawable.lion_king,"movie4");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre1","Star Wars",R.drawable.starwars,"movie5");
+        tm = new TheatreMovies("Scotiabank Theatre","Star Wars",R.drawable.starwars,"movie5");
         theatreMoviesList.add(tm);
 
         //Theatre2
-        tm = new TheatreMovies("Theatre2","Avengers Endgame",R.drawable.avengers_endgame,"movie1");
+        tm = new TheatreMovies("Cinema City Northgate","Avengers Endgame",R.drawable.avengers_endgame,"movie1");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre2","The Incredibles",R.drawable.incredibles,"movie2");
+        tm = new TheatreMovies("Cinema City Northgate","The Incredibles",R.drawable.incredibles,"movie2");
         theatreMoviesList.add(tm);
 
 
         //Theatre3
-        tm = new TheatreMovies("Theatre3","Superman",R.drawable.superman,"movie3");
+        tm = new TheatreMovies("Silver City St.Vital Cinemas","Superman",R.drawable.superman,"movie3");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre3","Lion King",R.drawable.lion_king,"movie4");
+        tm = new TheatreMovies("Silver City St.Vital Cinemas","Lion King",R.drawable.lion_king,"movie4");
         theatreMoviesList.add(tm);
-        tm = new TheatreMovies("Theatre3","Star Wars",R.drawable.starwars,"movie5");
+        tm = new TheatreMovies("Silver City St.Vital Cinemas","Star Wars",R.drawable.starwars,"movie5");
         theatreMoviesList.add(tm);
 
 
@@ -252,53 +252,7 @@ public class DataAccessStub implements DataAccess{
     }//end getTicketList
 
 
-    /**
-     * getMovieList - a getter method for the movieList for the given theatre.
-     * @param whichTheatre is the theatre that contains the list of movies.
-     * @return it will return the movieList for the given theatre if it exists.
-     *          Otherwise it will return null.
-     */
-    public List<Movie> getMovieList(Theatre whichTheatre){
 
-        List<Movie> movieList = null;
-        for(int i = 0; i <theatreList.size(); i++){
-
-            if(theatreList.get(i).equals(whichTheatre)){
-                movieList = theatreList.get(i).getMovieList();
-            }//end if
-
-        }//end for
-        return movieList;
-
-    }//end getMovieList
-
-
-    /**
-     * getViewingTimeList - a getter method for the viewingTimeList for the given movie
-     *          assuming that the user has chosen the theatre already.
-     * @param whichTheatre is thea theatre that the user has chosen.
-     * @param whichMovie is the movie that contains the list of viewing time.
-     * @return it will return the viewingTimeList for the given movie if it exists.
-     *          Otherwise it will return null.
-     */
-    public List<ViewingTime> getViewingTimeList(Theatre whichTheatre, Movie whichMovie){
-        List<ViewingTime> viewingTimeList = null;
-
-        int posTheatre = theatreList.indexOf(whichTheatre); //position of the theatre in the list if it exists.
-
-        if( posTheatre != -1){
-            //given theatre is found.
-            List<Movie> movies = theatreList.get(posTheatre).getMovieList();
-
-            int posMovie = movies.indexOf(whichMovie);// position of the movie from the list if it exists.
-            if(posMovie != -1){
-                //given movie is found.
-                viewingTimeList = movies.get(posMovie).getShowingTime();
-            }//end nested if
-        }//end if
-
-        return viewingTimeList;
-    }//end getViewingTimeList
 
     /**
      * getSeatList - a getter method for the seatList.
