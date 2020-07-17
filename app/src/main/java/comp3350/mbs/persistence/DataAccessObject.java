@@ -80,7 +80,7 @@ public class DataAccessObject implements DataAccess {
         String distance;
 
         try {
-            cmdString = "SELECT NAME, ADDRESS, DISTANCE FROM THEATRES";
+            cmdString = "SELECT * FROM THEATRES";
             rs2 =st1.executeQuery(cmdString);
 
             while(rs2.next()){
@@ -95,7 +95,7 @@ public class DataAccessObject implements DataAccess {
         }//end try-catch
 
 
-        return null;
+        return theatreList;
     }
 
     @Override
