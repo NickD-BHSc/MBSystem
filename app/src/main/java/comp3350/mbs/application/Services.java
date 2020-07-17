@@ -16,6 +16,7 @@ public class Services {
 
         if(dataAccessService == null){
             dataAccessService = new DataAccessStub(dbName);
+            //dataAccessService = new DataAccessObject(dbName); //Actual database
             dataAccessService.open(Main.dbName);
         }//end if
 
