@@ -6,11 +6,9 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class Movie implements Parcelable {
-    //Class may be deleted.
     private String title;
     private int poster;
     private String description;
-    private List<ViewingTime> showingTime;
 
     /**
      * Constructor of Movie class
@@ -18,13 +16,11 @@ public class Movie implements Parcelable {
      * @param title       is the name of the movie.
      * @param poster      is the picture of the movie.
      * @param description is the description of the movie.
-     * @param showingTime is the list of showing time of the movie.
      */
-    public Movie(String title, int poster, String description, List<ViewingTime> showingTime) {
+    public Movie(String title, int poster, String description) {
         this.title = title;
         this.poster = poster;
         this.description = description;
-        this.showingTime = showingTime;
     }//end constructor
 
     //================================================================
@@ -33,8 +29,6 @@ public class Movie implements Parcelable {
         title = in.readString();
         poster = in.readInt();
         description = in.readString();
-        //make sure that ViewingTime class also implements Parcelable!
-        showingTime = in.createTypedArrayList(ViewingTime.CREATOR);
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -59,7 +53,6 @@ public class Movie implements Parcelable {
         parcel.writeString(title);
         parcel.writeInt(poster);
         parcel.writeString(description);
-        parcel.writeTypedList(showingTime);
     }
 
     //================================================================
@@ -75,10 +68,6 @@ public class Movie implements Parcelable {
     public String getDescription() {
         return description;
     }//end getDescription
-
-    public List<ViewingTime> getShowingTime() {
-        return showingTime;
-    }//end getShowingTime
 
 
     /**
@@ -114,7 +103,6 @@ public class Movie implements Parcelable {
                 "title='" + title + '\'' +
                 ", poster=" + poster +
                 ", description='" + description + '\'' +
-                ", showingTime=" + showingTime +
                 '}';
     }//end toString
 
