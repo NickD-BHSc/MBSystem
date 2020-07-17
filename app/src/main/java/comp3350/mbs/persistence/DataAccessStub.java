@@ -11,7 +11,7 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
-public class DataAccessStub {
+public class DataAccessStub implements DataAccess{
 
     private String dbName;
     private String dbType = "stub";
