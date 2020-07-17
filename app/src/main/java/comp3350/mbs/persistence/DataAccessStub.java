@@ -8,6 +8,7 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
@@ -19,6 +20,7 @@ public class DataAccessStub implements DataAccess{
     private List<Theatre> theatreList;
     private List<Ticket> ticketList;
     private List<Seat> seatList;
+    private List<TheatreMovies> theatreMoviesList;
 
     //Constructors
     public DataAccessStub(){
@@ -127,6 +129,41 @@ public class DataAccessStub implements DataAccess{
             seatList.add(seat);
         }//end for loop
 
+
+
+        theatreMoviesList = new ArrayList<>();
+        TheatreMovies tm;
+
+        //Theatre1
+        tm = new TheatreMovies("Theatre1","Avengers Endgame",R.drawable.avengers_endgame,"movie1");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre1","The Incredibles",R.drawable.incredibles,"movie2");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre1","Superman",R.drawable.superman,"movie3");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre1","Lion King",R.drawable.lion_king,"movie4");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre1","Star Wars",R.drawable.starwars,"movie5");
+        theatreMoviesList.add(tm);
+
+        //Theatre2
+        tm = new TheatreMovies("Theatre2","Avengers Endgame",R.drawable.avengers_endgame,"movie1");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre2","The Incredibles",R.drawable.incredibles,"movie2");
+        theatreMoviesList.add(tm);
+
+
+        //Theatre3
+        tm = new TheatreMovies("Theatre3","Superman",R.drawable.superman,"movie3");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre3","Lion King",R.drawable.lion_king,"movie4");
+        theatreMoviesList.add(tm);
+        tm = new TheatreMovies("Theatre3","Star Wars",R.drawable.starwars,"movie5");
+        theatreMoviesList.add(tm);
+
+
+
+
         System.out.println("Opened " + dbType + " database " + dbName + ".");
 
     }//end open
@@ -163,6 +200,47 @@ public class DataAccessStub implements DataAccess{
         }//end for
         return ticket;
     }//end getTicket
+
+    /**
+     * getMoviesFromTheatre - a getter method that returns a list of movies from the given theatre.
+     * @param whichTheatre is the given theatre.
+     * @return it will return a list of movies that is contained in the given theatre.
+     */
+    public List<TheatreMovies> getMoviesFromTheatre(TheatreMovies whichTheatre) {
+        List<TheatreMovies> newTMList = new ArrayList<>();
+        TheatreMovies tm;
+
+        //find the given theatre from the list.
+        for(int i = 0; i < theatreMoviesList.size(); i++){
+            tm = theatreMoviesList.get(i);
+
+            if(tm.getTheatreName().equals(whichTheatre.getTheatreName())){
+                newTMList.add(tm);
+            }//end if
+        }//end for
+
+        return newTMList;
+    }//end getMoviesFromTheatre
+
+    /**
+     * getTheatresFromMovie - a getter method that returns a list of theatres from the given movie.
+     * @param whichMovie is the given movie name.
+     * @return it will return a list of theatres that has the given movie.
+     */
+    public List<TheatreMovies> getTheatresFromMovie(TheatreMovies whichMovie) {
+        List<TheatreMovies> newTMList = new ArrayList<>();
+        TheatreMovies tm;
+
+        //find the given movie from the list.
+        for(int i = 0; i < theatreMoviesList.size(); i++){
+            tm = theatreMoviesList.get(i);
+            if(tm.getMovieName().equals(whichMovie.getMovieName())){
+                newTMList.add(tm);
+            }//end if
+        }//end for
+
+        return newTMList;
+    }//end getTheatresFromMovie
 
 
     /**
