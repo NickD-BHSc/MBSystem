@@ -125,13 +125,14 @@ public class DataAccessObject implements DataAccess {
         String movieDescription;
 
         try{
-            cmdString = "SELECT * FROM MOVIES WHERE THEATRENAME = " + whichTheatre.getTheatreName();
+            cmdString = "SELECT * FROM MOVIES WHERE THEATRENAME = " + "'" +whichTheatre.getTheatreName() + "'";
             rs2 = st2.executeQuery(cmdString);
 
             while(rs2.next()){
                 theatreName = rs2.getString("THEATRENAME");
                 movieName = rs2.getString("TITLE");
-                moviePoster = rs2.getInt("POSTER");
+                //moviePoster = rs2.getInt("POSTER");
+                moviePoster = R.drawable.starwars;
                 movieDescription = rs2.getString("DESCRIPTION");
 
                 tm = new TheatreMovies(theatreName,movieName,moviePoster,movieDescription);
