@@ -131,9 +131,23 @@ public class DataAccessObject implements DataAccess {
             while(rs2.next()){
                 theatreName = rs2.getString("THEATRENAME");
                 movieName = rs2.getString("TITLE");
-                //moviePoster = rs2.getInt("POSTER");
-                moviePoster = R.drawable.starwars;
+                moviePoster = rs2.getInt("POSTER");
                 movieDescription = rs2.getString("DESCRIPTION");
+
+                //TODO access the actual image of the movie instead of the numbers.
+                if(moviePoster == 0){
+                    moviePoster = R.drawable.avengers_endgame;
+                }else if(moviePoster == 1){
+                    moviePoster = R.drawable.incredibles;
+                }else if(moviePoster == 2){
+                    moviePoster = R.drawable.lion_king;
+                }else if(moviePoster == 3){
+                    moviePoster = R.drawable.starwars;
+                }else if(moviePoster == 4){
+                    moviePoster = R.drawable.superman;
+                }else{
+                    moviePoster = R.drawable.ic_launcher_foreground;//show this to represent that the movie has no specific image.
+                }//end if-elses
 
                 tm = new TheatreMovies(theatreName,movieName,moviePoster,movieDescription);
                 theatreMoviesList.add(tm);

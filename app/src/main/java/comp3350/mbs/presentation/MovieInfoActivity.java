@@ -54,7 +54,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         init();
         addMovieInfo();
-        buildRecyclerView();
+        //buildRecyclerView();
 
 
     }//end onCreate
