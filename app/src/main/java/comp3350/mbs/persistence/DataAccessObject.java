@@ -28,6 +28,7 @@ public class DataAccessObject implements DataAccess {
     private static String EOF = "  ";
 
     private List<Theatre> theatreList;
+    private List<TheatreMovies> theatreMoviesList;
 
     public DataAccessObject(String dbName)
     {
@@ -44,8 +45,8 @@ public class DataAccessObject implements DataAccess {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
             url = "jdbc:hsqldb:file:" + dbPath; // stored on disk mode
             c1 = DriverManager.getConnection(url, "SA", "");
-            st1 = c1.createStatement();
-            //st2 = c1.createStatement();
+            st1 = c1.createStatement();//THEATRE TABLE
+            st2 = c1.createStatement();//MOVIE TABLE
             //st3 = c1.createStatement();
 
         } catch (Exception e) {
@@ -88,7 +89,7 @@ public class DataAccessObject implements DataAccess {
                 distance = rs2.getString("DISTANCE");
                 Theatre theatre = new Theatre(name,address,distance);
                 theatreList.add(theatre);
-            }
+            }//end while
         }catch(Exception e){
             processSQLError(e);
         }//end try-catch
@@ -115,7 +116,35 @@ public class DataAccessObject implements DataAccess {
 
     @Override
     public List<TheatreMovies> getMoviesFromTheatre(TheatreMovies whichTheatre) {
-        return null;
+        theatreMoviesList = new ArrayList<>();
+
+        TheatreMovies tm;
+        String theatreName;
+        String movieName;
+        int moviePoster;
+        String movieDescription;
+
+        try{
+            cmdString = "SELECT * FROM MOVIES WHERE THEATRENAME = " + whichTheatre.getTheatreName();
+            rs2 = st2.executeQuery(cmdString);
+
+            while(rs2.next()){
+                theatreName = rs2.getString("THEATRENAME");
+                movieName = rs2.getString("TITLE");
+                moviePoster = rs2.getInt("POSTER");
+                movieDescription = rs2.getString("DESCRIPTION");
+
+                tm = new TheatreMovies(theatreName,movieName,moviePoster,movieDescription);
+                theatreMoviesList.add(tm);
+
+            }//end while
+
+        }catch(Exception e){
+            processSQLError(e);
+        }//end try-catch
+
+
+        return theatreMoviesList;
     }
 
     @Override
