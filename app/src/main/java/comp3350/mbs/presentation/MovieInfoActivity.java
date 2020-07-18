@@ -18,6 +18,7 @@ import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 
 public class MovieInfoActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private ImageView moviePosterImageView;
     private TextView movieTitleTextView;
     private TextView movieDescTextView;
-    private Movie movieItem;
+    private Movie movieSelected;
 
 
     @Override
@@ -78,16 +79,20 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        movieItem = intent.getParcelableExtra("Movie_Selected");
-        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
+        TheatreMovies movieItem = intent.getParcelableExtra("Movie_Selected");
 
-        if(movieItem != null && theatreItem != null) {
-
+        if(movieItem != null) {
+            /*
             AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
             viewingTimeList = accessViewingTimes.getViewingTimeList(theatreItem,movieItem);
             movieDescTextView.setText(movieItem.getDescription());
             movieTitleTextView.setText(movieItem.getTitle());
             moviePosterImageView.setImageResource(movieItem.getPoster());
+            */
+            movieSelected = new Movie(movieItem.getMovieName(),movieItem.getMoviePoster(),movieItem.getMovieDescription());
+            movieDescTextView.setText(movieSelected.getDescription());
+            movieTitleTextView.setText(movieSelected.getTitle());
+            moviePosterImageView.setImageResource(movieSelected.getPoster());
 
         }//end if
         //do nothing when no item was retrieved.
@@ -101,7 +106,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
 
-        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movieItem);
+        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movieSelected);
         viewingTimeRecyclerView.setAdapter(customAdapter);
 
         layoutManager = new LinearLayoutManager(this);
