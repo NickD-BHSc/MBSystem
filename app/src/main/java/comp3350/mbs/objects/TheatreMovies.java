@@ -17,7 +17,7 @@ public class TheatreMovies implements Parcelable {
     public TheatreMovies(String theatreName, String movieName) {
         this.theatreName = theatreName;
         this.movieName = movieName;
-        this.moviePoster = -1; //null or no poster.
+        this.moviePoster = -1; //represents null or no poster.
         this.movieDescription = "";//no movie description.
     }//end TheatreMovies constructor
 
