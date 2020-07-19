@@ -80,7 +80,7 @@ public class DataAccessObject implements DataAccess {
         String distance;
 
         try {
-            cmdString = "SELECT * FROM THEATRES";
+            cmdString = "SELECT * FROM THEATRES"; // selecting all the fields from the THEATRES Table
             rs2 =st1.executeQuery(cmdString);
 
             while(rs2.next()){
@@ -125,7 +125,7 @@ public class DataAccessObject implements DataAccess {
         String movieDescription;
 
         try{
-            cmdString = "SELECT * FROM MOVIES WHERE THEATRENAME = " + "'" +whichTheatre.getTheatreName() + "'";
+            cmdString = "SELECT * FROM MOVIES WHERE THEATRENAME = " + "'" +whichTheatre.getTheatreName() + "'"; //Selecting all the fields from the MOVIES table from the given theatre.
             rs2 = st2.executeQuery(cmdString);
 
             while(rs2.next()){
