@@ -6,6 +6,7 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Movie;
+import comp3350.mbs.objects.MovieViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
@@ -228,6 +229,11 @@ public class DataAccessStub implements DataAccess{
 
         return newTMList;
     }//end getTheatresFromMovie
+
+    @Override
+    public List<MovieViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
+        return null;
+    }
 
 
     /**
