@@ -8,11 +8,9 @@ import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.persistence.DataAccess;
-import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessViewingTimes {
     private DataAccess dataAccess;
-    //TODO delete this class since it may not be used?
 
     //Constructor
     public AccessViewingTimes(){

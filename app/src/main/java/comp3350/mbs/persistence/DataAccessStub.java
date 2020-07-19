@@ -5,13 +5,11 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
-import comp3350.mbs.objects.Movie;
-import comp3350.mbs.objects.MovieViewingTime;
+import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
-import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessStub implements DataAccess{
 
@@ -107,20 +105,9 @@ public class DataAccessStub implements DataAccess{
 
 
         //==========================================================================================
-        List<ViewingTime> viewingTimes = new ArrayList<>();//list of viewing time for a specific movie
+        List<ViewingTime> viewingTimes = new ArrayList<>();//list of viewing time for a specific theatre/movie
 
-        ViewingTime vt1 = new ViewingTime("7:00 to 10:00 PM", "June 11, 2020, Tuesday");
-        ViewingTime vt2 = new ViewingTime("1:00 to 2:00 PM", "March 25, 2020, Wednesday");
-        ViewingTime vt3 = new ViewingTime("5:00 to 6:30 PM", "August 19, 2020, Monday");
-        ViewingTime vt4 = new ViewingTime("7:00 to 9:00 PM", "May 11, 2020, Friday");
-        ViewingTime vt5 = new ViewingTime("4:30 to 7:00 PM", "July 2, 2020, Sunday");
 
-        //data for viewingTimes.
-        viewingTimes.add(vt1);
-        viewingTimes.add(vt2);
-        viewingTimes.add(vt3);
-        viewingTimes.add(vt4);
-        viewingTimes.add(vt5);
 
         //==========================================================================================
         //adding tickets to ticketList.
@@ -231,7 +218,7 @@ public class DataAccessStub implements DataAccess{
     }//end getTheatresFromMovie
 
     @Override
-    public List<MovieViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
+    public List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
         return null;
     }
 

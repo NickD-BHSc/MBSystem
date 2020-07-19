@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.objects.MovieViewingTime;
+import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
@@ -169,7 +169,7 @@ public class DataAccessObject implements DataAccess {
     }
 
     @Override
-    public List<MovieViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
+    public List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
         return null;
     }
 
