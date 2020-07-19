@@ -4,17 +4,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class MovieViewingTime implements Parcelable {
+    private String theatreName;
     private String movieName;
     private String showTime;
     private String showDate;
 
     /**
      * Constructor
+     * @param theatreName is the name of the theatre.
      * @param movieName is the movie name.
      * @param showTime is the show time of the movie.
      * @param showDate is the show date of the movie.
      */
-    public MovieViewingTime(String movieName, String showTime, String showDate) {
+    public MovieViewingTime(String theatreName,String movieName, String showTime, String showDate) {
+        this.theatreName = theatreName;
         this.movieName = movieName;
         this.showTime = showTime;
         this.showDate = showDate;
@@ -23,9 +26,23 @@ public class MovieViewingTime implements Parcelable {
     //================================================================
     //Parcelable methods
     protected MovieViewingTime(Parcel in) {
+        theatreName = in.readString();
         movieName = in.readString();
         showTime = in.readString();
         showDate = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(theatreName);
+        dest.writeString(movieName);
+        dest.writeString(showTime);
+        dest.writeString(showDate);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<MovieViewingTime> CREATOR = new Creator<MovieViewingTime>() {
@@ -39,18 +56,6 @@ public class MovieViewingTime implements Parcelable {
             return new MovieViewingTime[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(movieName);
-        parcel.writeString(showTime);
-        parcel.writeString(showDate);
-    }
 
     //================================================================
     //Getter methods
