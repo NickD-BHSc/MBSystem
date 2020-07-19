@@ -79,7 +79,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        TheatreMovies movieItem = intent.getParcelableExtra("Movie_Selected");
+        TheatreMovies movieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
 
         if(movieItem != null) {
             /*
@@ -89,6 +89,7 @@ public class MovieInfoActivity extends AppCompatActivity {
             movieTitleTextView.setText(movieItem.getTitle());
             moviePosterImageView.setImageResource(movieItem.getPoster());
             */
+
             movieSelected = new Movie(movieItem.getMovieName(),movieItem.getMoviePoster(),movieItem.getMovieDescription());
             movieDescTextView.setText(movieSelected.getDescription());
             movieTitleTextView.setText(movieSelected.getTitle());
