@@ -12,6 +12,7 @@ import comp3350.mbs.persistence.DataAccessStub;
 public class AccessMovies {
     private DataAccess dataAccess;
 
+    //TODO delete this class since it may not be used?
     //Constructor
     public AccessMovies(){
         dataAccess = Services.getDataAccessService(Main.dbName);

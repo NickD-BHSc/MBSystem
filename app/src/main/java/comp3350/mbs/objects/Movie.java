@@ -10,6 +10,8 @@ public class Movie implements Parcelable {
     private int poster;
     private String description;
 
+    //TODO delete this class since it may not be used??
+
     /**
      * Constructor of Movie class
      *

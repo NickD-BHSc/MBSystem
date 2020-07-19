@@ -7,6 +7,7 @@ import android.os.Parcelable;
 public class ViewingTime implements Parcelable {
     private String showTime;
     private String showDate;
+    //TODO delete this class since it may not be used?
 
     /**
      * Constructor of ViewingTime class
