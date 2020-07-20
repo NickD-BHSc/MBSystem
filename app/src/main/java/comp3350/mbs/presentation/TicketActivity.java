@@ -78,7 +78,7 @@ public class TicketActivity extends AppCompatActivity {
         ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
         ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
         ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
-        movieTitleTextView.setText("Order Summary - " + theatreMovie.getTheatreName() + "\n\t\t" + theatreMovie.getMovieName());
+        movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName());
 
     }//end addTicketInfo
 
