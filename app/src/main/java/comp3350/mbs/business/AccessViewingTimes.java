@@ -6,6 +6,7 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.persistence.DataAccess;
 
@@ -25,9 +26,9 @@ public class AccessViewingTimes {
      * @return it will return the viewingTimeList for the given movie if it exists.
      *          Otherwise it will return null.
      */
-    public List<ViewingTime> getViewingTimeList(Theatre whichTheatre, Movie whichMovie){
-       // return dataAccess.getViewingTimeList(whichTheatre,whichMovie);
-        return null;
+    public List<ViewingTime> getViewingTimeList(String whichTheatre,String whichMovie){
+        TheatreMovies whichTheatreMovie = new TheatreMovies(whichTheatre,whichMovie);
+        return dataAccess.getViewingTimeList(whichTheatreMovie);
     }//end getViewingTimeList
 
 }//end AccessViewingTimes

@@ -20,6 +20,7 @@ public class DataAccessStub implements DataAccess{
     private List<Ticket> ticketList;
     private List<Seat> seatList;
     private List<TheatreMovies> theatreMoviesList;
+    private List<ViewingTime> viewingTimeList;
 
     //Constructors
     public DataAccessStub(){
@@ -105,9 +106,71 @@ public class DataAccessStub implements DataAccess{
 
 
         //==========================================================================================
-        List<ViewingTime> viewingTimes = new ArrayList<>();//list of viewing time for a specific theatre/movie
+        viewingTimeList = new ArrayList<>();//list of viewing time for a specific theatre/movie
+        TheatreMovies tmForViewingTime; //item from the theatreMoviesList.
+        ViewingTime vt;//item to be added in the viewingTimeList.
+        //NOTE: there are 10 items from the theatreMoviesList.
+
+        //================================
+        //For movie 1 in theatre1
+        tmForViewingTime = theatreMoviesList.get(0);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 4:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:30 to 7:30 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"8:00 to 11:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"5:00 to 8:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"9:00 to 12:00 AM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+
+        //================================
+        //For movie 2 in theatre1
+        tmForViewingTime = theatreMoviesList.get(1);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:00 to 6:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+
+        //================================
+        //For movie 3 in theatre1
+        tmForViewingTime = theatreMoviesList.get(2);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"5:00 to 7:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"9:00 to 11:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+
+        //================================
+        //For movie 3 in theatre1
+        tmForViewingTime = theatreMoviesList.get(3);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:00 to 6:30 PM", "June 12, 2020, Wednesday");
 
 
+        //TODO: add viewing time for the other movies.
+        tmForViewingTime = theatreMoviesList.get(4);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"11:30 to 2:00 PM", "June 12, 2020, Wednesday");
+
+        tmForViewingTime = theatreMoviesList.get(5);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"5:00 to 8:00 PM", "June 12, 2020, Wednesday");
+
+        tmForViewingTime = theatreMoviesList.get(6);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+
+        tmForViewingTime = theatreMoviesList.get(7);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+
+        tmForViewingTime = theatreMoviesList.get(8);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+
+        tmForViewingTime = theatreMoviesList.get(9);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
 
         //==========================================================================================
         //adding tickets to ticketList.
