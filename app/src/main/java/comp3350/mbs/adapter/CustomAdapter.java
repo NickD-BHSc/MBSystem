@@ -29,7 +29,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
     private Context context;
     private List itemLists;
-    private Movie movie;
 
     /**
      * Constructor
@@ -41,17 +40,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         this.itemLists = itemLists;
     }//end constructor
 
-    /**
-     * Constructor
-     * @param context is the context that the CustomAdapter is currently using. (i.e. MovieActivity, MovieInfoActivity or TheatreActivity).
-     * @param itemLists is the data stored in a list which could be a list of theatres, movies or viewing time.
-     * @param movie  is the movie that tickets are being purchased for
-     */
-    public CustomAdapter(Context context, List itemLists, Movie movie) {
-        this.context = context;
-        this.itemLists = itemLists;
-        this.movie = movie;
-    }//end constructor
 
     /**
      * onCreateViewHolder - method used to display the content of the items to the assigned layout activity.
@@ -155,8 +143,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
-                        intent.putExtra("seats", item);
-                        intent.putExtra("movie", movie);
+                        TheatreMovies tm = ((MovieInfoActivity)context).getTheatreMovieItem();
+                        intent.putExtra("TheatreMovie_Selected", tm);
                         context.startActivity(intent);
                     }
                 });

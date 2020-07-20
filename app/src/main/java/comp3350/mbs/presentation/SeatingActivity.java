@@ -18,6 +18,7 @@ import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessSeats;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
+import comp3350.mbs.objects.TheatreMovies;
 
 public class SeatingActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class SeatingActivity extends AppCompatActivity {
     private List<Seat> bookedSeats;
 
     private Button seatConfirmButton;
-    private Movie movie;
+    private TheatreMovies theatreMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class SeatingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
-                    intent.putExtra("movie", movie);
+                    intent.putExtra("TheatreMovie_Selected", theatreMovie);
                     startActivity(intent);
                 }//end if-else
             }
@@ -63,7 +64,7 @@ public class SeatingActivity extends AppCompatActivity {
      */
     private void init(){
         Intent intent = getIntent();
-        movie = intent.getParcelableExtra("movie");
+        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
 
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
 
@@ -81,10 +82,9 @@ public class SeatingActivity extends AppCompatActivity {
     private void buildRecyclerView(){
         seatRecyclerView = findViewById(R.id.seatRecyclerView);
 
-        customAdapter = new CustomAdapter(SeatingActivity.this,seatingList,movie);
+        customAdapter = new CustomAdapter(SeatingActivity.this,seatingList);
         seatRecyclerView.setAdapter(customAdapter);
 
-        //5 column
         layoutManager = new GridLayoutManager(this,SEAT_COLUMN);
         seatRecyclerView.setLayoutManager(layoutManager);
     }//end buildRecyclerView

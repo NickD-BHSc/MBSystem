@@ -12,6 +12,7 @@ import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.objects.Movie;
+import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 
 public class TicketActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketTotalTextView;
     private TextView movieTitleTextView;
 
-    private Movie movie;
+    private TheatreMovies theatreMovie;
     private int seatCount;
 
     @Override
@@ -54,7 +55,7 @@ public class TicketActivity extends AppCompatActivity {
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
         seatCount= intent.getIntExtra("seats", 0);
-        movie = intent.getParcelableExtra("movie"); //get the movie so we know the price
+        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected"); //get the theatreMovie so we know the price
     }//end init
 
 
@@ -65,7 +66,7 @@ public class TicketActivity extends AppCompatActivity {
     private void addTicketInfo() {
 
         ArrayList<Ticket> ticketList= new ArrayList<>();
-        Ticket ticket = accessTickets.getTicket(movie.getTitle());
+        Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
         for(int i = 0; i < seatCount; i++)
         {
             ticketList.add(ticket);
@@ -76,7 +77,7 @@ public class TicketActivity extends AppCompatActivity {
         ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
         ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
         ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
-        movieTitleTextView.setText("Order Summary - " + ticket.getType());
+        movieTitleTextView.setText("Order Summary - " + theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
 
     }//end addTicketInfo
 
