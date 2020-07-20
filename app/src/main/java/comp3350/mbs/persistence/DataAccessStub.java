@@ -1,5 +1,6 @@
 package comp3350.mbs.persistence;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +39,56 @@ public class DataAccessStub implements DataAccess{
      */
     public void open(String databaseName){
 
-        //==========================================================================================
         //Theatres to be displayed in the TheatreActivity
         theatreList = new ArrayList<>();
+        createTheatres();
+
+        //Movies to be displayed when a specific theatre is selected. Movies to be displayed in the MovieActivity.
+        theatreMoviesList = new ArrayList<>();
+        createTheatreMovies(theatreList.get(0),theatreList.get(1),theatreList.get(2));
+
+        //show times to be displayed in the MovieInfoActivity
+        viewingTimeList = new ArrayList<>();
+        createViewingTimes();
+
+        //==========================================================================================
+        //adding tickets to ticketList.
+        ticketList = new ArrayList<>();
+
+        Ticket ticket1 = new Ticket(10.00, "Avengers Endgame");
+        Ticket ticket2 = new Ticket(5.00, "The Incredibles");
+        Ticket ticket3 = new Ticket(20.00, "The Lion King");
+        Ticket ticket4 = new Ticket(15.00, "Star Wars");
+        Ticket ticket5 = new Ticket(3.00, "Superman");
+
+        ticketList.add(ticket1);
+        ticketList.add(ticket2);
+        ticketList.add(ticket3);
+        ticketList.add(ticket4);
+        ticketList.add(ticket5);
+
+        //==========================================================================================
+        //adding seats to the seatList.
+        seatList = new ArrayList<>();
+        for(int i = 0; i < 32; i++) {
+            Seat seat;
+            if( i%5 != 0){
+                seat = new Seat(i,false, R.drawable.seat);
+            }else{
+                seat = new Seat(i,true, R.drawable.seat_taken);
+            }//end if-else
+            seatList.add(seat);
+        }//end for loop
+
+
+        System.out.println("Opened " + dbType + " database " + dbName + ".");
+
+    }//end open
+
+    /**
+     * createTheatres - a method that creates a list of theatres and add it to the theatreList.
+     */
+    private void createTheatres(){
         Theatre theatre1 = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
         Theatre theatre2 = new Theatre("Cinema City Northgate", "1399 McPhillips St.","10km");
         Theatre theatre3 = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
@@ -49,11 +97,15 @@ public class DataAccessStub implements DataAccess{
         theatreList.add(theatre1);
         theatreList.add(theatre2);
         theatreList.add(theatre3);
+    }//end createTheatres
 
-        //==========================================================================================
-        //Movies to be displayed when a specific theatre is selected.
-        //Movies to be displayed in the MovieActivity.
-        theatreMoviesList = new ArrayList<>();
+    /**
+     * createTheatreMovies - a method that creates a list of movies for each theatre.
+     * @param theatre1 is the first theatre from the theatreList.
+     * @param theatre2 is the second theatre from the theatreList.
+     * @param theatre3 is the third theatre from the theatreList.
+     */
+    private void createTheatreMovies(Theatre theatre1, Theatre theatre2, Theatre theatre3){
         TheatreMovies tm;
         String movieDescription;
 
@@ -102,17 +154,19 @@ public class DataAccessStub implements DataAccess{
         movieDescription = "The Imperial Forces -- under orders from cruel Darth Vader (David Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their efforts to quell the rebellion against the Galactic Empire. Luke Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the Millennium Falcon, work together with the companionable droid duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the beautiful princess, help the Rebel Alliance, and restore freedom and justice to the Galaxy.";
         tm = new TheatreMovies(theatre3.getName(),"Star Wars",R.drawable.starwars,movieDescription);
         theatreMoviesList.add(tm);
+    }//end createTheatreMovies
 
-
-
-        //==========================================================================================
+    /**
+     * createViewingTimes - a method that create viewing times for each movie in each theatre.
+     */
+    private void createViewingTimes(){
         viewingTimeList = new ArrayList<>();//list of viewing time for a specific theatre/movie
         TheatreMovies tmForViewingTime; //item from the theatreMoviesList.
         ViewingTime vt;//item to be added in the viewingTimeList.
         //NOTE: there are 10 items from the theatreMoviesList.
 
         //================================
-        //For movie 1 in theatre1
+        //For first movie (avengers) in theatre1
         tmForViewingTime = theatreMoviesList.get(0);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 4:00 PM", "June 11, 2020, Tuesday");
         viewingTimeList.add(vt);
@@ -126,7 +180,7 @@ public class DataAccessStub implements DataAccess{
         viewingTimeList.add(vt);
 
         //================================
-        //For movie 2 in theatre1
+        //For second movie (The Incredibles) in theatre1
         tmForViewingTime = theatreMoviesList.get(1);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday");
         viewingTimeList.add(vt);
@@ -136,7 +190,7 @@ public class DataAccessStub implements DataAccess{
         viewingTimeList.add(vt);
 
         //================================
-        //For movie 3 in theatre1
+        //For third movie (Superman) in theatre1
         tmForViewingTime = theatreMoviesList.get(2);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday");
         viewingTimeList.add(vt);
@@ -148,63 +202,68 @@ public class DataAccessStub implements DataAccess{
         viewingTimeList.add(vt);
 
         //================================
-        //For movie 3 in theatre1
+        //For fourth movie (Lion King) in theatre1
         tmForViewingTime = theatreMoviesList.get(3);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:00 to 6:30 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 9:30 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:00 to 6:30 PM", "June 13, 2020, Thursday");
+        viewingTimeList.add(vt);
 
-
-        //TODO: add viewing time for the other movies.
+        //================================
+        //For fifth movie (Star wars) in theatre1
         tmForViewingTime = theatreMoviesList.get(4);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"11:30 to 2:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"5:00 to 7:30 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
 
+        //================================
+        //For first movie (Avengers) in theatre2
         tmForViewingTime = theatreMoviesList.get(5);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"5:00 to 8:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
 
+        //================================
+        //For second movie (The Incredibles) in theatre2
         tmForViewingTime = theatreMoviesList.get(6);
-        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:00 to 6:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
 
+        //================================
+        //For first movie (Superman) in theatre3
         tmForViewingTime = theatreMoviesList.get(7);
-        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"8:00 to 10:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"5:00 to 7:00 PM", "June 12, 2020, Wednesday");
+        viewingTimeList.add(vt);
 
+        //================================
+        //For second movie (Lion King) in theatre3
         tmForViewingTime = theatreMoviesList.get(8);
-        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"12:00 to 2:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 9:00 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
 
+        //================================
+        //For second movie (Star Wars) in theatre3
         tmForViewingTime = theatreMoviesList.get(9);
-        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 10:00 PM", "June 11, 2020, Tuesday");
+        vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"7:00 to 9:30 PM", "June 11, 2020, Tuesday");
+        viewingTimeList.add(vt);
+    }//end createViewingTimes
 
-        //==========================================================================================
-        //adding tickets to ticketList.
-        ticketList = new ArrayList<>();
-
-        Ticket ticket1 = new Ticket(10.00, "Avengers Endgame");
-        Ticket ticket2 = new Ticket(5.00, "The Incredibles");
-        Ticket ticket3 = new Ticket(20.00, "The Lion King");
-        Ticket ticket4 = new Ticket(15.00, "Star Wars");
-        Ticket ticket5 = new Ticket(3.00, "Superman");
-
-        ticketList.add(ticket1);
-        ticketList.add(ticket2);
-        ticketList.add(ticket3);
-        ticketList.add(ticket4);
-        ticketList.add(ticket5);
-
-        //==========================================================================================
-        //adding seats to the seatList.
-        seatList = new ArrayList<>();
-        for(int i = 0; i < 32; i++) {
-            Seat seat;
-            if( i%5 != 0){
-                seat = new Seat(i,false, R.drawable.seat);
-            }else{
-                seat = new Seat(i,true, R.drawable.seat_taken);
-            }//end if-else
-            seatList.add(seat);
-        }//end for loop
-
-
-        System.out.println("Opened " + dbType + " database " + dbName + ".");
-
-    }//end open
 
     /**
      * close - a method that closes the database.
@@ -222,22 +281,6 @@ public class DataAccessStub implements DataAccess{
         return theatreList;
     }//end getTheatreList
 
-
-    /**
-     * getTicket -a getter method for a ticket from the list.
-     * @return it will return the ticket.
-     */
-    public Ticket getTicket(String ticketType){
-        Ticket ticket = null;
-        for(int i = 0; i <ticketList.size(); i++){
-
-            if(ticketList.get(i).getType().equals(ticketType)){
-                ticket = ticketList.get(i);
-            }//end if
-
-        }//end for
-        return ticket;
-    }//end getTicket
 
     /**
      * getMoviesFromTheatre - a getter method that returns a list of movies from the given theatre.
@@ -280,11 +323,44 @@ public class DataAccessStub implements DataAccess{
         return newTMList;
     }//end getTheatresFromMovie
 
+    /**
+     * getViewingTimeList - a getter method that returns a list of movie show times for a given theatre and movie.
+     * @param theatreMovie contains the name of the theatre and movie.
+     * @return it will return a list of viewing time for the given theatre and movie.
+     */
     @Override
     public List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
-        return null;
-    }
+        List<ViewingTime> newVTList = new ArrayList<>();
+        ViewingTime vt;
 
+        for(int i = 0; i < viewingTimeList.size(); i++){
+            vt = viewingTimeList.get(i);
+
+            if(vt.getTheatreName().equals(theatreMovie.getTheatreName()) && vt.getMovieName().equals(theatreMovie.getMovieName())){
+                newVTList.add(vt);
+            }//end if
+
+        }//end for
+
+        return newVTList;
+    }//end getViewingTimeList
+
+
+    /**
+     * getTicket -a getter method for a ticket from the list.
+     * @return it will return the ticket.
+     */
+    public Ticket getTicket(String ticketType){
+        Ticket ticket = null;
+        for(int i = 0; i <ticketList.size(); i++){
+
+            if(ticketList.get(i).getType().equals(ticketType)){
+                ticket = ticketList.get(i);
+            }//end if
+
+        }//end for
+        return ticket;
+    }//end getTicket
 
     /**
      * getTicketList -a getter method for a the complete list of tickets.

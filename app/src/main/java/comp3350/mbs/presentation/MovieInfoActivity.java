@@ -15,6 +15,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
+import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
@@ -30,7 +31,6 @@ public class MovieInfoActivity extends AppCompatActivity {
     private ImageView moviePosterImageView;
     private TextView movieTitleTextView;
     private TextView movieDescTextView;
-    private Movie movieSelected;
 
 
     @Override
@@ -52,7 +52,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         init();
         addMovieInfo();
-        //buildRecyclerView();
+        buildRecyclerView();
 
 
     }//end onCreate
@@ -77,21 +77,16 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        TheatreMovies movieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
+        TheatreMovies theatreMovieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
 
-        if(movieItem != null) {
-            /*
+        if(theatreMovieItem != null) {
+
             AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
-            viewingTimeList = accessViewingTimes.getViewingTimeList(theatreItem,movieItem);
-            movieDescTextView.setText(movieItem.getDescription());
-            movieTitleTextView.setText(movieItem.getTitle());
-            moviePosterImageView.setImageResource(movieItem.getPoster());
-            */
+            viewingTimeList = accessViewingTimes.getViewingTimeList(theatreMovieItem.getTheatreName(),theatreMovieItem.getMovieName());
 
-            movieSelected = new Movie(movieItem.getMovieName(),movieItem.getMoviePoster(),movieItem.getMovieDescription());
-            movieDescTextView.setText(movieSelected.getDescription());
-            movieTitleTextView.setText(movieSelected.getTitle());
-            moviePosterImageView.setImageResource(movieSelected.getPoster());
+            movieDescTextView.setText(theatreMovieItem.getMovieDescription());
+            movieTitleTextView.setText(theatreMovieItem.getMovieName());
+            moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
 
         }//end if
         //do nothing when no item was retrieved.
@@ -105,12 +100,13 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
 
-        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList,movieSelected);
+        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList);
         viewingTimeRecyclerView.setAdapter(customAdapter);
 
         layoutManager = new LinearLayoutManager(this);
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
+    //TODO pass the theatre name and movie name to the summary page.
 
 }//end MovieInfoActivity class
