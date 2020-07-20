@@ -65,6 +65,7 @@ public class TicketActivity extends AppCompatActivity {
      */
     private void addTicketInfo() {
 
+        //TODO fix the error in the getTicket since it sometimes return null. Also modifiy Ticket class.
         ArrayList<Ticket> ticketList= new ArrayList<>();
         Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
         for(int i = 0; i < seatCount; i++)
@@ -77,7 +78,7 @@ public class TicketActivity extends AppCompatActivity {
         ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
         ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
         ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
-        movieTitleTextView.setText("Order Summary - " + theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
+        movieTitleTextView.setText("Order Summary - " + theatreMovie.getTheatreName() + "\n\t\t" + theatreMovie.getMovieName());
 
     }//end addTicketInfo
 
