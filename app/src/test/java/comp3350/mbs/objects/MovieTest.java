@@ -10,6 +10,7 @@ import comp3350.mbs.R;
 public class MovieTest extends TestCase {
 
     public MovieTest(String arg0){super(arg0);}
+   /*
     @Test
     public void testOneMovie(){
 
@@ -55,7 +56,7 @@ public class MovieTest extends TestCase {
         System.out.println("Finished TheatreTest: testCompareMovies\n");
 
     }//end testCompareMovies
-
+    */
 
 }//end MovieTest
 
