@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +29,6 @@ public class MovieActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private List<TheatreMovies> movieLists;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,17 @@ public class MovieActivity extends AppCompatActivity {
 
         init();
         buildRecyclerView();
+
+        Button addMovieButton = (Button) findViewById(R.id.addMovieBtn);
+        addMovieButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                Intent startIntent = new Intent(getApplicationContext(), TrailerActivity.class);
+
+            }
+
+        });
+
 
     }//end onCreate
 
@@ -71,6 +84,8 @@ public class MovieActivity extends AppCompatActivity {
         //do nothing when there is no item retrieved.
 
     }//end addMovieInfo
+
+
 
 
 
