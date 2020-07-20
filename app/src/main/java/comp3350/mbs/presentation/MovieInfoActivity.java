@@ -52,7 +52,9 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         init();
         addMovieInfo();
-        buildRecyclerView();
+
+        //TODO cannot use buildRecyclerView method yet when using the actual database since it has no viewing time table yet.
+        //buildRecyclerView();
 
 
     }//end onCreate
