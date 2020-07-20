@@ -89,14 +89,16 @@ public class DataAccessStub implements DataAccess{
      * createTheatres - a method that creates a list of theatres and add it to the theatreList.
      */
     private void createTheatres(){
-        Theatre theatre1 = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
-        Theatre theatre2 = new Theatre("Cinema City Northgate", "1399 McPhillips St.","10km");
-        Theatre theatre3 = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
+        Theatre theatre;
+        theatre = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
+        theatreList.add(theatre);//theatre1
 
-        //adding theatres to the theatreList.
-        theatreList.add(theatre1);
-        theatreList.add(theatre2);
-        theatreList.add(theatre3);
+        theatre = new Theatre("Cinema City Northgate", "1399 McPhillips St.","10km");
+        theatreList.add(theatre);//theatre2
+
+        theatre = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
+        theatreList.add(theatre);//theatre3
+
     }//end createTheatres
 
     /**
