@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Movie Booking System</string>
     <string name="title_activity_theatre">Theatres</string>
-    <string name="title_activity_movie">Movies</string>
+    <string name="title_activity_movie">Select a Movie</string>
     <string name="title_activity_movie_info">Movie Information</string>
-    <string name="title_activity_seating">Select a seat</string>
-    <string name="title_activity_ticket">Movie Information</string>
+    <string name="title_activity_seating">Seats</string>
+    <string name="title_activity_ticket">Order Summary</string>
     <string name="back">Back</string>
     <string name="total">Total:</string>
     <string name="tax">Tax:</string>

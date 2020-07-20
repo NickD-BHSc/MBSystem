@@ -23,8 +23,11 @@
             android:name=".presentation.MovieActivity"
             android:label="@string/title_activity_movie" />
 
-        <activity android:name=".presentation.SeatingActivity"></activity>
-        <activity android:name=".presentation.TicketActivity"></activity>
+        <activity android:name=".presentation.SeatingActivity"
+            android:label="@string/title_activity_seating"></activity>
+
+        <activity android:name=".presentation.TicketActivity"
+            android:label="@string/title_activity_ticket"></activity>
         <activity
             android:name=".presentation.MovieInfoActivity"
             android:label="@string/title_activity_movie_info" />
