@@ -30,12 +30,17 @@ public class DataAccessObject implements DataAccess {
 
     private List<Theatre> theatreList;
     private List<TheatreMovies> theatreMoviesList;
+    private List<ViewingTime> viewingTimeList;
 
     public DataAccessObject(String dbName)
     {
         this.dbName = dbName;
     }
 
+    /**
+     * open - a method that opens the data from the database.
+     * @param dbPath is the name of the database.
+     */
     @Override
     public void open(String dbPath) {
 
@@ -46,9 +51,9 @@ public class DataAccessObject implements DataAccess {
             Class.forName("org.hsqldb.jdbcDriver").newInstance();
             url = "jdbc:hsqldb:file:" + dbPath; // stored on disk mode
             c1 = DriverManager.getConnection(url, "SA", "");
-            st1 = c1.createStatement();//THEATRE TABLE
-            st2 = c1.createStatement();//MOVIE TABLE
-            //st3 = c1.createStatement();
+            st1 = c1.createStatement();//THEATRES TABLE
+            st2 = c1.createStatement();//MOVIES TABLE
+            st3 = c1.createStatement();//VIEWINGTIMES TABLE
 
         } catch (Exception e) {
             processSQLError(e);
@@ -58,6 +63,10 @@ public class DataAccessObject implements DataAccess {
 
     }//end open
 
+
+    /**
+     * close - a method that closes the database.
+     */
     @Override
     public void close() {
         try {
@@ -73,6 +82,11 @@ public class DataAccessObject implements DataAccess {
 
     }//end close
 
+
+    /**
+     * getTheatreList -a getter method for the theatreList field.
+     * @return it will return the field theatreList.
+     */
     @Override
     public List<Theatre> getTheatreList() {
         theatreList = new ArrayList<>();
@@ -100,21 +114,11 @@ public class DataAccessObject implements DataAccess {
     }
 
 
-    @Override
-    public List<Seat> getSeatList() {
-        return null;
-    }
-
-    @Override
-    public List<Ticket> getTicketList() {
-        return null;
-    }
-
-    @Override
-    public Ticket getTicket(String ticketType) {
-        return null;
-    }
-
+    /**
+     * getMoviesFromTheatre - a getter method that returns a list of movies from the given theatre.
+     * @param whichTheatre is the given theatre.
+     * @return it will return a list of movies that is contained in the given theatre.
+     */
     @Override
     public List<TheatreMovies> getMoviesFromTheatre(TheatreMovies whichTheatre) {
         theatreMoviesList = new ArrayList<>();
@@ -161,17 +165,76 @@ public class DataAccessObject implements DataAccess {
 
 
         return theatreMoviesList;
-    }
+    }//end getMoviesFromTheatre
 
+
+    /** TODO: delete this since it will not be used?
+     * getTheatresFromMovie - a getter method that returns a list of theatres from the given movie.
+     * @param whichMovie is the given movie name.
+     * @return it will return a list of theatres that has the given movie.
+     */
     @Override
     public List<TheatreMovies> getTheatresFromMovie(TheatreMovies whichMovie) {
         return null;
     }
 
+    /**
+     * getViewingTimeList - a getter method that returns a list of movie show times for a given theatre and movie.
+     * @param theatreMovie contains the name of the theatre and movie.
+     * @return it will return a list of viewing time for the given theatre and movie.
+     */
     @Override
     public List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie) {
+        viewingTimeList = new ArrayList<>();
+
+        ViewingTime vt;
+        String theatreName;
+        String movieName;
+        String showDate;
+        String showTime;
+
+        try{
+
+            cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'";
+            rs2 = st3.executeQuery(cmdString);
+
+            while(rs2.next()){
+                theatreName = rs2.getString("THEATRENAME");
+                movieName = rs2.getString("MOVIENAME");
+                showTime = rs2.getString("TIME");
+                showDate = rs2.getString("DATE");
+
+                vt = new ViewingTime(theatreName,movieName,showTime,showDate);
+                viewingTimeList.add(vt);
+
+            }//end while
+
+
+        }catch (Exception e){
+            processSQLError(e);
+        }//end try-catch
+
+        return viewingTimeList;
+    }//end getViewingTimeList
+
+
+
+
+    @Override
+    public List<Seat> getSeatList() {
         return null;
     }
+
+    @Override
+    public List<Ticket> getTicketList() {
+        return null;
+    }
+
+    @Override
+    public Ticket getTicket(String ticketType) {
+        return null;
+    }
+
 
 
     public String processSQLError(Exception e) {
