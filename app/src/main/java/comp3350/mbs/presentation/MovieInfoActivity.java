@@ -26,12 +26,12 @@ public class MovieInfoActivity extends AppCompatActivity {
     private CustomAdapter customAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private List<ViewingTime> viewingTimeList;
-
     private ImageView moviePosterImageView;
     private TextView movieTitleTextView;
     private TextView movieDescTextView;
 
+    private List<ViewingTime> viewingTimeList;
+    private TheatreMovies theatreMovieItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         init();
         addMovieInfo();
-
-        //TODO cannot use buildRecyclerView method yet when using the actual database since it has no viewing time table.
         buildRecyclerView();
 
 
@@ -79,7 +77,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
-        TheatreMovies theatreMovieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
+        theatreMovieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
 
         if(theatreMovieItem != null) {
 
@@ -110,5 +108,16 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     }//end buildRecyclerView
     //TODO pass the theatre name and movie name to the summary page.
+    
+
+    /**
+     * getTheatreMovieItem - a getter method for theatreMovieItem.
+     * @return it will return the field theatreMovieItem.
+     */
+    public TheatreMovies getTheatreMovieItem(){
+        return theatreMovieItem;
+    }//end getTheatreMovieItem
+
+
 
 }//end MovieInfoActivity class
