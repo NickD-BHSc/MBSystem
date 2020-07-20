@@ -108,7 +108,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     }//end buildRecyclerView
     //TODO pass the theatre name and movie name to the summary page.
-    
 
     /**
      * getTheatreMovieItem - a getter method for theatreMovieItem.
