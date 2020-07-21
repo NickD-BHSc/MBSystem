@@ -75,4 +75,31 @@ public class ViewingTime implements Parcelable {
         return showDate;
     }
 
-}
+
+    /**
+     * equals - a method that checks if the given object and this object are the same.
+     * @param object is the object that will be compared to this object.
+     * @return it will return true if all the fields are equal.
+     *          Otherwise, it will return false.
+     */
+    public boolean equals(Object object){
+        boolean result = false;
+
+        if(object instanceof ViewingTime){
+            ViewingTime vt = (ViewingTime)object;//casting the given object.
+
+            if(((vt.theatreName == null && theatreName == null) || (vt.theatreName.equals(theatreName)))
+                && ((vt.movieName == null) || (vt.movieName.equals(movieName)))
+                && ((vt.showTime == null) || (vt.showTime.equals(showTime)))
+                && ((vt.showDate == null) || (vt.showDate.equals(showDate)))){
+                result =true;
+            }//end nested if
+
+
+        }//end if
+
+        return result;
+
+    }//end equals
+
+}//end ViewingTime
