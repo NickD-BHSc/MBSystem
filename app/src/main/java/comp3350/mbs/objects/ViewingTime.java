@@ -8,6 +8,7 @@ public class ViewingTime implements Parcelable {
     private String movieName;
     private String showTime;
     private String showDate;
+    private String seatList;
 
     /**
      * Constructor
@@ -16,11 +17,12 @@ public class ViewingTime implements Parcelable {
      * @param showTime is the show time of the movie.
      * @param showDate is the show date of the movie.
      */
-    public ViewingTime(String theatreName, String movieName, String showTime, String showDate) {
+    public ViewingTime(String theatreName, String movieName, String showTime, String showDate, String seatList) {
         this.theatreName = theatreName;
         this.movieName = movieName;
         this.showTime = showTime;
         this.showDate = showDate;
+        this.seatList = seatList;
     }//end constructor
 
     //================================================================
@@ -30,6 +32,7 @@ public class ViewingTime implements Parcelable {
         movieName = in.readString();
         showTime = in.readString();
         showDate = in.readString();
+        seatList = in.readString();
     }
 
     @Override
@@ -38,6 +41,7 @@ public class ViewingTime implements Parcelable {
         dest.writeString(movieName);
         dest.writeString(showTime);
         dest.writeString(showDate);
+        dest.writeString(seatList);
     }
 
     @Override
@@ -75,6 +79,8 @@ public class ViewingTime implements Parcelable {
         return showDate;
     }
 
+    public String getSeatList(){ return seatList; }
+
 
     /**
      * equals - a method that checks if the given object and this object are the same.
@@ -91,7 +97,8 @@ public class ViewingTime implements Parcelable {
             if(((vt.theatreName == null && theatreName == null) || (vt.theatreName.equals(theatreName)))
                 && ((vt.movieName == null) || (vt.movieName.equals(movieName)))
                 && ((vt.showTime == null) || (vt.showTime.equals(showTime)))
-                && ((vt.showDate == null) || (vt.showDate.equals(showDate)))){
+                && ((vt.showDate == null) || (vt.showDate.equals(showDate)))
+                && ((vt.seatList == null) || (vt.seatList.equals(seatList)))){
                 result =true;
             }//end nested if
 

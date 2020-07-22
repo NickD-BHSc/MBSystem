@@ -27,4 +27,6 @@ public interface DataAccess {
     List<Ticket> getTicketList();
 
     Ticket getTicket(String ticketType);
+
+     String updateSeatList( ViewingTime vt, String s);
 }

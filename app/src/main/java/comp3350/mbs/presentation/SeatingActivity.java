@@ -19,6 +19,7 @@ import comp3350.mbs.business.AccessSeats;
 import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
+import comp3350.mbs.objects.ViewingTime;
 
 public class SeatingActivity extends AppCompatActivity {
 
@@ -32,6 +33,8 @@ public class SeatingActivity extends AppCompatActivity {
 
     private Button seatConfirmButton;
     private TheatreMovies theatreMovie;
+    private ViewingTime vt;
+    private String seatString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,12 @@ public class SeatingActivity extends AppCompatActivity {
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
                     intent.putExtra("TheatreMovie_Selected", theatreMovie);
+
+                    AccessSeats as = new AccessSeats();
+                    seatString = encodeSeatList();
+                    System.out.println("Updated Seat String:"+seatString);
+                    as.updateSeatList( vt, seatString );
+
                     startActivity(intent);
                 }//end if-else
             }
@@ -65,12 +74,15 @@ public class SeatingActivity extends AppCompatActivity {
     private void init(){
         Intent intent = getIntent();
         theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
+        vt = intent.getParcelableExtra( "VT");
 
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
 
         //initialize the lists.
         AccessSeats accessSeats = new AccessSeats();
-        seatingList = accessSeats.getSeatList();//data that will be passed to the CustomAdapter.
+        System.out.println("Encoded Seatlist: "+vt.getSeatList() );
+        seatString = vt.getSeatList();
+        seatingList = decodeSeatList( seatString );//data that will be passed to the CustomAdapter.
 
         bookedSeats = new ArrayList<>();//list that contains the booked seats.
 
@@ -104,6 +116,41 @@ public class SeatingActivity extends AppCompatActivity {
     public void removeSeat( Seat seat ){
         bookedSeats.remove(seat);
     }//end removeSeat
+
+    private List<Seat> decodeSeatList( String str ){
+        ArrayList<Seat> out = new ArrayList<Seat>();
+
+        for( int i = 0; i < str.length(); i++ ){
+            Seat s;
+
+            if( str.charAt( i ) == '0' ){
+                s = new Seat( i, false, R.drawable.seat);
+            }
+            else{
+                s = new Seat( i, true, R.drawable.seat_taken);
+            }
+
+            out.add( s );
+        }
+
+        return out;
+    }
+
+    private String encodeSeatList(){
+        String s = "";
+
+        for(int i = 0; i < seatingList.size(); i++ ){
+            if( bookedSeats.contains( seatingList.get(i)) || seatingList.get(i).isBooked() ){
+                s = s + "1";
+            }
+            else{
+                s = s + "0";
+            }
+        }
+
+        return s;
+
+    }
 
 
 }//end SeatActivity class
