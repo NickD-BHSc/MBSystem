@@ -2,6 +2,7 @@ package comp3350.mbs;
 
 import junit.framework.TestSuite;
 
+import comp3350.mbs.business.SeatEncodingTest;
 import comp3350.mbs.business.CalculateTotalsTest;
 import comp3350.mbs.objects.MovieTest;
 import comp3350.mbs.objects.SeatingTest;
@@ -39,6 +40,7 @@ public class AllTests {
     private static void testBusiness()
     {
         suite.addTestSuite(CalculateTotalsTest.class);
+        suite.addTestSuite(SeatEncodingTest.class);
     }
 
 }

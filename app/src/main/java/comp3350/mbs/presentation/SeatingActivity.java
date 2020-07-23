@@ -20,6 +20,7 @@ import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.business.SeatEncoding;
 
 public class SeatingActivity extends AppCompatActivity {
 
@@ -27,6 +28,8 @@ public class SeatingActivity extends AppCompatActivity {
     private RecyclerView seatRecyclerView;
     private CustomAdapter customAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private AccessSeats accessSeats;
+    private SeatEncoding se;
 
     private List<Seat> seatingList;
     private List<Seat> bookedSeats;
@@ -56,10 +59,11 @@ public class SeatingActivity extends AppCompatActivity {
                     intent.putExtra("seats", bookedSeats.size());
                     intent.putExtra("TheatreMovie_Selected", theatreMovie);
 
-                    AccessSeats as = new AccessSeats();
-                    seatString = encodeSeatList();
+                    accessSeats = new AccessSeats();
+                    se = new SeatEncoding();
+                    seatString = se.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
-                    as.updateSeatList( vt, seatString );
+                    accessSeats.updateSeatList( vt, seatString );
 
                     startActivity(intent);
                 }//end if-else
@@ -77,12 +81,13 @@ public class SeatingActivity extends AppCompatActivity {
         vt = intent.getParcelableExtra( "VT");
 
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
+        accessSeats = new AccessSeats();
+        se = new SeatEncoding();
 
         //initialize the lists.
-        AccessSeats accessSeats = new AccessSeats();
         System.out.println("Encoded Seatlist: "+vt.getSeatList() );
         seatString = vt.getSeatList();
-        seatingList = decodeSeatList( seatString );//data that will be passed to the CustomAdapter.
+        seatingList = se.decodeSeatList( vt.getSeatList() );//data that will be passed to the CustomAdapter.
 
         bookedSeats = new ArrayList<>();//list that contains the booked seats.
 
@@ -117,6 +122,8 @@ public class SeatingActivity extends AppCompatActivity {
         bookedSeats.remove(seat);
     }//end removeSeat
 
+    /*
+    //TODO: These decode and encode functions really shouldn't be here. Move them to 'AccessSeats' and adjust the functionc calls here.
     private List<Seat> decodeSeatList( String str ){
         ArrayList<Seat> out = new ArrayList<Seat>();
 
@@ -151,6 +158,8 @@ public class SeatingActivity extends AppCompatActivity {
         return s;
 
     }
+
+     */
 
 
 }//end SeatActivity class
