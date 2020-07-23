@@ -9,6 +9,8 @@ import static comp3350.mbs.business.AccessTrailer.cleanString;
 public class TrailerTest extends TestCase {
     private String movieTitle;
 
+    public TrailerTest(String arg0){super(arg0);}
+
     public void setUp(){
         String movieTitle = "";
     }
