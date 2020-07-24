@@ -7,14 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.adapter.CustomAdapter;
-import comp3350.mbs.business.AccessMovies;
 import comp3350.mbs.business.AccessTheatreMovies;
-import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 

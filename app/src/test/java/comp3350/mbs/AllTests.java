@@ -5,7 +5,6 @@ import junit.framework.TestSuite;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.CalculateTotalsTest;
 import comp3350.mbs.business.TrailerTest;
-import comp3350.mbs.objects.MovieTest;
 import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TheatreMoviesTest;
 import comp3350.mbs.objects.TheatreTest;

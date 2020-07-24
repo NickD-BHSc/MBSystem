@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
-import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 
