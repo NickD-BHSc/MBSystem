@@ -13,16 +13,21 @@ import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTheatresTest extends TestCase {
     private static String dbName = Main.dbName;
+    private  AccessTheatres accessTheatres;
+    private List<Theatre> theatreList;
+    private Theatre theatre;
 
     public AccessTheatresTest(String arg0){super(arg0);}
+
+    public void setUp(){
+        accessTheatres = null;
+        theatreList = null;
+        theatre = null;
+    }
 
 
     @Test
     public void testRetrieveTheatreList(){
-
-        AccessTheatres accessTheatres;
-        List<Theatre> theatreList;
-        Services.closeDataAccess();
 
         System.out.println("Starting AccessTheatreTest: testRetrieveTheatreList");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -40,9 +45,6 @@ public class AccessTheatresTest extends TestCase {
 
     @Test
     public void testTheatresFromList(){
-        AccessTheatres accessTheatres;
-        List<Theatre> theatreList;
-        Theatre theatre;
 
         Services.closeDataAccess();
 
@@ -103,10 +105,7 @@ public class AccessTheatresTest extends TestCase {
 
     @Test
     public void testInvalidTheatre(){
-        AccessTheatres accessTheatres;
-        List<Theatre> theatreList;
-        Theatre theatre;
-
+        
         Services.closeDataAccess();
         System.out.println("Starting AccessTheatreTest: testInvalidTheatre");
         Services.createDataAccess(new DataAccessStub(dbName));
