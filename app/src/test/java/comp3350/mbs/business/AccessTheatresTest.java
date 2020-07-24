@@ -47,7 +47,6 @@ public class AccessTheatresTest extends TestCase {
     public void testTheatresFromList(){
 
         Services.closeDataAccess();
-
         System.out.println("Starting AccessTheatreTest: testTheatresFromList");
 
         Services.createDataAccess(new DataAccessStub(dbName));
