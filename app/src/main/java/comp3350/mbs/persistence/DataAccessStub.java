@@ -126,7 +126,7 @@ public class DataAccessStub implements DataAccess{
         theatreMoviesList.add(tm);
 
         movieDescription = "This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).";
-        tm = new TheatreMovies(theatre1.getName(),"Lion King",R.drawable.lion_king,movieDescription);
+        tm = new TheatreMovies(theatre1.getName(),"The Lion King",R.drawable.lion_king,movieDescription);
         theatreMoviesList.add(tm);
 
         movieDescription = "The Imperial Forces -- under orders from cruel Darth Vader (David Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their efforts to quell the rebellion against the Galactic Empire. Luke Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the Millennium Falcon, work together with the companionable droid duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the beautiful princess, help the Rebel Alliance, and restore freedom and justice to the Galaxy.";
@@ -150,7 +150,7 @@ public class DataAccessStub implements DataAccess{
         theatreMoviesList.add(tm);
 
         movieDescription = "This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).";
-        tm = new TheatreMovies(theatre3.getName(),"Lion King",R.drawable.lion_king,movieDescription);
+        tm = new TheatreMovies(theatre3.getName(),"The Lion King",R.drawable.lion_king,movieDescription);
         theatreMoviesList.add(tm);
 
         movieDescription = "The Imperial Forces -- under orders from cruel Darth Vader (David Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their efforts to quell the rebellion against the Galactic Empire. Luke Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the Millennium Falcon, work together with the companionable droid duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the beautiful princess, help the Rebel Alliance, and restore freedom and justice to the Galaxy.";
@@ -204,7 +204,7 @@ public class DataAccessStub implements DataAccess{
         viewingTimeList.add(vt);
 
         //================================
-        //For fourth movie (Lion King) in theatre1
+        //For fourth movie (The Lion King) in theatre1
         tmForViewingTime = theatreMoviesList.get(3);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"4:00 to 6:30 PM", "June 12, 2020, Wednesday");
         viewingTimeList.add(vt);
@@ -252,7 +252,7 @@ public class DataAccessStub implements DataAccess{
         viewingTimeList.add(vt);
 
         //================================
-        //For second movie (Lion King) in theatre3
+        //For second movie (The Lion King) in theatre3
         tmForViewingTime = theatreMoviesList.get(8);
         vt = new ViewingTime(tmForViewingTime.getTheatreName(),tmForViewingTime.getMovieName(),"12:00 to 2:00 PM", "June 11, 2020, Tuesday");
         viewingTimeList.add(vt);
