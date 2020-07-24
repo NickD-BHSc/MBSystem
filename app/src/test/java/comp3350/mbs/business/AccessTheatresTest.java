@@ -99,7 +99,32 @@ public class AccessTheatresTest extends TestCase {
         Services.closeDataAccess();
         System.out.println("Finished AccessTheatreTest: testTheatresFromList\n");
 
-
     }//end testTheatresFromList
+
+    @Test
+    public void testInvalidTheatre(){
+        AccessTheatres accessTheatres;
+        List<Theatre> theatreList;
+        Theatre theatre;
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessTheatreTest: testInvalidTheatre");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessTheatres = new AccessTheatres();
+        theatreList = accessTheatres.getTheatreList();
+
+        assertEquals(3,theatreList.size());
+
+        try{
+            theatre = theatreList.get(3);//getting the non-existing 4th theatre.
+            fail("IOBE expected");
+        }catch (IndexOutOfBoundsException iobe){
+        }//end try-catch
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessTheatreTest: testInvalidTheatre\n");
+
+    }//end testInvalidTheatre
 
 }//end AccessTheatresTest
