@@ -104,7 +104,8 @@ public class AccessTheatresTest extends TestCase {
 
     @Test
     public void testInvalidTheatre(){
-        
+
+
         Services.closeDataAccess();
         System.out.println("Starting AccessTheatreTest: testInvalidTheatre");
         Services.createDataAccess(new DataAccessStub(dbName));
