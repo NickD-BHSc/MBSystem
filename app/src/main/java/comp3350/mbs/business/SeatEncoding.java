@@ -16,17 +16,18 @@ public class SeatEncoding {
     public List<Seat> decodeSeatList(String str ){
         ArrayList<Seat> out = new ArrayList<Seat>();
 
-        for( int i = 0; i < str.length(); i++ ){
-            Seat s;
+        if( str != null ) {
+            for (int i = 0; i < str.length(); i++) {
+                Seat s;
 
-            if( str.charAt( i ) == '0' ){
-                s = new Seat( i, false, R.drawable.seat);
-            }
-            else{
-                s = new Seat( i, true, R.drawable.seat_taken);
-            }
+                if (str.charAt(i) == '0') {
+                    s = new Seat(i, false, R.drawable.seat);
+                } else {
+                    s = new Seat(i, true, R.drawable.seat_taken);
+                }
 
-            out.add( s );
+                out.add(s);
+            }
         }
 
         return out;
@@ -41,12 +42,15 @@ public class SeatEncoding {
     public String encodeSeatList( List<Seat>seatingList, List<Seat> bookedSeats){
         String s = "";
 
-        for(int i = 0; i < seatingList.size(); i++ ){
-            if( bookedSeats.contains( seatingList.get(i)) || seatingList.get(i).isBooked() ){
-                s = s + "1";
-            }
-            else{
-                s = s + "0";
+        if( seatingList != null & bookedSeats != null) {
+            for (int i = 0; i < seatingList.size(); i++) {
+                if( seatingList.get(i) != null ) {
+                    if (bookedSeats.contains(seatingList.get(i)) || seatingList.get(i).isBooked()) {
+                        s = s + "1";
+                    } else {
+                        s = s + "0";
+                    }
+                }
             }
         }
 

@@ -94,7 +94,83 @@ public class SeatEncodingTest extends TestCase {
 
         assertEquals( seatString, testString);
 
-        System.out.println( "Finished SeatEncodingTest: Common Encode");
+        System.out.println( "Finished SeatEncodingTest: Common Encode\n");
 
+    }
+
+    @Test
+    public void testNullString(){
+        System.out.println( "Starting SeatEncodingTest: Null String");
+        se = new SeatEncoding();
+        seatString = null;
+
+        seatList = se.decodeSeatList( seatString );
+
+        List<Seat> testList = new ArrayList<Seat>();
+
+        assertEquals( seatList, testList);
+
+        System.out.println( "Finished SeatEncodingTest: Null String\n");
+
+
+    }
+
+    @Test
+    public void testNullLists(){
+        System.out.println( "Starting SeatEncodingTest: Null Lists");
+        se = new SeatEncoding();
+
+        seatList = null;
+        bookedSeats = null;
+
+        seatString = se.encodeSeatList( seatList, bookedSeats );
+        String testString = "";
+
+        assertEquals(seatString, testString);
+        System.out.println( "Finished SeatEncodingTest: Null Lists\n");
+
+    }
+
+    @Test
+    public void testRandomString(){
+        System.out.println( "Starting SeatEncodingTest: Random String");
+        se = new SeatEncoding();
+
+        seatString = "asdfjkl;";
+
+        seatList = se.decodeSeatList( seatString );
+
+        List<Seat> testList = new ArrayList<Seat>();
+
+        for( int i = 0; i < seatString.length(); i++){
+            testList.add( new Seat( i, true, R.drawable.seat_taken));
+        }
+
+        for( int j = 0; j < testList.size(); j++ ){
+            assertTrue( testList.get(j).isBooked() == seatList.get(j).isBooked() );
+        }
+
+        System.out.println( "Finished SeatEncodingTest: Random String\n");
+    }
+
+    @Test
+    public void testNullSeats(){
+        System.out.println( "Starting SeatEncodingTest: Null Seats");
+        se = new SeatEncoding();
+
+        seatList = new ArrayList<Seat>();
+        bookedSeats = new ArrayList<Seat>();
+        for( int i = 0; i < 5; i++ ){
+            seatList.add( null );
+            bookedSeats.add( null );
+        }
+
+        seatString = se.encodeSeatList(seatList, bookedSeats );
+
+        String testString = "";
+
+        assertEquals( seatString, testString );
+
+        System.out.println( "Finished SeatEncodingTest: Null Seats\n");
     }
 }
