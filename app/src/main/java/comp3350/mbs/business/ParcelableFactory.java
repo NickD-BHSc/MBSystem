@@ -23,7 +23,7 @@ public class ParcelableFactory {
             parcObject = new ParcelableTheatreMovies(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),theatreMovie.getMoviePoster(),theatreMovie.getMovieDescription());
         }else if(object instanceof ViewingTime){
             ViewingTime viewingTime = (ViewingTime)object;
-            
+
         }else if(object instanceof Seat){
 
         }else if(object instanceof Ticket){

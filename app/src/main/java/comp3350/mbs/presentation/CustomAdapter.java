@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
@@ -93,7 +94,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.theatreAddressTxtView.setText(item.getAddress());
                 holder.theatreDistTxtView.setText(item.getDistance());
 
-                final ParcelableTheatre parcTheatre = new ParcelableTheatre(item.getName(),item.getAddress(),item.getDistance());
+                final Parcelable parcTheatre = ParcelableFactory.createParcelableObject(item);
                 //Moves to the MovieActivity when a theatre is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -115,7 +116,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.titleTxtView.setText(item.getMovieName());
                 holder.movieImageView.setImageResource(item.getMoviePoster());
 
-                final ParcelableTheatreMovies parcTheatreMovie = new ParcelableTheatreMovies(item.getTheatreName(),item.getMovieName(),item.getMoviePoster(),item.getMovieDescription());
+                final Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(item);
                 //Moves to the MovieInfoActivity (activity that holds the viewing time of the movie) when a movie is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
