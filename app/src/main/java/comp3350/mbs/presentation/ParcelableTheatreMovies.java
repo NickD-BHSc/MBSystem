@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import comp3350.mbs.objects.TheatreMovies;
 
 public class ParcelableTheatreMovies extends TheatreMovies implements Parcelable {
-    
     public ParcelableTheatreMovies(String theatreName, String movieName) {
         super(theatreName, movieName);
     }
