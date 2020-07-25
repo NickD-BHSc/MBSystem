@@ -1,13 +1,13 @@
 package comp3350.mbs.objects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class TheatreMovies implements Parcelable {
+public class TheatreMovies {
     private String theatreName;
     private String movieName;
     private int moviePoster;
     private String movieDescription;
+
+    //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatreMovies class.
+    public TheatreMovies(){}
 
     /**
      * Constructor
@@ -35,40 +35,6 @@ public class TheatreMovies implements Parcelable {
         this.movieDescription = movieDescription;
     }//end TheatreMovies constructor
 
-    //================================================================
-    //Parcelable methods
-    protected TheatreMovies(Parcel in) {
-        theatreName = in.readString();
-        movieName = in.readString();
-        moviePoster = in.readInt();
-        movieDescription = in.readString();
-    }
-
-    public static final Creator<TheatreMovies> CREATOR = new Creator<TheatreMovies>() {
-        @Override
-        public TheatreMovies createFromParcel(Parcel in) {
-            return new TheatreMovies(in);
-        }
-
-        @Override
-        public TheatreMovies[] newArray(int size) {
-            return new TheatreMovies[size];
-        }
-    };
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(theatreName);
-        parcel.writeString(movieName);
-        parcel.writeInt(moviePoster);
-        parcel.writeString(movieDescription);
-    }
 
     //================================================================
     //Getter methods

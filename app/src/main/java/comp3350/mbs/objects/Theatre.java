@@ -1,9 +1,5 @@
 package comp3350.mbs.objects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-
 public class Theatre{
     private String name;
     private String address;
@@ -11,7 +7,6 @@ public class Theatre{
 
     //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatre class.
     public Theatre(){}
-    
     /**
      * Constructor of Theatre class.
      *
