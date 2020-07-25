@@ -9,6 +9,7 @@ public class Theatre{
     private String address;
     private String distance;
 
+    public Theatre(){}
     /**
      * Constructor of Theatre class.
      *
@@ -37,6 +38,18 @@ public class Theatre{
         return distance;
     }//end getDistance
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
     /**
      * equals - a method that determines if the given object (Theatre) has the same theatre name as the instance name.
      *
@@ -60,5 +73,5 @@ public class Theatre{
         return result;
 
     }//end equals
-    
+
 }//end Theatre
