@@ -105,7 +105,6 @@ public class MovieInfoActivity extends AppCompatActivity {
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
-    //TODO pass the theatre name and movie name to the summary page.
 
     /**
      * getTheatreMovieItem - a getter method for theatreMovieItem.
