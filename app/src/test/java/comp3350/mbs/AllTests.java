@@ -3,7 +3,7 @@ package comp3350.mbs;
 import junit.framework.TestSuite;
 
 import comp3350.mbs.business.AccessTheatreMoviesTest;
-import comp3350.mbs.business.CalculateTotalsTest;
+import comp3350.mbs.business.CalculateTest;
 import comp3350.mbs.business.TrailerTest;
 import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TheatreMoviesTest;
@@ -20,29 +20,25 @@ public class AllTests {
 
     public static TestSuite suite;
 
-    public static junit.framework.Test suite()
-    {
+    public static junit.framework.Test suite() {
         suite = new TestSuite("All tests");
         testObjects();
         testBusiness();
         return suite;
     }
 
-    private static void testObjects()
-    {
+    private static void testObjects() {
         suite.addTestSuite(TicketTest.class);
         suite.addTestSuite( SeatingTest.class);
         suite.addTestSuite(TheatreTest.class);
-        //TODO: remove MovieTest class?
-        //suite.addTestSuite(MovieTest.class);
+
         suite.addTestSuite(ViewingTimeTest.class);
         suite.addTestSuite(TheatreMoviesTest.class);
 	// Add Test Classes
     }
 
-    private static void testBusiness()
-    {
-        suite.addTestSuite(CalculateTotalsTest.class);
+    private static void testBusiness() {
+        suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(TrailerTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
     }

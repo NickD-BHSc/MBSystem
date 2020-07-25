@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import comp3350.mbs.objects.Ticket;
 
-public class CalculateTotalsTest extends TestCase {
+public class CalculateTest extends TestCase {
 
-    public CalculateTotalsTest(String arg0)
+    public CalculateTest(String arg0)
     {
         super(arg0);
     }
