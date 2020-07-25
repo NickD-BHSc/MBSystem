@@ -86,7 +86,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         //first is to check which context (Activity) is being used.
         if(context instanceof TheatreActivity){
 
-            //TODO: Change it to instanceof ParcelableTheatre?
             if(itemLists.get(position) instanceof Theatre){
                 Theatre item = (Theatre) itemLists.get(position);//get the item using the given position.
                 //set the following info about the theatre to the TextViews.
@@ -94,7 +93,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.theatreAddressTxtView.setText(item.getAddress());
                 holder.theatreDistTxtView.setText(item.getDistance());
 
-                final Parcelable parcTheatre = new ParcelableTheatre(item.getName(),item.getAddress(),item.getDistance());
+                final ParcelableTheatre parcTheatre = new ParcelableTheatre(item.getName(),item.getAddress(),item.getDistance());
                 //Moves to the MovieActivity when a theatre is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -116,12 +115,13 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.titleTxtView.setText(item.getMovieName());
                 holder.movieImageView.setImageResource(item.getMoviePoster());
 
+                final ParcelableTheatreMovies parcTheatreMovie = new ParcelableTheatreMovies(item.getTheatreName(),item.getMovieName(),item.getMoviePoster(),item.getMovieDescription());
                 //Moves to the MovieInfoActivity (activity that holds the viewing time of the movie) when a movie is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
-                        intent.putExtra("Movie_Selected", item);//the item also contains the theatre name since it is a TheatreMovies object.
+                        intent.putExtra("Movie_Selected", parcTheatreMovie);//the item also contains the theatre name since it is a TheatreMovies object.
                         context.startActivity(intent);
                     }
                 });
@@ -142,8 +142,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
                         TheatreMovies tm = ((MovieInfoActivity)context).getTheatreMovieItem();
-                        intent.putExtra("TheatreMovie_Selected", tm);
-                        context.startActivity(intent);
+                        if(tm instanceof ParcelableTheatreMovies) {
+                            intent.putExtra("TheatreMovie_Selected", (ParcelableTheatreMovies)tm);
+                            context.startActivity(intent);
+                        }//end if
                     }
                 });
 

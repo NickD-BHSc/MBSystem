@@ -49,7 +49,7 @@ public class SeatingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
-                    intent.putExtra("TheatreMovie_Selected", theatreMovie);
+                    intent.putExtra("TheatreMovie_Selected", (ParcelableTheatreMovies)theatreMovie);
                     startActivity(intent);
                 }//end if-else
             }
