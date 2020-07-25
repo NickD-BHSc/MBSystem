@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessTheatres;
 import comp3350.mbs.objects.Theatre;

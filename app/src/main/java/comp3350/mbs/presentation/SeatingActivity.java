@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessSeats;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;

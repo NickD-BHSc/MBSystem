@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;

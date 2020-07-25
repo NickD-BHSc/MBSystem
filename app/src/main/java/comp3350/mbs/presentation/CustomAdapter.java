@@ -1,4 +1,4 @@
-package comp3350.mbs.adapter;
+package comp3350.mbs.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +19,6 @@ import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
-import comp3350.mbs.presentation.MovieActivity;
-import comp3350.mbs.presentation.MovieInfoActivity;
-import comp3350.mbs.presentation.SeatingActivity;
-import comp3350.mbs.presentation.TheatreActivity;
 
 public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
