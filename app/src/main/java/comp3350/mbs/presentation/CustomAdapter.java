@@ -85,8 +85,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         //first is to check which context (Activity) is being used.
         if(context instanceof TheatreActivity){
 
-            if(itemLists.get(position) instanceof Theatre){
-                final Theatre item = (Theatre) itemLists.get(position);//get the item using the given position.
+            //TODO: Change it to instanceof ParcelableTheatre?
+            if(itemLists.get(position) instanceof ParcelableTheatre){
+                final ParcelableTheatre item = (ParcelableTheatre) itemLists.get(position);//get the item using the given position.
                 //set the following info about the theatre to the TextViews.
                 holder.theatreNameTxtView.setText(item.getName());
                 holder.theatreAddressTxtView.setText(item.getAddress());

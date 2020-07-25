@@ -11,6 +11,7 @@ import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.presentation.ParcelableTheatre;
 
 public class DataAccessStub implements DataAccess{
 
@@ -89,14 +90,15 @@ public class DataAccessStub implements DataAccess{
      * createTheatres - a method that creates a list of theatres and add it to the theatreList.
      */
     private void createTheatres(){
+        //TODO : create a ParcelableTheatre object instead so that we can pass them to other activities.
         Theatre theatre;
-        theatre = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
+        theatre = new ParcelableTheatre("Scotiabank Theatre", "817 St.James", "15.7km");
         theatreList.add(theatre);//theatre1
 
-        theatre = new Theatre("Cinema City Northgate", "1399 McPhillips St.","10km");
+        theatre = new ParcelableTheatre("Cinema City Northgate", "1399 McPhillips St.","10km");
         theatreList.add(theatre);//theatre2
 
-        theatre = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
+        theatre = new ParcelableTheatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
         theatreList.add(theatre);//theatre3
 
     }//end createTheatres
