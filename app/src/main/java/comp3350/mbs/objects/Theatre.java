@@ -9,7 +9,9 @@ public class Theatre{
     private String address;
     private String distance;
 
+    //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatre class.
     public Theatre(){}
+    
     /**
      * Constructor of Theatre class.
      *
