@@ -2,6 +2,7 @@ package comp3350.mbs.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,19 +87,20 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         if(context instanceof TheatreActivity){
 
             //TODO: Change it to instanceof ParcelableTheatre?
-            if(itemLists.get(position) instanceof ParcelableTheatre){
-                final ParcelableTheatre item = (ParcelableTheatre) itemLists.get(position);//get the item using the given position.
+            if(itemLists.get(position) instanceof Theatre){
+                Theatre item = (Theatre) itemLists.get(position);//get the item using the given position.
                 //set the following info about the theatre to the TextViews.
                 holder.theatreNameTxtView.setText(item.getName());
                 holder.theatreAddressTxtView.setText(item.getAddress());
                 holder.theatreDistTxtView.setText(item.getDistance());
 
+                final Parcelable parcTheatre = new ParcelableTheatre(item.getName(),item.getAddress(),item.getDistance());
                 //Moves to the MovieActivity when a theatre is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, MovieActivity.class);
-                        intent.putExtra("Chosen_Theatre", item);
+                        intent.putExtra("Chosen_Theatre", parcTheatre);
                         context.startActivity(intent);
                     }
                 });
