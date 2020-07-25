@@ -23,14 +23,6 @@ public class AccessTheatreMovies {
     public List<TheatreMovies> getMoviesFromTheatre(String whichTheatre){
        return dataAccess.getMoviesFromTheatre(new TheatreMovies(whichTheatre,null));
     }//end getMoviesFromTheatre
-
-    /**
-     * getTheatresFromMovie - a getter method that returns a list of theatres from the given movie.
-     * @param whichMovie is the given movie name.
-     * @return it will return a list of theatres that has the given movie.
-     */
-    public List<TheatreMovies> getTheatresFromMovie(String whichMovie){
-        return dataAccess.getTheatresFromMovie(new TheatreMovies(null,whichMovie));
-    }//end getTheatresFromMovie
+    
 
 }//end AccessTheatreMovies
