@@ -71,7 +71,7 @@ public class AccessTheatreMoviesTest extends TestCase {
         theatreMovie = theatreMoviesList.get(3);//Lion King at Scotiabank Theatre
         assertNotNull(theatreMovie);
         assertEquals("Scotiabank Theatre",theatreMovie.getTheatreName());
-        assertEquals("Lion King",theatreMovie.getMovieName());
+        assertEquals("The Lion King",theatreMovie.getMovieName());
         assertEquals(R.drawable.lion_king,theatreMovie.getMoviePoster());
         assertEquals("This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).",theatreMovie.getMovieDescription());
 
@@ -146,7 +146,7 @@ public class AccessTheatreMoviesTest extends TestCase {
         theatreMovie = theatreMoviesList.get(1);//Lion King at Silver City St.Vital Cinemas Theatre
         assertNotNull(theatreMovie);
         assertEquals("Silver City St.Vital Cinemas",theatreMovie.getTheatreName());
-        assertEquals("Lion King",theatreMovie.getMovieName());
+        assertEquals("The Lion King",theatreMovie.getMovieName());
         assertEquals(R.drawable.lion_king,theatreMovie.getMoviePoster());
         assertEquals("This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).",theatreMovie.getMovieDescription());
 
@@ -234,7 +234,7 @@ public class AccessTheatreMoviesTest extends TestCase {
         //Following movies are in the theatreMovieList.
         theatreMovie = new TheatreMovies("Silver City St.Vital Cinemas","Superman",R.drawable.superman,"Just before the destruction of the planet Krypton, scientist Jor-El (Marlon Brando) sends his infant son Kal-El on a spaceship to Earth. Raised by kindly farmers Jonathan (Glenn Ford) and Martha Kent (Phyllis Thaxter), young Clark (Christopher Reeve) discovers the source of his superhuman powers and moves to Metropolis to fight evil. As Superman, he battles the villainous Lex Luthor (Gene Hackman), while, as novice reporter Clark Kent, he attempts to woo co-worker Lois Lane (Margot Kidder).");
         assertTrue(theatreMoviesList.contains(theatreMovie));
-        theatreMovie = new TheatreMovies("Silver City St.Vital Cinemas","Lion King",R.drawable.lion_king,"This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).");
+        theatreMovie = new TheatreMovies("Silver City St.Vital Cinemas","The Lion King",R.drawable.lion_king,"This Disney animated feature follows the adventures of the young lion Simba (Jonathan Taylor Thomas), the heir of his father, Mufasa (James Earl Jones). Simba's wicked uncle, Scar (Jeremy Irons), plots to usurp Mufasa's throne by luring father and son into a stampede of wildebeests. But Simba escapes, and only Mufasa is killed. Simba returns as an adult (Matthew Broderick) to take back his homeland from Scar with the help of his friends Timon (Nathan Lane) and Pumbaa (Ernie Sabella).");
         assertTrue(theatreMoviesList.contains(theatreMovie));
         theatreMovie = new TheatreMovies("Silver City St.Vital Cinemas","Star Wars",R.drawable.starwars,"The Imperial Forces -- under orders from cruel Darth Vader (David Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their efforts to quell the rebellion against the Galactic Empire. Luke Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the Millennium Falcon, work together with the companionable droid duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the beautiful princess, help the Rebel Alliance, and restore freedom and justice to the Galaxy.");
         assertTrue(theatreMoviesList.contains(theatreMovie));

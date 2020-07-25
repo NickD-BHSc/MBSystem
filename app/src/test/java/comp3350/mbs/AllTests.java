@@ -10,6 +10,7 @@ import comp3350.mbs.objects.TheatreMoviesTest;
 import comp3350.mbs.objects.TheatreTest;
 import comp3350.mbs.objects.TicketTest;
 import comp3350.mbs.objects.ViewingTimeTest;
+import comp3350.mbs.persistence.DataAccessTest;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -24,6 +25,7 @@ public class AllTests {
         suite = new TestSuite("All tests");
         testObjects();
         testBusiness();
+        testPersistence();
         return suite;
     }
 
@@ -40,7 +42,12 @@ public class AllTests {
     private static void testBusiness() {
         suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(TrailerTest.class);
+        suite.addTestSuite(TheatreTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
+    }
+
+    private static void testPersistence(){
+        suite.addTestSuite(DataAccessTest.class);
     }
 
 }
