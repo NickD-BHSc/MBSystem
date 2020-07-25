@@ -33,10 +33,8 @@ public class AllTests {
         suite.addTestSuite(TicketTest.class);
         suite.addTestSuite( SeatingTest.class);
         suite.addTestSuite(TheatreTest.class);
-
         suite.addTestSuite(ViewingTimeTest.class);
         suite.addTestSuite(TheatreMoviesTest.class);
-	// Add Test Classes
     }
 
     private static void testBusiness() {
