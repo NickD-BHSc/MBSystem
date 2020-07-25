@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 
@@ -14,15 +15,16 @@ public class DataAccessTest extends TestCase {
     private DataAccess dataAccess;
     public DataAccessTest(String arg0){super(arg0);}
 
+    //TODO DataAccessObject doesnt work. Tables are not found for some reason.
     public void setUp(){
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
         // Use the following statements to run with the stub database:
-        dataAccess = new DataAccessStub();
-        dataAccess.open("Stub");
+        //dataAccess = new DataAccessStub();
+        //dataAccess.open("Stub");
         // or switch to the real database:
-        // dataAccess = new DataAccessObject(Main.dbName);
-        // dataAccess.open(Main.getDBPathName());
+         dataAccess = new DataAccessObject(Main.dbName);
+         dataAccess.open(Main.getDBPathName());
         // Note the increase in test execution time.
     }
 
