@@ -307,25 +307,6 @@ public class DataAccessStub implements DataAccess{
         return newTMList;
     }//end getMoviesFromTheatre
 
-    /**
-     * getTheatresFromMovie - a getter method that returns a list of theatres from the given movie.
-     * @param whichMovie is the given movie name.
-     * @return it will return a list of theatres that has the given movie.
-     */
-    public List<TheatreMovies> getTheatresFromMovie(TheatreMovies whichMovie) {
-        List<TheatreMovies> newTMList = new ArrayList<>();
-        TheatreMovies tm;
-
-        //find the given movie from the list.
-        for(int i = 0; i < theatreMoviesList.size(); i++){
-            tm = theatreMoviesList.get(i);
-            if(tm.getMovieName().equals(whichMovie.getMovieName())){
-                newTMList.add(tm);
-            }//end if
-        }//end for
-
-        return newTMList;
-    }//end getTheatresFromMovie
 
     /**
      * getViewingTimeList - a getter method that returns a list of movie show times for a given theatre and movie.

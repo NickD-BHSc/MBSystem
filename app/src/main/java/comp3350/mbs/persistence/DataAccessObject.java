@@ -168,16 +168,6 @@ public class DataAccessObject implements DataAccess {
     }//end getMoviesFromTheatre
 
 
-    /** TODO: delete this since it will not be used?
-     * getTheatresFromMovie - a getter method that returns a list of theatres from the given movie.
-     * @param whichMovie is the given movie name.
-     * @return it will return a list of theatres that has the given movie.
-     */
-    @Override
-    public List<TheatreMovies> getTheatresFromMovie(TheatreMovies whichMovie) {
-        return null;
-    }
-
     /**
      * getViewingTimeList - a getter method that returns a list of movie show times for a given theatre and movie.
      * @param theatreMovie contains the name of the theatre and movie.

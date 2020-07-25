@@ -18,8 +18,6 @@ public interface DataAccess {
 
     List<TheatreMovies> getMoviesFromTheatre(TheatreMovies whichTheatre);
 
-    List<TheatreMovies> getTheatresFromMovie(TheatreMovies whichMovie); //may not be needed.
-
     List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie);//get the list of viewing time from the given theatre and movie.
 
     List<Seat> getSeatList();
