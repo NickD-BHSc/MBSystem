@@ -1,12 +1,13 @@
 package comp3350.mbs.objects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class Seat implements Parcelable {
+public class Seat{
     private int seatNumber;
     private boolean isBooked;
     private int seatImage;
+
+    //needed an empty constructor when implementing Parcelable interface in the ParcelableSeat class.
+    public Seat(){}
 
     /**
      * Seat constructor
@@ -21,36 +22,6 @@ public class Seat implements Parcelable {
     }//end Seat
 
 
-    protected Seat(Parcel in) {
-        seatNumber = in.readInt();
-        isBooked = in.readByte() != 0;
-        seatImage = in.readInt();
-    }
-
-    public static final Creator<Seat> CREATOR = new Creator<Seat>() {
-        @Override
-        public Seat createFromParcel(Parcel in) {
-            return new Seat(in);
-        }
-
-        @Override
-        public Seat[] newArray(int size) {
-            return new Seat[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(seatNumber);
-        parcel.writeByte((byte) (isBooked ? 1 : 0));
-        parcel.writeInt(seatImage);
-    }
-
     //================================================================
     //Getter methods
     public int getSeatNumber() {
@@ -60,7 +31,6 @@ public class Seat implements Parcelable {
     public boolean isBooked() {
         return isBooked;
     }//end isBooked
-
 
     public int getSeatImage() {
         return seatImage;
