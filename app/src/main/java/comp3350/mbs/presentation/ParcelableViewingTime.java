@@ -23,6 +23,7 @@ public class ParcelableViewingTime extends ViewingTime implements Parcelable {
         super.setMovieName(in.readString());
         super.setShowTime(in.readString());
         super.setShowDate(in.readString());
+        super.setSeatString( in.readString());
     }
 
     public static final Creator<ParcelableViewingTime> CREATOR = new Creator<ParcelableViewingTime>() {
@@ -48,6 +49,7 @@ public class ParcelableViewingTime extends ViewingTime implements Parcelable {
         parcel.writeString(super.getMovieName());
         parcel.writeString(super.getShowTime());
         parcel.writeString(super.getShowDate());
+        parcel.writeString(super.getSeatString());
     }
 
 }
