@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-public class Movie implements Parcelable {
+public class Movie implements Parcelable{
     private String title;
     private int poster;
     private String description;
@@ -27,6 +27,7 @@ public class Movie implements Parcelable {
 
     //================================================================
     //Parcelable methods
+
     protected Movie(Parcel in) {
         title = in.readString();
         poster = in.readInt();
@@ -56,6 +57,7 @@ public class Movie implements Parcelable {
         parcel.writeInt(poster);
         parcel.writeString(description);
     }
+
 
     //================================================================
     //Getter methods
