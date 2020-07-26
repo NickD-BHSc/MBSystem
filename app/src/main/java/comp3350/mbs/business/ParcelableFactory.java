@@ -10,6 +10,7 @@ import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.presentation.ParcelableSeat;
 import comp3350.mbs.presentation.ParcelableTheatre;
 import comp3350.mbs.presentation.ParcelableTheatreMovies;
+import comp3350.mbs.presentation.ParcelableTicket;
 import comp3350.mbs.presentation.ParcelableViewingTime;
 
 public class ParcelableFactory {
@@ -30,7 +31,8 @@ public class ParcelableFactory {
             Seat seat = (Seat)object;
             parcObject = new ParcelableSeat(seat.getSeatNumber(),seat.isBooked(),seat.getSeatImage());
         }else if(object instanceof Ticket){
-
+            Ticket ticket = (Ticket)object;
+            parcObject = new ParcelableTicket(ticket.getPrice(),ticket.getType(),ticket.getQuantity());
         }//end if-elses
 
         return parcObject;
