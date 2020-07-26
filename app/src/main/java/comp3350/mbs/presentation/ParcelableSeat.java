@@ -46,5 +46,4 @@ public class ParcelableSeat extends Seat implements Parcelable {
         parcel.writeByte((byte) (super.isBooked() ? 1 : 0));
         parcel.writeInt(super.getSeatImage());
     }
-    
 }
