@@ -26,7 +26,7 @@ public class ParcelableFactory {
             parcObject = new ParcelableTheatreMovies(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),theatreMovie.getMoviePoster(),theatreMovie.getMovieDescription());
         }else if(object instanceof ViewingTime){
             ViewingTime viewingTime = (ViewingTime)object;
-            parcObject = new ParcelableViewingTime(viewingTime.getTheatreName(),viewingTime.getMovieName(),viewingTime.getShowTime(),viewingTime.getShowDate());
+            parcObject = new ParcelableViewingTime(viewingTime.getTheatreName(),viewingTime.getMovieName(),viewingTime.getShowTime(),viewingTime.getShowDate(), viewingTime.getSeatString());
         }else if(object instanceof Seat){
             Seat seat = (Seat)object;
             parcObject = new ParcelableSeat(seat.getSeatNumber(),seat.isBooked(),seat.getSeatImage());

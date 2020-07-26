@@ -5,6 +5,7 @@ public class ViewingTime{
     private String movieName;
     private String showTime;
     private String showDate;
+    private String seatString;
 
     //needed an empty constructor when implementing Parcelable interface in the ParcelableViewingTime class.
     public ViewingTime(){}
@@ -15,12 +16,14 @@ public class ViewingTime{
      * @param movieName is the movie name.
      * @param showTime is the show time of the movie.
      * @param showDate is the show date of the movie.
+     * @param seatString is the encoded list of seats for the movie.
      */
-    public ViewingTime(String theatreName, String movieName, String showTime, String showDate) {
+    public ViewingTime(String theatreName, String movieName, String showTime, String showDate, String seatString) {
         this.theatreName = theatreName;
         this.movieName = movieName;
         this.showTime = showTime;
         this.showDate = showDate;
+        this.seatString = seatString;
     }//end constructor
 
 
@@ -42,6 +45,8 @@ public class ViewingTime{
         return showDate;
     }
 
+    public String getSeatString() {return seatString; }
+
 
     //================================================================
     //Setter methods
@@ -61,6 +66,8 @@ public class ViewingTime{
         this.showDate = showDate;
     }
 
+    public void setSeatString( String seatString){ this.seatString = seatString; }
+
 
     /**
      * equals - a method that checks if the given object and this object are the same.
@@ -77,7 +84,8 @@ public class ViewingTime{
             if(((vt.theatreName == null && theatreName == null) || (vt.theatreName.equals(theatreName)))
                 && ((vt.movieName == null) || (vt.movieName.equals(movieName)))
                 && ((vt.showTime == null) || (vt.showTime.equals(showTime)))
-                && ((vt.showDate == null) || (vt.showDate.equals(showDate)))){
+                && ((vt.showDate == null) || (vt.showDate.equals(showDate)))
+                && ((vt.seatString == null ) || (vt.seatString.equals( seatString)))){
                 result =true;
             }//end nested if
 

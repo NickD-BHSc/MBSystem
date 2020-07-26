@@ -12,9 +12,10 @@ public class ParcelableViewingTime extends ViewingTime implements Parcelable {
      * @param movieName is the name of the movie.
      * @param showTime is the show time of the movie.
      * @param showDate is the show date of the movie.
+     * @param seatList is the list of seats for the movie.
      */
-    public ParcelableViewingTime(String theatreName, String movieName, String showTime, String showDate) {
-        super(theatreName, movieName, showTime, showDate);
+    public ParcelableViewingTime(String theatreName, String movieName, String showTime, String showDate, String seatList) {
+        super(theatreName, movieName, showTime, showDate, seatList);
     }//end constructor
 
     protected ParcelableViewingTime(Parcel in) {

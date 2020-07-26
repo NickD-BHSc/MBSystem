@@ -1,7 +1,8 @@
-package comp3350.mbs.adapter;
+package comp3350.mbs.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.objects.Movie;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
-import comp3350.mbs.presentation.MovieActivity;
-import comp3350.mbs.presentation.MovieInfoActivity;
-import comp3350.mbs.presentation.SeatingActivity;
-import comp3350.mbs.presentation.TheatreActivity;
 
 public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
@@ -102,7 +99,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, MovieActivity.class);
-                        intent.putExtra("Chosen_Theatre", item);
+                        ParcelableTheatre pt = (ParcelableTheatre) ParcelableFactory.createParcelableObject(item);
+                        intent.putExtra("Chosen_Theatre", pt);
                         context.startActivity(intent);
                     }
                 });
@@ -123,7 +121,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
-                        intent.putExtra("Movie_Selected", item);//the item also contains the theatre name since it is a TheatreMovies object.
+                        ParcelableTheatreMovies ptm = (ParcelableTheatreMovies)ParcelableFactory.createParcelableObject(item);
+                        intent.putExtra("Movie_Selected", ptm);//the item also contains the theatre name since it is a TheatreMovies object.
                         context.startActivity(intent);
                     }
                 });
@@ -144,8 +143,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
                         TheatreMovies tm = ((MovieInfoActivity)context).getTheatreMovieItem();
-                        intent.putExtra("TheatreMovie_Selected", tm);
-                        intent.putExtra( "VT", item);
+                        ParcelableTheatreMovies ptm = (ParcelableTheatreMovies)ParcelableFactory.createParcelableObject(tm);
+                        ParcelableViewingTime pvt = (ParcelableViewingTime)ParcelableFactory.createParcelableObject(item);
+                        intent.putExtra("TheatreMovie_Selected", ptm);
+                        intent.putExtra( "VT", pvt);
                         context.startActivity(intent);
                     }
                 });

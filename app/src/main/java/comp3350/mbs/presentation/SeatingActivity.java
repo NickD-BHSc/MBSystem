@@ -14,9 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.adapter.CustomAdapter;
 import comp3350.mbs.business.AccessSeats;
-import comp3350.mbs.objects.Movie;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
@@ -57,7 +56,8 @@ public class SeatingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
-                    intent.putExtra("TheatreMovie_Selected", theatreMovie);
+                    ParcelableTheatreMovies ptm = (ParcelableTheatreMovies) ParcelableFactory.createParcelableObject(theatreMovie);
+                    intent.putExtra("TheatreMovie_Selected", ptm);
 
                     accessSeats = new AccessSeats();
                     se = new SeatEncoding();
@@ -85,9 +85,9 @@ public class SeatingActivity extends AppCompatActivity {
         se = new SeatEncoding();
 
         //initialize the lists.
-        System.out.println("Encoded Seatlist: "+vt.getSeatList() );
-        seatString = vt.getSeatList();
-        seatingList = se.decodeSeatList( vt.getSeatList() );//data that will be passed to the CustomAdapter.
+        System.out.println("Encoded Seatlist: "+vt.getSeatString() );
+        seatString = vt.getSeatString();
+        seatingList = se.decodeSeatList( vt.getSeatString() );//data that will be passed to the CustomAdapter.
 
         bookedSeats = new ArrayList<>();//list that contains the booked seats.
 
