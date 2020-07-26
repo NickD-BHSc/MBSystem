@@ -143,10 +143,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
                         TheatreMovies tm = ((MovieInfoActivity)context).getTheatreMovieItem();
-                        if(tm instanceof ParcelableTheatreMovies) {
-                            intent.putExtra("TheatreMovie_Selected", (ParcelableTheatreMovies)tm);
-                            context.startActivity(intent);
-                        }//end if
+
+                        final Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(tm);
+                        intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
+                        context.startActivity(intent);
                     }
                 });
 
