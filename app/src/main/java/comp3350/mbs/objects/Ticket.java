@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 public class Ticket {
     private double price;
     private String type;
-    private int quantity = 1;
+    private int quantity;
     DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
     //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatreMovies class.
@@ -21,6 +21,7 @@ public class Ticket {
     public Ticket(double price, String type) {
         this.price = price;
         this.type = type;
+        this.quantity = 1;
     }//end Constructor
 
     /**
@@ -35,7 +36,7 @@ public class Ticket {
         this.type = type;
         this.quantity = quantity;
     }//end Constructor
-    
+
     //================================================================
     //Getter methods
     public double getPrice() {
