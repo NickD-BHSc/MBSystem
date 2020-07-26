@@ -2,6 +2,7 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessSeats;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
 
@@ -49,7 +51,8 @@ public class SeatingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
-                    intent.putExtra("TheatreMovie_Selected", (ParcelableTheatreMovies)theatreMovie);
+                    final Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
+                    intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
                     startActivity(intent);
                 }//end if-else
             }
