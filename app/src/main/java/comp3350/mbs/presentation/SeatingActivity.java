@@ -44,15 +44,28 @@ public class SeatingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //make sure that the user has chosen at least one seat to be able to move to the next page.
-                if(bookedSeats.size() == 0){
-                    Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-                    //passing the whole list.
-                    intent.putExtra("seats", bookedSeats.size());
-                    intent.putExtra("movie", movie);
-                    startActivity(intent);
-                }//end if-else
+//                if(bookedSeats.size() == 0){
+//                    Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
+//                    //passing the whole list.
+//                    intent.putExtra("seats", bookedSeats.size());
+//                    intent.putExtra("movie", movie);
+//                    startActivity(intent);
+//                }//end if-else
+
+
+
+                if( bookedSeats.size() ==0 ){
+                    Toast.makeText( SeatingActivity.this, "Please select a seat.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent( SeatingActivity.this, SnackActivity.class );
+//                    intent.putExtra( "")
+                    startActivity(( intent  ));
+                }
+
             }
         });
 

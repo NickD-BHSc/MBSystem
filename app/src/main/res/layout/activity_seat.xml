@@ -30,10 +30,7 @@
                 android:layout_below="@id/seatNumTextView"
                 android:src="@drawable/seat"/>
 
-
-
         </RelativeLayout>
-
 
 
 

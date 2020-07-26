@@ -24,10 +24,12 @@
         android:scrollbars="vertical"
         android:layout_below="@id/seatPromptTextView"/>
 
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Confirm Order"
+        android:text="Confirm Seat"
         android:layout_margin="10dp"
         android:id="@+id/seatConfirmButton"
         android:layout_below="@id/seatRecyclerView"/>

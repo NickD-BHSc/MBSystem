@@ -6,7 +6,7 @@ public class Services {
 
     private static DataAccessStub dataAccessService = null;
 
-    /**
+    /**s
      * createDataAccess - a static method that creates a database with the specified name.
      * @param dbName is the name of the database.
      * @return it will return the data stored in the database (DataAccessStub).

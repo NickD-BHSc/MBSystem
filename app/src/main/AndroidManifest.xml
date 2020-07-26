@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".presentation.SnackActivity"></activity>
         <activity
             android:name=".presentation.TheatreActivity"
             android:label="@string/app_name">
@@ -22,14 +23,11 @@
         <activity
             android:name=".presentation.MovieActivity"
             android:label="@string/title_activity_movie" />
-
-        <activity android:name=".presentation.SeatingActivity"></activity>
-        <activity android:name=".presentation.TicketActivity"></activity>
+        <activity android:name=".presentation.SeatingActivity" />
+        <activity android:name=".presentation.TicketActivity" />
         <activity
             android:name=".presentation.MovieInfoActivity"
             android:label="@string/title_activity_movie_info" />
-
-
     </application>
 
 </manifest>

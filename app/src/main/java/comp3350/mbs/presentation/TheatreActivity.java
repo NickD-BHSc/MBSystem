@@ -19,7 +19,6 @@ public class TheatreActivity extends AppCompatActivity {
     private RecyclerView theatreRecyclerView;
     private CustomAdapter customAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
     private AccessTheatres accessTheatres;
     private List<Theatre> theatreList;
 
@@ -43,7 +42,7 @@ public class TheatreActivity extends AppCompatActivity {
         theatreList = accessTheatres.getTheatreList();
 
         if(theatreList == null){
-                throw new Error("no list of theatres available.");
+                throw new Error("no list of theatres ava ilable.");
         }else{
             buildRecyclerView();
         }//end if-else
