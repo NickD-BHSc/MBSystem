@@ -2,6 +2,8 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import comp3350.mbs.R;
+import comp3350.mbs.TicketStubActivity;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.objects.Movie;
@@ -33,6 +36,17 @@ public class TicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         accessTickets = new AccessTickets();
         setContentView(R.layout.activity_ticket);
+
+        Button submitOrderBtn = findViewById(R.id.submitButton);
+        submitOrderBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent startIntent = new Intent(getApplicationContext(), TicketStubActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+
         init();
         addTicketInfo();
 
