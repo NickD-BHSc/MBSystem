@@ -1,13 +1,13 @@
 package comp3350.mbs.objects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class ViewingTime implements Parcelable {
+public class ViewingTime{
     private String theatreName;
     private String movieName;
     private String showTime;
     private String showDate;
+
+    //needed an empty constructor when implementing Parcelable interface in the ParcelableViewingTime class.
+    public ViewingTime(){}
 
     /**
      * Constructor
@@ -23,46 +23,13 @@ public class ViewingTime implements Parcelable {
         this.showDate = showDate;
     }//end constructor
 
-    //================================================================
-    //Parcelable methods
-    protected ViewingTime(Parcel in) {
-        theatreName = in.readString();
-        movieName = in.readString();
-        showTime = in.readString();
-        showDate = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(theatreName);
-        dest.writeString(movieName);
-        dest.writeString(showTime);
-        dest.writeString(showDate);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<ViewingTime> CREATOR = new Creator<ViewingTime>() {
-        @Override
-        public ViewingTime createFromParcel(Parcel in) {
-            return new ViewingTime(in);
-        }
-
-        @Override
-        public ViewingTime[] newArray(int size) {
-            return new ViewingTime[size];
-        }
-    };
-
 
     //================================================================
     //Getter methods
     public String getTheatreName() {
         return theatreName;
     }
+
     public String getMovieName() {
         return movieName;
     }
@@ -73,6 +40,25 @@ public class ViewingTime implements Parcelable {
 
     public String getShowDate() {
         return showDate;
+    }
+
+
+    //================================================================
+    //Setter methods
+    public void setTheatreName(String theatreName) {
+        this.theatreName = theatreName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public void setShowTime(String showTime) {
+        this.showTime = showTime;
+    }
+
+    public void setShowDate(String showDate) {
+        this.showDate = showDate;
     }
 
 
