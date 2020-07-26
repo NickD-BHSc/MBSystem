@@ -14,7 +14,7 @@ public class AccessTickets {
 
     public AccessTickets()
     {
-        dataAccess = (DataAccessStub) Services.getDataAccessService(Main.dbName);
+        dataAccess =  Services.getDataAccessService(Main.dbName);
     }
 
     public Ticket getTicket(String ticketType)

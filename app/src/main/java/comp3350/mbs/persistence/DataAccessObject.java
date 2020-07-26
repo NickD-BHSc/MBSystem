@@ -3,6 +3,7 @@ package comp3350.mbs.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLWarning;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,6 +183,7 @@ public class DataAccessObject implements DataAccess {
         String movieName;
         String showDate;
         String showTime;
+        String seatString;
 
         try{
 
@@ -193,8 +195,10 @@ public class DataAccessObject implements DataAccess {
                 movieName = rs2.getString("MOVIENAME");
                 showTime = rs2.getString("TIME");
                 showDate = rs2.getString("DATE");
+                seatString = rs2.getString( "SEATLIST");
 
-                vt = new ViewingTime(theatreName,movieName,showTime,showDate);
+
+                vt = new ViewingTime(theatreName,movieName,showTime,showDate,seatString);
                 viewingTimeList.add(vt);
 
             }//end while
@@ -225,6 +229,35 @@ public class DataAccessObject implements DataAccess {
         return null;
     }
 
+    @Override
+    public String updateSeatList( ViewingTime vt, String s){
+        String values;
+        String where;
+
+        result = null;
+
+        try{
+            values = "SEATLIST='"+s+"'";
+            where = "where THEATRENAME='"+vt.getTheatreName()
+                    +"' and MOVIENAME='" + vt.getMovieName()
+                    +"' and TIME='" + vt.getShowTime()
+                    +"' and DATE='" + vt.getShowDate()
+                    +"'";
+
+            cmdString = "Update VIEWINGTIMES " +" Set " +values +" " +where;
+            System.out.println(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+            System.out.println( updateCount );
+        }
+        catch( Exception e){
+            result = processSQLError(e);
+        }
+
+        return result;
+
+    }
+
 
 
     public String processSQLError(Exception e) {
@@ -235,5 +268,29 @@ public class DataAccessObject implements DataAccess {
 
         return result;
     }//end processSqError
+
+    public String checkWarning(Statement st, int updateCount)
+    {
+        String result;
+
+        result = null;
+        try
+        {
+            SQLWarning warning = st.getWarnings();
+            if (warning != null)
+            {
+                result = warning.getMessage();
+            }
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        if (updateCount != 1)
+        {
+            result = "Tuple not inserted correctly.";
+        }
+        return result;
+    }
 
 }//end DataAccessObject class

@@ -1,8 +1,7 @@
-package comp3350.mbs.presentation;
+package comp3350.mbs.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.business.ParcelableFactory;
+import comp3350.mbs.objects.Movie;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.presentation.MovieActivity;
+import comp3350.mbs.presentation.MovieInfoActivity;
+import comp3350.mbs.presentation.SeatingActivity;
+import comp3350.mbs.presentation.TheatreActivity;
 
 public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
@@ -88,19 +91,18 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         if(context instanceof TheatreActivity){
 
             if(itemLists.get(position) instanceof Theatre){
-                Theatre item = (Theatre) itemLists.get(position);//get the item using the given position.
+                final Theatre item = (Theatre) itemLists.get(position);//get the item using the given position.
                 //set the following info about the theatre to the TextViews.
                 holder.theatreNameTxtView.setText(item.getName());
                 holder.theatreAddressTxtView.setText(item.getAddress());
                 holder.theatreDistTxtView.setText(item.getDistance());
 
-                final Parcelable parcTheatre = ParcelableFactory.createParcelableObject(item);
                 //Moves to the MovieActivity when a theatre is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, MovieActivity.class);
-                        intent.putExtra("Chosen_Theatre", parcTheatre);
+                        intent.putExtra("Chosen_Theatre", item);
                         context.startActivity(intent);
                     }
                 });
@@ -116,13 +118,12 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 holder.titleTxtView.setText(item.getMovieName());
                 holder.movieImageView.setImageResource(item.getMoviePoster());
 
-                final Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(item);
                 //Moves to the MovieInfoActivity (activity that holds the viewing time of the movie) when a movie is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
-                        intent.putExtra("Movie_Selected", parcTheatreMovie);//the item also contains the theatre name since it is a TheatreMovies object.
+                        intent.putExtra("Movie_Selected", item);//the item also contains the theatre name since it is a TheatreMovies object.
                         context.startActivity(intent);
                     }
                 });
@@ -143,9 +144,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
                         TheatreMovies tm = ((MovieInfoActivity)context).getTheatreMovieItem();
-
-                        final Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(tm);
-                        intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
+                        intent.putExtra("TheatreMovie_Selected", tm);
+                        intent.putExtra( "VT", item);
                         context.startActivity(intent);
                     }
                 });

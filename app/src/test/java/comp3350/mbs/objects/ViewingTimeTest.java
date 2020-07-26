@@ -13,7 +13,7 @@ public class ViewingTimeTest extends TestCase {
 
         System.out.println("Starting ViewingTimeTest: testOneViewingTime");
 
-        ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday");
+        ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday", "00000000000000000000000000000000");
         assertNotNull(viewingTime1);
 
         assertTrue("Theatre1".equals(viewingTime1.getTheatreName()));
@@ -29,7 +29,7 @@ public class ViewingTimeTest extends TestCase {
         assertEquals("July 8, 2020, Wednesday", viewingTime1.getShowDate());
 
 
-        ViewingTime viewingTime2 = new ViewingTime("Theatre2","Movie2","3:30 to 6:00 PM", "July 10, 2020, Friday");
+        ViewingTime viewingTime2 = new ViewingTime("Theatre2","Movie2","3:30 to 6:00 PM", "July 10, 2020, Friday", "00000000000000000000000000000000");
 
         assertTrue("Theatre2".equals(viewingTime2.getTheatreName()));
         assertEquals("Theatre2", viewingTime2.getTheatreName());
@@ -43,6 +43,9 @@ public class ViewingTimeTest extends TestCase {
         assertTrue("July 10, 2020, Friday".equals(viewingTime2.getShowDate()));
         assertEquals("July 10, 2020, Friday", viewingTime2.getShowDate());
 
+        assertTrue( "00000000000000000000000000000000".equals(viewingTime2.getSeatList()));
+        assertEquals("00000000000000000000000000000000", viewingTime2.getSeatList());
+
         System.out.println("Finished ViewingTimeTest: testOneViewingTime\n");
 
     }//end testOneViewingTime
@@ -51,8 +54,8 @@ public class ViewingTimeTest extends TestCase {
     public void testDistinctViewingTime(){
         System.out.println("Starting ViewingTimeTest: testDistinctViewingTime");
 
-        ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday");
-        ViewingTime viewingTime2 = new ViewingTime("Theatre2","Movie2","3:30 to 6:00 PM", "July 10, 2020, Friday");
+        ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday" , "00000000000000000000000000000000");
+        ViewingTime viewingTime2 = new ViewingTime("Theatre2","Movie2","3:30 to 6:00 PM", "July 10, 2020, Friday", "11111111111111111111111111111111");
 
         assertNotNull(viewingTime1);
         assertNotNull(viewingTime2);
@@ -70,6 +73,9 @@ public class ViewingTimeTest extends TestCase {
         assertTrue("July 8, 2020, Wednesday".equals(viewingTime1.getShowDate()));
         assertEquals("July 8, 2020, Wednesday", viewingTime1.getShowDate());
 
+        assertTrue( "00000000000000000000000000000000".equals( viewingTime1.getSeatList()));
+        assertEquals( "00000000000000000000000000000000",  viewingTime1.getSeatList());
+
         //viewingTime2 fields
         assertTrue("Theatre2".equals(viewingTime2.getTheatreName()));
         assertEquals("Theatre2", viewingTime2.getTheatreName());
@@ -82,6 +88,9 @@ public class ViewingTimeTest extends TestCase {
 
         assertTrue("July 10, 2020, Friday".equals(viewingTime2.getShowDate()));
         assertEquals("July 10, 2020, Friday", viewingTime2.getShowDate());
+
+        assertTrue( "11111111111111111111111111111111".equals( viewingTime2.getSeatList()));
+        assertEquals( "11111111111111111111111111111111", viewingTime2.getShowTime());
 
 
         //comparing theatre names.
@@ -100,6 +109,10 @@ public class ViewingTimeTest extends TestCase {
         assertFalse(viewingTime1.getShowDate().equals(viewingTime2.getShowDate()));
         assertNotEquals(viewingTime1.getShowDate(),viewingTime2.getShowDate());
 
+        //comparing viewingtimes' seat lists.
+        assertFalse( viewingTime1.getSeatList().equals(viewingTime2.getSeatList()));
+        assertNotEquals(viewingTime1.getSeatList(),viewingTime2.getSeatList());
+
         //objects should not be the same when using the equals method from ViewingTime.
         assertFalse(viewingTime1.equals(viewingTime2));
         assertNotEquals(viewingTime1,viewingTime2);
@@ -111,8 +124,8 @@ public class ViewingTimeTest extends TestCase {
     public void testSameViewingTimes(){
         System.out.println("Starting ViewingTimeTest: testSameViewingTimes");
 
-        ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday");
-        ViewingTime viewingTime2 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday");
+        ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday","11111111111111111111111111111111");
+        ViewingTime viewingTime2 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday", "11111111111111111111111111111111");
 
         assertNotNull(viewingTime1);
         assertNotNull(viewingTime2);
@@ -130,6 +143,9 @@ public class ViewingTimeTest extends TestCase {
         assertTrue("July 8, 2020, Wednesday".equals(viewingTime1.getShowDate()));
         assertEquals("July 8, 2020, Wednesday", viewingTime1.getShowDate());
 
+        assertTrue( "11111111111111111111111111111111".equals( viewingTime1.getSeatList()));
+        assertEquals( "11111111111111111111111111111111", viewingTime1.getShowTime());
+
         //viewingTime2 fields
         assertTrue("Theatre1".equals(viewingTime2.getTheatreName()));
         assertEquals("Theatre1", viewingTime2.getTheatreName());
@@ -142,6 +158,9 @@ public class ViewingTimeTest extends TestCase {
 
         assertTrue("July 8, 2020, Wednesday".equals(viewingTime2.getShowDate()));
         assertEquals("July 8, 2020, Wednesday", viewingTime2.getShowDate());
+
+        assertTrue( "11111111111111111111111111111111".equals( viewingTime2.getSeatList()));
+        assertEquals( "11111111111111111111111111111111", viewingTime2.getShowTime());
 
 
         //comparing theatre names.
@@ -159,6 +178,9 @@ public class ViewingTimeTest extends TestCase {
         //comparing viewingtimes' dates.
         assertTrue(viewingTime1.getShowDate().equals(viewingTime2.getShowDate()));
         assertEquals(viewingTime1.getShowDate(),viewingTime2.getShowDate());
+
+        assertTrue( viewingTime1.getSeatList().equals(viewingTime2.getSeatList()));
+        assertEquals(viewingTime1.getSeatList(),viewingTime2.getSeatList());
 
         //objects should not be the same when using the equals method from ViewingTime.
         assertTrue(viewingTime1.equals(viewingTime2));
