@@ -1,17 +1,15 @@
 package comp3350.mbs.persistence;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
-import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
-import comp3350.mbs.presentation.ParcelableTheatre;
+import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessStub implements DataAccess{
 
@@ -334,11 +332,11 @@ public class DataAccessStub implements DataAccess{
      * getTicket -a getter method for a ticket from the list.
      * @return it will return the ticket.
      */
-    public Ticket getTicket(String ticketType){
+    public Ticket getTicket(String movieName){
         Ticket ticket = null;
         for(int i = 0; i <ticketList.size(); i++){
 
-            if(ticketList.get(i).getType().equals(ticketType)){
+            if(ticketList.get(i).getMovieName().equals(movieName)){
                 ticket = ticketList.get(i);
             }//end if
 
