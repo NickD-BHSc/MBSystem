@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 
 public class Ticket {
     private double price;
-    private String movieName;
+    private String type;
     private int quantity;
     DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
@@ -16,11 +16,11 @@ public class Ticket {
      * Constructor of Ticket class.
      *
      * @param price is the price of one of this type of ticket.
-     * @param movieName is the type of the ticket.
+     * @param type is the type of the ticket.
      */
-    public Ticket(double price, String movieName) {
+    public Ticket(double price, String type) {
         this.price = price;
-        this.movieName = movieName;
+        this.type = type;
         this.quantity = 1;
     }//end Constructor
 
@@ -28,12 +28,12 @@ public class Ticket {
      * Constructor of Ticket class.
      *
      * @param price is the price of one of this type of ticket.
-     * @param movieName is the type of the ticket.
+     * @param type is the type of the ticket.
      * @param quantity is the number of tickets.
      */
-    public Ticket(double price, String movieName, int quantity) {
+    public Ticket(double price, String type, int quantity) {
         this.price = price;
-        this.movieName = movieName;
+        this.type = type;
         this.quantity = quantity;
     }//end Constructor
 
@@ -43,8 +43,8 @@ public class Ticket {
         return price;
     }//end getPrice
 
-    public String getMovieName() {
-        return movieName;
+    public String getType() {
+        return type;
     }//end getType
 
     public int getQuantity() {
@@ -59,8 +59,8 @@ public class Ticket {
         this.price = price;
     }
 
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setQuantity(int quantity) {
