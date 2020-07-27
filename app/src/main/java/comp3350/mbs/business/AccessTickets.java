@@ -6,7 +6,6 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.persistence.DataAccess;
-import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTickets {
 
@@ -17,10 +16,10 @@ public class AccessTickets {
         dataAccess =  Services.getDataAccessService(Main.dbName);
     }
 
-    public Ticket getTicket(String ticketType)
+    public Ticket getTicket(String movieName)
     {
-        return dataAccess.getTicket(ticketType);
+        return dataAccess.getTicket(movieName);
     }
 
-    public List<Ticket> getAllTicketTypes(){return dataAccess.getTicketList();}
+    public List<Ticket> getAllTickets(){return dataAccess.getTicketList();}
 }

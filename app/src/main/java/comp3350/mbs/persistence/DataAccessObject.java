@@ -32,6 +32,8 @@ public class DataAccessObject implements DataAccess {
     private List<Theatre> theatreList;
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
+    private List<Ticket> ticketList;
+
 
     public DataAccessObject(String dbName)
     {
@@ -221,12 +223,60 @@ public class DataAccessObject implements DataAccess {
 
     @Override
     public List<Ticket> getTicketList() {
-        return null;
+        ticketList = new ArrayList<>();
+
+        Ticket ticket;
+        String movieName;
+        Double price;
+
+        try{
+
+            cmdString = "SELECT * FROM TICKETS";
+            rs2 = st3.executeQuery(cmdString);
+
+            while(rs2.next()){
+                movieName = rs2.getString("TYPE");
+                price = rs2.getDouble("PRICE");
+
+                ticket = new Ticket(price, movieName);
+                ticketList.add(ticket);
+
+            }//end while
+
+
+        }catch (Exception e){
+            processSQLError(e);
+        }//end try-catch
+
+        return ticketList;
     }
 
     @Override
-    public Ticket getTicket(String ticketType) {
-        return null;
+    public Ticket getTicket(String movie) {
+
+        Ticket ticket = null;
+        String movieName;
+        Double price;
+
+        try{
+
+            cmdString = "SELECT * FROM TICKETS WHERE MOVIENAME = '"+ movie +"'";
+            rs2 = st3.executeQuery(cmdString);
+
+            while(rs2.next()){
+                movieName = rs2.getString("MOVIENAME");
+                price = rs2.getDouble("PRICE");
+
+                ticket = new Ticket(price, movieName);
+
+            }//end while
+
+
+        }catch (Exception e){
+            processSQLError(e);
+        }//end try-catch
+
+        return ticket;
     }
 
     @Override
