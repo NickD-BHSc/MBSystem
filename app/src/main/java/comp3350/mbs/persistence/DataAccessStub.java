@@ -365,7 +365,20 @@ public class DataAccessStub implements DataAccess{
         return seatList;
     }//end getSeatList
 
-    public String updateSeatList( ViewingTime vt, String s){ return "lolno";}
+    public String updateSeatList( ViewingTime vt, String s){
+        for( int i = 0; i < viewingTimeList.size(); i++ ){
+            ViewingTime v = viewingTimeList.get(i);
+
+            if( v.getTheatreName().equals( vt.getTheatreName()) && v.getMovieName().equals( vt.getMovieName() )
+                && v.getShowDate().equals( vt.getShowDate() ) && v.getShowTime().equals( vt.getShowTime())) {
+
+                v.setSeatString( s );
+                return "Success";
+            }
+        }
+
+        return "Failure";
+    }
 
 
 }//end DataAccessStub
