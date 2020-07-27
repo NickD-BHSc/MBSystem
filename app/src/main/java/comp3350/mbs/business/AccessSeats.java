@@ -18,14 +18,6 @@ public class AccessSeats {
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
 
-    /**
-     * getSeatList -a getter method for the seatList field from the DataAccessStub.
-     * @return it will return a list of seats.
-     */
-    public List<Seat> getSeatList(){
-        return dataAccess.getSeatList();
-    }//end getSeatList
-
 
     /**
      * updateSeatList - a method to update the seatlist's of viewing time objects in the database

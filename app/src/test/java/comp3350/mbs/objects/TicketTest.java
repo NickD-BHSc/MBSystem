@@ -24,7 +24,7 @@ public class TicketTest extends TestCase {
         assertNotNull(ticket);
         assertEquals(0.0, ticket.getPrice());
         assertTrue("0.00".equals(ticket.getPriceAsString()));
-        assertTrue("General Admission".equals(ticket.getType()));
+        assertTrue("General Admission".equals(ticket.getMovieName()));
         assertEquals(10, ticket.getQuantity());
 
         System.out.println("Finished testTicket1");
@@ -41,7 +41,7 @@ public class TicketTest extends TestCase {
         assertNotNull(ticket);
         assertEquals(5.0, ticket.getPrice());
         assertTrue("5.00".equals(ticket.getPriceAsString()));
-        assertTrue("General Admission".equals(ticket.getType()));
+        assertTrue("General Admission".equals(ticket.getMovieName()));
         assertEquals(1, ticket.getQuantity());
 
         System.out.println("Finished testTicket2");

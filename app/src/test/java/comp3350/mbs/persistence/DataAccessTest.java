@@ -10,21 +10,21 @@ import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
+import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessTest extends TestCase {
     private DataAccess dataAccess;
     public DataAccessTest(String arg0){super(arg0);}
 
-    //TODO DataAccessObject doesnt work. Tables are not found for some reason.
     public void setUp(){
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
         // Use the following statements to run with the stub database:
-        //dataAccess = new DataAccessStub();
-        //dataAccess.open("Stub");
+        dataAccess = new DataAccessStub();
+        dataAccess.open("Stub");
         // or switch to the real database:
-         dataAccess = new DataAccessObject(Main.dbName);
-         dataAccess.open(Main.getDBPathName());
+         //dataAccess = new DataAccessObject(Main.dbName);
+         //dataAccess.open(Main.getDBPathName());
         // Note the increase in test execution time.
     }
 
@@ -178,4 +178,38 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished DataAccessTest: testGetMoviesFromTheatre3");
 
     }//end testGetMoviesFromTheatre3
+
+    @Test
+    public void testValidViewingTimeUpdate(){
+        System.out.println("Starting DataAccessTest: testValidViewingTimeUpdate");
+        List<TheatreMovies> theatreMoviesList = dataAccess.getMoviesFromTheatre(new TheatreMovies("Scotiabank Theatre",null));
+
+        ViewingTime vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get(0);
+
+        assertNotNull(vt);
+        assertEquals( vt.getSeatString(), "00000000000000000000000000000000");
+
+        String updateResult = dataAccess.updateSeatList( vt, "11111111111111111111111111111111");
+
+        assertEquals( updateResult, "Success");
+        assertEquals( vt.getSeatString(), "11111111111111111111111111111111");
+
+        System.out.println("Finished DataAccessTest: testValidViewingTimeUpdate");
+
+    }
+
+    @Test
+    public void testInvalidViewingtimeUpdate(){
+        System.out.println("Starting DataAccessTest: testInvalidViewingTimeUpdate");
+
+        //Create a viewing time that is not in the database
+        ViewingTime vt = new ViewingTime( "Xtheatre", "Xmovie", "Right Now", "Today", "1234567890");
+
+        //attempt to update
+        String updateResult = dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
+
+        assertEquals( updateResult, "Failure");
+
+        System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
+    }
 }
