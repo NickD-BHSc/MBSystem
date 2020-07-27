@@ -19,7 +19,7 @@ public class ParcelableTicket extends Ticket implements Parcelable {
 
     protected ParcelableTicket(Parcel in) {
         super.setPrice(in.readDouble());
-        super.setMovieName(in.readString());
+        super.setType(in.readString());
         super.setQuantity(in.readInt());
     }
 
@@ -43,7 +43,7 @@ public class ParcelableTicket extends Ticket implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeDouble(super.getPrice());
-        parcel.writeString(super.getMovieName());
+        parcel.writeString(super.getType());
         parcel.writeInt(super.getQuantity());
     }
 

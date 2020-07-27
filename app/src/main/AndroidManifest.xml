@@ -31,6 +31,9 @@
         <activity
             android:name=".presentation.MovieInfoActivity"
             android:label="@string/title_activity_movie_info" />
+        <activity
+            android:name=".presentation.TicketStubActivity"
+            android:label="Movie Ticket" />
 
 
     </application>

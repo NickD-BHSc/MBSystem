@@ -16,8 +16,8 @@ public class Services {
     public static DataAccess createDataAccess(String dbName){
 
         if(dataAccessService == null){
-            //dataAccessService = new DataAccessStub(dbName);//stub database
-            dataAccessService = new DataAccessObject(dbName); //Actual database
+            dataAccessService = new DataAccessStub(dbName);//stub database
+            //dataAccessService = new DataAccessObject(dbName); //Actual database
             dataAccessService.open(Main.getDBPathName());
         }//end if
 

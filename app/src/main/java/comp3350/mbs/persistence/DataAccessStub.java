@@ -1,15 +1,17 @@
 package comp3350.mbs.persistence;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
+import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
-import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.presentation.ParcelableTheatre;
 
 public class DataAccessStub implements DataAccess{
 
@@ -332,11 +334,11 @@ public class DataAccessStub implements DataAccess{
      * getTicket -a getter method for a ticket from the list.
      * @return it will return the ticket.
      */
-    public Ticket getTicket(String movieName){
+    public Ticket getTicket(String ticketType){
         Ticket ticket = null;
         for(int i = 0; i <ticketList.size(); i++){
 
-            if(ticketList.get(i).getMovieName().equals(movieName)){
+            if(ticketList.get(i).getType().equals(ticketType)){
                 ticket = ticketList.get(i);
             }//end if
 
@@ -363,7 +365,20 @@ public class DataAccessStub implements DataAccess{
         return seatList;
     }//end getSeatList
 
-    public String updateSeatList( ViewingTime vt, String s){ return "lolno";}
+    public String updateSeatList( ViewingTime vt, String s){
+        for( int i = 0; i < viewingTimeList.size(); i++ ){
+            ViewingTime v = viewingTimeList.get(i);
+
+            if( v.getTheatreName().equals( vt.getTheatreName()) && v.getMovieName().equals( vt.getMovieName() )
+                && v.getShowDate().equals( vt.getShowDate() ) && v.getShowTime().equals( vt.getShowTime())) {
+
+                v.setSeatString( s );
+                return "Success";
+            }
+        }
+
+        return "Failure";
+    }
 
 
 }//end DataAccessStub
