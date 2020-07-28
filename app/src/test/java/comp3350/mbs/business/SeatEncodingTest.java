@@ -66,58 +66,20 @@ public class SeatEncodingTest extends TestCase {
     public void testCommonDecode(){
         System.out.println("Starting SeatEncodingTest:  testCommonDecode");
 
-        Seat testSeat;//for testList
-        Seat seat;//for seatList
-
         se = new SeatEncoding();
         seatString = "1010";
+
         seatList = se.decodeSeatList( seatString );
 
-        List<Seat> testList = new ArrayList<>();
+        List<Seat> testList = new ArrayList<Seat>();
         testList.add( new Seat( 0, true, R.drawable.seat_taken));
         testList.add( new Seat( 1, false, R.drawable.seat));
         testList.add( new Seat( 2, true, R.drawable.seat_taken));
         testList.add( new Seat( 3, false, R.drawable.seat));
 
-        assertEquals(4,testList.size());
-        assertEquals(4,seatList.size());
-
-        //seat #0
-        testSeat = testList.get(0);
-        seat = seatList.get(0);
-
-        assertTrue(testSeat.equals(seat));
-        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
-        assertEquals(testSeat.isBooked(),seat.isBooked());
-        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
-
-        //seat #1
-        testSeat = testList.get(1);
-        seat = seatList.get(1);
-
-        assertTrue(testSeat.equals(seat));
-        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
-        assertEquals(testSeat.isBooked(),seat.isBooked());
-        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
-
-        //seat #2
-        testSeat = testList.get(2);
-        seat = seatList.get(2);
-
-        assertTrue(testSeat.equals(seat));
-        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
-        assertEquals(testSeat.isBooked(),seat.isBooked());
-        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
-
-
-        //seat #3
-        testSeat = testList.get(3);
-        seat = seatList.get(3);
-
-        assertTrue(testSeat.equals(seat));
-        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
-        assertEquals(testSeat.isBooked(),seat.isBooked());
-        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
+        for( int i = 0; i < 4; i++){
+            assertTrue( testList.get(i).equals( seatList.get(i)));
+        }
 
 
         System.out.println("Finsihed SeatEncodingTest:  testCommonDecode\n");
@@ -132,7 +94,6 @@ public class SeatEncodingTest extends TestCase {
         seatList = new ArrayList<>();
         bookedSeats = new ArrayList<>();
 
-        //TODO remove the for loop
         for( int i = 0; i < 5; i++){
             Seat s = new Seat( i, false, R.drawable.seat);
             seatList.add( s );
@@ -198,7 +159,6 @@ public class SeatEncodingTest extends TestCase {
 
         List<Seat> testList = new ArrayList<>();
 
-        //TODO remove the for loops
         for( int i = 0; i < seatString.length(); i++){
             testList.add( new Seat( i, true, R.drawable.seat_taken));
         }
