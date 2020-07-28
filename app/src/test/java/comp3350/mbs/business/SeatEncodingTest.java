@@ -12,73 +12,127 @@ import comp3350.mbs.R;
 
 public class SeatEncodingTest extends TestCase {
 
-
+    private SeatEncoding se;
+    private List<Seat> seatList;
+    private List<Seat> bookedSeats;
+    private String seatString;
 
     public SeatEncodingTest(String arg0){ super( arg0 );}
 
-    SeatEncoding se;
-    List<Seat> seatList;
-    List<Seat> bookedSeats;
-    String seatString;
+
+    public void setUp(){
+        se = null;
+        seatList = null;
+        bookedSeats = null;
+        seatString = "";
+    }//end setUp
+
 
     @Test
     public void testEmptyList(){
-        System.out.println("Staring SeatEncodingTest: Empty List");
+        System.out.println("Staring SeatEncodingTest:  testEmptyList");
         se = new SeatEncoding();
-        seatList = new ArrayList<Seat>();
-        bookedSeats = new ArrayList<Seat>();
+        seatList = new ArrayList<>();
+        bookedSeats = new ArrayList<>();
 
         seatString = se.encodeSeatList(seatList, bookedSeats );
 
         assertTrue( seatString.equals( "" ) );
+        assertEquals("",seatString);
 
-        System.out.println("Finished SeatEncodingTest: Empty List\n");
-    }
+        System.out.println("Finished SeatEncodingTest:  testEmptyList\n");
+    }//end testEmptyList
+
 
     @Test
     public void testEmptyString(){
-        System.out.println("Starting SeatEncodingTest: Empty String");
+        System.out.println("Starting SeatEncodingTest: testEmptyString");
         se = new SeatEncoding();
         seatString = "";
 
         seatList = se.decodeSeatList( seatString );
 
-        List<Seat> testList = new ArrayList<Seat>();
+        List<Seat> testList = new ArrayList<>();
 
         assertTrue( testList.equals( seatList ) );
+        assertEquals(testList,seatList);
 
-        System.out.println("Finished SeatEncodingTest: EmptyString\n");
+        System.out.println("Finished SeatEncodingTest: testEmptyString\n");
 
-    }
+    }//end testEmptyString
+
 
     @Test
     public void testCommonDecode(){
-        System.out.println("Starting SeatEncodingTest: Common Decode");
+        System.out.println("Starting SeatEncodingTest:  testCommonDecode");
+
+        Seat testSeat;//for testList
+        Seat seat;//for seatList
+
         se = new SeatEncoding();
         seatString = "1010";
-
         seatList = se.decodeSeatList( seatString );
 
-        List<Seat> testList = new ArrayList<Seat>();
+        List<Seat> testList = new ArrayList<>();
         testList.add( new Seat( 0, true, R.drawable.seat_taken));
         testList.add( new Seat( 1, false, R.drawable.seat));
         testList.add( new Seat( 2, true, R.drawable.seat_taken));
         testList.add( new Seat( 3, false, R.drawable.seat));
 
-        for( int i = 0; i < 4; i++){
-            assertTrue( testList.get(i).equals( seatList.get(i)));
-        }
+        assertEquals(4,testList.size());
+        assertEquals(4,seatList.size());
 
-        System.out.println("Finsihed SeatEncodingTest: Common Decode\n");
-    }
+        //seat #0
+        testSeat = testList.get(0);
+        seat = seatList.get(0);
+
+        assertTrue(testSeat.equals(seat));
+        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
+        assertEquals(testSeat.isBooked(),seat.isBooked());
+        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
+
+        //seat #1
+        testSeat = testList.get(1);
+        seat = seatList.get(1);
+
+        assertTrue(testSeat.equals(seat));
+        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
+        assertEquals(testSeat.isBooked(),seat.isBooked());
+        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
+
+        //seat #2
+        testSeat = testList.get(2);
+        seat = seatList.get(2);
+
+        assertTrue(testSeat.equals(seat));
+        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
+        assertEquals(testSeat.isBooked(),seat.isBooked());
+        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
+
+
+        //seat #3
+        testSeat = testList.get(3);
+        seat = seatList.get(3);
+
+        assertTrue(testSeat.equals(seat));
+        assertEquals(testSeat.getSeatNumber(),seat.getSeatNumber());
+        assertEquals(testSeat.isBooked(),seat.isBooked());
+        assertEquals(testSeat.getSeatImage(),seat.getSeatImage());
+
+
+        System.out.println("Finsihed SeatEncodingTest:  testCommonDecode\n");
+    }//end testCommonDecode
+
 
     @Test
     public void testCommonEncode(){
-        System.out.println( "Starting SeatEncodingTest: Common Encode");
+        System.out.println( "Starting SeatEncodingTest:  testCommonEncode");
         se = new SeatEncoding();
 
-        seatList = new ArrayList<Seat>();
-        bookedSeats = new ArrayList<Seat>();
+        seatList = new ArrayList<>();
+        bookedSeats = new ArrayList<>();
+
+        //TODO remove the for loop
         for( int i = 0; i < 5; i++){
             Seat s = new Seat( i, false, R.drawable.seat);
             seatList.add( s );
@@ -94,30 +148,31 @@ public class SeatEncodingTest extends TestCase {
 
         assertEquals( seatString, testString);
 
-        System.out.println( "Finished SeatEncodingTest: Common Encode\n");
+        System.out.println( "Finished SeatEncodingTest:  testCommonEncode\n");
 
-    }
+    }//end testCommonEncode
+
 
     @Test
     public void testNullString(){
-        System.out.println( "Starting SeatEncodingTest: Null String");
+        System.out.println( "Starting SeatEncodingTest: testNullString");
         se = new SeatEncoding();
         seatString = null;
 
         seatList = se.decodeSeatList( seatString );
 
-        List<Seat> testList = new ArrayList<Seat>();
+        List<Seat> testList = new ArrayList<>();
 
         assertEquals( seatList, testList);
 
-        System.out.println( "Finished SeatEncodingTest: Null String\n");
+        System.out.println( "Finished SeatEncodingTest: testNullString\n");
 
+    }//end testNullString
 
-    }
 
     @Test
     public void testNullLists(){
-        System.out.println( "Starting SeatEncodingTest: Null Lists");
+        System.out.println( "Starting SeatEncodingTest: testNullLists");
         se = new SeatEncoding();
 
         seatList = null;
@@ -127,21 +182,23 @@ public class SeatEncodingTest extends TestCase {
         String testString = "";
 
         assertEquals(seatString, testString);
-        System.out.println( "Finished SeatEncodingTest: Null Lists\n");
+        System.out.println( "Finished SeatEncodingTest: testNullLists\n");
 
-    }
+    }//end testNullLists
+
 
     @Test
     public void testRandomString(){
-        System.out.println( "Starting SeatEncodingTest: Random String");
+        System.out.println( "Starting SeatEncodingTest: testRandomString");
         se = new SeatEncoding();
 
         seatString = "asdfjkl;";
 
         seatList = se.decodeSeatList( seatString );
 
-        List<Seat> testList = new ArrayList<Seat>();
+        List<Seat> testList = new ArrayList<>();
 
+        //TODO remove the for loops
         for( int i = 0; i < seatString.length(); i++){
             testList.add( new Seat( i, true, R.drawable.seat_taken));
         }
@@ -150,16 +207,17 @@ public class SeatEncodingTest extends TestCase {
             assertTrue( testList.get(j).isBooked() == seatList.get(j).isBooked() );
         }
 
-        System.out.println( "Finished SeatEncodingTest: Random String\n");
-    }
+        System.out.println( "Finished SeatEncodingTest: testRandomString\n");
+    }//end testRandomString
+
 
     @Test
     public void testNullSeats(){
-        System.out.println( "Starting SeatEncodingTest: Null Seats");
+        System.out.println( "Starting SeatEncodingTest: testNullSeats");
         se = new SeatEncoding();
 
-        seatList = new ArrayList<Seat>();
-        bookedSeats = new ArrayList<Seat>();
+        seatList = new ArrayList<>();
+        bookedSeats = new ArrayList<>();
         for( int i = 0; i < 5; i++ ){
             seatList.add( null );
             bookedSeats.add( null );
@@ -171,6 +229,7 @@ public class SeatEncodingTest extends TestCase {
 
         assertEquals( seatString, testString );
 
-        System.out.println( "Finished SeatEncodingTest: Null Seats\n");
-    }
-}
+        System.out.println( "Finished SeatEncodingTest: testNullSeats\n");
+    }//testNullSeats
+
+}//end SeatEncodingTest
