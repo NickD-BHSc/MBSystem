@@ -8,7 +8,7 @@ import comp3350.mbs.objects.Seat;
 public class ParcelableSeat extends Seat implements Parcelable {
 
     /**
-     * Constructor of ParcelableSeat class.
+     * ParcelableSeat Constructor
      * @param seatNumber is the number of the seat.
      * @param isBooked determines if the Seat (ParcelableSeat) object is booked or not.
      * @param seatImage is the image of the seat.
@@ -17,11 +17,13 @@ public class ParcelableSeat extends Seat implements Parcelable {
         super(seatNumber, isBooked, seatImage);
     }//end constructor
 
+
     protected ParcelableSeat(Parcel in) {
         super.setSeatNumber(in.readInt());
         super.setBooked(in.readByte() != 0);
         super.setSeatImage(in.readInt());
     }
+
 
     public static final Creator<ParcelableSeat> CREATOR = new Creator<ParcelableSeat>() {
         @Override
@@ -35,10 +37,12 @@ public class ParcelableSeat extends Seat implements Parcelable {
         }
     };
 
+
     @Override
     public int describeContents() {
         return 0;
     }
+
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
@@ -46,4 +50,5 @@ public class ParcelableSeat extends Seat implements Parcelable {
         parcel.writeByte((byte) (super.isBooked() ? 1 : 0));
         parcel.writeInt(super.getSeatImage());
     }
-}
+
+}//end ParcelableSeat class

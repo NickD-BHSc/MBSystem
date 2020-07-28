@@ -1,7 +1,6 @@
 package comp3350.mbs.presentation;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import comp3350.mbs.R;

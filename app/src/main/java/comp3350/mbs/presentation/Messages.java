@@ -3,7 +3,7 @@ package comp3350.mbs.presentation;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-//import comp3350.srsys.R;
+
 
 public class Messages {
     public static void fatalError(final Activity owner, String message) {
