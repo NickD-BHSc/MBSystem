@@ -99,6 +99,7 @@ public class TicketActivity extends AppCompatActivity {
             ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
             ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
 
+            //Displays the chosen seats (not in sorted order)
             String seatNumbers = "";
             for(int i = 0; i < bookedSeats.size(); i++){
                 if(bookedSeats.get(i) instanceof ParcelableSeat){
@@ -106,7 +107,7 @@ public class TicketActivity extends AppCompatActivity {
                     seatNumbers += seat.getSeatNumber() + ", ";
                 }
             }
-            //TODO display seat numbers in sorted order?
+
             movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName() +"\nSeats: " + seatNumbers);
         }
 
