@@ -18,10 +18,10 @@ import comp3350.mbs.presentation.ParcelableTheatreMovies;
 import comp3350.mbs.presentation.ParcelableTicket;
 import comp3350.mbs.presentation.ParcelableViewingTime;
 
-public class TestParcelableFactory extends TestCase {
+public class ParcelableFactoryTest extends TestCase {
     private Parcelable parcelableObject;
 
-    public TestParcelableFactory(String arg0){
+    public ParcelableFactoryTest(String arg0){
         super(arg0);
     }
 
@@ -313,5 +313,5 @@ public class TestParcelableFactory extends TestCase {
         System.out.println("Finished TestParcelableFactory: testInvalidParcelable\n");
     }//end testInvalidParcelable
 
-    
+
 }//end TestParcelableFactory

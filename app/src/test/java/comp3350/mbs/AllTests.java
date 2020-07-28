@@ -5,7 +5,7 @@ import junit.framework.TestSuite;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.AccessTheatresTest;
 import comp3350.mbs.business.CalculateTest;
-import comp3350.mbs.business.TestParcelableFactory;
+import comp3350.mbs.business.ParcelableFactoryTest;
 import comp3350.mbs.business.TrailerTest;
 import comp3350.mbs.business.SeatEncodingTest;
 import comp3350.mbs.objects.SeatingTest;
@@ -46,7 +46,7 @@ public class AllTests {
         suite.addTestSuite(AccessTheatresTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(SeatEncodingTest.class);
-        suite.addTestSuite(TestParcelableFactory.class);
+        suite.addTestSuite(ParcelableFactoryTest.class);
     }
 
     private static void testPersistence(){
