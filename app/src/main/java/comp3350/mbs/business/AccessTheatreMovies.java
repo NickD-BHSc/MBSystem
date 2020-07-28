@@ -10,7 +10,9 @@ import comp3350.mbs.persistence.DataAccess;
 public class AccessTheatreMovies {
     private DataAccess dataAccess;
 
-
+    /**
+     * AccessTheatreMovies Constructor - gets the data/service stored in the database Main.dbName.
+     */
     public AccessTheatreMovies() {
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
@@ -25,4 +27,4 @@ public class AccessTheatreMovies {
     }//end getMoviesFromTheatre
     
 
-}//end AccessTheatreMovies
+}//end AccessTheatreMovies class

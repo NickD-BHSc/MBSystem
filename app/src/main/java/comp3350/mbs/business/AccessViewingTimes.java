@@ -11,13 +11,15 @@ import comp3350.mbs.persistence.DataAccess;
 public class AccessViewingTimes {
     private DataAccess dataAccess;
 
-    //Constructor
+    /**
+     * AccessViewingTimes Constructor - gets the data/service stored in the database Main.dbName.
+     */
     public AccessViewingTimes(){
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
 
     /**
-     * getViewingTimeList - a getter method for the viewingTimeList for the given movie
+     * getViewingTimeList - a getter method that returns a list of viewing time for the given movie
      *          assuming that the user has chosen the theatre already.
      * @param whichTheatre is thea theatre that the user has chosen.
      * @param whichMovie is the movie that contains the list of viewing time.

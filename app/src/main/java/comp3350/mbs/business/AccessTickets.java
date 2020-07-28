@@ -11,15 +11,28 @@ public class AccessTickets {
 
     private DataAccess dataAccess;
 
-    public AccessTickets()
-    {
+    /**
+     * AccessTickets Constructor - gets the data/service stored in the database Main.dbName.
+     */
+    public AccessTickets(){
         dataAccess =  Services.getDataAccessService(Main.dbName);
-    }
+    }//end constructor
 
-    public Ticket getTicket(String movieName)
-    {
+    /**
+     * getTicket - a getter method for the ticket when given a movie name.
+     * @param movieName is the name of the movie associated with the ticket.
+     * @return it will return a Ticket object that has the given movie.
+     */
+    public Ticket getTicket(String movieName) {
         return dataAccess.getTicket(movieName);
-    }
+    }//end getTicket
 
-    public List<Ticket> getAllTickets(){return dataAccess.getTicketList();}
-}
+    /**
+     * getAllTickets - a getter method that returns a list of tickets.
+     * @return it will return a list of tickets from DataAccess.
+     */
+    public List<Ticket> getAllTickets(){
+        return dataAccess.getTicketList();
+    }//end getAllTickets
+
+}//end AccessTickets
