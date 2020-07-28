@@ -8,6 +8,7 @@ public class Services {
 
     private static DataAccess dataAccessService = null;
 
+
     /**
      * createDataAccess - a static method that creates a database with the specified name.
      * @param dbName is the name of the database.
@@ -19,7 +20,6 @@ public class Services {
             dataAccessService = new DataAccessStub(dbName);//stub database
             //dataAccessService = new DataAccessObject(dbName); //Actual database
             dataAccessService.open(Main.getDBPathName());
-
         }
 
         return dataAccessService;
@@ -57,7 +57,7 @@ public class Services {
 
     }//end DataAccessStub
 
-    
+
     /**
      * closeDataAccess - a static method that closes the dataAccessService.
      */

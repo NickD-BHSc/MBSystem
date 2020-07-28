@@ -7,8 +7,9 @@ public class Theatre{
 
     //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatre class.
     public Theatre(){}
+
     /**
-     * Constructor of Theatre class.
+     * Theatre Constructor
      *
      * @param name is the name of the theatre.
      * @param address is the address of the theatre.
@@ -67,12 +68,12 @@ public class Theatre{
             if (((theatreItem.getName() == null) && (name == null)) ||
                     (theatreItem.getName().equals(name))) {
                 result = true;
-            }//end nested if
+            }
 
-        }//end if
+        }
 
         return result;
 
     }//end equals
 
-}//end Theatre
+}//end Theatre class

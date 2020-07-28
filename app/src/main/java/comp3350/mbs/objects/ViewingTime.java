@@ -11,7 +11,8 @@ public class ViewingTime{
     public ViewingTime(){}
 
     /**
-     * Constructor
+     * ViewingTime Constructor
+     *
      * @param theatreName is the name of the theatre.
      * @param movieName is the movie name.
      * @param showTime is the show time of the movie.
@@ -87,13 +88,13 @@ public class ViewingTime{
                 && ((vt.showDate == null) || (vt.showDate.equals(showDate)))
                 && ((vt.seatString == null ) || (vt.seatString.equals( seatString)))){
                 result =true;
-            }//end nested if
+            }
 
 
-        }//end if
+        }
 
         return result;
 
     }//end equals
 
-}//end ViewingTime
+}//end ViewingTime class
