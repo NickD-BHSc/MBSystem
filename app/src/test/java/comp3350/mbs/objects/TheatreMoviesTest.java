@@ -10,6 +10,7 @@ import comp3350.mbs.R;
 public class TheatreMoviesTest extends TestCase {
     public TheatreMoviesTest(String arg0){super(arg0);}
 
+
     @Test
     public void testOneTheatreMovie(){
         System.out.println("Starting TheatreMoviesTest: testOneTheatreMovie");
@@ -34,6 +35,7 @@ public class TheatreMoviesTest extends TestCase {
         System.out.println("Finished TheatreMoviesTest: testOneTheatreMovie\n");
 
     }//end testOneTheatreMovie
+
 
     @Test
     public void testDistinctTheatreMovies(){
@@ -95,6 +97,7 @@ public class TheatreMoviesTest extends TestCase {
 
     }//end testDistinctTheatreMovies
 
+
     @Test
     public void testSameTheatreMovies(){
         System.out.println("Starting TheatreMoviesTest: testSameTheatreMovies");
@@ -152,5 +155,47 @@ public class TheatreMoviesTest extends TestCase {
         System.out.println("Finished TheatreMoviesTest: testSameTheatreMovies\n");
 
     }//end testSameTheatreMovies
+
+
+    @Test
+    public void testNullTheatreMovie(){
+        System.out.println("Starting TheatreMoviesTest: testNullTheatreMovie");
+
+        TheatreMovies theatreMovies1 = new TheatreMovies(null,null);
+        assertNotNull(theatreMovies1);
+
+        //theatreMovies1 fields
+        assertNull(theatreMovies1.getTheatreName());
+        assertEquals(null,theatreMovies1.getTheatreName());
+
+        assertNull(theatreMovies1.getMovieName());
+        assertEquals(null,theatreMovies1.getMovieName());
+
+        /** TODO change movie description field to null when giving theatre and movie name.
+        assertNull(theatreMovies1.getMovieDescription());
+        assertEquals(null,theatreMovies1.getMovieDescription());
+         */
+        assertTrue(-1 == theatreMovies1.getMoviePoster());
+        assertEquals(-1,theatreMovies1.getMoviePoster());
+
+        TheatreMovies theatreMovies2 = new TheatreMovies(null,null, -1,null);
+        assertNotNull(theatreMovies2);
+
+        //theatreMovie2 fields
+        assertNull(theatreMovies2.getTheatreName());
+        assertEquals(null,theatreMovies2.getTheatreName());
+
+        assertNull(theatreMovies2.getMovieName());
+        assertEquals(null,theatreMovies2.getMovieName());
+
+        assertNull(theatreMovies2.getMovieDescription());
+        assertEquals(null,theatreMovies2.getMovieDescription());
+
+        assertTrue(-1 == theatreMovies2.getMoviePoster());
+        assertEquals(-1,theatreMovies2.getMoviePoster());
+
+        System.out.println("Finished TheatreMoviesTest: testNullTheatreMovie\n");
+
+    }//end testNullTheatreMovie
 
 }//end TheatreMoviesTest

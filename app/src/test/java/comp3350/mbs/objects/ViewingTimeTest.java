@@ -6,7 +6,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 public class ViewingTimeTest extends TestCase {
 
-    public ViewingTimeTest(String arg0){super(arg0);}
+    public ViewingTimeTest(String arg0){
+        super(arg0);
+    }
+
 
     @Test
     public void testOneViewingTime(){
@@ -49,6 +52,7 @@ public class ViewingTimeTest extends TestCase {
         System.out.println("Finished ViewingTimeTest: testOneViewingTime\n");
 
     }//end testOneViewingTime
+
 
     @Test
     public void testDistinctViewingTime(){
@@ -120,6 +124,7 @@ public class ViewingTimeTest extends TestCase {
 
     }//end testDistinctViewingTime
 
+
     @Test
     public void testSameViewingTimes(){
         System.out.println("Starting ViewingTimeTest: testSameViewingTimes");
@@ -190,7 +195,28 @@ public class ViewingTimeTest extends TestCase {
     }//end testSameViewingTimes
 
 
+    @Test
+    public void testNullViewingTime(){
+        System.out.println("Starting ViewingTimeTest: testNullViewingTime");
 
+        ViewingTime viewingTime = new ViewingTime(null,null,null, null,null);
+        assertNotNull(viewingTime);
+
+        assertNull(viewingTime.getTheatreName());
+        assertEquals(null,viewingTime.getTheatreName());
+
+        assertNull(viewingTime.getMovieName());
+        assertEquals(null,viewingTime.getMovieName());
+
+        assertNull(viewingTime.getShowTime());
+        assertEquals(null,viewingTime.getShowTime());
+
+        assertNull(viewingTime.getSeatString());
+        assertEquals(null,viewingTime.getSeatString());
+
+        System.out.println("Finished ViewingTimeTest: testNullViewingTime\n");
+
+    }//end testNullViewingTime
 
 
 }//end ViewingTimeTest
