@@ -57,7 +57,6 @@ public class SeatingActivity extends AppCompatActivity {
                     Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-                    //TODO pass the list of chosen seats to TicketActivity instead of the size.
                     addParcBookedSeats();
                     intent.putParcelableArrayListExtra("Booked_Seats", (ArrayList<? extends Parcelable>) parcBookedSeats);
                     Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
