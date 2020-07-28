@@ -20,7 +20,7 @@ public class TheatreMovies {
         this.theatreName = theatreName;
         this.movieName = movieName;
         this.moviePoster = -1; //represents null or no poster.
-        this.movieDescription = "";//no movie description.
+        this.movieDescription = null;//no movie description.
     }//end TheatreMovies constructor
 
     /**

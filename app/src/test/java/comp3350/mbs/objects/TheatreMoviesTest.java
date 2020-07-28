@@ -171,10 +171,9 @@ public class TheatreMoviesTest extends TestCase {
         assertNull(theatreMovies1.getMovieName());
         assertEquals(null,theatreMovies1.getMovieName());
 
-        /** TODO change movie description field to null when giving theatre and movie name.
         assertNull(theatreMovies1.getMovieDescription());
         assertEquals(null,theatreMovies1.getMovieDescription());
-         */
+
         assertTrue(-1 == theatreMovies1.getMoviePoster());
         assertEquals(-1,theatreMovies1.getMoviePoster());
 
