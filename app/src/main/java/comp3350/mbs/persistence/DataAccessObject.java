@@ -151,7 +151,6 @@ public class DataAccessObject implements DataAccess {
                 moviePoster = rs2.getInt("POSTER");
                 movieDescription = rs2.getString("DESCRIPTION");
 
-                //TODO access the actual image of the movie instead of the numbers.
                 if(moviePoster == 0){
                     moviePoster = R.drawable.avengers_endgame;
 
