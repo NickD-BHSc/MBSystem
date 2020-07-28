@@ -10,16 +10,16 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.objects.ViewingTime;
-import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 
 public class DataAccessObject implements DataAccess {
 
+    //for database
     private Statement st1, st2, st3;
     private Connection c1;
-    private ResultSet rs2, rs3, rs4, rs5;
+    private ResultSet rs2;
 
     private String dbName;
     private String dbType;
@@ -29,16 +29,21 @@ public class DataAccessObject implements DataAccess {
     private String result;
     private static String EOF = "  ";
 
+    //for objects
     private List<Theatre> theatreList;
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
     private List<Ticket> ticketList;
 
-
+    /**
+     * DatAccessObject Constructor - assign its field dbName to the given dbName.
+     * @param dbName is the given database name.
+     */
     public DataAccessObject(String dbName)
     {
         this.dbName = dbName;
     }
+
 
     /**
      * open - a method that opens the data from the database.
@@ -60,7 +65,8 @@ public class DataAccessObject implements DataAccess {
 
         } catch (Exception e) {
             processSQLError(e);
-        }//end try-catch
+
+        }
 
         System.out.println("Opened " +dbType +" database " +dbPath);
 
@@ -73,13 +79,15 @@ public class DataAccessObject implements DataAccess {
     @Override
     public void close() {
         try {
+
             // commit all changes to the database
             cmdString = "shutdown compact";
             rs2 = st1.executeQuery(cmdString);
             c1.close();
         } catch (Exception e) {
             processSQLError(e);
-        }//end try-catch
+
+        }
 
         System.out.println("Closed " +dbType +" database " +dbName);
 
@@ -107,14 +115,15 @@ public class DataAccessObject implements DataAccess {
                 distance = rs2.getString("DISTANCE");
                 Theatre theatre = new Theatre(name,address,distance);
                 theatreList.add(theatre);
-            }//end while
+            }
+
         }catch(Exception e){
             processSQLError(e);
-        }//end try-catch
 
+        }
 
         return theatreList;
-    }
+    }//end getTheatreList
 
 
     /**
@@ -145,26 +154,33 @@ public class DataAccessObject implements DataAccess {
                 //TODO access the actual image of the movie instead of the numbers.
                 if(moviePoster == 0){
                     moviePoster = R.drawable.avengers_endgame;
+
                 }else if(moviePoster == 1){
                     moviePoster = R.drawable.incredibles;
+
                 }else if(moviePoster == 2){
                     moviePoster = R.drawable.lion_king;
+
                 }else if(moviePoster == 3){
                     moviePoster = R.drawable.starwars;
+
                 }else if(moviePoster == 4){
                     moviePoster = R.drawable.superman;
+
                 }else{
                     moviePoster = R.drawable.ic_launcher_foreground;//show this to represent that the movie has no specific image.
-                }//end if-elses
+
+                }
 
                 tm = new TheatreMovies(theatreName,movieName,moviePoster,movieDescription);
                 theatreMoviesList.add(tm);
 
-            }//end while
+            }
 
         }catch(Exception e){
             processSQLError(e);
-        }//end try-catch
+
+        }
 
 
         return theatreMoviesList;
@@ -203,24 +219,22 @@ public class DataAccessObject implements DataAccess {
                 vt = new ViewingTime(theatreName,movieName,showTime,showDate,seatString);
                 viewingTimeList.add(vt);
 
-            }//end while
+            }
 
 
         }catch (Exception e){
             processSQLError(e);
-        }//end try-catch
+
+        }
 
         return viewingTimeList;
     }//end getViewingTimeList
 
 
-
-
-    @Override
-    public List<Seat> getSeatList() {
-        return null;
-    }
-
+    /**
+     * getTicketList - a getter method for the complete list of tickets.
+     * @return it will return the ticketList.
+     */
     @Override
     public List<Ticket> getTicketList() {
         ticketList = new ArrayList<>();
@@ -241,16 +255,23 @@ public class DataAccessObject implements DataAccess {
                 ticket = new Ticket(price, movieName);
                 ticketList.add(ticket);
 
-            }//end while
+            }
 
 
         }catch (Exception e){
             processSQLError(e);
-        }//end try-catch
+
+        }
 
         return ticketList;
-    }
+    }//end getTicketList
 
+
+    /**
+     * getTicket -a getter method for a ticket with the movie provided from the list.
+     * @param movie is the movie associated with the ticket.
+     * @return it will return the ticket.
+     */
     @Override
     public Ticket getTicket(String movie) {
 
@@ -269,16 +290,24 @@ public class DataAccessObject implements DataAccess {
 
                 ticket = new Ticket(price, movieName);
 
-            }//end while
-
+            }
 
         }catch (Exception e){
             processSQLError(e);
-        }//end try-catch
+
+        }
 
         return ticket;
-    }
+    }//end getTicket
 
+
+    /**
+     * updateSeatList - a method that updates the seat string of the given viewing time object.
+     * @param vt is the viewing time object that needs to be updated.
+     * @param s - Seat string to change for the viewing time object's seat.
+     * @return it will return "Success" if the seat in the ViewingTime got updated.
+     *          Otherwise, it will return Failure.
+     */
     @Override
     public String updateSeatList( ViewingTime vt, String s){
         String values;
@@ -306,11 +335,15 @@ public class DataAccessObject implements DataAccess {
 
         return result;
 
-    }
+    }//end updateSeatList
 
 
-
-    public String processSQLError(Exception e) {
+    /**
+     * processSQError - a method that processes the error when dealing with the database SQL.
+     * @param e is the given exception.
+     * @return it will return an SQL error from the exception in string.
+     */
+    private String processSQLError(Exception e) {
         String result = "*** SQL Error: " + e.getMessage();
 
         // Remember, this will NOT be seen by the user!
@@ -319,28 +352,31 @@ public class DataAccessObject implements DataAccess {
         return result;
     }//end processSqError
 
-    public String checkWarning(Statement st, int updateCount)
-    {
+
+    /**
+     * checkWarning - a method that checks the warning when dealing with the database SQL.
+     * @param st is the given statement.
+     * @param updateCount is the given count.
+     * @return it will return a warning error.
+     */
+    private String checkWarning(Statement st, int updateCount) {
         String result;
 
         result = null;
-        try
-        {
+        try {
             SQLWarning warning = st.getWarnings();
-            if (warning != null)
-            {
+            if (warning != null) {
                 result = warning.getMessage();
             }
-        }
-        catch (Exception e)
-        {
+
+        } catch (Exception e) {
             result = processSQLError(e);
         }
-        if (updateCount != 1)
-        {
+
+        if (updateCount != 1) {
             result = "Tuple not inserted correctly.";
         }
         return result;
-    }
+    }//end checkWarning
 
 }//end DataAccessObject class
