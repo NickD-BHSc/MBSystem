@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import static comp3350.mbs.business.AccessTrailer.cleanString;
 
-public class TrailerTest extends TestCase {
+public class AccessTrailerTest extends TestCase {
     private String movieTitle;
 
-    public TrailerTest(String arg0){super(arg0);}
+    public AccessTrailerTest(String arg0){super(arg0);}
 
 
     public void setUp(){
