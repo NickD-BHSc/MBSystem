@@ -26,12 +26,14 @@ public class DataAccessTest extends TestCase {
          dataAccess = new DataAccessObject(Main.dbName);
          dataAccess.open(Main.getDBPathName());
         // Note the increase in test execution time.
-    }
+        
+    }//end setUp
 
     public void tearDown() {
         dataAccess.close();
         System.out.println("Finished Persistence test DataAccess (using stub)");
-    }
+    }//end tearDown
+
 
     @Test
     public void testGetTheatreList(){
@@ -64,6 +66,7 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished DataAccessTest: testGetTheatreList");
 
     }//end testGetTheatreList
+
 
     @Test
     public void testGetMoviesFromTheatre1(){
@@ -114,6 +117,7 @@ public class DataAccessTest extends TestCase {
 
     }//end testGetMoviesFromTheatre1
 
+
     @Test
     public void testGetMoviesFromTheatre2(){
 
@@ -142,6 +146,7 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished DataAccessTest: testGetMoviesFromTheatre2");
 
     }//end testGetMoviesFromTheatre2
+
 
     @Test
     public void testGetMoviesFromTheatre3(){
@@ -179,7 +184,7 @@ public class DataAccessTest extends TestCase {
 
     }//end testGetMoviesFromTheatre3
 
-    /*
+
     @Test
     public void testValidViewingTimeUpdate(){
         System.out.println("Starting DataAccessTest: testValidViewingTimeUpdate");
@@ -197,7 +202,8 @@ public class DataAccessTest extends TestCase {
 
         System.out.println("Finished DataAccessTest: testValidViewingTimeUpdate");
 
-    }
+    }//end testValidViewingTimeUpdate
+
 
     @Test
     public void testInvalidViewingtimeUpdate(){
@@ -212,7 +218,7 @@ public class DataAccessTest extends TestCase {
         assertEquals( updateResult, "Failure");
 
         System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
-    }
+    }//end testInvalidViewingTimeUpdate
 
-     */
-}
+
+}//end DataAccessTest
