@@ -2,7 +2,6 @@ package comp3350.mbs.application;
 
 import comp3350.mbs.persistence.DataAccess;
 import comp3350.mbs.persistence.DataAccessObject;
-import comp3350.mbs.persistence.DataAccessStub;
 
 public class Services {
 
@@ -17,7 +16,6 @@ public class Services {
     public static DataAccess createDataAccess(String dbName){
 
         if(dataAccessService == null){
-            //dataAccessService = new DataAccessStub(dbName);//stub database
             dataAccessService = new DataAccessObject(dbName); //Actual database
             dataAccessService.open(Main.getDBPathName());
         }
