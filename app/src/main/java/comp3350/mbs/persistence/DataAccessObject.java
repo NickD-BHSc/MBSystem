@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.objects.TicketStub;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
@@ -295,6 +296,7 @@ public class DataAccessObject implements DataAccess {
                     +"'";
 
             cmdString = "Update VIEWINGTIMES " +" Set " +values +" " +where;
+
             System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -304,11 +306,71 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(e);
         }
 
+        try{
+            cmdString = "Insert INTO TICKETSTUB (MOVIETITLE, THEATRENAME, TICKETQUANT, SHOWTIME) " +
+                    "VALUES('" + vt.getMovieName() +
+                    ", " + vt.getTheatreName() +
+                    ", " + 0 +
+                    ", " + vt.getShowTime();
+        }catch(Exception e){
+            result = processSQLError(e);
+        }
+
         return result;
 
     }
 
 
+
+    @Override
+    public TicketStub getTicketStub(ViewingTime vt){
+        //MOVIETITLE, THEATRENAME, TICKETQUANT, SHOWTIME
+        TicketStub ts = null;
+        String movieName, theatreName, showTime;
+        int ticketQuant;
+
+        try{
+            String where = "where THEATRENAME='"+vt.getTheatreName()
+                    +"' and MOVIETITLE='" + vt.getMovieName()
+                    +"' and SHOWTIME='" + vt.getShowTime()
+                    +"'";
+
+            cmdString = "SELECT * FROM TICKETSTUB " + where;
+            rs2 = st3.executeQuery(cmdString);
+
+            while(rs2.next()){
+                movieName = rs2.getString("MOVIETITLE");
+                theatreName = rs2.getString("THEATRENAME");
+                showTime = rs2.getString("SHOWTIME");
+                ticketQuant = rs2.getInt("TICKETQUANT");
+
+                ts = new TicketStub(movieName, showTime, theatreName, ticketQuant);
+
+            }//end while
+
+        }
+        catch (Exception e){
+            processSQLError(e);
+        }//end try-catch
+
+        return ts;
+    }
+
+//    public String setTicketTheatre( ViewingTime vt){
+//        result = null;
+//        try{
+//            cmdString = "Insert INTO TICKETSTUB (MOVIETITLE, THEATRENAME, TICKETQUANT, SHOWTIME) " +
+//                    "VALUES('" + vt.getMovieName() +
+//                    ", " + vt.getTheatreName() +
+//                    ", " + 0 +
+//                    ", " + vt.getShowTime();
+//        }
+//        catch(Exception e){
+//            result = processSQLError(e);
+//        }
+//        return result;
+//
+//    }
 
     public String processSQLError(Exception e) {
         String result = "*** SQL Error: " + e.getMessage();

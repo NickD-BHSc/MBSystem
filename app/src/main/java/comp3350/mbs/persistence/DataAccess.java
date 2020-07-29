@@ -2,6 +2,7 @@ package comp3350.mbs.persistence;
 
 import java.util.List;
 
+import comp3350.mbs.objects.TicketStub;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
@@ -26,5 +27,7 @@ public interface DataAccess {
 
     Ticket getTicket(String movieName);
 
-     String updateSeatList( ViewingTime vt, String s);
+    TicketStub getTicketStub(ViewingTime vt);
+
+    String updateSeatList( ViewingTime vt, String s);
 }

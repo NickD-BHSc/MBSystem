@@ -9,6 +9,7 @@ import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.objects.TicketStub;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessStub implements DataAccess{
@@ -377,6 +378,8 @@ public class DataAccessStub implements DataAccess{
 
         return "Failure";
     }
+
+    public TicketStub getTicketStub(ViewingTime vt){return null;}
 
 
 }//end DataAccessStub
