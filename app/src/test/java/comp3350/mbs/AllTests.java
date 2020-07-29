@@ -46,8 +46,8 @@ public class AllTests {
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
         suite.addTestSuite(AccessTrailerTest.class);
-        suite.addTestSuite(ParcelableFactoryTest.class);
         suite.addTestSuite(CalculateTest.class);
+        suite.addTestSuite(ParcelableFactoryTest.class);
         suite.addTestSuite(SeatEncodingTest.class);
     }
 
