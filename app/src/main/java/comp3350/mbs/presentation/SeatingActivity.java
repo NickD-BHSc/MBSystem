@@ -100,7 +100,6 @@ public class SeatingActivity extends AppCompatActivity {
                 accessSeats = new AccessSeats();
                 se = new SeatEncoding();
 
-                System.out.println("Encoded Seatlist: " + vt.getSeatString());
                 seatString = vt.getSeatString();
                 seatingList = se.decodeSeatList(vt.getSeatString());//data that will be passed to the CustomAdapter.
             }
@@ -124,7 +123,7 @@ public class SeatingActivity extends AppCompatActivity {
 
 
     private void addParcBookedSeats(){
-
+        parcBookedSeats = new ArrayList<Parcelable>();
         for(int i = 0; i < bookedSeats.size(); i++){
             Seat seat = bookedSeats.get(i);
             Parcelable parcSeats = ParcelableFactory.createParcelableObject(seat);
