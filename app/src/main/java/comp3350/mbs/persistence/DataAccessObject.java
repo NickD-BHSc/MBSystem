@@ -332,7 +332,13 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(e);
         }
 
-        return result;
+        //return result;
+
+        if( result == null )
+            return "Success";
+        else{
+            return "Failure";
+        }
 
     }//end updateSeatList
 

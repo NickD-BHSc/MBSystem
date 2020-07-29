@@ -22,8 +22,8 @@ public class AccessSeats {
      * @param v - ViewingTime to update
      * @param s - Seat string to change
      */
-    public void updateSeatList(ViewingTime v, String s){
-        dataAccess.updateSeatList( v, s );
+    public String updateSeatList(ViewingTime v, String s){
+        return dataAccess.updateSeatList( v, s );
     }//end updateSeatList
 
 
