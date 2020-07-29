@@ -26,14 +26,12 @@ public class DataAccessTest extends TestCase {
          dataAccess = new DataAccessObject(Main.dbName);
          dataAccess.open(Main.getDBPathName());
         // Note the increase in test execution time.
-
-    }//end setUp
+    }
 
     public void tearDown() {
         dataAccess.close();
         System.out.println("Finished Persistence test DataAccess (using stub)");
-    }//end tearDown
-
+    }
 
     @Test
     public void testGetTheatreList(){
@@ -66,7 +64,6 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished DataAccessTest: testGetTheatreList");
 
     }//end testGetTheatreList
-
 
     @Test
     public void testGetMoviesFromTheatre1(){
@@ -117,7 +114,6 @@ public class DataAccessTest extends TestCase {
 
     }//end testGetMoviesFromTheatre1
 
-
     @Test
     public void testGetMoviesFromTheatre2(){
 
@@ -146,7 +142,6 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished DataAccessTest: testGetMoviesFromTheatre2");
 
     }//end testGetMoviesFromTheatre2
-
 
     @Test
     public void testGetMoviesFromTheatre3(){
@@ -184,32 +179,42 @@ public class DataAccessTest extends TestCase {
 
     }//end testGetMoviesFromTheatre3
 
-    /*
     @Test
     public void testValidViewingTimeUpdate(){
         System.out.println("Starting DataAccessTest: testValidViewingTimeUpdate");
         List<TheatreMovies> theatreMoviesList = dataAccess.getMoviesFromTheatre(new TheatreMovies("Scotiabank Theatre",null));
 
         ViewingTime vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get(0);
-        ViewingTime savedVt = vt; //need to save the object since the viewing time list changes when it updates.
+        String showTime = vt.getShowTime();
 
         assertNotNull(vt);
-        assertEquals( "00000000000000000000000000000000",vt.getSeatString());
+        //assertEquals( vt.getSeatString(), "00000000000000000000000000000000");
 
         String updateResult = dataAccess.updateSeatList( vt, "11111111111111111111111111111111");
 
-        int position = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).indexOf(vt.getShowTime());
-        vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get(position);
+        assertEquals( updateResult, "Success");
 
-
-        assertEquals("Success",updateResult);
-        assertEquals( "11111111111111111111111111111111",vt.getSeatString() );
+        //vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get((0));
+        List<ViewingTime> vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0) );
+        for( int i = 0; i < vtList.size(); i++ ){
+            if( vtList.get(i).getShowTime().equals( showTime )){
+                vt = vtList.get(i);
+            }
+        }
+        System.out.println( vt.getShowTime() + " " + vt.getSeatString() );
+        assertEquals( vt.getSeatString(), "11111111111111111111111111111111");
 
         System.out.println("Finished DataAccessTest: testValidViewingTimeUpdate");
 
-    }//end testValidViewingTimeUpdate
-    */
+        //reset viewing time status and order
+        dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
+        vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0));
+        for( int i = 0; i < vtList.size()-1; i++ ){
+            dataAccess.updateSeatList( vtList.get(i), "00000000000000000000000000000000");
+        }
 
+
+    }
 
     @Test
     public void testInvalidViewingtimeUpdate(){
@@ -221,10 +226,8 @@ public class DataAccessTest extends TestCase {
         //attempt to update
         String updateResult = dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
 
-        assertEquals("Failure",updateResult);
+        assertEquals( updateResult, "Failure");
 
         System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
-    }//end testInvalidViewingTimeUpdate
-
-
-}//end DataAccessTest
+    }
+}
