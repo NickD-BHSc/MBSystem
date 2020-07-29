@@ -26,6 +26,7 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketTaxTextView;
     private TextView ticketTotalTextView;
     private TextView movieTitleTextView;
+    private TextView chosenSeatsTextView;
 
     private TheatreMovies theatreMovie;
     private List<Parcelable> bookedSeats;
@@ -65,7 +66,7 @@ public class TicketActivity extends AppCompatActivity {
         ticketTaxTextView = findViewById(R.id.ticketTaxTextView);
         ticketTotalTextView = findViewById(R.id.ticketTotalTextView);
         movieTitleTextView = findViewById(R.id.movieTitleTextView);
-
+        chosenSeatsTextView = findViewById(R.id.chosenSeatsTextView);
 
     }//end init
 
@@ -108,7 +109,8 @@ public class TicketActivity extends AppCompatActivity {
                 }
             }
 
-            movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName() +"\nSeats: " + seatNumbers);
+            movieTitleTextView.setText(theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
+            chosenSeatsTextView.setText(seatNumbers);
         }
 
     }//end addTicketInfo
