@@ -209,8 +209,8 @@ public class DataAccessTest extends TestCase {
         //reset viewing time status and order
         dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
         vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0));
-        for( int i = 0; i < vtList.size(); i++ ){
-            dataAccess.updateSeatList( vtList.get(0), "00000000000000000000000000000000");
+        for( int i = 0; i < vtList.size()-1; i++ ){
+            dataAccess.updateSeatList( vtList.get(i), "00000000000000000000000000000000");
         }
 
 
