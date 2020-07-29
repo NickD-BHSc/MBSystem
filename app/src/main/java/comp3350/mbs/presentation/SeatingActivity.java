@@ -2,6 +2,7 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -61,10 +62,14 @@ public class SeatingActivity extends AppCompatActivity {
 
                     accessSeats = new AccessSeats();
                     se = new SeatEncoding();
+                    ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(vt);
+                    //Intent vtIntent = new Intent(SeatingActivity.this, TicketActivity.class);
+                    intent.putExtra("ViewingTime_Selected", pvt);
+
                     seatString = se.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
                     accessSeats.updateSeatList( vt, seatString );
-
+                    //accessSeats.setTicketTheatre(vt);
                     startActivity(intent);
                 }//end if-else
             }

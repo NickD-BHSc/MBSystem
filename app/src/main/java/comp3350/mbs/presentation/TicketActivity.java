@@ -2,6 +2,7 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,8 +14,10 @@ import java.util.ArrayList;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.objects.ViewingTime;
 
 public class TicketActivity extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class TicketActivity extends AppCompatActivity {
     private TextView movieTitleTextView;
 
     private TheatreMovies theatreMovie;
+    private ViewingTime viewingTime;
     private int seatCount;
 
     @Override
@@ -41,7 +45,14 @@ public class TicketActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
-                Intent startIntent = new Intent(getApplicationContext(), TicketStubActivity.class);
+                Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
+                ParcelableTheatreMovies ptm = (ParcelableTheatreMovies) ParcelableFactory.createParcelableObject(theatreMovie);
+                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(viewingTime);
+
+                startIntent.putExtra("TheatreMovie_Selected", ptm);
+                startIntent.putExtra("ViewingTime_Selected", pvt);
+                startIntent.putExtra("SeatQuant", seatCount);
+
                 startActivity(startIntent);
             }
         });
@@ -68,6 +79,8 @@ public class TicketActivity extends AppCompatActivity {
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
         seatCount= intent.getIntExtra("seats", 0);
         theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected"); //get the theatreMovie so we know the price
+        viewingTime = intent.getParcelableExtra("ViewingTime_Selected");
+
     }//end init
 
 

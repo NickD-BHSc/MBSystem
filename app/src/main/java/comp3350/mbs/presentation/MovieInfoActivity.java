@@ -30,6 +30,7 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     private List<ViewingTime> viewingTimeList;
     private TheatreMovies theatreMovieItem;
+    private String movieTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MovieInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent startIntent = new Intent(getApplicationContext(), TrailerActivity.class);
-                String movieTitle = movieTitleTextView.getText().toString();
+                movieTitle = movieTitleTextView.getText().toString();
                 startIntent.putExtra("comp3350.mbs.presentation.TITLE", movieTitle);
                 startActivity(startIntent);
 
@@ -65,6 +66,7 @@ public class MovieInfoActivity extends AppCompatActivity {
         movieTitleTextView = findViewById(R.id.movieInfoTitleTextView);
         movieDescTextView = findViewById(R.id.movieInfoDescTextView);
         moviePosterImageView = findViewById(R.id.movieInfoPicImageView);
+
 
     }//end init
 
