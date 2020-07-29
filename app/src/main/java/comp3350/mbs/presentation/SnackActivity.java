@@ -11,22 +11,20 @@ import comp3350.mbs.R;
 
 public class SnackActivity extends AppCompatActivity {
 
-
     private Button confirmBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snack);
 
-
         confirmBtn =( Button) findViewById(R.id.snackConfirm);
         confirmBtn.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick( View view)
-            {
-                Intent intent = new Intent( SnackActivity.this, TicketActivity.class);
-                startActivity( intent );
-            }
+            public void onClick( View v)
+                 {
+                    Intent intent = new Intent(SnackActivity.this, TicketActivity.class);
+                    startActivity(intent);
+                }
         }
         );
     }

@@ -27,6 +27,7 @@ public class TicketActivity extends AppCompatActivity {
     private Movie movie;
     private int seatCount;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

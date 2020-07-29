@@ -32,6 +32,7 @@ public class SeatingActivity extends AppCompatActivity {
     private Button seatConfirmButton;
     private Movie movie;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +61,12 @@ public class SeatingActivity extends AppCompatActivity {
                 if( bookedSeats.size() ==0 ){
                     Toast.makeText( SeatingActivity.this, "Please select a seat.", Toast.LENGTH_SHORT).show();
                 }
-                else{
+            else{
                     Intent intent = new Intent( SeatingActivity.this, SnackActivity.class );
 //                    intent.putExtra( "")
+                    intent.putExtra("seats", bookedSeats.size());
+                    intent.putExtra("movie", movie);
+
                     startActivity(( intent  ));
                 }
 

@@ -21,6 +21,7 @@
         app:layout_constraintStart_toEndOf="@+id/TaxLabel"
         app:layout_constraintTop_toBottomOf="@+id/ticketSubtotalTextView" />
 
+
     <TextView
         android:id="@+id/ticketTotalTextView"
         android:layout_width="109dp"
