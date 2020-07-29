@@ -1,7 +1,5 @@
 package comp3350.mbs.business;
 
-import java.util.List;
-
 import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.Ticket;
@@ -26,13 +24,5 @@ public class AccessTickets {
     public Ticket getTicket(String movieName) {
         return dataAccess.getTicket(movieName);
     }//end getTicket
-
-    /**
-     * getAllTickets - a getter method that returns a list of tickets.
-     * @return it will return a list of tickets from DataAccess.
-     */
-    public List<Ticket> getAllTickets(){
-        return dataAccess.getTicketList();
-    }//end getAllTickets
 
 }//end AccessTickets
