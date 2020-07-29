@@ -326,6 +326,10 @@ public class DataAccessObject implements DataAccess {
             System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
+            if(result != null){
+                result = "Failure";
+            }
+
             System.out.println( updateCount );
         }
         catch( Exception e){
