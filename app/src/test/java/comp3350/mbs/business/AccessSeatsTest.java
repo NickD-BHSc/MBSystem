@@ -9,12 +9,12 @@ import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.persistence.DataAccessStub;
 
-public class AccessSeatingTest extends TestCase {
+public class AccessSeatsTest extends TestCase {
     private static String dbName = Main.dbName;
     private AccessSeats accessSeats;
     private AccessViewingTimes accessViewingTimes;
 
-    public AccessSeatingTest(String arg0){
+    public AccessSeatsTest(String arg0){
         super(arg0);
     }
 
