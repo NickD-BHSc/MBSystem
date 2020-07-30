@@ -66,9 +66,6 @@ public class AccessTheatresTest extends TestCase {
         assertTrue("817 St.James".equals(theatre.getAddress()));
         assertEquals("817 St.James",theatre.getAddress());
 
-        assertTrue("15.7km".equals(theatre.getDistance()));
-        assertEquals("15.7km",theatre.getDistance());
-
         theatre = theatreList.get(1); //get the second theatre
         assertNotNull(theatre);
 
@@ -79,10 +76,6 @@ public class AccessTheatresTest extends TestCase {
         assertTrue("1399 McPhillips St.".equals(theatre.getAddress()));
         assertEquals("1399 McPhillips St.",theatre.getAddress());
 
-        assertTrue("10km".equals(theatre.getDistance()));
-        assertEquals("10km",theatre.getDistance());
-
-
         theatre = theatreList.get(2); //get the third theatre
         assertNotNull(theatre);
 
@@ -92,10 +85,6 @@ public class AccessTheatresTest extends TestCase {
 
         assertTrue("160-1225 St Mary's Rd".equals(theatre.getAddress()));
         assertEquals("160-1225 St Mary's Rd",theatre.getAddress());
-
-        assertTrue("19.8km".equals(theatre.getDistance()));
-        assertEquals("19.8km",theatre.getDistance());
-
 
         Services.closeDataAccess();
         System.out.println("Finished AccessTheatreTest: testTheatresFromList\n");

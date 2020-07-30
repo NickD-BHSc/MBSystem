@@ -47,19 +47,16 @@ public class DataAccessTest extends TestCase {
         assertNotNull(theatre);
         assertEquals("Scotiabank Theatre",theatre.getName());
         assertEquals("817 St.James",theatre.getAddress());
-        assertEquals("15.7km",theatre.getDistance());
 
         theatre = theatreList.get(1);//get theatre2 (Cinema City Northgate)
         assertNotNull(theatre);
         assertEquals("Cinema City Northgate",theatre.getName());
         assertEquals("1399 McPhillips St.",theatre.getAddress());
-        assertEquals("10km",theatre.getDistance());
 
         theatre = theatreList.get(2);//get theatre3 (Silver City St.Vital Cinemas)
         assertNotNull(theatre);
         assertEquals("Silver City St.Vital Cinemas",theatre.getName());
         assertEquals("160-1225 St Mary's Rd",theatre.getAddress());
-        assertEquals("19.8km",theatre.getDistance());
 
         System.out.println("Finished DataAccessTest: testGetTheatreList");
 

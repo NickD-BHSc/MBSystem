@@ -11,16 +11,14 @@ public class ParcelableTheatre extends Theatre implements Parcelable {
      *
      * @param name is the name of the theatre.
      * @param address is the address of the theatre.
-     * @param distance is the distance between the user's location.
      */
-    public ParcelableTheatre(String name, String address, String distance) {
-        super(name, address, distance);
+    public ParcelableTheatre(String name, String address) {
+        super(name, address);
     }
 
     protected ParcelableTheatre(Parcel in) {
         super.setName(in.readString());
         super.setAddress(in.readString());
-        super.setDistance(in.readString());
     }
 
     public static final Creator<ParcelableTheatre> CREATOR = new Creator<ParcelableTheatre>() {
@@ -44,7 +42,6 @@ public class ParcelableTheatre extends Theatre implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(super.getName());
         parcel.writeString(super.getAddress());
-        parcel.writeString(super.getDistance());
     }
 
 
