@@ -2,10 +2,10 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
+import comp3350.mbs.business.CreditCardValidation;
 import comp3350.mbs.business.ParcelableFactory;
-import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
@@ -28,6 +28,10 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketTaxTextView;
     private TextView ticketTotalTextView;
     private TextView movieTitleTextView;
+    private TextView cardInputTextView;
+    private TextView cardExpiryTextView;
+    private TextView cardSecurityCodeTextView;
+
 
     private ViewingTime movieDetails;
     private int seatCount;
@@ -44,12 +48,24 @@ public class TicketActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
-                Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
-                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
-                startIntent.putExtra("ViewingTime_Selected", pvt);
-                startIntent.putExtra("SeatQuant", seatCount);
+                cardInputTextView = findViewById(R.id.cardInput);
+                cardExpiryTextView = findViewById(R.id.expiryInput);
+                cardSecurityCodeTextView = findViewById(R.id.codeInput);
+                String cardInput = cardInputTextView.getText().toString();
+                String expiryDate = cardExpiryTextView.getText().toString();
+                String securityCode = cardSecurityCodeTextView.getText().toString();
 
-                startActivity(startIntent);
+
+                if(!CreditCardValidation.isCardValid(cardInput, expiryDate, securityCode)){
+                    Toast.makeText(TicketActivity.this,"Please enter a valid credit card.",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
+                    ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
+                    startIntent.putExtra("ViewingTime_Selected", pvt);
+                    startIntent.putExtra("SeatQuant", seatCount);
+
+                    startActivity(startIntent);
+                }
             }
         });
 
