@@ -210,7 +210,7 @@ public class DataAccessTest extends TestCase {
         //reset viewing time status and order
         dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
         vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0));
-        for( int i = 0; i < vtList.size()-1; i++ ){
+        for( int i = 0; i < vtList.size(); i++ ){
             dataAccess.updateSeatList( vtList.get(i), "00000000000000000000000000000000");
         }
 
@@ -298,8 +298,8 @@ public class DataAccessTest extends TestCase {
         assertNotNull(viewingTime);
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("8:00 to 11:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("5:00 to 8:00 PM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fourth viewing time
@@ -307,8 +307,8 @@ public class DataAccessTest extends TestCase {
         assertNotNull(viewingTime);
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("5:00 to 8:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("8:00 to 11:00 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fifth viewing time
