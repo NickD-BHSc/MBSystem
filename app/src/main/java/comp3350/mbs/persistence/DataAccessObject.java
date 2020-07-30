@@ -215,7 +215,6 @@ public class DataAccessObject implements DataAccess {
                 vt = new ViewingTime(theatreName,movieName,showTime,showDate,seatString);
                 viewingTimeList.add(vt);
 
-            }
             }//end while
 
         }catch (Exception e){
@@ -231,10 +230,6 @@ public class DataAccessObject implements DataAccess {
      * getTicketList - a getter method for the complete list of tickets.
      * @return it will return the ticketList.
      */
-    @Override
-    public List<Seat> getSeatList() {
-        return null;
-    }
 
     @Override
     public List<Ticket> getTicketList() {
@@ -252,8 +247,7 @@ public class DataAccessObject implements DataAccess {
                 price = rs2.getDouble("PRICE");
                 ticket = new Ticket(price, movieName);
                 ticketList.add(ticket);
-
-            }
+                
             }//end while
 
         }catch (Exception e){
@@ -349,8 +343,6 @@ public class DataAccessObject implements DataAccess {
      * @param e is the given exception.
      * @return it will return an SQL error from the exception in string.
      */
-    private String processSQLError(Exception e) {
-    }
 
     public String processSQLError(Exception e) {
         String result = "*** SQL Error: " + e.getMessage();

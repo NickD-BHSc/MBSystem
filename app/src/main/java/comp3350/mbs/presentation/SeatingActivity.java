@@ -98,11 +98,6 @@ public class SeatingActivity extends AppCompatActivity {
 
             if (vt == null) {
                 throw new Error("no available viewing times for the movie:" + theatreMovie.getMovieName());
-        vt = intent.getParcelableExtra( "VT");
-
-        seatConfirmButton = findViewById(R.id.seatConfirmButton);
-        accessSeats = new AccessSeats();
-        se = new SeatEncoding();
 
             } else {
 
