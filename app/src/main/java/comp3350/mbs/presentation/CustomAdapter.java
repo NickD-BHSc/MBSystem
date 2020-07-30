@@ -17,6 +17,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.ParcelableFactory;
+import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
@@ -62,6 +63,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
         }else if(context instanceof SeatingActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seat, parent, false);
+
+        } else if(context instanceof OrderActivity) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_order, parent, false);
+
         }else {
             throw new Error("given context is neither Theatre, Movie, or Seating Activity.");
         }
@@ -198,8 +203,20 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
                 }
 
+            }
+        }else if(context instanceof OrderActivity){
+
+            if(itemLists.get(position) instanceof Order){
+                final Order item = (Order) itemLists.get(position);
+
+                holder.movieNameTextView.setText(item.getMovieName());
+                holder.theatreNameTextView.setText(item.getTheatreName());
+                holder.showTimeTextView.setText(item.getShowTime());
+                holder.showDateTextView.setText(item.getShowDate());
+                holder.quantityTextView.setText("Tickets: " + Integer.toString(item.getTicketQuantity()));
+
             }else{
-                throw new Error("an item from the list is expected to be a Seat object.");
+                throw new Error("an item from the list is expected to be a Order object.");
             }
 
         }else{
@@ -240,6 +257,13 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         private ImageView seatImageView;
         private TextView seatNumberTextView;
 
+        //For OrderActivity
+        private TextView movieNameTextView;
+        private TextView theatreNameTextView;
+        private TextView showTimeTextView;
+        private TextView showDateTextView;
+        private TextView quantityTextView;
+
         /**
          * CustomViewHolder Constructor - assign the widgets depending on the context.
          * @param itemView
@@ -268,6 +292,14 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 seatImageView = itemView.findViewById(R.id.seatImageView);
                 seatNumberTextView = itemView.findViewById(R.id.seatNumTextView);
                 relativeLayout = itemView.findViewById(R.id.seatRelativeLayout);
+
+            }else if(context instanceof OrderActivity){
+                movieNameTextView = itemView.findViewById(R.id.movieNametextView);
+                theatreNameTextView = itemView.findViewById(R.id.theatreNameTextView);
+                showTimeTextView = itemView.findViewById(R.id.showTimeTextView);
+                showDateTextView = itemView.findViewById(R.id.showDateTextView);
+                quantityTextView = itemView.findViewById(R.id.quantityTextView);
+                //relativeLayout = itemView.findViewById(R.id.orderRelativeLayout);
 
             }else{
                 throw new Error("given context is neither Theatre, Movie, MovieInfo, or Seating Activity.");
