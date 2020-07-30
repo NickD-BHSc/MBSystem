@@ -18,6 +18,7 @@ public class TicketStubActivity extends AppCompatActivity{
     private TextView chosenTheatreLocationTextView;
 
     protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_stub);
 
@@ -31,12 +32,13 @@ public class TicketStubActivity extends AppCompatActivity{
         });
         init();
         addTicketStubInfo();
-    }
+    }//end onCreate
 
     /**
      * init - a method that initializes the widgets
      */
     private void init() {
+
         chosenMovieTitleTextView = findViewById(R.id.movieTitleText);
         chosenShowTimeTextView = findViewById(R.id.showTimeText);
         chosenTicketQuantityTextView = findViewById(R.id.ticketNumberText);
@@ -48,14 +50,15 @@ public class TicketStubActivity extends AppCompatActivity{
      * including movie title, theatre location, show time, and ticket quantity
      */
     private void addTicketStubInfo(){
-        Intent intent = getIntent();
-        ViewingTime vt = intent.getParcelableExtra("ViewingTime_Selected");
-        int ticketQuant = intent.getIntExtra("SeatQuant", 0);
-        String quantity = Integer.toString(ticketQuant);
-        chosenTicketQuantityTextView.setText(quantity);
-        chosenMovieTitleTextView.setText(vt.getMovieName());
-        chosenShowTimeTextView.setText(vt.getShowTime());
-        chosenTheatreLocationTextView.setText(vt.getTheatreName());
-    }
 
-}
+        Intent intent = getIntent();
+        ViewingTime viewingTime = intent.getParcelableExtra("ViewingTime_Selected");
+        int ticketQuantity = intent.getIntExtra("Quantity", 0);
+        String quantity = Integer.toString(ticketQuantity);
+        chosenTicketQuantityTextView.setText(quantity);
+        chosenMovieTitleTextView.setText(viewingTime.getMovieName());
+        chosenShowTimeTextView.setText(viewingTime.getShowTime());
+        chosenTheatreLocationTextView.setText(viewingTime.getTheatreName());
+    }//end addTicketStubInfo
+
+}//end TicketStubActivity class

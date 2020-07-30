@@ -2,11 +2,14 @@ package comp3350.mbs.objects;
 
 
 public class Seat{
+
     private int seatNumber;
     private boolean isBooked;
     private int seatImage;
 
-    //needed an empty constructor when implementing Parcelable interface in the ParcelableSeat class.
+    /**
+     * Seat constructor for implementing Parcelable interface in the ParcelableSeat class.
+     */
     public Seat(){}
 
     /**
@@ -16,39 +19,37 @@ public class Seat{
      * @param isBooked determines if the seat object is booked or not.
      * @param seatImage is the image of the seat.
      */
-    public Seat(int seatNumber,boolean isBooked, int seatImage) {
+    public Seat(int seatNumber,boolean isBooked, int seatImage){
         this.seatNumber = seatNumber;
         this.isBooked = isBooked;
         this.seatImage = seatImage;
     }//end constructor
 
-
     //================================================================
     //Getter methods
-    public int getSeatNumber() {
+    public int getSeatNumber(){
         return seatNumber;
     }//end getSeatNumber
 
-    public boolean isBooked() {
+    public boolean isBooked(){
         return isBooked;
     }//end isBooked
 
-    public int getSeatImage() {
+    public int getSeatImage(){
         return seatImage;
     }//end getSeatImage
 
-
     //================================================================
     //Setter methods
-    public void setSeatNumber(int seatNumber) {
+    public void setSeatNumber(int seatNumber){
         this.seatNumber = seatNumber;
     }//end setSeatNumber
 
-    public void setBooked(boolean booked) {
+    public void setBooked(boolean booked){
         isBooked = booked;
     }//end setBooked
 
-    public void setSeatImage(int seatImage) {
+    public void setSeatImage(int seatImage){
         this.seatImage = seatImage;
     }//end setSeatImage
 
@@ -61,6 +62,5 @@ public class Seat{
     public boolean equals(Seat object){
         return seatNumber == object.getSeatNumber();
     }//end equals
-
 
 }//end Seat class

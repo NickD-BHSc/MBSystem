@@ -32,11 +32,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
      * @param context is the context that the CustomAdapter is currently using. (i.e. MovieActivity, MovieInfoActivity or TheatreActivity etc).
      * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
      */
-    public CustomAdapter(Context context, List itemLists) {
+    public CustomAdapter(Context context, List itemLists){
         this.context = context;
         this.itemLists = itemLists;
     }//end constructor
-
 
     /**
      * onCreateViewHolder - method used to display the content of the items to the assigned layout activity.
@@ -47,19 +46,18 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
      */
     @NonNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
 
-        CustomAdapter.CustomViewHolder cvh = null;
-        View view = null;
+        CustomAdapter.CustomViewHolder customViewHolder;
+        View view;
 
-        //get the layout activity depending on the type of the context.
         if(context instanceof TheatreActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_theatre,parent,false);
 
         }else if(context instanceof MovieActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_movie,parent,false);
 
-        }else if(context instanceof MovieInfoActivity) {
+        }else if(context instanceof MovieInfoActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time, parent, false);
 
         }else if(context instanceof SeatingActivity){
@@ -68,12 +66,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
             throw new Error("given context is neither Theatre, Movie, or Seating Activity.");
         }
 
-        cvh = new CustomViewHolder(view);
-
-        return cvh;
+        customViewHolder = new CustomViewHolder(view);
+        return customViewHolder;
 
     }//end onCreateViewHolder
-
 
     /**
      * onBindViewHolder - a method called by the RecyclerView to display the data at the specified position.
@@ -208,11 +204,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
         }else{
             throw new Error("given context is neither Theatre, Movie, MovieInfo, or Seating Activity.");
-
         }
 
     }//end onBindViewHolder
-
 
     /**
      * getItemCount - is a getter method for the size of the itemLists.
@@ -222,7 +216,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
     public int getItemCount() {
         return itemLists.size();
     }//end getItemCount
-
 
     /**
      * Class responsible for assigning the widgets depending on the given context (activity).
@@ -283,6 +276,5 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }//end constructor
 
     }//end CustomViewHolder class
-
 
 }//end CustomAdapter class

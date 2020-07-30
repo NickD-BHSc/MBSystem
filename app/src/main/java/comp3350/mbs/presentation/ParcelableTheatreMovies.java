@@ -14,37 +14,33 @@ public class ParcelableTheatreMovies extends TheatreMovies implements Parcelable
      * @param moviePoster is the poster of the movie.
      * @param movieDescription is the description of the movie.
      */
-    public ParcelableTheatreMovies(String theatreName, String movieName, int moviePoster, String movieDescription) {
+    public ParcelableTheatreMovies(String theatreName, String movieName, int moviePoster, String movieDescription){
         super(theatreName, movieName, moviePoster, movieDescription);
-    }//end constructor
+    }//end Constructor
 
-
-    protected ParcelableTheatreMovies(Parcel in) {
+    protected ParcelableTheatreMovies(Parcel in){
         super.setTheatreName(in.readString());
         super.setMovieName(in.readString());
         super.setMoviePoster(in.readInt());
         super.setMovieDescription(in.readString());
-    }
+    }//end Constructor
 
-
-    public static final Creator<ParcelableTheatreMovies> CREATOR = new Creator<ParcelableTheatreMovies>() {
+    public static final Creator<ParcelableTheatreMovies> CREATOR = new Creator<ParcelableTheatreMovies>(){
         @Override
-        public ParcelableTheatreMovies createFromParcel(Parcel in) {
+        public ParcelableTheatreMovies createFromParcel(Parcel in){
             return new ParcelableTheatreMovies(in);
-        }
+        }//end createFromParcel
 
         @Override
-        public ParcelableTheatreMovies[] newArray(int size) {
+        public ParcelableTheatreMovies[] newArray(int size){
             return new ParcelableTheatreMovies[size];
-        }
-    };
-
+        }//end newArray
+    };//end Creator
 
     @Override
-    public int describeContents() {
+    public int describeContents(){
         return 0;
     }
-
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {

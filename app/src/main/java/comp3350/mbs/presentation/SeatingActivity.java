@@ -3,7 +3,6 @@ package comp3350.mbs.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,23 +31,23 @@ public class SeatingActivity extends AppCompatActivity {
     private Button seatConfirmButton;
 
     private AccessSeats accessSeats;
-    private SeatEncoding se;
+    private SeatEncoding seatEncoding;
 
     private List<Seat> seatingList;
     private List<Seat> bookedSeats;
     private List<Parcelable> parcBookedSeats;
 
     private TheatreMovies theatreMovie;
-    private ViewingTime vt;
+    private ViewingTime viewingTime;
     private String seatString;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_list);
         init();
         buildRecyclerView();
-
 
         seatConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,69 +55,67 @@ public class SeatingActivity extends AppCompatActivity {
                 //make sure that the user has chosen at least one seat to be able to move to the next page.
                 if(bookedSeats.size() == 0){
                     Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
-                }else {
+                }else{
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     addParcBookedSeats();
                     intent.putParcelableArrayListExtra("Booked_Seats", (ArrayList<? extends Parcelable>) parcBookedSeats);
                     Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
                     intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
 
-                    //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
                     accessSeats = new AccessSeats();
-                    se = new SeatEncoding();
-                    ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(vt);
+                    seatEncoding = new SeatEncoding();
+                    ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(viewingTime);
                     intent.putExtra("ViewingTime_Selected", pvt);
 
-                    seatString = se.encodeSeatList(seatingList, bookedSeats);
+                    seatString = seatEncoding.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
-                    accessSeats.updateSeatList( vt, seatString );
+                    accessSeats.updateSeatList(viewingTime, seatString );
                     startActivity(intent);
-                }//end if-else
+                }
             }
         });
 
     }//end onCreate
 
-
     /**
      * init - a method that initializes the widgets and the lists. It also creates a sample data for the seats.
      */
     private void init(){
+
         seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
         parcBookedSeats = new ArrayList<>();
 
         Intent intent = getIntent();
         theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
-        vt = intent.getParcelableExtra( "ViewingTime_Selected");
+        viewingTime = intent.getParcelableExtra( "ViewingTime_Selected");
 
         if(theatreMovie == null){
-            throw new Error("no chosen movie");
-        }else {
+            throw new Error("No chosen movie");
+        }else{
 
-            if (vt == null) {
-                throw new Error("no available viewing times for the movie:" + theatreMovie.getMovieName());
+            if(viewingTime == null){
+                throw new Error("No available viewing times for the movie:" + theatreMovie.getMovieName());
 
-            } else {
+            }else{
 
                 bookedSeats = new ArrayList<>();//list that contains the booked seats.
                 accessSeats = new AccessSeats();
-                se = new SeatEncoding();
+                seatEncoding = new SeatEncoding();
 
-                seatString = vt.getSeatString();
-                seatingList = se.decodeSeatList(vt.getSeatString());//data that will be passed to the CustomAdapter.
+                seatString = viewingTime.getSeatString();
+                seatingList = seatEncoding.decodeSeatList(viewingTime.getSeatString());//data that will be passed to the CustomAdapter.
             }
 
         }
     }//end init
 
-
     /**
      * buildRecyclerView - a method that builds the layout for the list of seats.
      */
     private void buildRecyclerView(){
-        seatRecyclerView = findViewById(R.id.seatRecyclerView);
 
+        seatRecyclerView = findViewById(R.id.seatRecyclerView);
         customAdapter = new CustomAdapter(SeatingActivity.this,seatingList);
         seatRecyclerView.setAdapter(customAdapter);
 
@@ -126,14 +123,16 @@ public class SeatingActivity extends AppCompatActivity {
         seatRecyclerView.setLayoutManager(layoutManager);
     }//end buildRecyclerView
 
-
+    /**
+     * addParcBookedSeats - a method that adds the booked seats to a parcelable list
+     */
     private void addParcBookedSeats(){
+
         parcBookedSeats = new ArrayList<Parcelable>();
         for(int i = 0; i < bookedSeats.size(); i++){
             Seat seat = bookedSeats.get(i);
             Parcelable parcSeats = ParcelableFactory.createParcelableObject(seat);
             parcBookedSeats.add(parcSeats);
-
         }
 
     }//end addParcBookedSeats
@@ -145,7 +144,6 @@ public class SeatingActivity extends AppCompatActivity {
     public void addSeat( Seat seat ){
         bookedSeats.add( seat );
     }//end addSeat
-
 
     /**
      * removeSeat - a method that removes the chosen seat in the bookedList.

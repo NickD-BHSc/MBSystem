@@ -15,13 +15,11 @@ public interface DataAccess {
 
     List<Theatre> getTheatreList();
 
-    List<TheatreMovies> getMoviesFromTheatre(TheatreMovies whichTheatre);
+    List<TheatreMovies> getMoviesFromTheatre(TheatreMovies theatreName);
 
-    List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie);//get the list of viewing time from the given theatre and movie.
-
-    List<Ticket> getTicketList();
+    List<ViewingTime> getViewingTimeList(TheatreMovies theatreMovie);
 
     Ticket getTicket(String movieName);
 
-    String updateSeatList( ViewingTime vt, String s);
+    String updateSeatList( ViewingTime viewingTime, String seatList);
 }

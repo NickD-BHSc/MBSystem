@@ -35,7 +35,8 @@ public class TicketActivity extends AppCompatActivity {
     private int seatCount;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
 
@@ -50,22 +51,19 @@ public class TicketActivity extends AppCompatActivity {
                 Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
                 ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
                 startIntent.putExtra("ViewingTime_Selected", pvt);
-                startIntent.putExtra("SeatQuant", seatCount);
+                startIntent.putExtra("Quantity", seatCount);
 
                 startActivity(startIntent);
             }
         });
 
-
-
     }//end onCreate
-
 
     /**
      * init - a method that initialize the widgets from the activity_ticket which are
      *      6 textViews.
      */
-    private void init() {
+    private void init(){
 
         ticketPriceTextView = findViewById(R.id.ticketPriceTextView);
         ticketQuantityTextView = findViewById(R.id.ticketQuantityTextView);
@@ -85,22 +83,21 @@ public class TicketActivity extends AppCompatActivity {
      * addTicketInfo - a method that gets the information from the previous activity (SeatActivity)
      * and puts the information to the assigned widgets.
      */
-    private void addTicketInfo() {
+    private void addTicketInfo(){
 
-        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
-        //seatCount= intent.getIntExtra("seats", 0);
+        Intent intent = getIntent();
         bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
-        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected"); //get the theatreMovie so we know the theatre, movie, and price
+        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
 
         if(theatreMovie == null){
-            throw new Error("no chosen TheatreMovie");
+            throw new Error("No chosen TheatreMovie");
 
-        }else {
+        }else{
             AccessTickets accessTickets = new AccessTickets();
             ArrayList<Ticket> ticketList = new ArrayList<>();
 
             Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
-            for (int i = 0; i < bookedSeats.size(); i++) {
+            for (int i = 0; i < bookedSeats.size(); i++){
                 ticketList.add(ticket);
             }
 

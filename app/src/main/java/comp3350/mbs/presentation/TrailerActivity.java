@@ -2,17 +2,19 @@ package comp3350.mbs.presentation;
 
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTrailer;
 
 public class TrailerActivity extends AppCompatActivity {
+
     private Button playVideo;
     private VideoView trailerView;
     private MediaController trailerController;
@@ -20,6 +22,7 @@ public class TrailerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trailer);
 
@@ -37,9 +40,10 @@ public class TrailerActivity extends AppCompatActivity {
 
     /**
      * videoPlay - calls resources to display the movie title and trailer video in trailerView
-     * @param v built-in android parameter that allows videoPlay to be called from view
+     * @param view built-in android parameter that allows videoPlay to be called from view
      */
-    public void videoPlay(View v){
+    public void videoPlay(View view){
+
         String clean = AccessTrailer.cleanString(movieTitle);
         int movie = getResources().getIdentifier("raw/"+clean, null, getPackageName());
         String videoPath = "android.resource://comp3350.mbs/";

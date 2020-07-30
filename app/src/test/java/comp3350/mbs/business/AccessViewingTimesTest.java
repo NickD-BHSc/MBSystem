@@ -24,7 +24,6 @@ public class AccessViewingTimesTest extends TestCase {
         viewingTime = null;
     }//end setUp
 
-
     @Test
     public void testGetViewingTimeListForTheatre1Movie1(){
 
@@ -87,9 +86,9 @@ public class AccessViewingTimesTest extends TestCase {
 
     }//end testGetViewingTimeListForTheatre1Movie1
 
-
     @Test
     public void testGetViewingTimeListForTheatre1Movie2(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie2");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -128,11 +127,12 @@ public class AccessViewingTimesTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie2\n");
-    }//end testGetViewingTimeListForTheatre1Movie2
 
+    }//end testGetViewingTimeListForTheatre1Movie2
 
     @Test
     public void testGetViewingTimeListForTheatre1Movie3(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie3");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -180,11 +180,12 @@ public class AccessViewingTimesTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie3\n");
-    }//end testGetViewingTimeListForTheatre1Movie3
 
+    }//end testGetViewingTimeListForTheatre1Movie3
 
     @Test
     public void testGetViewingTimeListForTheatre1Movie4(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie4");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -226,9 +227,9 @@ public class AccessViewingTimesTest extends TestCase {
 
     }//end testGetViewingTimeListForTheatre1Movie4
 
-
     @Test
     public void testGetViewingTimeListForTheatre1Movie5(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie5");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -261,9 +262,9 @@ public class AccessViewingTimesTest extends TestCase {
 
     }//end testGetViewingTimeListForTheatre1Movie5
 
-
     @Test
     public void testGetViewingTimeListForTheatre2Movie1(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre2Movie1");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -296,9 +297,9 @@ public class AccessViewingTimesTest extends TestCase {
 
     }//end testGetViewingTimeListForTheatre2Movie1
 
-
     @Test
     public void testGetViewingTimeListForTheatre2Movie2(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre2Movie1");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -335,7 +336,6 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
-
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre2Movie1\n");
 
@@ -343,6 +343,7 @@ public class AccessViewingTimesTest extends TestCase {
 
     @Test
     public void testGetViewingTimeListForTheatre3Movie1(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie1");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -388,14 +389,14 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
-
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie1\n");
-    }//end testGetViewingTimeListForTheatre3Movie1
 
+    }//end testGetViewingTimeListForTheatre3Movie1
 
     @Test
     public void testGetViewingTimeListForTheatre3Movie2(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie2");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -426,11 +427,12 @@ public class AccessViewingTimesTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie2\n");
-    }//end testGetViewingTimeListForTheatre3Movie2
 
+    }//end testGetViewingTimeListForTheatre3Movie2
 
     @Test
     public void testGetViewingTimeListForTheatre3Movie3() {
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie3");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -454,9 +456,9 @@ public class AccessViewingTimesTest extends TestCase {
 
     }//end testGetViewingTimeListForTheatre3Movie3
 
-
     @Test
     public void testGetViewingTimeListForInvalidTheatreMovies(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForInvalidTheatreMovies");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -485,11 +487,12 @@ public class AccessViewingTimesTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForInvalidTheatreMovies\n");
-    }//end testGetViewingTimeListForInvalidTheatreMovies
 
+    }//end testGetViewingTimeListForInvalidTheatreMovies
 
     @Test
     public void testGetViewingTimeListForNull(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForNull");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -502,6 +505,7 @@ public class AccessViewingTimesTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForNull\n");
+
     }//end testGetViewingTimeListForNull
 
 }//end AccessViewingTimeTests

@@ -33,7 +33,7 @@ public class MovieInfoActivity extends AppCompatActivity {
     private String movieTitle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
@@ -45,16 +45,13 @@ public class MovieInfoActivity extends AppCompatActivity {
                 movieTitle = movieTitleTextView.getText().toString();
                 startIntent.putExtra("comp3350.mbs.presentation.TITLE", movieTitle);
                 startActivity(startIntent);
-
             }
         });
 
         init();
         addMovieInfo();
 
-
     }//end onCreate
-
 
     /**
      * init - a method that initializes the widgets from the activity_movie_info which are
@@ -66,24 +63,22 @@ public class MovieInfoActivity extends AppCompatActivity {
         movieDescTextView = findViewById(R.id.movieInfoDescTextView);
         moviePosterImageView = findViewById(R.id.movieInfoPicImageView);
 
-
     }//end init
 
-
     /**
-     * addMovieInfo - a method that gets the information from the previous activity (MainActivity)
+     * addMovieInfo - a method that gets the information from the previous activity (TheatreActivity)
      *          and put the information to the assigned widgets. It will also create a recycler
      *          view to display the viewing time list.
      */
-    private void addMovieInfo() {
-        //getting the item information for list of showing time from the previous activity.
+    private void addMovieInfo(){
+
         Intent intent = getIntent();
-        theatreMovieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
+        theatreMovieItem = intent.getParcelableExtra("Movie_Selected");
 
         if(theatreMovieItem == null){
-            throw new Error("no movie selected");
+            throw new Error("No movie selected");
         }else{
-            //display movie information
+
             movieTitleTextView.setText(theatreMovieItem.getMovieName());
             moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
             movieDescTextView.setText(theatreMovieItem.getMovieDescription());
@@ -92,26 +87,22 @@ public class MovieInfoActivity extends AppCompatActivity {
             viewingTimeList = accessViewingTimes.getViewingTimeList(theatreMovieItem.getTheatreName(),theatreMovieItem.getMovieName());
 
             if(viewingTimeList == null){
-                throw new Error("no available viewing time for movie: " + theatreMovieItem.getMovieName());
+                throw new Error("No available viewing time for movie: " + theatreMovieItem.getMovieName());
             }else{
                 buildRecyclerView();
             }
-
         }
 
     }//end addMovieInfo
 
-
     /**
      * buildRecyclerView - a method that builds the layout for the list of viewing time.
      */
-    private void buildRecyclerView() {
+    private void buildRecyclerView(){
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
-
         customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList);
         viewingTimeRecyclerView.setAdapter(customAdapter);
-
         layoutManager = new LinearLayoutManager(this);
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
@@ -125,7 +116,5 @@ public class MovieInfoActivity extends AppCompatActivity {
     public TheatreMovies getTheatreMovieItem(){
         return theatreMovieItem;
     }//end getTheatreMovieItem
-
-
 
 }//end MovieInfoActivity class

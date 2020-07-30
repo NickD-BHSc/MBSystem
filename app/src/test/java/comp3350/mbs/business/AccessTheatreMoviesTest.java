@@ -12,6 +12,7 @@ import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTheatreMoviesTest extends TestCase {
+
     private static String dbName = Main.dbName;
     private AccessTheatreMovies accessTheatreMovie;
     private List<TheatreMovies> theatreMoviesList;
@@ -19,15 +20,13 @@ public class AccessTheatreMoviesTest extends TestCase {
 
     public AccessTheatreMoviesTest(String arg0){
         super(arg0);
-    }
-
+    }//end AccessTheatreMoviesTest
 
     public void setUp(){
         accessTheatreMovie = null;
         theatreMoviesList = null;
         theatreMovie = null;
     }//end setUp
-
 
     @Test
     public void testMoviesFromTheatre1(){
@@ -87,7 +86,6 @@ public class AccessTheatreMoviesTest extends TestCase {
 
     }//end testMoviesFromTheatre1
 
-
     @Test
     public void testMoviesFromTheatre2(){
 
@@ -122,9 +120,9 @@ public class AccessTheatreMoviesTest extends TestCase {
 
     }//end testMoviesFromTheatre2
 
-
     @Test
     public void testMoviesFromTheatre3(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessTheatreMoviesTest: testMoviesFromTheatre3");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -161,11 +159,12 @@ public class AccessTheatreMoviesTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessTheatreMoviesTest: testMoviesFromTheatre3\n");
-    }//end testMoviesFromTheatre3
 
+    }//end testMoviesFromTheatre3
 
     @Test
     public void testInvalidMoviesFromTheatre1(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessTheatreMoviesTest: testInvalidMoviesFromTheatre1");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -186,7 +185,6 @@ public class AccessTheatreMoviesTest extends TestCase {
         System.out.println("Finished AccessTheatreMoviesTest: testInvalidMoviesFromTheatre1\n");
 
     }//end testInvalidMoviesFromTheatre1
-
 
     @Test
     public void testInvalidMoviesFromTheatre2(){
@@ -224,7 +222,6 @@ public class AccessTheatreMoviesTest extends TestCase {
 
     }//end testInvalidMoviesFromTheatre2
 
-
     @Test
     public void testInvalidMoviesFromTheatre3(){
         Services.closeDataAccess();
@@ -261,7 +258,6 @@ public class AccessTheatreMoviesTest extends TestCase {
         System.out.println("Starting AccessTheatreMoviesTest: testInvalidMoviesFromTheatre3\n");
 
     }//end testInvalidMoviesFromTheatre3
-
 
     @Test
     public void testInvalidTheatres(){
