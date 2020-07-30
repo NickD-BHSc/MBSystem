@@ -17,18 +17,22 @@ public class AccessTheatresTest extends TestCase {
     private List<Theatre> theatreList;
     private Theatre theatre;
 
-    public AccessTheatresTest(String arg0){super(arg0);}
+    public AccessTheatresTest(String arg0){
+        super(arg0);
+    }
+
 
     public void setUp(){
         accessTheatres = null;
         theatreList = null;
         theatre = null;
-    }
+    }//end setUp
 
 
     @Test
     public void testRetrieveTheatreList(){
 
+        Services.closeDataAccess();
         System.out.println("Starting AccessTheatreTest: testRetrieveTheatreList");
         Services.createDataAccess(new DataAccessStub(dbName));
 

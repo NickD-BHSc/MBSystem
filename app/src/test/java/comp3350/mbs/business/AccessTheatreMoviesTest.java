@@ -3,14 +3,11 @@ package comp3350.mbs.business;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
-import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.persistence.DataAccessStub;
 
@@ -20,7 +17,10 @@ public class AccessTheatreMoviesTest extends TestCase {
     private List<TheatreMovies> theatreMoviesList;
     private TheatreMovies theatreMovie;
 
-    public AccessTheatreMoviesTest(String arg0){super(arg0);}
+    public AccessTheatreMoviesTest(String arg0){
+        super(arg0);
+    }
+
 
     public void setUp(){
         accessTheatreMovie = null;
@@ -48,8 +48,7 @@ public class AccessTheatreMoviesTest extends TestCase {
         assertEquals("Scotiabank Theatre",theatreMovie.getTheatreName());
         assertEquals("Avengers Endgame",theatreMovie.getMovieName());
         assertEquals(R.drawable.avengers_endgame,theatreMovie.getMoviePoster());
-        assertEquals("Adrift in space with no food or water, Tony Stark sends a message to Pepper Potts as his oxygen supply starts to dwindle. Meanwhile, the remaining Avengers -- Thor, Black Widow, Captain America and Bruce Banner -- must figure out a way to bring back their vanquished allies for an epic showdown with Thanos -- the evil demigod who decimated the planet and the universe.",
-                theatreMovie.getMovieDescription());
+        assertEquals("Adrift in space with no food or water, Tony Stark sends a message to Pepper Potts as his oxygen supply starts to dwindle. Meanwhile, the remaining Avengers -- Thor, Black Widow, Captain America and Bruce Banner -- must figure out a way to bring back their vanquished allies for an epic showdown with Thanos -- the evil demigod who decimated the planet and the universe.", theatreMovie.getMovieDescription());
 
         //Movie 2 (The Incredibles)
         theatreMovie = theatreMoviesList.get(1);//The Incredibles at Scotiabank Theatre
@@ -88,6 +87,7 @@ public class AccessTheatreMoviesTest extends TestCase {
 
     }//end testMoviesFromTheatre1
 
+
     @Test
     public void testMoviesFromTheatre2(){
 
@@ -121,6 +121,7 @@ public class AccessTheatreMoviesTest extends TestCase {
         System.out.println("Finished AccessTheatreMoviesTest: testMoviesFromTheatre2\n");
 
     }//end testMoviesFromTheatre2
+
 
     @Test
     public void testMoviesFromTheatre3(){
@@ -162,6 +163,7 @@ public class AccessTheatreMoviesTest extends TestCase {
         System.out.println("Finished AccessTheatreMoviesTest: testMoviesFromTheatre3\n");
     }//end testMoviesFromTheatre3
 
+
     @Test
     public void testInvalidMoviesFromTheatre1(){
         Services.closeDataAccess();
@@ -178,12 +180,13 @@ public class AccessTheatreMoviesTest extends TestCase {
             theatreMovie = theatreMoviesList.get(5);//getting the non-existing 6th movie
             fail("IOBE expected");
         }catch(IndexOutOfBoundsException iobe){
-        }//end try-catch
+        }
 
         Services.closeDataAccess();
         System.out.println("Finished AccessTheatreMoviesTest: testInvalidMoviesFromTheatre1\n");
 
     }//end testInvalidMoviesFromTheatre1
+
 
     @Test
     public void testInvalidMoviesFromTheatre2(){
@@ -214,11 +217,13 @@ public class AccessTheatreMoviesTest extends TestCase {
             theatreMovie = theatreMoviesList.get(2);//getting the non-existing 3rd movie
             fail("IOBE expected");
         }catch(IndexOutOfBoundsException iobe){
-        }//end try-catch
+        }
 
         Services.closeDataAccess();
         System.out.println("Finished AccessTheatreMoviesTest: testInvalidMoviesFromTheatre2\n");
+
     }//end testInvalidMoviesFromTheatre2
+
 
     @Test
     public void testInvalidMoviesFromTheatre3(){
@@ -250,11 +255,54 @@ public class AccessTheatreMoviesTest extends TestCase {
             theatreMovie = theatreMoviesList.get(3);//getting the non-existing 4th movie
             fail("IOBE expected");
         }catch(IndexOutOfBoundsException iobe){
-        }//end try-catch
+        }
 
         Services.closeDataAccess();
         System.out.println("Starting AccessTheatreMoviesTest: testInvalidMoviesFromTheatre3\n");
+
     }//end testInvalidMoviesFromTheatre3
 
+
+    @Test
+    public void testInvalidTheatres(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessTheatreMoviesTest: testInvalidTheatres");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessTheatreMovie = new AccessTheatreMovies();
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre(null);
+        assertNotNull(theatreMoviesList);
+        assertEquals(0,theatreMoviesList.size()); //no movies in null theatre
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre("");
+        assertNotNull(theatreMoviesList);
+        assertEquals(0,theatreMoviesList.size()); //no movies in ""
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre("xTheatre");
+        assertNotNull(theatreMoviesList);
+        assertEquals(0,theatreMoviesList.size()); //no movies in xTheatre
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre("test-Theatre");
+        assertNotNull(theatreMoviesList);
+        assertEquals(0,theatreMoviesList.size()); //no movies in test-Theatre
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre("SCOTIABANK Theatre"); //Scotiabank Theatre but in different format
+        assertNotNull(theatreMoviesList);
+        assertEquals(0, theatreMoviesList.size());//5 movies in SCOTIABANK Theatre
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre("CInEmA City NorthgatE"); //Cinema City Northgate Theatre but in different format
+        assertNotNull(theatreMoviesList);
+        assertEquals(0,theatreMoviesList.size());
+
+        theatreMoviesList = accessTheatreMovie.getMoviesFromTheatre("SIlVer CITY St.VItAl CInemAs"); //Silver City St.Vital Cinemas but in different format
+        assertNotNull(theatreMoviesList);
+        assertEquals(0,theatreMoviesList.size()); //no movies in SIlVer CITYy St.VItAl CInemAs
+
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessTheatreMoviesTest: testInvalidTheatres\n");
+
+    }//end testInvalidTheatres
 
 }//end AccessTheatreMoviesTest

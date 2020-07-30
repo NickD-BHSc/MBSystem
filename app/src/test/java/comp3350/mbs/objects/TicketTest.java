@@ -6,16 +6,13 @@ import org.junit.Test;
 
 public class TicketTest extends TestCase {
 
-    public TicketTest(String arg0)
-    {
+    public TicketTest(String arg0) {
         super(arg0);
     }
 
 
-
     @Test
-    public void testTicket1()
-    {
+    public void testTicket1() {
         Ticket ticket;
 
         System.out.println("\nStarting testTicket1");
@@ -28,11 +25,11 @@ public class TicketTest extends TestCase {
         assertEquals(10, ticket.getQuantity());
 
         System.out.println("Finished testTicket1");
-    }
+    }//end testTicket1
+
 
     @Test
-    public void testTicket2()
-    {
+    public void testTicket2() {
         Ticket ticket;
 
         System.out.println("\nStarting testTicket2");
@@ -45,6 +42,6 @@ public class TicketTest extends TestCase {
         assertEquals(1, ticket.getQuantity());
 
         System.out.println("Finished testTicket2");
-    }
+    }//end testTicket2
 
-}
+}//end TicketTest class

@@ -29,9 +29,34 @@ public class MovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_list);
 
         init();
-        buildRecyclerView();
-
     }//end onCreate
+
+
+    /**
+     * init - a method that gets the information from the previous activity (TheatreActivity)
+     *          and put the information to the movieList. It will then create a recycler view to display
+     *          the sample data to the layout activity.
+     */
+    private void init() {
+        //getting the item info from the previous activity.
+        Intent intent = getIntent();
+        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
+
+        if(theatreItem == null){
+            throw new Error("no chosen theatre");
+        }else {
+            AccessTheatreMovies accessMovies = new AccessTheatreMovies();
+            movieLists = accessMovies.getMoviesFromTheatre(theatreItem.getName());
+            if(movieLists == null){
+                throw new Error("no available movies for chosen theatre: " + theatreItem.getName());
+
+            }else{
+                buildRecyclerView();
+
+            }
+        }
+
+    }//end init
 
 
     /**
@@ -47,27 +72,6 @@ public class MovieActivity extends AppCompatActivity {
         movieRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
-
-    /**
-     * init - a method that gets the information from the previous activity (TheatreActivity)
-     * and put the information to the movieList.
-     */
-    private void init() {
-        //getting the item info from the previous activity.
-        Intent intent = getIntent();
-        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
-        AccessTheatreMovies accessMovies = new AccessTheatreMovies();
-
-        if (theatreItem != null) {
-
-            movieLists = accessMovies.getMoviesFromTheatre(theatreItem.getName());
-
-        }//end if
-
-        //do nothing when there is no item retrieved.
-
-    }//end addMovieInfo
-
 
 
 }//end MainActivity class

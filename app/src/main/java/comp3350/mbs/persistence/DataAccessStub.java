@@ -5,7 +5,6 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
-import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -19,15 +18,21 @@ public class DataAccessStub implements DataAccess{
 
     private List<Theatre> theatreList;
     private List<Ticket> ticketList;
-    private List<Seat> seatList;
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
 
-    //Constructors
+    /**
+     * DataAccessStub Constructor - assign its field dbName to the Main.dbName.
+     */
     public DataAccessStub(){
         this.dbName = Main.dbName;
-    }//end null constructor
+    }//end constructor
 
+
+    /**
+     * DatAccessStub Constructor - assign its field dbName to the given dbName.
+     * @param dbName is the given database name.
+     */
     public DataAccessStub(String dbName) {
         this.dbName = dbName;
     }//end constructor
@@ -37,6 +42,7 @@ public class DataAccessStub implements DataAccess{
      * open - a method that opens the data from the database.
      * @param databaseName is the name of the database.
      */
+    @Override
     public void open(String databaseName){
 
         //Theatres to be displayed in the TheatreActivity
@@ -51,39 +57,14 @@ public class DataAccessStub implements DataAccess{
         viewingTimeList = new ArrayList<>();
         createViewingTimes();
 
-        //==========================================================================================
         //adding tickets to ticketList.
         ticketList = new ArrayList<>();
-
-        Ticket ticket1 = new Ticket(10.00, "Avengers Endgame");
-        Ticket ticket2 = new Ticket(5.00, "The Incredibles");
-        Ticket ticket3 = new Ticket(20.00, "The Lion King");
-        Ticket ticket4 = new Ticket(15.00, "Star Wars");
-        Ticket ticket5 = new Ticket(3.00, "Superman");
-
-        ticketList.add(ticket1);
-        ticketList.add(ticket2);
-        ticketList.add(ticket3);
-        ticketList.add(ticket4);
-        ticketList.add(ticket5);
-
-        //==========================================================================================
-        //adding seats to the seatList.
-        seatList = new ArrayList<>();
-        for(int i = 0; i < 32; i++) {
-            Seat seat;
-            if( i%5 != 0){
-                seat = new Seat(i,false, R.drawable.seat);
-            }else{
-                seat = new Seat(i,true, R.drawable.seat_taken);
-            }//end if-else
-            seatList.add(seat);
-        }//end for loop
-
+        createTickets();
 
         System.out.println("Opened " + dbType + " database " + dbName + ".");
 
     }//end open
+
 
     /**
      * createTheatres - a method that creates a list of theatres and add it to the theatreList.
@@ -100,6 +81,7 @@ public class DataAccessStub implements DataAccess{
         theatreList.add(theatre);//theatre3
 
     }//end createTheatres
+
 
     /**
      * createTheatreMovies - a method that creates a list of movies for each theatre.
@@ -157,6 +139,7 @@ public class DataAccessStub implements DataAccess{
         tm = new TheatreMovies(theatre3.getName(),"Star Wars",R.drawable.starwars,movieDescription);
         theatreMoviesList.add(tm);
     }//end createTheatreMovies
+
 
     /**
      * createViewingTimes - a method that create viewing times for each movie in each theatre.
@@ -268,8 +251,27 @@ public class DataAccessStub implements DataAccess{
 
 
     /**
+     * createTickets - a method that creates a list of tickets and add them to the ticketList field.
+     */
+    private void createTickets(){
+        Ticket ticket1 = new Ticket(10.00, "Avengers Endgame");
+        Ticket ticket2 = new Ticket(5.00, "The Incredibles");
+        Ticket ticket3 = new Ticket(20.00, "The Lion King");
+        Ticket ticket4 = new Ticket(15.00, "Star Wars");
+        Ticket ticket5 = new Ticket(3.00, "Superman");
+
+        ticketList.add(ticket1);
+        ticketList.add(ticket2);
+        ticketList.add(ticket3);
+        ticketList.add(ticket4);
+        ticketList.add(ticket5);
+    }//end createTickets
+
+
+    /**
      * close - a method that closes the database.
      */
+    @Override
     public void close(){
         System.out.println("Closed " + dbType + " database " + dbName + ".");
     }//end close
@@ -279,6 +281,7 @@ public class DataAccessStub implements DataAccess{
      * getTheatreList -a getter method for the theatreList field.
      * @return it will return the field theatreList.
      */
+    @Override
     public List<Theatre> getTheatreList(){
         return theatreList;
     }//end getTheatreList
@@ -289,6 +292,7 @@ public class DataAccessStub implements DataAccess{
      * @param whichTheatre is the given theatre.
      * @return it will return a list of movies that is contained in the given theatre.
      */
+    @Override
     public List<TheatreMovies> getMoviesFromTheatre(TheatreMovies whichTheatre) {
         List<TheatreMovies> newTMList = new ArrayList<>();
         TheatreMovies tm;
@@ -299,8 +303,9 @@ public class DataAccessStub implements DataAccess{
 
             if(tm.getTheatreName().equals(whichTheatre.getTheatreName())){
                 newTMList.add(tm);
-            }//end if
-        }//end for
+            }
+
+        }
 
         return newTMList;
     }//end getMoviesFromTheatre
@@ -321,49 +326,51 @@ public class DataAccessStub implements DataAccess{
 
             if(vt.getTheatreName().equals(theatreMovie.getTheatreName()) && vt.getMovieName().equals(theatreMovie.getMovieName())){
                 newVTList.add(vt);
-            }//end if
+            }
 
-        }//end for
+        }
 
         return newVTList;
     }//end getViewingTimeList
 
 
     /**
-     * getTicket -a getter method for a ticket from the list.
+     * getTicket -a getter method for a ticket with the movie provided from the list.
+     * @param movieName is the movie associated with the ticket.
      * @return it will return the ticket.
      */
+    @Override
     public Ticket getTicket(String movieName){
         Ticket ticket = null;
         for(int i = 0; i <ticketList.size(); i++){
 
             if(ticketList.get(i).getMovieName().equals(movieName)){
                 ticket = ticketList.get(i);
-            }//end if
+            }
 
-        }//end for
+        }
         return ticket;
     }//end getTicket
 
+
     /**
-     * getTicketList -a getter method for a the complete list of tickets.
+     * getTicketList - a getter method for  the complete list of tickets.
      * @return it will return the ticketList.
      */
+    @Override
     public List<Ticket> getTicketList(){
         return ticketList;
     }//end getTicketList
 
 
-
-
     /**
-     * getSeatList - a getter method for the seatList.
-     * @return it will return the seatList field.
+     * updateSeatList - a method that updates the seat string of the given viewing time object.
+     * @param vt is the viewing time object that needs to be updated.
+     * @param s - Seat string to change for the viewing time object's seat.
+     * @return it will return "Success" if the seat in the ViewingTime got updated.
+     *          Otherwise, it will return Failure.
      */
-    public List<Seat> getSeatList(){
-        return seatList;
-    }//end getSeatList
-
+    @Override
     public String updateSeatList( ViewingTime vt, String s){
         for( int i = 0; i < viewingTimeList.size(); i++ ){
             ViewingTime v = viewingTimeList.get(i);
@@ -377,7 +384,7 @@ public class DataAccessStub implements DataAccess{
         }
 
         return "Failure";
-    }
+    }//end updateSeatList
 
 
 }//end DataAccessStub
