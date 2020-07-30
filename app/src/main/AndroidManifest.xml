@@ -11,12 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.TheatreActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="Select a Theatre">
         </activity>
         <activity android:name=".presentation.TrailerActivity" />
         <activity
@@ -34,6 +29,18 @@
         <activity
             android:name=".presentation.TicketStubActivity"
             android:label="Movie Ticket" />
+        <activity
+            android:name=".presentation.MenuActivity"
+            android:label="@string/app_name" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.OrderActivity"
+            android:label="View Orders" />
 
 
     </application>
