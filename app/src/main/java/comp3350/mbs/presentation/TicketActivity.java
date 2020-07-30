@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
@@ -21,7 +22,6 @@ import comp3350.mbs.objects.ViewingTime;
 
 public class TicketActivity extends AppCompatActivity {
 
-    private AccessTickets accessTickets;
     private TextView ticketPriceTextView;
     private TextView ticketQuantityTextView;
     private TextView ticketSubtotalTextView;
@@ -33,16 +33,19 @@ public class TicketActivity extends AppCompatActivity {
     private TextView cardSecurityCodeTextView;
 
 
+    private TheatreMovies theatreMovie;
+    private List<Parcelable> bookedSeats;
     private ViewingTime movieDetails;
     private int seatCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        accessTickets = new AccessTickets();
         setContentView(R.layout.activity_ticket);
-        
+
+        init();
+        addTicketInfo();
+
         Button submitOrderBtn = findViewById(R.id.submitButton);
         submitOrderBtn.setOnClickListener(new View.OnClickListener(){
 
@@ -69,15 +72,14 @@ public class TicketActivity extends AppCompatActivity {
             }
         });
 
-        init();
-        addTicketInfo();
+
 
     }//end onCreate
 
 
     /**
      * init - a method that initialize the widgets from the activity_ticket which are
-     * 5 textViews
+     *      6 textViews.
      */
     private void init() {
 
@@ -101,19 +103,40 @@ public class TicketActivity extends AppCompatActivity {
      */
     private void addTicketInfo() {
 
-        ArrayList<Ticket> ticketList= new ArrayList<>();
-        Ticket ticket = accessTickets.getTicket(movieDetails.getMovieName());
-        for(int i = 0; i < seatCount; i++)
-        {
-            ticketList.add(ticket);
-        }//end for
+        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
+        //seatCount= intent.getIntExtra("seats", 0);
+        bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
+        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected"); //get the theatreMovie so we know the theatre, movie, and price
 
-        ticketPriceTextView.setText(ticket.getPriceAsString());
-        ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
-        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
-        ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
-        ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
-        movieTitleTextView.setText(movieDetails.getTheatreName() + "\n" + movieDetails.getMovieName());
+        if(theatreMovie == null){
+            throw new Error("no chosen TheatreMovie");
+
+        }else {
+            AccessTickets accessTickets = new AccessTickets();
+            ArrayList<Ticket> ticketList = new ArrayList<>();
+
+            Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
+            for (int i = 0; i < bookedSeats.size(); i++) {
+                ticketList.add(ticket);
+            }
+
+            ticketPriceTextView.setText(ticket.getPriceAsString());
+            ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
+            ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
+            ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
+            ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
+
+            //Displays the chosen seats (not in sorted order)
+            String seatNumbers = "";
+            for(int i = 0; i < bookedSeats.size(); i++){
+                if(bookedSeats.get(i) instanceof ParcelableSeat){
+                    ParcelableSeat seat = (ParcelableSeat)bookedSeats.get(i);
+                    seatNumbers += seat.getSeatNumber() + ", ";
+                }
+            }
+
+            movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName() +"\nSeats: " + seatNumbers);
+        }
 
     }//end addTicketInfo
 

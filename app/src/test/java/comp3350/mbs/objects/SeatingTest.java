@@ -6,44 +6,61 @@ import org.junit.Test;
 
 public class SeatingTest extends TestCase{
 
-    public SeatingTest(String arg0){ super( arg0 );}
+    public SeatingTest(String arg0){
+        super( arg0 );
+    }
+
 
     @Test
     public void testSetGet(){
 
         Seat seat;
-
-        System.out.println( "Begin Setter/Getter Test");
+        System.out.println( "Starting SeatingTest: testSetGet");
 
         seat = new Seat( 0, false, 0);
+        assertNotNull(seat);
 
-        assertEquals( seat.getSeatNumber(), 0 );
+        assertTrue(0 == seat.getSeatNumber());
+        assertEquals(0,seat.getSeatNumber() );
+
         assertTrue( !seat.isBooked() );
-        assertEquals(  seat.getSeatImage(), 0);
+        assertEquals(false,seat.isBooked());
+
+        assertTrue(0 == seat.getSeatImage());
+        assertEquals(0,seat.getSeatImage());
 
         seat.setSeatNumber( 1 );
         seat.setBooked( true );
         seat.setSeatImage( 1 );
 
-        assertEquals( seat.getSeatNumber(), 1);
-        assertTrue( seat.isBooked() );
-        assertEquals( seat.getSeatImage(), 1);
+        assertTrue(1 == seat.getSeatNumber());
+        assertEquals(1,seat.getSeatNumber() );
 
-        System.out.println( "Setter/Getter Test Complete");
-    }
+        assertTrue( seat.isBooked() );
+        assertEquals(true,seat.isBooked());
+
+        assertTrue(1 == seat.getSeatImage());
+        assertEquals(1,seat.getSeatImage());
+
+        System.out.println( "Finished SeatingTest: testSetGet");
+    }//end testSetGet
+
 
     @Test
     public void testEquals(){
         Seat seat1;
         Seat seat2;
 
-        System.out.println( "Begin Equals Test");
+        System.out.println( "Starting SeatingTest: testEquals");
 
         seat1 = new Seat( 1, true, 0);
         seat2 = new Seat( 1, false, 1);
+        assertNotNull(seat1);
+        assertNotNull(seat2);
 
         assertTrue( seat1.equals( seat2 ));
 
-        System.out.println( "Equals Test Complete");
-    }
-}
+        System.out.println( "Finished SeatingTest: testEquals\n");
+    }//end testEquals
+
+}//end SeatingTest class

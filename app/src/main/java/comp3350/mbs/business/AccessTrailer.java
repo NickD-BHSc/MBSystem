@@ -17,6 +17,6 @@ public class AccessTrailer {
         }
 
         return clean;
-    }
+    }//end cleanString
 
-}
+}//end AccessTrailer class

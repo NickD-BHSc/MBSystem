@@ -1,5 +1,6 @@
 package comp3350.mbs.business;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class SeatEncoding {
      * @return - The new list of Seat objects
      */
     public List<Seat> decodeSeatList(String str ){
-        ArrayList<Seat> out = new ArrayList<Seat>();
+        List<Seat> out = new ArrayList<>();
 
         if( str != null ) {
             for (int i = 0; i < str.length(); i++) {
@@ -25,13 +26,11 @@ public class SeatEncoding {
                 } else {
                     s = new Seat(i, true, R.drawable.seat_taken);
                 }
-
                 out.add(s);
             }
         }
-
         return out;
-    }
+    }//end decodeSeatList
 
     /**
      * encodeSeatList - creates a String representation of a list of Seat objects for storing in the database
@@ -43,18 +42,22 @@ public class SeatEncoding {
         String s = "";
 
         if( seatingList != null & bookedSeats != null) {
+
             for (int i = 0; i < seatingList.size(); i++) {
+
                 if( seatingList.get(i) != null ) {
+
                     if (bookedSeats.contains(seatingList.get(i)) || seatingList.get(i).isBooked()) {
                         s = s + "1";
                     } else {
                         s = s + "0";
                     }
+
                 }
             }
         }
-
         return s;
 
-    }
-}
+    }//end encodeSeatList
+
+}//end SeatEncoding class

@@ -51,7 +51,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         init();
         addMovieInfo();
-        buildRecyclerView();
 
 
     }//end onCreate
@@ -70,28 +69,38 @@ public class MovieInfoActivity extends AppCompatActivity {
 
     }//end init
 
+
     /**
      * addMovieInfo - a method that gets the information from the previous activity (MainActivity)
-     * and put the information to the assigned widgets.
+     *          and put the information to the assigned widgets. It will also create a recycler
+     *          view to display the viewing time list.
      */
     private void addMovieInfo() {
         //getting the item information for list of showing time from the previous activity.
         Intent intent = getIntent();
         theatreMovieItem = intent.getParcelableExtra("Movie_Selected");//movieItem has theatre's name and movie info.
 
-        if(theatreMovieItem != null) {
+        if(theatreMovieItem == null){
+            throw new Error("no movie selected");
+        }else{
+            //display movie information
+            movieTitleTextView.setText(theatreMovieItem.getMovieName());
+            moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
+            movieDescTextView.setText(theatreMovieItem.getMovieDescription());
 
             AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
             viewingTimeList = accessViewingTimes.getViewingTimeList(theatreMovieItem.getTheatreName(),theatreMovieItem.getMovieName());
 
-            movieDescTextView.setText(theatreMovieItem.getMovieDescription());
-            movieTitleTextView.setText(theatreMovieItem.getMovieName());
-            moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
+            if(viewingTimeList == null){
+                throw new Error("no available viewing time for movie: " + theatreMovieItem.getMovieName());
+            }else{
+                buildRecyclerView();
+            }
 
-        }//end if
-        //do nothing when no item was retrieved.
+        }
 
     }//end addMovieInfo
+
 
     /**
      * buildRecyclerView - a method that builds the layout for the list of viewing time.
@@ -107,6 +116,7 @@ public class MovieInfoActivity extends AppCompatActivity {
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
+
 
     /**
      * getTheatreMovieItem - a getter method for theatreMovieItem.

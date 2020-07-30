@@ -37,7 +37,9 @@ public class TheatreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_theatre_list);
 
        init();
+
     }//end onCreate
+
 
     /**
      * init - a method that gets the sample data from the database (located at AccessTheatres) and
@@ -52,7 +54,8 @@ public class TheatreActivity extends AppCompatActivity {
                 throw new Error("no list of theatres available.");
         }else{
             buildRecyclerView();
-        }//end if-else
+        }
+
     }//end init
 
 
@@ -70,6 +73,10 @@ public class TheatreActivity extends AppCompatActivity {
 
     }//end buildRecyclerView
 
+
+    /**
+     * copyDatabaseToDevice - a method that copies the database to the app.
+     */
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
 
@@ -92,8 +99,16 @@ public class TheatreActivity extends AppCompatActivity {
         } catch (IOException ioe) {
             comp3350.mbs.presentation.Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }
-    }
 
+    }//end copyDatabaseToDevice
+
+
+    /**
+     * copyAssetsToDirectory - a method that copies the assets to file directory.
+     * @param assets is the assets in an array of string.
+     * @param directory is the file directory.
+     * @throws IOException is the IOException when file is not found.
+     */
     public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
         AssetManager assetManager = getAssets();
 
@@ -119,7 +134,8 @@ public class TheatreActivity extends AppCompatActivity {
                 in.close();
             }
         }
-    }
+
+    }//end copyAssetsToDirectory
 
 
 }//end TheatreActivity class
