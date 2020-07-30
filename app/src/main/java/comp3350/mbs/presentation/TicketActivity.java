@@ -2,6 +2,7 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.business.CreditCardValidation;
 import comp3350.mbs.business.ParcelableFactory;
+import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
@@ -31,6 +33,7 @@ public class TicketActivity extends AppCompatActivity {
     private TextView cardInputTextView;
     private TextView cardExpiryTextView;
     private TextView cardSecurityCodeTextView;
+    private TextView chosenSeatsTextView;
 
 
     private TheatreMovies theatreMovie;
@@ -89,6 +92,7 @@ public class TicketActivity extends AppCompatActivity {
         ticketTaxTextView = findViewById(R.id.ticketTaxTextView);
         ticketTotalTextView = findViewById(R.id.ticketTotalTextView);
         movieTitleTextView = findViewById(R.id.movieTitleTextView);
+        chosenSeatsTextView = findViewById(R.id.chosenSeatsTextView);
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
         seatCount= intent.getIntExtra("seats", 0);
@@ -134,8 +138,12 @@ public class TicketActivity extends AppCompatActivity {
                     seatNumbers += seat.getSeatNumber() + ", ";
                 }
             }
+            int lastCommaPosition = seatNumbers.lastIndexOf(", ");
+            seatNumbers = seatNumbers.substring(0, lastCommaPosition);
 
             movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName() +"\nSeats: " + seatNumbers);
+            movieTitleTextView.setText(theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
+            chosenSeatsTextView.setText(seatNumbers);
         }
 
     }//end addTicketInfo

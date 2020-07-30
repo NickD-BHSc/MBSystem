@@ -15,7 +15,6 @@ import comp3350.mbs.business.ParcelableFactoryTest;
 import comp3350.mbs.business.AccessTrailerTest;
 
 import comp3350.mbs.business.SeatEncodingTest;
-import comp3350.mbs.business.TrailerTest;
 import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TheatreMoviesTest;
 import comp3350.mbs.objects.TheatreTest;
@@ -52,7 +51,6 @@ public class AllTests {
 
         suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(CreditCardValidationTest.class);
-        suite.addTestSuite(TrailerTest.class);
         suite.addTestSuite(AccessSeatsTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
