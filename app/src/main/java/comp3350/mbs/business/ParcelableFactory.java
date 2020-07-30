@@ -42,7 +42,7 @@ public class ParcelableFactory {
 
         }else if(object instanceof Ticket){
             Ticket ticket = (Ticket)object;
-            parcObject = new ParcelableTicket(ticket.getPrice(),ticket.getMovieName(),ticket.getQuantity());
+            parcObject = new ParcelableTicket(ticket.getPrice(),ticket.getMovieName());
 
         }
 

@@ -1,11 +1,11 @@
 package comp3350.mbs.presentation;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
 
 import java.util.List;
 
@@ -18,33 +18,30 @@ public class MovieActivity extends AppCompatActivity {
 
     private RecyclerView movieRecyclerView;
     private CustomAdapter customAdapter;
-
     private RecyclerView.LayoutManager layoutManager;
     private List<TheatreMovies> movieLists;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
 
         init();
     }//end onCreate
 
-
     /**
      * init - a method that gets the information from the previous activity (TheatreActivity)
      *          and put the information to the movieList. It will then create a recycler view to display
      *          the sample data to the layout activity.
      */
-    private void init() {
-        //getting the item info from the previous activity.
+    private void init(){
+
         Intent intent = getIntent();
         Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
 
         if(theatreItem == null){
-            throw new Error("no chosen theatre");
-        }else {
+            throw new Error("No chosen theatre");
+        }else{
             AccessTheatreMovies accessMovies = new AccessTheatreMovies();
             movieLists = accessMovies.getMoviesFromTheatre(theatreItem.getName());
             if(movieLists == null){
@@ -52,17 +49,15 @@ public class MovieActivity extends AppCompatActivity {
 
             }else{
                 buildRecyclerView();
-
             }
         }
 
     }//end init
 
-
     /**
      * buildRecyclerView - a method that builds the layout for the list of movies.
      */
-    private void buildRecyclerView() {
+    private void buildRecyclerView(){
 
         movieRecyclerView = findViewById(R.id.movieRecyclerView);
 
@@ -72,6 +67,5 @@ public class MovieActivity extends AppCompatActivity {
         movieRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
-
 
 }//end MainActivity class

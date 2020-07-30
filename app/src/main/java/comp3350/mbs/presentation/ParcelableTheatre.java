@@ -12,40 +12,38 @@ public class ParcelableTheatre extends Theatre implements Parcelable {
      * @param address is the address of the theatre.
      * @param distance is the distance between the user's location.
      */
-    public ParcelableTheatre(String name, String address, String distance) {
+    public ParcelableTheatre(String name, String address, String distance){
         super(name, address, distance);
-    }
+    }//end Constructor
 
-    protected ParcelableTheatre(Parcel in) {
+    protected ParcelableTheatre(Parcel in){
         super.setName(in.readString());
         super.setAddress(in.readString());
         super.setDistance(in.readString());
-    }
+    }//end Constructor
 
-
-    public static final Creator<ParcelableTheatre> CREATOR = new Creator<ParcelableTheatre>() {
+    public static final Creator<ParcelableTheatre> CREATOR = new Creator<ParcelableTheatre>(){
         @Override
-        public ParcelableTheatre createFromParcel(Parcel in) {
+        public ParcelableTheatre createFromParcel(Parcel in){
             return new ParcelableTheatre(in);
-        }
+        }//end createFromParcel
 
         @Override
-        public ParcelableTheatre[] newArray(int size) {
+        public ParcelableTheatre[] newArray(int size){
             return new ParcelableTheatre[size];
-        }
-    };
-
+        }//end newArray
+    };//end Creator
 
     @Override
-    public int describeContents() {
+    public int describeContents(){
         return 0;
-    }
+    }//end describeContents
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int i){
         parcel.writeString(super.getName());
         parcel.writeString(super.getAddress());
         parcel.writeString(super.getDistance());
-    }
+    }//end writeToParcel
 
 }//end ParcelableTheatre class

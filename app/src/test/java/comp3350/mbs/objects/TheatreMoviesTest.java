@@ -1,24 +1,27 @@
 package comp3350.mbs.objects;
 
 import junit.framework.TestCase;
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import comp3350.mbs.R;
 
-public class TheatreMoviesTest extends TestCase {
-    public TheatreMoviesTest(String arg0){super(arg0);}
+import static org.junit.Assert.assertNotEquals;
 
+public class TheatreMoviesTest extends TestCase {
+
+    public TheatreMoviesTest(String arg0){
+        super(arg0);
+    }
 
     @Test
     public void testOneTheatreMovie(){
+
         System.out.println("Starting TheatreMoviesTest: testOneTheatreMovie");
 
         TheatreMovies theatreMovies1 = new TheatreMovies("Theatre1","Movie1", R.drawable.incredibles,"description1");
         assertNotNull(theatreMovies1);
 
-        //theatreMovies1 fields
         assertTrue("Theatre1".equals(theatreMovies1.getTheatreName()));
         assertEquals("Theatre1",theatreMovies1.getTheatreName());
 
@@ -31,14 +34,13 @@ public class TheatreMoviesTest extends TestCase {
         assertTrue("description1".equals(theatreMovies1.getMovieDescription()));
         assertEquals("description1",theatreMovies1.getMovieDescription());
 
-
         System.out.println("Finished TheatreMoviesTest: testOneTheatreMovie\n");
 
     }//end testOneTheatreMovie
 
-
     @Test
     public void testDistinctTheatreMovies(){
+
         System.out.println("Starting TheatreMoviesTest: testDistinctTheatreMovies");
 
         TheatreMovies theatreMovies1 = new TheatreMovies("Theatre1","Movie1", R.drawable.incredibles,"description1");
@@ -56,7 +58,6 @@ public class TheatreMoviesTest extends TestCase {
 
         assertTrue("description1".equals(theatreMovies1.getMovieDescription()));
         assertEquals("description1",theatreMovies1.getMovieDescription());
-
 
         TheatreMovies theatreMovies2 = new TheatreMovies("Theatre2","Movie2",R.drawable.lion_king,"description2");
         assertNotNull(theatreMovies2);
@@ -97,9 +98,9 @@ public class TheatreMoviesTest extends TestCase {
 
     }//end testDistinctTheatreMovies
 
-
     @Test
     public void testSameTheatreMovies(){
+
         System.out.println("Starting TheatreMoviesTest: testSameTheatreMovies");
 
         TheatreMovies theatreMovies1 = new TheatreMovies("Theatre1","Movie1", R.drawable.incredibles,"description1");
@@ -159,6 +160,7 @@ public class TheatreMoviesTest extends TestCase {
 
     @Test
     public void testNullTheatreMovie(){
+
         System.out.println("Starting TheatreMoviesTest: testNullTheatreMovie");
 
         TheatreMovies theatreMovies1 = new TheatreMovies(null,null);

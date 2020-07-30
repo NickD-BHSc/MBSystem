@@ -15,14 +15,14 @@ public class Calculate {
      * @param tickets is the given list of tickets.
      * @return it will return a subtotal of the given tickets in string.
      */
-    public static String calculateSubtotal(List<Ticket> tickets) {
+    public static String calculateSubtotal(List<Ticket> tickets){
         Ticket ticket;
         double subtotal = 0.0;
         if(tickets != null) {
             for (int i = 0; i < tickets.size(); i++) {
                 ticket = tickets.get(i);
                 if(ticket != null) {
-                    subtotal += Math.abs(ticket.getPrice()) * ticket.getQuantity();
+                    subtotal += Math.abs(ticket.getPrice());
                 }
             }
         }
@@ -35,7 +35,7 @@ public class Calculate {
      * @param tickets is the given list of tickets.
      * @return it will return the tax total of the given tickets in string.
      */
-    public static String calculateTax(List<Ticket> tickets) {
+    public static String calculateTax(List<Ticket> tickets){
 
         double subtotal = Double.valueOf(calculateSubtotal(tickets));
         double taxTotal = TAX_RATE * subtotal;
@@ -47,7 +47,7 @@ public class Calculate {
      * @param tickets is the given list of tickets.
      * @return it will return the total cost of the given tickets in string.
      */
-    public static String calculateTotal(List<Ticket> tickets) {
+    public static String calculateTotal(List<Ticket> tickets){
         double subtotal = Double.valueOf(calculateSubtotal(tickets));
         double taxTotal = Double.valueOf(calculateTax(tickets));
         double total = subtotal + taxTotal;

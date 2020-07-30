@@ -8,6 +8,7 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.persistence.DataAccess;
 
 public class AccessTheatres {
+
     private DataAccess dataAccess;
 
     /**
@@ -24,6 +25,5 @@ public class AccessTheatres {
     public List<Theatre> getTheatreList(){
         return dataAccess.getTheatreList();
     }//end getTheatreList
-
 
 }//end AccessTheatres class

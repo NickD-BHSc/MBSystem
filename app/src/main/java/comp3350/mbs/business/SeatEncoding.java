@@ -11,25 +11,26 @@ public class SeatEncoding {
 
     /**
      * decodeSeatList - Takes the seatList string from a ViewingTime object, and turns it into a List of seat objects
-     * @param str - The string to decode
+     * @param seatList - The string to decode
      * @return - The new list of Seat objects
      */
-    public List<Seat> decodeSeatList(String str ){
-        List<Seat> out = new ArrayList<>();
+    public List<Seat> decodeSeatList(String seatList){
+        List<Seat> decodedList = new ArrayList<>();
 
-        if( str != null ) {
-            for (int i = 0; i < str.length(); i++) {
+        if(seatList != null) {
+            for (int i = 0; i < seatList.length(); i++) {
                 Seat s;
 
-                if (str.charAt(i) == '0') {
+                if (seatList.charAt(i) == '0') {
                     s = new Seat(i, false, R.drawable.seat);
                 } else {
                     s = new Seat(i, true, R.drawable.seat_taken);
                 }
-                out.add(s);
+                decodedList.add(s);
             }
         }
-        return out;
+
+        return decodedList;
     }//end decodeSeatList
 
     /**
@@ -38,26 +39,25 @@ public class SeatEncoding {
      * @param bookedSeats - The list of seats that have just been booked, and need to be changed
      * @return - A string representation of the seating lists. You'll need to update the corresponding ViewingTime object somewhere else
      */
-    public String encodeSeatList( List<Seat>seatingList, List<Seat> bookedSeats){
-        String s = "";
+    public String encodeSeatList(List<Seat> seatingList, List<Seat> bookedSeats){
+        String encodedList = "";
 
-        if( seatingList != null & bookedSeats != null) {
+        if(seatingList != null & bookedSeats != null){
 
-            for (int i = 0; i < seatingList.size(); i++) {
+            for (int i = 0; i < seatingList.size(); i++){
 
                 if( seatingList.get(i) != null ) {
 
-                    if (bookedSeats.contains(seatingList.get(i)) || seatingList.get(i).isBooked()) {
-                        s = s + "1";
-                    } else {
-                        s = s + "0";
+                    if (bookedSeats.contains(seatingList.get(i)) || seatingList.get(i).isBooked()){
+                        encodedList = encodedList + "1";
+                    }else{
+                        encodedList = encodedList + "0";
                     }
-
                 }
             }
         }
-        return s;
 
+        return encodedList;
     }//end encodeSeatList
 
 }//end SeatEncoding class

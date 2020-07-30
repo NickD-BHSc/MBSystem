@@ -1,13 +1,16 @@
 package comp3350.mbs.objects;
 
-public class ViewingTime{
+public class ViewingTime {
+
     private String theatreName;
     private String movieName;
     private String showTime;
     private String showDate;
     private String seatString;
 
-    //needed an empty constructor when implementing Parcelable interface in the ParcelableViewingTime class.
+    /**
+     * ViewingTime constructor for implementing Parcelable interface in the ParcelableViewingTime class.
+     */
     public ViewingTime(){}
 
     /**
@@ -19,7 +22,7 @@ public class ViewingTime{
      * @param showDate is the show date of the movie.
      * @param seatString is the encoded list of seats for the movie.
      */
-    public ViewingTime(String theatreName, String movieName, String showTime, String showDate, String seatString) {
+    public ViewingTime(String theatreName, String movieName, String showTime, String showDate, String seatString){
         this.theatreName = theatreName;
         this.movieName = movieName;
         this.showTime = showTime;
@@ -27,48 +30,49 @@ public class ViewingTime{
         this.seatString = seatString;
     }//end constructor
 
-
     //================================================================
     //Getter methods
-    public String getTheatreName() {
+    public String getTheatreName(){
         return theatreName;
-    }
+    }//end getTheatreName
 
-    public String getMovieName() {
+    public String getMovieName(){
         return movieName;
-    }
+    }//end getMovieName
 
-    public String getShowTime() {
+    public String getShowTime(){
         return showTime;
-    }
+    }//end getShowTime
 
-    public String getShowDate() {
+    public String getShowDate(){
         return showDate;
-    }
+    }//end getShowDate
 
-    public String getSeatString() {return seatString; }
-
+    public String getSeatString(){
+        return seatString;
+    }//end getSeatString
 
     //================================================================
     //Setter methods
     public void setTheatreName(String theatreName) {
         this.theatreName = theatreName;
-    }
+    }//end setTheatreName
 
     public void setMovieName(String movieName) {
         this.movieName = movieName;
-    }
+    }//end setMovieName
 
     public void setShowTime(String showTime) {
         this.showTime = showTime;
-    }
+    }//end setShowTime
 
     public void setShowDate(String showDate) {
         this.showDate = showDate;
-    }
+    }//end setShowDate
 
-    public void setSeatString( String seatString){ this.seatString = seatString; }
-
+    public void setSeatString( String seatString){
+        this.seatString = seatString;
+    }//end setSeatString
 
     /**
      * equals - a method that checks if the given object and this object are the same.
@@ -80,21 +84,18 @@ public class ViewingTime{
         boolean result = false;
 
         if(object instanceof ViewingTime){
-            ViewingTime vt = (ViewingTime)object;//casting the given object.
+            ViewingTime viewingTime = (ViewingTime)object;
 
-            if(((vt.theatreName == null && theatreName == null) || (vt.theatreName.equals(theatreName)))
-                && ((vt.movieName == null) || (vt.movieName.equals(movieName)))
-                && ((vt.showTime == null) || (vt.showTime.equals(showTime)))
-                && ((vt.showDate == null) || (vt.showDate.equals(showDate)))
-                && ((vt.seatString == null ) || (vt.seatString.equals( seatString)))){
+            if(((viewingTime.theatreName == null && theatreName == null) || (viewingTime.theatreName.equals(theatreName)))
+                && ((viewingTime.movieName == null) || (viewingTime.movieName.equals(movieName)))
+                && ((viewingTime.showTime == null) || (viewingTime.showTime.equals(showTime)))
+                && ((viewingTime.showDate == null) || (viewingTime.showDate.equals(showDate)))
+                && ((viewingTime.seatString == null ) || (viewingTime.seatString.equals( seatString)))){
                 result =true;
             }
-
-
         }
 
         return result;
-
     }//end equals
 
 }//end ViewingTime class

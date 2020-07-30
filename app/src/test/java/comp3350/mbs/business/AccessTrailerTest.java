@@ -9,16 +9,17 @@ import static comp3350.mbs.business.AccessTrailer.cleanString;
 public class AccessTrailerTest extends TestCase {
     private String movieTitle;
 
-    public AccessTrailerTest(String arg0){super(arg0);}
-
+    public AccessTrailerTest(String arg0){
+        super(arg0);
+    }//end AccessTrailerTest
 
     public void setUp(){
          movieTitle = "";
     }//end setUp
 
-
     @Test
     public void testOneWordTitle(){
+
         System.out.println("Starting TrailerTest: testOneWordTitle");
 
         movieTitle = "Movie";
@@ -36,9 +37,9 @@ public class AccessTrailerTest extends TestCase {
 
     }//end testOneWordTitle
 
-
     @Test
     public void testTwoWordTitle(){
+
         System.out.println("Starting TrailerTest: testTwoWordTitle");
 
         movieTitle = "Movie Title";
@@ -59,32 +60,32 @@ public class AccessTrailerTest extends TestCase {
 
     }//end testTwoWordTitle
 
-
     @Test
     public void testEmptyTitle(){
+
         System.out.println("Starting TrailerTest: testEmptyTitle");
 
         movieTitle = "";
         try {
             cleanString(movieTitle);
             fail("Expected IAE");
-        } catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException illegalArgumentException){
         }
 
         System.out.println("Finished TrailerTest: testEmptyTitle\n");
 
     }//end testEmptyTitle
 
-
     @Test
     public void testNullTitle(){
+
         System.out.println("Starting TrailerTest: testNullTitle");
 
         movieTitle = null;
-        try {
+        try{
             cleanString(movieTitle);
             fail("Expected NPE");
-        } catch (NullPointerException npe){
+        }catch(NullPointerException nullPointerException){
         }
 
         System.out.println("Finished TrailerTest: testNullTitle\n");

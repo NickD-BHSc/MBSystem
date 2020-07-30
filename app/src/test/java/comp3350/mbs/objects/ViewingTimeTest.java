@@ -10,7 +10,6 @@ public class ViewingTimeTest extends TestCase {
         super(arg0);
     }
 
-
     @Test
     public void testOneViewingTime(){
 
@@ -30,7 +29,6 @@ public class ViewingTimeTest extends TestCase {
 
         assertTrue("July 8, 2020, Wednesday".equals(viewingTime1.getShowDate()));
         assertEquals("July 8, 2020, Wednesday", viewingTime1.getShowDate());
-
 
         ViewingTime viewingTime2 = new ViewingTime("Theatre2","Movie2","3:30 to 6:00 PM", "July 10, 2020, Friday", "00000000000000000000000000000000");
 
@@ -53,9 +51,9 @@ public class ViewingTimeTest extends TestCase {
 
     }//end testOneViewingTime
 
-
     @Test
     public void testDistinctViewingTime(){
+
         System.out.println("Starting ViewingTimeTest: testDistinctViewingTime");
 
         ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday" , "00000000000000000000000000000000");
@@ -96,7 +94,6 @@ public class ViewingTimeTest extends TestCase {
         assertTrue( "11111111111111111111111111111111".equals( viewingTime2.getSeatString()));
         assertEquals( "11111111111111111111111111111111", viewingTime2.getSeatString());
 
-
         //comparing theatre names.
         assertFalse(viewingTime1.getTheatreName().equals(viewingTime2.getTheatreName()));
         assertNotEquals(viewingTime1.getTheatreName(),viewingTime2.getTheatreName());
@@ -124,9 +121,9 @@ public class ViewingTimeTest extends TestCase {
 
     }//end testDistinctViewingTime
 
-
     @Test
     public void testSameViewingTimes(){
+
         System.out.println("Starting ViewingTimeTest: testSameViewingTimes");
 
         ViewingTime viewingTime1 = new ViewingTime("Theatre1","Movie1","1:30 to 3:30 PM", "July 8, 2020, Wednesday","11111111111111111111111111111111");
@@ -194,9 +191,9 @@ public class ViewingTimeTest extends TestCase {
 
     }//end testSameViewingTimes
 
-
     @Test
     public void testNullViewingTime(){
+
         System.out.println("Starting ViewingTimeTest: testNullViewingTime");
 
         ViewingTime viewingTime = new ViewingTime(null,null,null, null,null);
@@ -217,6 +214,5 @@ public class ViewingTimeTest extends TestCase {
         System.out.println("Finished ViewingTimeTest: testNullViewingTime\n");
 
     }//end testNullViewingTime
-
 
 }//end ViewingTimeTest

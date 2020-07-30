@@ -14,10 +14,15 @@ import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessTest extends TestCase {
+
     private DataAccess dataAccess;
-    public DataAccessTest(String arg0){super(arg0);}
+
+    public DataAccessTest(String arg0){
+        super(arg0);
+    }//end DataAccessTest
 
     public void setUp(){
+
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
         // Use the following statements to run with the stub database:
@@ -27,15 +32,16 @@ public class DataAccessTest extends TestCase {
          dataAccess = new DataAccessObject(Main.dbName);
          dataAccess.open(Main.getDBPathName());
         // Note the increase in test execution time.
-    }
+    }//end setUp
 
-    public void tearDown() {
+    public void tearDown(){
         dataAccess.close();
         System.out.println("Finished Persistence test DataAccess (using stub)");
-    }
+    }//end tearDown
 
     @Test
     public void testGetTheatreList(){
+
         List<Theatre> theatreList;
         Theatre theatre;
         System.out.println("Starting DataAccessTest: testGetTheatreList");
@@ -68,6 +74,7 @@ public class DataAccessTest extends TestCase {
 
     @Test
     public void testGetMoviesFromTheatre1(){
+
         List<TheatreMovies> theatreMoviesList;
         TheatreMovies theatreMovie;
 
@@ -146,6 +153,7 @@ public class DataAccessTest extends TestCase {
 
     @Test
     public void testGetMoviesFromTheatre3(){
+
         List<TheatreMovies> theatreMoviesList;
         TheatreMovies theatreMovie;
 
@@ -182,20 +190,16 @@ public class DataAccessTest extends TestCase {
 
     @Test
     public void testValidViewingTimeUpdate(){
+
         System.out.println("Starting DataAccessTest: testValidViewingTimeUpdate");
         List<TheatreMovies> theatreMoviesList = dataAccess.getMoviesFromTheatre(new TheatreMovies("Scotiabank Theatre",null));
 
         ViewingTime vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get(0);
         String showTime = vt.getShowTime();
-
         assertNotNull(vt);
-        //assertEquals( vt.getSeatString(), "00000000000000000000000000000000");
-
         String updateResult = dataAccess.updateSeatList( vt, "11111111111111111111111111111111");
-
         assertEquals( updateResult, "Success");
 
-        //vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get((0));
         List<ViewingTime> vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0) );
         for( int i = 0; i < vtList.size(); i++ ){
             if( vtList.get(i).getShowTime().equals( showTime )){
@@ -214,62 +218,66 @@ public class DataAccessTest extends TestCase {
             dataAccess.updateSeatList( vtList.get(i), "00000000000000000000000000000000");
         }
 
-
     }//end testValidViewingTimeUpdate
-
 
     @Test
     public void testInvalidViewingtimeUpdate(){
+
         System.out.println("Starting DataAccessTest: testInvalidViewingTimeUpdate");
 
-        //Create a viewing time that is not in the database
         ViewingTime vt = new ViewingTime( "Xtheatre", "Xmovie", "Right Now", "Today", "1234567890");
-
-        //attempt to update
         String updateResult = dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
-
         assertEquals( updateResult, "Failure");
 
         System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
-    }//end testInvalidViewingtimeUpdate
 
+    }//end testInvalidViewingtimeUpdate
 
     @Test
     public void testGetValidTicket(){
+
         System.out.println("Starting DataAccessTest: testGetValidTicket");
 
-        //attempt to retrieve a ticket that is in the db
-       Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
-
+        Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
         assertEquals(10.00, ticketResult.getPrice());
         assertEquals("Avengers Endgame", ticketResult.getMovieName());
 
         System.out.println("Finished DataAccessTest: testGetValidTicket");
-    }//end testGetValidTicket
 
+    }//end testGetValidTicket
 
     @Test
     public void testGetInvalidTicket(){
+
         System.out.println("Starting DataAccessTest: testGetInvalidTicket");
 
-        //attempt to retrieve a ticket that is in the db
-        Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
-
-        assertEquals(10.00, ticketResult.getPrice());
-        assertEquals("Avengers Endgame", ticketResult.getMovieName());
+        Ticket ticketResult = dataAccess.getTicket("Avengers Infinity War");
+        assertNull(ticketResult);
 
         System.out.println("Finished DataAccessTest: testGetInvalidTicket");
+
     }//end testGetInvalidTicket
 
+    @Test
+    public void testGetNullTicket(){
+
+        System.out.println("Starting AccessTicketsTest: testGetNullTicket");
+
+        Ticket ticketResult = dataAccess.getTicket(null);
+        assertNull(ticketResult);
+
+        System.out.println("Finished AccessTicketsTest: testGetNullTicket");
+
+    }//end testGetNullTicket
 
     @Test
     public void testGetViewingTimeList(){
+
         System.out.println("Starting DataAccessTest: testGetViewingTimeList");
 
         List<ViewingTime> viewingTimeList;
         ViewingTime viewingTime;
         TheatreMovies theatreMovie;
-
         theatreMovie = new TheatreMovies("Scotiabank Theatre","Superman");
         viewingTimeList = dataAccess.getViewingTimeList(theatreMovie);
         assertNotNull(viewingTimeList);
@@ -312,7 +320,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         System.out.println("Finished DataAccessTest: testGetViewingTimeList");
-    }//end testGetViewingTimeList
 
+    }//end testGetViewingTimeList
 
 }//end DataAccessTest

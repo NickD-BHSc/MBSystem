@@ -5,8 +5,8 @@ import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.persistence.DataAccess;
 
-
 public class AccessSeats {
+
     private DataAccess dataAccess;
 
     /**
@@ -16,16 +16,13 @@ public class AccessSeats {
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
 
-
     /**
      * updateSeatList - a method to update the seatlist's of viewing time objects in the database
-     * @param v - ViewingTime to update
-     * @param s - Seat string to change
+     * @param viewingTime - ViewingTime to update
+     * @param seatString - Seat string to change
      */
-    public String updateSeatList(ViewingTime v, String s){
-        return dataAccess.updateSeatList( v, s );
+    public String updateSeatList(ViewingTime viewingTime, String seatString){
+        return dataAccess.updateSeatList(viewingTime, seatString);
     }//end updateSeatList
-
-
 
 }//end AccessSeats class
