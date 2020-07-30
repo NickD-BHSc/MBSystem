@@ -29,8 +29,7 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketTotalTextView;
     private TextView movieTitleTextView;
 
-    private TheatreMovies theatreMovie;
-    private ViewingTime viewingTime;
+    private ViewingTime movieDetails;
     private int seatCount;
 
     @Override
@@ -46,10 +45,7 @@ public class TicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
-                ParcelableTheatreMovies ptm = (ParcelableTheatreMovies) ParcelableFactory.createParcelableObject(theatreMovie);
-                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(viewingTime);
-
-                startIntent.putExtra("TheatreMovie_Selected", ptm);
+                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
                 startIntent.putExtra("ViewingTime_Selected", pvt);
                 startIntent.putExtra("SeatQuant", seatCount);
 
@@ -78,8 +74,7 @@ public class TicketActivity extends AppCompatActivity {
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
         seatCount= intent.getIntExtra("seats", 0);
-        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected"); //get the theatreMovie so we know the price
-        viewingTime = intent.getParcelableExtra("ViewingTime_Selected");
+        movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
 
     }//end init
 
@@ -91,7 +86,7 @@ public class TicketActivity extends AppCompatActivity {
     private void addTicketInfo() {
 
         ArrayList<Ticket> ticketList= new ArrayList<>();
-        Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
+        Ticket ticket = accessTickets.getTicket(movieDetails.getMovieName());
         for(int i = 0; i < seatCount; i++)
         {
             ticketList.add(ticket);
@@ -102,7 +97,7 @@ public class TicketActivity extends AppCompatActivity {
         ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
         ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
         ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
-        movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName());
+        movieTitleTextView.setText(movieDetails.getTheatreName() + "\n" + movieDetails.getMovieName());
 
     }//end addTicketInfo
 

@@ -379,7 +379,5 @@ public class DataAccessStub implements DataAccess{
         return "Failure";
     }
 
-    public TicketStub getTicketStub(ViewingTime vt){return null;}
-
 
 }//end DataAccessStub

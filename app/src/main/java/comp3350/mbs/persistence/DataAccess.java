@@ -27,7 +27,5 @@ public interface DataAccess {
 
     Ticket getTicket(String movieName);
 
-    TicketStub getTicketStub(ViewingTime vt);
-
     String updateSeatList( ViewingTime vt, String s);
 }

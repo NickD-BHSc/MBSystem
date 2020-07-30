@@ -57,19 +57,14 @@ public class SeatingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     //passing the whole list.
                     intent.putExtra("seats", bookedSeats.size());
-                    ParcelableTheatreMovies ptm = (ParcelableTheatreMovies) ParcelableFactory.createParcelableObject(theatreMovie);
-                    intent.putExtra("TheatreMovie_Selected", ptm);
-
                     accessSeats = new AccessSeats();
                     se = new SeatEncoding();
                     ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(vt);
-                    //Intent vtIntent = new Intent(SeatingActivity.this, TicketActivity.class);
                     intent.putExtra("ViewingTime_Selected", pvt);
 
                     seatString = se.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
                     accessSeats.updateSeatList( vt, seatString );
-                    //accessSeats.setTicketTheatre(vt);
                     startActivity(intent);
                 }//end if-else
             }
@@ -82,10 +77,9 @@ public class SeatingActivity extends AppCompatActivity {
      */
     private void init(){
         Intent intent = getIntent();
-        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
         vt = intent.getParcelableExtra( "VT");
 
-        seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
+        seatConfirmButton = findViewById(R.id.seatConfirmButton);
         accessSeats = new AccessSeats();
         se = new SeatEncoding();
 

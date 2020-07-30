@@ -113,7 +113,6 @@ public class DataAccessObject implements DataAccess {
             processSQLError(e);
         }//end try-catch
 
-
         return theatreList;
     }
 
@@ -189,7 +188,6 @@ public class DataAccessObject implements DataAccess {
         String seatString;
 
         try{
-
             cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'";
             rs2 = st3.executeQuery(cmdString);
 
@@ -199,13 +197,9 @@ public class DataAccessObject implements DataAccess {
                 showTime = rs2.getString("TIME");
                 showDate = rs2.getString("DATE");
                 seatString = rs2.getString( "SEATLIST");
-
-
                 vt = new ViewingTime(theatreName,movieName,showTime,showDate,seatString);
                 viewingTimeList.add(vt);
-
             }//end while
-
 
         }catch (Exception e){
             processSQLError(e);
@@ -213,9 +207,6 @@ public class DataAccessObject implements DataAccess {
 
         return viewingTimeList;
     }//end getViewingTimeList
-
-
-
 
     @Override
     public List<Seat> getSeatList() {
@@ -231,19 +222,14 @@ public class DataAccessObject implements DataAccess {
         Double price;
 
         try{
-
             cmdString = "SELECT * FROM TICKETS";
             rs2 = st3.executeQuery(cmdString);
-
             while(rs2.next()){
                 movieName = rs2.getString("TYPE");
                 price = rs2.getDouble("PRICE");
-
                 ticket = new Ticket(price, movieName);
                 ticketList.add(ticket);
-
             }//end while
-
 
         }catch (Exception e){
             processSQLError(e);
@@ -260,18 +246,13 @@ public class DataAccessObject implements DataAccess {
         Double price;
 
         try{
-
             cmdString = "SELECT * FROM TICKETS WHERE MOVIENAME = '"+ movie +"'";
             rs2 = st3.executeQuery(cmdString);
-
             while(rs2.next()){
                 movieName = rs2.getString("MOVIENAME");
                 price = rs2.getDouble("PRICE");
-
                 ticket = new Ticket(price, movieName);
-
             }//end while
-
 
         }catch (Exception e){
             processSQLError(e);
@@ -306,85 +287,19 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(e);
         }
 
-        try{
-            cmdString = "Insert INTO TICKETSTUB (MOVIETITLE, THEATRENAME, TICKETQUANT, SHOWTIME) " +
-                    "VALUES('" + vt.getMovieName() +
-                    ", " + vt.getTheatreName() +
-                    ", " + 0 +
-                    ", " + vt.getShowTime();
-        }catch(Exception e){
-            result = processSQLError(e);
-        }
-
         return result;
 
     }
 
-
-
-    @Override
-    public TicketStub getTicketStub(ViewingTime vt){
-        //MOVIETITLE, THEATRENAME, TICKETQUANT, SHOWTIME
-        TicketStub ts = null;
-        String movieName, theatreName, showTime;
-        int ticketQuant;
-
-        try{
-            String where = "where THEATRENAME='"+vt.getTheatreName()
-                    +"' and MOVIETITLE='" + vt.getMovieName()
-                    +"' and SHOWTIME='" + vt.getShowTime()
-                    +"'";
-
-            cmdString = "SELECT * FROM TICKETSTUB " + where;
-            rs2 = st3.executeQuery(cmdString);
-
-            while(rs2.next()){
-                movieName = rs2.getString("MOVIETITLE");
-                theatreName = rs2.getString("THEATRENAME");
-                showTime = rs2.getString("SHOWTIME");
-                ticketQuant = rs2.getInt("TICKETQUANT");
-
-                ts = new TicketStub(movieName, showTime, theatreName, ticketQuant);
-
-            }//end while
-
-        }
-        catch (Exception e){
-            processSQLError(e);
-        }//end try-catch
-
-        return ts;
-    }
-
-//    public String setTicketTheatre( ViewingTime vt){
-//        result = null;
-//        try{
-//            cmdString = "Insert INTO TICKETSTUB (MOVIETITLE, THEATRENAME, TICKETQUANT, SHOWTIME) " +
-//                    "VALUES('" + vt.getMovieName() +
-//                    ", " + vt.getTheatreName() +
-//                    ", " + 0 +
-//                    ", " + vt.getShowTime();
-//        }
-//        catch(Exception e){
-//            result = processSQLError(e);
-//        }
-//        return result;
-//
-//    }
-
     public String processSQLError(Exception e) {
         String result = "*** SQL Error: " + e.getMessage();
-
-        // Remember, this will NOT be seen by the user!
         e.printStackTrace();
-
         return result;
     }//end processSqError
 
     public String checkWarning(Statement st, int updateCount)
     {
         String result;
-
         result = null;
         try
         {
