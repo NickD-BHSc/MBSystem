@@ -26,7 +26,7 @@ public class AccessViewingTimesTest extends TestCase {
 
 
     @Test
-    public void testGetViewingTimeListTheatre1Movie1(){
+    public void testGetViewingTimeListForTheatre1Movie1(){
 
         Services.closeDataAccess();
         System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre1Movie1");
@@ -389,14 +389,119 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
 
-         Services.closeDataAccess();
+        Services.closeDataAccess();
         System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie1\n");
     }//end testGetViewingTimeListForTheatre3Movie1
 
 
     @Test
     public void testGetViewingTimeListForTheatre3Movie2(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie2");
+        Services.createDataAccess(new DataAccessStub(dbName));
 
+        accessViewingTime = new AccessViewingTimes();
+        viewingTimeList = accessViewingTime.getViewingTimeList("Silver City St.Vital Cinemas","The Lion King");
+        assertNotNull(viewingTimeList);
+        assertEquals(2,viewingTimeList.size());//2 viewing times for The Lion King at Silver City St.Vital Cinemas
+
+
+        //first viewing time
+        viewingTime = viewingTimeList.get(0);
+        assertNotNull(viewingTime);
+        assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
+        assertEquals("The Lion King",viewingTime.getMovieName());
+        assertEquals("12:00 to 2:00 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //second viewing time
+        viewingTime = viewingTimeList.get(1);
+        assertNotNull(viewingTime);
+        assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
+        assertEquals("The Lion King",viewingTime.getMovieName());
+        assertEquals("7:00 to 9:00 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie2\n");
     }//end testGetViewingTimeListForTheatre3Movie2
+
+
+    @Test
+    public void testGetViewingTimeListForTheatre3Movie3() {
+        Services.closeDataAccess();
+        System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie3");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessViewingTime = new AccessViewingTimes();
+        viewingTimeList = accessViewingTime.getViewingTimeList("Silver City St.Vital Cinemas","Star Wars");
+        assertNotNull(viewingTimeList);
+        assertEquals(1,viewingTimeList.size());//2 viewing times for Star Wars at Silver City St.Vital Cinemas
+
+        //first viewing time
+        viewingTime = viewingTimeList.get(0);
+        assertNotNull(viewingTime);
+        assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
+        assertEquals("Star Wars",viewingTime.getMovieName());
+        assertEquals("7:00 to 9:30 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForTheatre3Movie3\n");
+
+    }//end testGetViewingTimeListForTheatre3Movie3
+
+
+    @Test
+    public void testGetViewingTimeListForInvalidTheatreMovies(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForInvalidTheatreMovies");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessViewingTime = new AccessViewingTimes();
+
+        viewingTimeList = accessViewingTime.getViewingTimeList("XTheatre","XMovie");
+        assertNotNull(viewingTimeList);
+        assertEquals(0,viewingTimeList.size());
+
+        viewingTimeList = accessViewingTime.getViewingTimeList("","");
+        assertNotNull(viewingTimeList);
+        assertEquals(0,viewingTimeList.size());
+
+        viewingTimeList = accessViewingTime.getViewingTimeList("testTheatre","testMovie");
+        assertNotNull(viewingTimeList);
+        assertEquals(0,viewingTimeList.size());
+
+        viewingTimeList = accessViewingTime.getViewingTimeList("SiLvEr CITy St.Vital CiNeMas","Star Wars");
+        assertNotNull(viewingTimeList);
+        assertEquals(0,viewingTimeList.size());
+
+        viewingTimeList = accessViewingTime.getViewingTimeList("Silver City St.Vital Cinemas","Avengers Endgame");
+        assertNotNull(viewingTimeList);
+        assertEquals(0,viewingTimeList.size());
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForInvalidTheatreMovies\n");
+    }//end testGetViewingTimeListForInvalidTheatreMovies
+
+
+    @Test
+    public void testGetViewingTimeListForNull(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessViewingTimesTest: testGetViewingTimeListForNull");
+        Services.createDataAccess(new DataAccessStub(dbName));
+        accessViewingTime = new AccessViewingTimes();
+
+        viewingTimeList = accessViewingTime.getViewingTimeList(null,null);
+        assertNotNull(viewingTimeList);
+        assertEquals(0,viewingTimeList.size());
+
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessViewingTimesTest: testGetViewingTimeListForNull\n");
+    }//end testGetViewingTimeListForNull
 
 }//end AccessViewingTimeTests
