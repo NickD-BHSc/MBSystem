@@ -73,8 +73,6 @@ public class TicketStubActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         order = intent.getParcelableExtra("Order");
-        //int ticketQuantity = intent.getIntExtra("Quantity", 0);
-        //String quantity = Integer.toString(ticketQuantity);
         chosenTicketQuantityTextView.setText(Integer.toString(order.getTicketQuantity()));
         chosenMovieTitleTextView.setText(order.getMovieName());
         chosenShowTimeTextView.setText(order.getShowTime());
