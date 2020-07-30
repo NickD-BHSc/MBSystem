@@ -210,7 +210,7 @@ public class DataAccessTest extends TestCase {
         //reset viewing time status and order
         dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
         vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0));
-        for( int i = 0; i < vtList.size(); i++ ){
+        for( int i = 0; i < vtList.size()-1; i++ ){
             dataAccess.updateSeatList( vtList.get(i), "00000000000000000000000000000000");
         }
 
@@ -270,17 +270,17 @@ public class DataAccessTest extends TestCase {
         ViewingTime viewingTime;
         TheatreMovies theatreMovie;
 
-        theatreMovie = new TheatreMovies("Scotiabank Theatre","Avengers Endgame");
+        theatreMovie = new TheatreMovies("Scotiabank Theatre","Superman");
         viewingTimeList = dataAccess.getViewingTimeList(theatreMovie);
         assertNotNull(viewingTimeList);
-        assertEquals(5,viewingTimeList.size());
+        assertEquals(4,viewingTimeList.size());
 
         //first viewing time
         viewingTime = viewingTimeList.get(0);
         assertNotNull(viewingTime);
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
-        assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("1:00 to 4:00 PM",viewingTime.getShowTime());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
         assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
@@ -288,17 +288,17 @@ public class DataAccessTest extends TestCase {
         viewingTime = viewingTimeList.get(1);
         assertNotNull(viewingTime);
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
-        assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("4:30 to 7:30 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
         viewingTime = viewingTimeList.get(2);
         assertNotNull(viewingTime);
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
-        assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("5:00 to 8:00 PM",viewingTime.getShowTime());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("5:00 to 7:00 PM",viewingTime.getShowTime());
         assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
@@ -306,20 +306,10 @@ public class DataAccessTest extends TestCase {
         viewingTime = viewingTimeList.get(3);
         assertNotNull(viewingTime);
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
-        assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("8:00 to 11:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
-        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
-
-        //fifth viewing time
-        viewingTime = viewingTimeList.get(4);
-        assertNotNull(viewingTime);
-        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
-        assertEquals("Avengers Endgame",viewingTime.getMovieName());
-        assertEquals("9:00 to 12:00 AM",viewingTime.getShowTime());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("9:00 to 11:00 PM",viewingTime.getShowTime());
         assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
-
 
         System.out.println("Finished DataAccessTest: testGetViewingTimeList");
     }//end testGetViewingTimeList
