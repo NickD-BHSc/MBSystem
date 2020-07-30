@@ -16,6 +16,7 @@ import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.business.ParcelableFactory;
+import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
@@ -33,6 +34,7 @@ public class TicketActivity extends AppCompatActivity {
     private List<Parcelable> bookedSeats;
     private ViewingTime movieDetails;
     private int seatCount;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -49,10 +51,11 @@ public class TicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
-                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
-                startIntent.putExtra("ViewingTime_Selected", pvt);
-                startIntent.putExtra("Quantity", seatCount);
-
+              //  ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
+             //   startIntent.putExtra("ViewingTime_Selected", pvt);
+             //   startIntent.putExtra("Quantity", seatCount);
+                ParcelableOrder parcelableOrder = (ParcelableOrder) ParcelableFactory.createParcelableObject(order);
+                startIntent.putExtra("Order", parcelableOrder);
                 startActivity(startIntent);
             }
         });
@@ -74,7 +77,10 @@ public class TicketActivity extends AppCompatActivity {
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
         seatCount= intent.getIntExtra("seats", 0);
+        bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
+
         movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
+        order = new Order(movieDetails.getMovieName(), movieDetails.getShowTime(), movieDetails.getShowDate(), movieDetails.getTheatreName(), bookedSeats.size());
 
     }//end init
 
