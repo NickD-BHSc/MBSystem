@@ -5,6 +5,7 @@ import junit.framework.TestSuite;
 import comp3350.mbs.business.AccessSeatsTest;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.AccessTheatresTest;
+import comp3350.mbs.business.AccessViewingTimesTest;
 import comp3350.mbs.business.CalculateTest;
 import comp3350.mbs.business.ParcelableFactoryTest;
 import comp3350.mbs.business.AccessTrailerTest;
@@ -46,6 +47,7 @@ public class AllTests {
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
         suite.addTestSuite(AccessTrailerTest.class);
+        suite.addTestSuite(AccessViewingTimesTest.class);
         suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(ParcelableFactoryTest.class);
         suite.addTestSuite(SeatEncodingTest.class);
