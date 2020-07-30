@@ -215,7 +215,8 @@ public class DataAccessTest extends TestCase {
         }
 
 
-    }
+    }//end testValidViewingTimeUpdate
+
 
     @Test
     public void testInvalidViewingtimeUpdate(){
@@ -230,7 +231,8 @@ public class DataAccessTest extends TestCase {
         assertEquals( updateResult, "Failure");
 
         System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
-    }
+    }//end testInvalidViewingtimeUpdate
+
 
     @Test
     public void testGetValidTicket(){
@@ -243,7 +245,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("Avengers Endgame", ticketResult.getMovieName());
 
         System.out.println("Finished DataAccessTest: testGetValidTicket");
-    }
+    }//end testGetValidTicket
 
 
     @Test
@@ -257,6 +259,69 @@ public class DataAccessTest extends TestCase {
         assertEquals("Avengers Endgame", ticketResult.getMovieName());
 
         System.out.println("Finished DataAccessTest: testGetInvalidTicket");
-    }
+    }//end testGetInvalidTicket
 
-}
+
+    @Test
+    public void testGetViewingTimeList(){
+        System.out.println("Starting DataAccessTest: testGetViewingTimeList");
+
+        List<ViewingTime> viewingTimeList;
+        ViewingTime viewingTime;
+        TheatreMovies theatreMovie;
+
+        theatreMovie = new TheatreMovies("Scotiabank Theatre","Avengers Endgame");
+        viewingTimeList = dataAccess.getViewingTimeList(theatreMovie);
+        assertNotNull(viewingTimeList);
+        assertEquals(5,viewingTimeList.size());
+
+        //first viewing time
+        viewingTime = viewingTimeList.get(0);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Avengers Endgame",viewingTime.getMovieName());
+        assertEquals("1:00 to 4:00 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //second viewing time
+        viewingTime = viewingTimeList.get(1);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Avengers Endgame",viewingTime.getMovieName());
+        assertEquals("4:30 to 7:30 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //third viewing time
+        viewingTime = viewingTimeList.get(2);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Avengers Endgame",viewingTime.getMovieName());
+        assertEquals("8:00 to 11:00 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //fourth viewing time
+        viewingTime = viewingTimeList.get(3);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Avengers Endgame",viewingTime.getMovieName());
+        assertEquals("5:00 to 8:00 PM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //fifth viewing time
+        viewingTime = viewingTimeList.get(4);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Avengers Endgame",viewingTime.getMovieName());
+        assertEquals("9:00 to 12:00 AM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+
+        System.out.println("Finished DataAccessTest: testGetViewingTimeList");
+    }//end testGetViewingTimeList
+    
+}//end DataAccessTest
