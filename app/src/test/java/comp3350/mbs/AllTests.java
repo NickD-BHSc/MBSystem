@@ -5,6 +5,7 @@ import junit.framework.TestSuite;
 import comp3350.mbs.business.AccessSeatsTest;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.AccessTheatresTest;
+import comp3350.mbs.business.AccessTicketsTest;
 import comp3350.mbs.business.AccessViewingTimesTest;
 import comp3350.mbs.business.CalculateTest;
 import comp3350.mbs.business.ParcelableFactoryTest;
@@ -46,6 +47,7 @@ public class AllTests {
         suite.addTestSuite(AccessSeatsTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
+        suite.addTestSuite(AccessTicketsTest.class);
         suite.addTestSuite(AccessTrailerTest.class);
         suite.addTestSuite(AccessViewingTimesTest.class);
         suite.addTestSuite(CalculateTest.class);

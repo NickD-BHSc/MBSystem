@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.util.List;
 
 import comp3350.mbs.application.Main;
+import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTicketsTest extends TestCase{
 
@@ -29,44 +31,50 @@ public class AccessTicketsTest extends TestCase{
 
     @Test
     public void testGetValidTicket(){
+        Services.closeDataAccess();
         System.out.println("Starting AccessTicketsTest: testValidTicket");
 
+        Services.createDataAccess(new DataAccessStub(dbName));
+        accessTickets = new AccessTickets();
         //attempt to retrieve a ticket that is in the db
         Ticket ticketResult = accessTickets.getTicket("Avengers Endgame");
 
         assertEquals(10.00, ticketResult.getPrice());
-        assertEquals("The Avengers", ticketResult.getMovieName());
+        assertEquals("Avengers Endgame", ticketResult.getMovieName());
 
+        Services.closeDataAccess();
         System.out.println("Finished AccessTicketsTest: testGetValidTicket");
     }//end testGetValidTicket
 
     @Test
     public void testGetInvalidTicket(){
+        Services.closeDataAccess();
         System.out.println("Starting AccessTicketsTest: testGetInvalidTicket");
 
-        try{
-            //attempt to retrieve a ticket that is in the db
-            Ticket ticketResult = accessTickets.getTicket("Avengers Endgame");
-            fail("Null Pointer Exception Expected");
-        }
-        catch(NullPointerException exception){
-        }
+        Services.createDataAccess(new DataAccessStub(dbName));
+        accessTickets = new AccessTickets();
 
+        //attempt to retrieve a ticket that is in the db
+        Ticket ticketResult = accessTickets.getTicket("Avengers Infinity War");
+        assertNull(ticketResult);
+
+
+        Services.closeDataAccess();
         System.out.println("Finished AccessTicketsTest: testGetValidTicket");
     }//end testGetInvalidTicket
 
     @Test
     public void testGetNullTicket(){
+        Services.closeDataAccess();
         System.out.println("Starting AccessTicketsTest: testGetInvalidTicket");
 
-        try{
-            //attempt to retrieve a null ticket
-            Ticket ticketResult = accessTickets.getTicket(null);
-            fail("Null Pointer Exception Expected");
-        }
-        catch(NullPointerException exception){
-        }
+        Services.createDataAccess(new DataAccessStub(dbName));
+        accessTickets = new AccessTickets();
 
+        Ticket ticketResult = accessTickets.getTicket(null);
+        assertNull(ticketResult);
+
+        Services.closeDataAccess();
         System.out.println("Finished AccessTicketsTest: testGetValidTicket");
     }//end testGetNullTicket
 

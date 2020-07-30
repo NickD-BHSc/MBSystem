@@ -24,17 +24,21 @@ public class TrailerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trailer);
 
         if(getIntent().hasExtra("comp3350.mbs.presentation.TITLE")){
-            TextView trailerTitle = (TextView) findViewById(R.id.trailerMovieTitle);
+            TextView trailerTitle = findViewById(R.id.trailerMovieTitle);
             movieTitle = getIntent().getExtras().getString("comp3350.mbs.presentation.TITLE");
             trailerTitle.setText(movieTitle);
         }
 
-        playVideo = (Button) findViewById(R.id.trailerPlayBtn);
-        trailerView = (VideoView) findViewById(R.id.trailerView);
+        playVideo = findViewById(R.id.trailerPlayBtn);
+        trailerView = findViewById(R.id.trailerView);
         trailerController = new MediaController(this);
 
     }
 
+    /**
+     * videoPlay - calls resources to display the movie title and trailer video in trailerView
+     * @param v built-in android parameter that allows videoPlay to be called from view
+     */
     public void videoPlay(View v){
         String clean = AccessTrailer.cleanString(movieTitle);
         int movie = getResources().getIdentifier("raw/"+clean, null, getPackageName());
