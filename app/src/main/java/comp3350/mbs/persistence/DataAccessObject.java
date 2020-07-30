@@ -203,7 +203,7 @@ public class DataAccessObject implements DataAccess {
         String seatString;
 
         try{
-            cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'";
+            cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'" + " ORDER BY TIME ASC";
             rs2 = st3.executeQuery(cmdString);
 
             while(rs2.next()){
