@@ -10,6 +10,7 @@ import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
+import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessTest extends TestCase {
@@ -230,4 +231,32 @@ public class DataAccessTest extends TestCase {
 
         System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
     }
+
+    @Test
+    public void testGetValidTicket(){
+        System.out.println("Starting DataAccessTest: testGetValidTicket");
+
+        //attempt to retrieve a ticket that is in the db
+       Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
+
+        assertEquals(10.00, ticketResult.getPrice());
+        assertEquals("Avengers Endgame", ticketResult.getMovieName());
+
+        System.out.println("Finished DataAccessTest: testGetValidTicket");
+    }
+
+
+    @Test
+    public void testGetInvalidTicket(){
+        System.out.println("Starting DataAccessTest: testGetInvalidTicket");
+
+        //attempt to retrieve a ticket that is in the db
+        Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
+
+        assertEquals(10.00, ticketResult.getPrice());
+        assertEquals("Avengers Endgame", ticketResult.getMovieName());
+
+        System.out.println("Finished DataAccessTest: testGetInvalidTicket");
+    }
+
 }

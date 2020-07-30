@@ -2,6 +2,7 @@ package comp3350.mbs.persistence;
 
 import java.util.List;
 
+import comp3350.mbs.objects.TicketStub;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;

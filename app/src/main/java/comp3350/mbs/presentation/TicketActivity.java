@@ -15,8 +15,10 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.objects.ViewingTime;
 
 public class TicketActivity extends AppCompatActivity {
 
@@ -26,10 +28,11 @@ public class TicketActivity extends AppCompatActivity {
     private TextView ticketTaxTextView;
     private TextView ticketTotalTextView;
     private TextView movieTitleTextView;
-    private TextView chosenSeatsTextView;
 
     private TheatreMovies theatreMovie;
     private List<Parcelable> bookedSeats;
+    private ViewingTime movieDetails;
+    private int seatCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,11 @@ public class TicketActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
-                Intent startIntent = new Intent(getApplicationContext(), TicketStubActivity.class);
+                Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
+                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
+                startIntent.putExtra("ViewingTime_Selected", pvt);
+                startIntent.putExtra("SeatQuant", seatCount);
+
                 startActivity(startIntent);
             }
         });
@@ -66,7 +73,10 @@ public class TicketActivity extends AppCompatActivity {
         ticketTaxTextView = findViewById(R.id.ticketTaxTextView);
         ticketTotalTextView = findViewById(R.id.ticketTotalTextView);
         movieTitleTextView = findViewById(R.id.movieTitleTextView);
-        chosenSeatsTextView = findViewById(R.id.chosenSeatsTextView);
+
+        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
+        seatCount= intent.getIntExtra("seats", 0);
+        movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
 
     }//end init
 
@@ -109,8 +119,7 @@ public class TicketActivity extends AppCompatActivity {
                 }
             }
 
-            movieTitleTextView.setText(theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
-            chosenSeatsTextView.setText(seatNumbers);
+            movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName() +"\nSeats: " + seatNumbers);
         }
 
     }//end addTicketInfo

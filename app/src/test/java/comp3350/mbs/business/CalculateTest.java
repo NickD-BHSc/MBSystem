@@ -39,12 +39,10 @@ public class CalculateTest extends TestCase {
         System.out.println("Finished CalculateTest: testNullListTotal\n");
     }//end testNullListTotal
 
-
     @Test
     public void testNullListSubtotal() {
         System.out.println("Starting CalculateTest: testNullListSubtotal");
 
-        resultTotal = " ";
         resultTotal = Calculate.calculateSubtotal(null);
 
         assertNotNull(resultTotal);
@@ -53,20 +51,17 @@ public class CalculateTest extends TestCase {
         System.out.println("Finished CalculateTest: testNullListSubtotal\n");
     }//end testNullListSubtotal
 
-
     @Test
-    public void testNullListTaxTotal() {
-        System.out.println("Starting CalculateTest: testNullLisTaxTotal");
+    public void testNullListTax() {
+        System.out.println("Starting CalculateTest: testNullListTax");
 
-        resultTotal = " ";
         resultTotal = Calculate.calculateTax(null);
 
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
-        System.out.println("Finished CalculateTest: testNullLisTaxTotal\n");
-    }//end testNullListTaxTotal
-
+        System.out.println("Finished CalculateTest: testNullListTax\n");
+    }//end testNullListTax
 
     @Test
     public void testEmptyListTotal() {
@@ -82,6 +77,33 @@ public class CalculateTest extends TestCase {
         System.out.println("Finished CalculateTest: testEmptyListTotal\n");
     }//end testEmptyListTotal
 
+    @Test
+    public void testEmptyListSubtotal() {
+        System.out.println("Starting CalculateTest: testEmptyListSubtotal");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        resultTotal = Calculate.calculateSubtotal(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("0.00".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testEmptyListSubtotal\n");
+    }//end testEmptyListSubtotal
+
+    @Test
+    public void testEmptyListTax() {
+        System.out.println("Starting CalculateTest: testEmptyListTax");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        resultTotal = Calculate.calculateTax(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("0.00".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testEmptyListTax\n");
+    }//end testEmptyListTax
 
     @Test
     public void testNullObjectTotal() {
@@ -98,6 +120,35 @@ public class CalculateTest extends TestCase {
         System.out.println("Finished CalculateTest: testNullObjectTotal\n");
     }//end testNullObjectTotal
 
+    @Test
+    public void testNullObjectSubtotal() {
+        System.out.println("Starting CalculateTest: testNullObjectSubtotal");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        list.add(null);
+        resultTotal = Calculate.calculateSubtotal(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("0.00".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testNullObjectSubtotal\n");
+    }//end testNullObjectSubtotal
+
+    @Test
+    public void testNullObjectTax() {
+        System.out.println("Starting CalculateTest: testNullObjectTax");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        list.add(null);
+        resultTotal = Calculate.calculateTax(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("0.00".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testNullObjectTax\n");
+    }//end testNullObjectTax
 
     @Test
     public void testValidTotalOneTicket() {
@@ -105,12 +156,44 @@ public class CalculateTest extends TestCase {
 
         resultTotal = " ";
         list = new ArrayList<>();
-        ticket = new Ticket(10.00, "General Admission");
+        ticket = new Ticket(10.00, "Avengers Endgame");
         list.add(ticket);
         resultTotal = Calculate.calculateTotal(list);
 
         assertNotNull(resultTotal);
         assertTrue("11.50".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testValidTotalOneTicket\n");
+    }//end testValidTotalOneTicket
+
+    @Test
+    public void testValidSubtotalOneTicket() {
+        System.out.println("Starting CalculateTest: testValidSubtotalOneTicket");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        ticket = new Ticket(10.00, "Avengers Endgame");
+        list.add(ticket);
+        resultTotal = Calculate.calculateSubtotal(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("10.00".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testValidSubtotalOneTicket\n");
+    }//end testValidSubtotalOneTicket
+
+    @Test
+    public void testValidTaxOneTicket() {
+        System.out.println("Starting CalculateTest: testValidTotalOneTicket");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        ticket = new Ticket(10.00, "Avengers Endgame");
+        list.add(ticket);
+        resultTotal = Calculate.calculateTax(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("1.50".equals(resultTotal));
 
         System.out.println("Finished CalculateTest: testValidTotalOneTicket\n");
     }//end testValidTotalOneTicket
@@ -122,7 +205,7 @@ public class CalculateTest extends TestCase {
 
         resultTotal = " ";
         list = new ArrayList<>();
-        ticket = new Ticket(10.00, "General Admission");
+        ticket = new Ticket(10.00, "Avengers Endgame");
         list.add(ticket);
         list.add(ticket);
         list.add(ticket);
@@ -134,6 +217,41 @@ public class CalculateTest extends TestCase {
         System.out.println("Finished CalculateTest: testValidTotalMultipleTickets\n");
     }//end testValidTotalMultipleTickets
 
+    @Test
+    public void testValidSubtotalMultipleTickets() {
+        System.out.println("Starting CalculateTest: testValidSubtotalMultipleTickets");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        ticket = new Ticket(10.00, "Avengers Endgame");
+        list.add(ticket);
+        list.add(ticket);
+        list.add(ticket);
+        resultTotal = Calculate.calculateSubtotal(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("30.00".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testValidTotalMultipleTickets\n");
+    }//end testValidTotalMultipleTickets
+
+    @Test
+    public void testValidTaxMultipleTickets() {
+        System.out.println("Starting CalculateTest: testValidTaxMultipleTickets");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        ticket = new Ticket(10.00, "Avengers Endgame");
+        list.add(ticket);
+        list.add(ticket);
+        list.add(ticket);
+        resultTotal = Calculate.calculateTax(list);
+
+        assertNotNull(resultTotal);
+        assertTrue("4.50".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testValidTaxMultipleTickets\n");
+    }//end testValidTotalMultipleTickets
 
     @Test
     public void testInvalidTicket() {
@@ -141,14 +259,43 @@ public class CalculateTest extends TestCase {
 
         resultTotal = " ";
         list = new ArrayList<>();
-        ticket = new Ticket(-10.00, "General Admission");
+        ticket = new Ticket(-10.00, "Avengers Endgame");
         list.add(ticket);
         resultTotal = Calculate.calculateTotal(list);
         assertNotNull(resultTotal);
         assertTrue("11.50".equals(resultTotal));
 
         System.out.println("Finished CalculateTest: testInvalidTicket\n");
-    }//end testValidTicket
+    }//end testInvalidTicket
+
+    @Test
+    public void testValidTicketTotalDecimalPlaces() {
+        System.out.println("Starting CalculateTest: testValidTicketDecimalPlaces");
+
+        resultTotal = " ";
+        list = new ArrayList<>();
+        ticket = new Ticket(8.99, "Avengers Endgame");
+        list.add(ticket);
+        resultTotal = Calculate.calculateTotal(list);
+        assertNotNull(resultTotal);
+        assertTrue("10.34".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testValidTicketDecimalPlaces\n");
+    }//end testInvalidTicket
+
+    @Test
+    public void testValidTicketSubtotalDecimalPlaces() {
+        System.out.println("Starting CalculateTest: testValidTicketSubtotalDecimalPlaces");
+        resultTotal = " ";
+        list = new ArrayList<>();
+        ticket = new Ticket(8.99, "Avengers Endgame");
+        list.add(ticket);
+        resultTotal = Calculate.calculateTax(list);
+        assertNotNull(resultTotal);
+        assertTrue("1.35".equals(resultTotal));
+
+        System.out.println("Finished CalculateTest: testValidTicketSubtotalDecimalPlaces\n");
+    }//end testValidTicketSubtotalDecimalPlaces
 
 
 }//end CalculateTest
