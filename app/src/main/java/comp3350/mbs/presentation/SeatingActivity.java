@@ -3,6 +3,7 @@ package comp3350.mbs.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -62,12 +63,16 @@ public class SeatingActivity extends AppCompatActivity {
                     Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
                     intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
 
+                    //passing the whole list.
+                    intent.putExtra("seats", bookedSeats.size());
                     accessSeats = new AccessSeats();
                     se = new SeatEncoding();
+                    ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(vt);
+                    intent.putExtra("ViewingTime_Selected", pvt);
+
                     seatString = se.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
                     accessSeats.updateSeatList( vt, seatString );
-
                     startActivity(intent);
                 }//end if-else
             }
@@ -93,6 +98,11 @@ public class SeatingActivity extends AppCompatActivity {
 
             if (vt == null) {
                 throw new Error("no available viewing times for the movie:" + theatreMovie.getMovieName());
+        vt = intent.getParcelableExtra( "VT");
+
+        seatConfirmButton = findViewById(R.id.seatConfirmButton);
+        accessSeats = new AccessSeats();
+        se = new SeatEncoding();
 
             } else {
 
