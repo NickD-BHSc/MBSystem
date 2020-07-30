@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.objects.TicketStub;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
@@ -121,7 +122,6 @@ public class DataAccessObject implements DataAccess {
             processSQLError(e);
 
         }
-
         return theatreList;
     }//end getTheatreList
 
@@ -203,7 +203,6 @@ public class DataAccessObject implements DataAccess {
         String seatString;
 
         try{
-
             cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'";
             rs2 = st3.executeQuery(cmdString);
 
@@ -213,13 +212,11 @@ public class DataAccessObject implements DataAccess {
                 showTime = rs2.getString("TIME");
                 showDate = rs2.getString("DATE");
                 seatString = rs2.getString( "SEATLIST");
-
-
                 vt = new ViewingTime(theatreName,movieName,showTime,showDate,seatString);
                 viewingTimeList.add(vt);
 
             }
-
+            }//end while
 
         }catch (Exception e){
             processSQLError(e);
@@ -235,6 +232,11 @@ public class DataAccessObject implements DataAccess {
      * @return it will return the ticketList.
      */
     @Override
+    public List<Seat> getSeatList() {
+        return null;
+    }
+
+    @Override
     public List<Ticket> getTicketList() {
         ticketList = new ArrayList<>();
 
@@ -243,19 +245,16 @@ public class DataAccessObject implements DataAccess {
         Double price;
 
         try{
-
             cmdString = "SELECT * FROM TICKETS";
             rs2 = st3.executeQuery(cmdString);
-
             while(rs2.next()){
                 movieName = rs2.getString("TYPE");
                 price = rs2.getDouble("PRICE");
-
                 ticket = new Ticket(price, movieName);
                 ticketList.add(ticket);
 
             }
-
+            }//end while
 
         }catch (Exception e){
             processSQLError(e);
@@ -279,17 +278,14 @@ public class DataAccessObject implements DataAccess {
         Double price;
 
         try{
-
             cmdString = "SELECT * FROM TICKETS WHERE MOVIENAME = '"+ movie +"'";
             rs2 = st3.executeQuery(cmdString);
-
             while(rs2.next()){
                 movieName = rs2.getString("MOVIENAME");
                 price = rs2.getDouble("PRICE");
-
                 ticket = new Ticket(price, movieName);
 
-            }
+            }//end while
 
         }catch (Exception e){
             processSQLError(e);
@@ -323,6 +319,7 @@ public class DataAccessObject implements DataAccess {
                     +"'";
 
             cmdString = "Update VIEWINGTIMES " +" Set " +values +" " +where;
+
             System.out.println(cmdString);
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
@@ -353,11 +350,11 @@ public class DataAccessObject implements DataAccess {
      * @return it will return an SQL error from the exception in string.
      */
     private String processSQLError(Exception e) {
+    }
+
+    public String processSQLError(Exception e) {
         String result = "*** SQL Error: " + e.getMessage();
-
-        // Remember, this will NOT be seen by the user!
         e.printStackTrace();
-
         return result;
     }//end processSqError
 
@@ -370,7 +367,6 @@ public class DataAccessObject implements DataAccess {
      */
     private String checkWarning(Statement st, int updateCount) {
         String result;
-
         result = null;
         try {
             SQLWarning warning = st.getWarnings();

@@ -8,6 +8,7 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.objects.TicketStub;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessStub implements DataAccess{
