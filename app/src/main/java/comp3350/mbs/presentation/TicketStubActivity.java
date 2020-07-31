@@ -39,6 +39,11 @@ public class TicketStubActivity extends AppCompatActivity{
         insertOrderToTable();
     }//end onCreate
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(TicketStubActivity.this,"This order has already been completed.",Toast.LENGTH_SHORT).show();
+    }
+
     /**
      * onBackPressed - don't let the user go back once they have submitted their order.
      */
