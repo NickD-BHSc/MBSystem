@@ -74,14 +74,6 @@ public class TicketActivity extends AppCompatActivity {
 
                     startActivity(startIntent);
                 }
-
-                Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
-                ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
-                startIntent.putExtra("ViewingTime_Selected", pvt);
-                startIntent.putExtra("Quantity", seatCount);
-
-                startActivity(startIntent);
-
             }
         });
 
