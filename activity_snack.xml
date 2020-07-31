@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Select your snack"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    
+    <TextView
+        android:id="@+id/hogDog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hotdog"
+        android:textSize="25dp"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:id="@+id/prince_hotdog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotdogView"
+        android:text="$2"
+        android:layout_marginLeft="10dp"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/hotdog_eidt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotdogView"
+        android:layout_toRightOf="@id/prince_hotdog"
+        android:ems="3"
+        />
+
+    <ImageView
+        android:id="@+id/hotdogView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hogDog"
+        android:src="@drawable/hotdog"
+        android:layout_marginLeft="25dp"
+        />
+
+    <TextView
+        android:id="@+id/popcorn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="popcorn"
+        android:textSize="25dp"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"/>
+
+    <ImageView
+        android:id="@+id/poocornView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hogDog"
+        android:src="@drawable/porcorn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/popcorn_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotdogView"
+        android:text="$3"
+        android:layout_alignLeft="@id/popcorn"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/popcorn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotdogView"
+        android:layout_toRightOf="@id/popcorn_price"
+        android:ems="3"
+        />
+
+    <TextView
+        android:id="@+id/fries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fries"
+        android:textSize="25dp"
+        android:layout_toRightOf="@id/popcorn"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="85dp"/>
+
+    <ImageView
+        android:id="@+id/friesView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hogDog"
+        android:layout_toRightOf="@id/popcorn"
+        android:src="@drawable/fries"
+        android:layout_marginLeft="85dp"
+        />
+
+    <TextView
+        android:id="@+id/fries_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/friesView"
+        android:text="$3"
+        android:layout_alignLeft="@id/fries"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/fries_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotdogView"
+        android:layout_toRightOf="@id/fries_price"
+        android:ems="3"
+        />
+
+
+    <TextView
+        android:id="@+id/drink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="drink"
+        android:textSize="25dp"
+        android:layout_below="@id/prince_hotdog"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop= "22dp"/>
+
+
+
+    <ImageView
+        android:id="@+id/drinkView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/drink"
+        android:src="@drawable/cocacola"
+        android:layout_marginLeft="25dp"
+        />
+
+    <TextView
+        android:id="@+id/drink_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drinkView"
+        android:text="$1"
+        android:layout_alignLeft="@id/drink"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/drink_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drinkView"
+        android:layout_toRightOf="@id/drink_price"
+        android:ems="3"
+        />
+
+    <TextView
+        android:id="@+id/noodle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="noodle"
+        android:textSize="25dp"
+        android:layout_below="@id/popcorn_price"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"/>
+
+    <ImageView
+        android:id="@+id/noodleView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/noodle"
+        android:src="@drawable/porcorn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        />
+
+    <TextView
+        android:id="@+id/noodle_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noodleView"
+        android:text="$5"
+        android:layout_alignLeft="@id/noodle"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/noodle_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noodleView"
+        android:layout_toRightOf="@id/noodle_price"
+        android:ems="3"
+        />
+
+
+    <TextView
+        android:id="@+id/chips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chips"
+        android:textSize="25dp"
+        android:layout_toRightOf="@id/noodle"
+        android:layout_below="@id/fries_price"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="22dp"/>
+
+
+    <ImageView
+        android:id="@+id/chipsView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/chips"
+        android:layout_toRightOf="@id/noodleView"
+        android:src="@drawable/chips"
+        android:layout_marginLeft="105dp"
+        />
+
+
+    <TextView
+        android:id="@+id/chips_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chipsView"
+        android:text="$4 "
+        android:layout_alignLeft="@id/chips"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/chips_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chipsView"
+        android:layout_toRightOf="@id/chips_price"
+        android:ems="3"
+        />
+
+
+    <Button
+        android:id="@+id/snackConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noodle_price"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Snack Confirm"
+        android:textSize="25dp" />
+
+
+</RelativeLayout>
