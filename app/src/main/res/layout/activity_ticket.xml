@@ -208,7 +208,7 @@
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
-        android:hint="1234123412341234"
+        android:hint="16 digit card number"
         android:inputType="number"
         android:maxLength="16"
         android:textColor="#000000"
