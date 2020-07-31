@@ -22,6 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
         android:text="Welcome to the Movie Booking System"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
