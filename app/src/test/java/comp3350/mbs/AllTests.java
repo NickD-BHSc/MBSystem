@@ -51,7 +51,6 @@ public class AllTests {
 
     }
 
-
     private static void testBusiness() {
 
         suite.addTestSuite(CalculateTest.class);
