@@ -40,7 +40,6 @@ public class TicketActivity extends AppCompatActivity {
     private TheatreMovies theatreMovie;
     private List<Parcelable> bookedSeats;
     private ViewingTime movieDetails;
-    private int seatCount;
     private Order order;
 
     @Override
@@ -64,7 +63,6 @@ public class TicketActivity extends AppCompatActivity {
                 String cardInput = cardInputTextView.getText().toString();
                 String expiryDate = cardExpiryTextView.getText().toString();
                 String securityCode = cardSecurityCodeTextView.getText().toString();
-
 
                 if(!CreditCardValidation.isCardValid(cardInput, expiryDate, securityCode)){
                     Toast.makeText(TicketActivity.this,"Please enter a valid credit card.",Toast.LENGTH_SHORT).show();
@@ -94,7 +92,6 @@ public class TicketActivity extends AppCompatActivity {
         chosenSeatsTextView = findViewById(R.id.chosenSeatsTextView);
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
-        seatCount= intent.getIntExtra("seats", 0);
         bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
 
         movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
@@ -110,7 +107,6 @@ public class TicketActivity extends AppCompatActivity {
     private void addTicketInfo(){
 
         Intent intent = getIntent();
-        bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
         theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
 
         if(theatreMovie == null){

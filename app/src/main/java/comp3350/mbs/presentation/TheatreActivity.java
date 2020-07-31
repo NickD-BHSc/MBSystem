@@ -64,5 +64,4 @@ public class TheatreActivity extends AppCompatActivity {
 
     }//end buildRecyclerView
 
-
 }//end TheatreActivity class

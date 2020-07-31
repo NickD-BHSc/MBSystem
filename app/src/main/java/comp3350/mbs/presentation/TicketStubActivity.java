@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
-
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.objects.Order;
@@ -79,12 +77,12 @@ public class TicketStubActivity extends AppCompatActivity{
         chosenTheatreLocationTextView.setText(order.getTheatreName());
     }//end addTicketStubInfo
 
-    private void insertOrderToTable()
-    {
+    /**
+     * insertOrderToTable- inserts a new entry into the ORDERS table
+     */
+    private void insertOrderToTable(){
         AccessOrders accessOrders = new AccessOrders();
         accessOrders.insertNewOrder(order);
-        List<Order> list1 = accessOrders.getOrderList();
-    }
-
+    }//end insertOrderToTable
 
 }//end TicketStubActivity class

@@ -64,10 +64,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         }else if(context instanceof SeatingActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seat, parent, false);
 
-        } else if(context instanceof OrderActivity) {
+        }else if(context instanceof OrderActivity){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_order, parent, false);
 
-        }else {
+        }else{
             throw new Error("given context is neither Theatre, Movie, or Seating Activity.");
         }
 
