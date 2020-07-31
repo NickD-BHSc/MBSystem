@@ -20,8 +20,7 @@ public class AccessTicketsTest extends TestCase{
 
     public AccessTicketsTest(String arg0){
         super(arg0);
-    }
-
+    }//end AccessTicketsTest
 
     public void setUp(){
         accessTickets = null;
@@ -31,12 +30,13 @@ public class AccessTicketsTest extends TestCase{
 
     @Test
     public void testGetValidTicket(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessTicketsTest: testValidTicket");
 
         Services.createDataAccess(new DataAccessStub(dbName));
         accessTickets = new AccessTickets();
-        //attempt to retrieve a ticket that is in the db
+
         Ticket ticketResult = accessTickets.getTicket("Avengers Endgame");
 
         assertEquals(10.00, ticketResult.getPrice());
@@ -44,29 +44,31 @@ public class AccessTicketsTest extends TestCase{
 
         Services.closeDataAccess();
         System.out.println("Finished AccessTicketsTest: testGetValidTicket");
+
     }//end testGetValidTicket
 
     @Test
     public void testGetInvalidTicket(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessTicketsTest: testGetInvalidTicket");
 
         Services.createDataAccess(new DataAccessStub(dbName));
         accessTickets = new AccessTickets();
 
-        //attempt to retrieve a ticket that is in the db
         Ticket ticketResult = accessTickets.getTicket("Avengers Infinity War");
         assertNull(ticketResult);
 
-
         Services.closeDataAccess();
-        System.out.println("Finished AccessTicketsTest: testGetValidTicket");
+        System.out.println("Finished AccessTicketsTest: testGetInvalidTicket");
+
     }//end testGetInvalidTicket
 
     @Test
     public void testGetNullTicket(){
+
         Services.closeDataAccess();
-        System.out.println("Starting AccessTicketsTest: testGetInvalidTicket");
+        System.out.println("Starting AccessTicketsTest: testGetNullTicket");
 
         Services.createDataAccess(new DataAccessStub(dbName));
         accessTickets = new AccessTickets();
@@ -75,7 +77,8 @@ public class AccessTicketsTest extends TestCase{
         assertNull(ticketResult);
 
         Services.closeDataAccess();
-        System.out.println("Finished AccessTicketsTest: testGetValidTicket");
+        System.out.println("Finished AccessTicketsTest: testGetNullTicket");
+
     }//end testGetNullTicket
 
-}
+}//end AccessTicketsTest

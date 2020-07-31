@@ -8,23 +8,23 @@ import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.persistence.DataAccess;
 
 public class AccessTheatreMovies {
+
     private DataAccess dataAccess;
 
     /**
      * AccessTheatreMovies Constructor - gets the data/service stored in the database Main.dbName.
      */
-    public AccessTheatreMovies() {
+    public AccessTheatreMovies(){
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
 
     /**
      * getMoviesFromTheatre - a getter method that returns a list of movies from the given theatre.
-     * @param whichTheatre is the given theatre name.
+     * @param theatreName is the given theatre name.
      * @return it will return a list of movies that is contained in the given theatre.
      */
-    public List<TheatreMovies> getMoviesFromTheatre(String whichTheatre){
-       return dataAccess.getMoviesFromTheatre(new TheatreMovies(whichTheatre,null));
+    public List<TheatreMovies> getMoviesFromTheatre(String theatreName){
+       return dataAccess.getMoviesFromTheatre(new TheatreMovies(theatreName,null));
     }//end getMoviesFromTheatre
-    
 
 }//end AccessTheatreMovies class

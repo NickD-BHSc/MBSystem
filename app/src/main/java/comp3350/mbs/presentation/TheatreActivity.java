@@ -1,12 +1,12 @@
 package comp3350.mbs.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -28,18 +28,17 @@ public class TheatreActivity extends AppCompatActivity {
     private AccessTheatres accessTheatres;
     private List<Theatre> theatreList;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         copyDatabaseToDevice();
         Main.startUp();
         setContentView(R.layout.activity_theatre_list);
 
-       init();
+        init();
 
     }//end onCreate
-
 
     /**
      * init - a method that gets the sample data from the database (located at AccessTheatres) and
@@ -47,22 +46,23 @@ public class TheatreActivity extends AppCompatActivity {
      *          the sample data to the layout activity.
      */
     private void init(){
+
         accessTheatres = new AccessTheatres();
         theatreList = accessTheatres.getTheatreList();
 
         if(theatreList == null){
-                throw new Error("no list of theatres available.");
+                throw new Error("No list of theatres available.");
         }else{
             buildRecyclerView();
         }
 
     }//end init
 
-
     /**
      * buildRecyclerView - a method that builds the layout for the list of Theatres.
      */
-    private void buildRecyclerView() {
+    private void buildRecyclerView(){
+
         theatreRecyclerView = findViewById(R.id.theatreRecyclerView);
 
         customAdapter = new CustomAdapter(TheatreActivity.this,theatreList);
@@ -73,11 +73,11 @@ public class TheatreActivity extends AppCompatActivity {
 
     }//end buildRecyclerView
 
-
     /**
      * copyDatabaseToDevice - a method that copies the database to the app.
      */
-    private void copyDatabaseToDevice() {
+    private void copyDatabaseToDevice(){
+
         final String DB_PATH = "db";
 
         String[] assetNames;
@@ -85,23 +85,21 @@ public class TheatreActivity extends AppCompatActivity {
         File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
         AssetManager assetManager = getAssets();
 
-        try {
+        try{
 
             assetNames = assetManager.list(DB_PATH);
-            for (int i = 0; i < assetNames.length; i++) {
+            for (int i = 0; i < assetNames.length; i++){
                 assetNames[i] = DB_PATH + "/" + assetNames[i];
             }
 
             copyAssetsToDirectory(assetNames, dataDirectory);
-
             Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
 
-        } catch (IOException ioe) {
+        }catch(IOException ioe){
             comp3350.mbs.presentation.Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }
 
     }//end copyDatabaseToDevice
-
 
     /**
      * copyAssetsToDirectory - a method that copies the assets to file directory.
@@ -109,10 +107,11 @@ public class TheatreActivity extends AppCompatActivity {
      * @param directory is the file directory.
      * @throws IOException is the IOException when file is not found.
      */
-    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException{
+
         AssetManager assetManager = getAssets();
 
-        for (String asset : assets) {
+        for (String asset : assets){
             String[] components = asset.split("/");
             String copyPath = directory.toString() + "/" + components[components.length - 1];
             char[] buffer = new char[1024];
@@ -120,12 +119,12 @@ public class TheatreActivity extends AppCompatActivity {
 
             File outFile = new File(copyPath);
 
-            if (!outFile.exists()) {
+            if (!outFile.exists()){
                 InputStreamReader in = new InputStreamReader(assetManager.open(asset));
                 FileWriter out = new FileWriter(outFile);
 
                 count = in.read(buffer);
-                while (count != -1) {
+                while (count != -1){
                     out.write(buffer, 0, count);
                     count = in.read(buffer);
                 }
@@ -136,6 +135,5 @@ public class TheatreActivity extends AppCompatActivity {
         }
 
     }//end copyAssetsToDirectory
-
 
 }//end TheatreActivity class

@@ -1,11 +1,14 @@
 package comp3350.mbs.objects;
 
 public class Theatre{
+
     private String name;
     private String address;
     private String distance;
 
-    //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatre class.
+    /**
+     * Theatre constructor for implementing Parcelable interface in the ParcelableTheatre class.
+     */
     public Theatre(){}
 
     /**
@@ -15,27 +18,25 @@ public class Theatre{
      * @param address is the address of the theatre.
      * @param distance is the distance between the user's location.
      */
-    public Theatre(String name, String address, String distance) {
+    public Theatre(String name, String address, String distance){
         this.name = name;
         this.address = address;
         this.distance = distance;
     }//end Constructor
 
-
     //================================================================
     //Getter methods
-    public String getName() {
+    public String getName(){
         return name;
     }//end getName
 
-    public String getAddress() {
+    public String getAddress(){
         return address;
     }//end getAddress
 
-    public String getDistance() {
+    public String getDistance(){
         return distance;
     }//end getDistance
-
 
     //================================================================
     //Setter methods
@@ -51,7 +52,6 @@ public class Theatre{
         this.distance = distance;
     }//end setDistance
 
-
     /**
      * equals - a method that determines if the given object (Theatre) has the same theatre name as the instance name.
      *
@@ -63,17 +63,15 @@ public class Theatre{
         boolean result = false;
 
         if (object instanceof Theatre) {
-            Theatre theatreItem = (Theatre) object;//cast the object to Theatre
+            Theatre theatre = (Theatre) object;
 
-            if (((theatreItem.getName() == null) && (name == null)) ||
-                    (theatreItem.getName().equals(name))) {
+            if (((theatre.getName() == null) && (name == null)) ||
+                    (theatre.getName().equals(name))) {
                 result = true;
             }
-
         }
 
         return result;
-
     }//end equals
 
 }//end Theatre class

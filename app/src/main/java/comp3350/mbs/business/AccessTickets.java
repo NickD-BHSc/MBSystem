@@ -21,7 +21,7 @@ public class AccessTickets {
      * @param movieName is the name of the movie associated with the ticket.
      * @return it will return a Ticket object that has the given movie.
      */
-    public Ticket getTicket(String movieName) {
+    public Ticket getTicket(String movieName){
         return dataAccess.getTicket(movieName);
     }//end getTicket
 

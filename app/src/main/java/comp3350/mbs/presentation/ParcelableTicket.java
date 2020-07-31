@@ -10,45 +10,38 @@ public class ParcelableTicket extends Ticket implements Parcelable {
     /**
      * ParcelableTicket Constructor
      * @param price is the price of the ticket.
-     * @param type is the type of the ticket.
-     * @param quantity is the quantity of the ticket.
+     * @param movieName is the type of the ticket.
      */
-    public ParcelableTicket(double price, String type, int quantity) {
-        super(price, type, quantity);
-    }//end constructor
+    public ParcelableTicket(double price, String movieName){
+        super(price, movieName);
+    }//end Constructor
 
-
-    protected ParcelableTicket(Parcel in) {
+    protected ParcelableTicket(Parcel in){
         super.setPrice(in.readDouble());
         super.setMovieName(in.readString());
-        super.setQuantity(in.readInt());
-    }
+    }//end Constructor
 
-
-    public static final Creator<ParcelableTicket> CREATOR = new Creator<ParcelableTicket>() {
+    public static final Creator<ParcelableTicket> CREATOR = new Creator<ParcelableTicket>(){
         @Override
-        public ParcelableTicket createFromParcel(Parcel in) {
+        public ParcelableTicket createFromParcel(Parcel in){
             return new ParcelableTicket(in);
-        }
+        }//end createFromParcel
 
         @Override
-        public ParcelableTicket[] newArray(int size) {
+        public ParcelableTicket[] newArray(int size){
             return new ParcelableTicket[size];
-        }
-    };
-
+        }//end newArray
+    };//end Creator
 
     @Override
-    public int describeContents() {
+    public int describeContents(){
         return 0;
-    }
-
+    }//end describeContents
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel parcel, int i){
         parcel.writeDouble(super.getPrice());
         parcel.writeString(super.getMovieName());
-        parcel.writeInt(super.getQuantity());
-    }
+    }//end writeToParcel
 
 }

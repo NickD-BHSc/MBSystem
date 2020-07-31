@@ -32,19 +32,23 @@ public class AllTests {
     public static TestSuite suite;
 
     public static junit.framework.Test suite() {
+
         suite = new TestSuite("All tests");
         testObjects();
         testBusiness();
         testPersistence();
         return suite;
+
     }
 
-    private static void testObjects() {
-        suite.addTestSuite( SeatingTest.class);
+    private static void testObjects(){
+
+        suite.addTestSuite(SeatingTest.class);
         suite.addTestSuite(TheatreMoviesTest.class);
         suite.addTestSuite(TheatreTest.class);
         suite.addTestSuite(TicketTest.class);
         suite.addTestSuite(ViewingTimeTest.class);
+
     }
 
     private static void testBusiness() {
@@ -59,6 +63,7 @@ public class AllTests {
         suite.addTestSuite(AccessViewingTimesTest.class);
         suite.addTestSuite(ParcelableFactoryTest.class);
         suite.addTestSuite(SeatEncodingTest.class);
+
     }
 
     private static void testPersistence(){

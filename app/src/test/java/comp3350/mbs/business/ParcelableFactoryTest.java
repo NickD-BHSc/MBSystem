@@ -19,20 +19,20 @@ import comp3350.mbs.presentation.ParcelableTicket;
 import comp3350.mbs.presentation.ParcelableViewingTime;
 
 public class ParcelableFactoryTest extends TestCase {
+
     private Parcelable parcelableObject;
 
     public ParcelableFactoryTest(String arg0){
         super(arg0);
     }
 
-
     public void setUp(){
         parcelableObject = null;
     }//end setUp
 
-
     @Test
     public void testCreateParcelableTheatre(){
+
         System.out.println("Starting TestParcelableFactory: testCreateParcelableTheatre");
 
         Theatre theatre = new Theatre("theatre1","address1","distance1");
@@ -53,9 +53,9 @@ public class ParcelableFactoryTest extends TestCase {
 
     }//end testCreateParcelableTheatre
 
-
     @Test
     public void testCreateParcelableTheatreMovie(){
+
         System.out.println("Starting TestParcelableFactory: testCreateParcelableTheatreMovie");
 
         TheatreMovies theatreMovie = new TheatreMovies("theatre1","movie1",1,"movieDescription1");
@@ -79,9 +79,9 @@ public class ParcelableFactoryTest extends TestCase {
 
     }//end testCreateParcelableTheatreMovie
 
-
     @Test
     public void testCreateParcelableViewingTime(){
+
         System.out.println("Starting TestParcelableFactory: testCreateParcelableViewingTime");
 
         ViewingTime viewingTime = new ViewingTime("theatre1","movie1","show time","show date","00000000000000000000000000000000");
@@ -106,9 +106,9 @@ public class ParcelableFactoryTest extends TestCase {
 
     }//end testCreateParcelableViewingTime
 
-
     @Test
     public void testCreateParcelableSeat(){
+
         System.out.println("Starting TestParcelableFactory: testCreateParcelableSeat");
 
         Seat seat = new Seat(1,false, R.drawable.seat);
@@ -126,11 +126,12 @@ public class ParcelableFactoryTest extends TestCase {
         assertEquals(R.drawable.seat,((ParcelableSeat)parcelableObject).getSeatImage());
 
         System.out.println("Finished TestParcelableFactory: testCreateParcelableSeat\n");
-    }//end testCreateParcelableSeat
 
+    }//end testCreateParcelableSeat
 
     @Test
     public void testCreateParcelableTicket(){
+
         System.out.println("Starting TestParcelableFactory: testCreateParcelableTicket");
         Ticket ticket;
 
@@ -138,7 +139,6 @@ public class ParcelableFactoryTest extends TestCase {
         assertNotNull(ticket);
         assertEquals(11.50,ticket.getPrice());
         assertEquals("movie1",ticket.getMovieName());
-        assertEquals(1,ticket.getQuantity());
 
         parcelableObject = ParcelableFactory.createParcelableObject(ticket);
         assertNotNull(parcelableObject);
@@ -146,13 +146,11 @@ public class ParcelableFactoryTest extends TestCase {
 
         assertEquals(11.50,((ParcelableTicket)parcelableObject).getPrice());
         assertEquals("movie1",((ParcelableTicket)parcelableObject).getMovieName());
-        assertEquals(1,((ParcelableTicket)parcelableObject).getQuantity());
 
-        ticket = new Ticket(13.91,"movie2",15);
+        ticket = new Ticket(13.91,"movie2");
         assertNotNull(ticket);
         assertEquals(13.91,ticket.getPrice());
         assertEquals("movie2",ticket.getMovieName());
-        assertEquals(15,ticket.getQuantity());
 
 
         parcelableObject = ParcelableFactory.createParcelableObject(ticket);
@@ -161,15 +159,14 @@ public class ParcelableFactoryTest extends TestCase {
 
         assertEquals(13.91,((ParcelableTicket)parcelableObject).getPrice());
         assertEquals("movie2",((ParcelableTicket)parcelableObject).getMovieName());
-        assertEquals(15,((ParcelableTicket)parcelableObject).getQuantity());
 
         System.out.println("Finished TestParcelableFactory: testCreateParcelableTicket\n");
 
     }//end testCreateParcelableTicket
 
-
     @Test
     public void testCreateParcelableNullObjects(){
+
         System.out.println("Starting TestParcelableFactory: testCreateParcelableNullObjects");
         Theatre theatre;
         TheatreMovies theatreMovie;
@@ -208,7 +205,6 @@ public class ParcelableFactoryTest extends TestCase {
         assertEquals(-1,((ParcelableTheatreMovies)parcelableObject).getMoviePoster());
         assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieDescription());
 
-
         theatreMovie = new TheatreMovies(null,null,-1,null);
         assertNotNull(theatreMovie);
         assertEquals(null,theatreMovie.getTheatreName());
@@ -224,7 +220,6 @@ public class ParcelableFactoryTest extends TestCase {
         assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieName());
         assertEquals(-1,((ParcelableTheatreMovies)parcelableObject).getMoviePoster());
         assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieDescription());
-
 
         //Viewing time
         viewingTime = new ViewingTime(null,null,null,null,null);
@@ -245,14 +240,11 @@ public class ParcelableFactoryTest extends TestCase {
         assertEquals(null, ((ParcelableViewingTime)parcelableObject).getShowDate());
         assertEquals(null, ((ParcelableViewingTime)parcelableObject).getSeatString());
 
-        //No seat since all its fields are primitive.
-
         //Ticket
         ticket = new Ticket(0.0,null);
         assertNotNull(ticket);
         assertEquals(0.0,ticket.getPrice());
         assertEquals(null,ticket.getMovieName());
-        assertEquals(1,ticket.getQuantity());
 
         parcelableObject = ParcelableFactory.createParcelableObject(ticket);
         assertNotNull(parcelableObject);
@@ -260,13 +252,11 @@ public class ParcelableFactoryTest extends TestCase {
 
         assertEquals(0.0,((ParcelableTicket)parcelableObject).getPrice());
         assertEquals(null,((ParcelableTicket)parcelableObject).getMovieName());
-        assertEquals(1,((ParcelableTicket)parcelableObject).getQuantity());
 
-        ticket = new Ticket(0.0,null,0);
+        ticket = new Ticket(0.0,null);
         assertNotNull(ticket);
         assertEquals(0.0,ticket.getPrice());
         assertEquals(null,ticket.getMovieName());
-        assertEquals(0,ticket.getQuantity());
 
         parcelableObject = ParcelableFactory.createParcelableObject(ticket);
         assertNotNull(parcelableObject);
@@ -274,16 +264,14 @@ public class ParcelableFactoryTest extends TestCase {
 
         assertEquals(0.0,((ParcelableTicket)parcelableObject).getPrice());
         assertEquals(null,((ParcelableTicket)parcelableObject).getMovieName());
-        assertEquals(0,((ParcelableTicket)parcelableObject).getQuantity());
-
 
         System.out.println("Finished TestParcelableFactory: testCreateParcelableNullObjects\n");
 
     }//end testCreateParcelableNullObjects
 
-
     @Test
     public void testInvalidParcelable(){
+
         System.out.println("Starting TestParcelableFactory: testInvalidParcelable");
         String testInput;
 
@@ -311,7 +299,7 @@ public class ParcelableFactoryTest extends TestCase {
         assertEquals(null,parcelableObject);
 
         System.out.println("Finished TestParcelableFactory: testInvalidParcelable\n");
-    }//end testInvalidParcelable
 
+    }//end testInvalidParcelable
 
 }//end TestParcelableFactory

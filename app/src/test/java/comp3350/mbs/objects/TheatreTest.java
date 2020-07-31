@@ -2,16 +2,16 @@ package comp3350.mbs.objects;
 
 
 import junit.framework.TestCase;
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotEquals;
+
 public class TheatreTest extends TestCase {
 
-    public TheatreTest(String arg0) {
+    public TheatreTest(String arg0){
         super(arg0);
     }
-
 
     @Test
     public void testOneTheatre(){
@@ -33,7 +33,6 @@ public class TheatreTest extends TestCase {
         assertTrue(theatre1.equals(theatre1));
         assertEquals(theatre1, theatre1);
 
-
         Theatre theatre2 = new Theatre("Theatre2","Address2", "10km");
         assertNotNull(theatre2);
 
@@ -53,7 +52,6 @@ public class TheatreTest extends TestCase {
         System.out.println("Finished TheatreTest: testOneTheatre\n");
 
     }//end testOneTheatre
-
 
     @Test
     public void testDistinctTheatres(){
@@ -79,7 +77,6 @@ public class TheatreTest extends TestCase {
         assertTrue(theatre1.equals(theatre1));
         assertEquals(theatre1, theatre1);
 
-
         //theatre2 fields
         assertTrue("Theatre2".equals(theatre2.getName()));
         assertEquals("Theatre2", theatre2.getName());
@@ -92,7 +89,6 @@ public class TheatreTest extends TestCase {
 
         assertTrue(theatre2.equals(theatre2));
         assertEquals(theatre2,theatre2);
-
 
         //comparing theatres' names.
         assertFalse(theatre1.getName().equals(theatre2.getName()));
@@ -108,12 +104,11 @@ public class TheatreTest extends TestCase {
 
         System.out.println("Finished TheatreTest: testDistinctTheatres\n");
 
-
     }//end testDistinctTheatres
-
 
     @Test
     public void testSameTheatres(){
+
         System.out.println("Starting TheatreTest: testSameTheatres");
 
         Theatre theatre1 = new Theatre("Theatre1","Address1","15km");
@@ -148,7 +143,6 @@ public class TheatreTest extends TestCase {
         assertTrue(theatre2.equals(theatre2));
         assertEquals(theatre2, theatre2);
 
-
         //comparing theatres' names.
         assertTrue(theatre1.getName().equals(theatre2.getName()));
         assertEquals(theatre1.getName(),theatre2.getName());
@@ -165,9 +159,9 @@ public class TheatreTest extends TestCase {
 
     }//end testSameTheatres
 
-
     @Test
     public void testNullTheatre(){
+
         System.out.println("Starting TheatreTest: testNullTheatre");
 
         Theatre theatre = new Theatre(null,null,null);
@@ -184,7 +178,6 @@ public class TheatreTest extends TestCase {
         System.out.println("Finished TheatreTest: testNullTheatre\n");
 
     }//end testNullTheatre
-
 
 }//end TheatreTest class
 

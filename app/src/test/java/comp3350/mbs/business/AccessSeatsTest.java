@@ -10,22 +10,23 @@ import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessSeatsTest extends TestCase {
+
     private static String dbName = Main.dbName;
     private AccessSeats accessSeats;
     private AccessViewingTimes accessViewingTimes;
 
     public AccessSeatsTest(String arg0){
         super(arg0);
-    }
+    }//endAccessSeatsTest
 
     public void setUp(){
         accessSeats = null;
         accessViewingTimes = null;
     }//end setUp
 
-
     @Test
     public void testValidUpdate(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessSeatingTest: testValidUpdate");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -41,11 +42,12 @@ public class AccessSeatsTest extends TestCase {
 
         Services.closeDataAccess();
         System.out.println("Finished AccessSeatingTest: testValidUpdate");
-    }//end testValidUpdate
 
+    }//end testValidUpdate
 
     @Test
     public void testInvalidUpdate(){
+
         Services.closeDataAccess();
         System.out.println("Starting AccessSeatingTest: testInvalidUpdate");
         Services.createDataAccess(new DataAccessStub(dbName));
@@ -55,11 +57,11 @@ public class AccessSeatsTest extends TestCase {
 
         String updateResult = accessSeats.updateSeatList(vt, "0987654321");
 
-        assertEquals( updateResult, "Failure");
+        assertEquals(updateResult, "Failure");
 
         Services.closeDataAccess();
         System.out.println("Finished AccessSeatingTest: testInvalidUpdate");
-    }//end testInvalidUpdate
 
+    }//end testInvalidUpdate
 
 }//end AccessSeatsTest

@@ -12,6 +12,7 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTheatresTest extends TestCase {
+
     private static String dbName = Main.dbName;
     private  AccessTheatres accessTheatres;
     private List<Theatre> theatreList;
@@ -19,15 +20,13 @@ public class AccessTheatresTest extends TestCase {
 
     public AccessTheatresTest(String arg0){
         super(arg0);
-    }
-
+    }//end AccessTheatresTest
 
     public void setUp(){
         accessTheatres = null;
         theatreList = null;
         theatre = null;
     }//end setUp
-
 
     @Test
     public void testRetrieveTheatreList(){
@@ -86,7 +85,6 @@ public class AccessTheatresTest extends TestCase {
         assertTrue("10km".equals(theatre.getDistance()));
         assertEquals("10km",theatre.getDistance());
 
-
         theatre = theatreList.get(2); //get the third theatre
         assertNotNull(theatre);
 
@@ -100,7 +98,6 @@ public class AccessTheatresTest extends TestCase {
         assertTrue("19.8km".equals(theatre.getDistance()));
         assertEquals("19.8km",theatre.getDistance());
 
-
         Services.closeDataAccess();
         System.out.println("Finished AccessTheatreTest: testTheatresFromList\n");
 
@@ -108,7 +105,6 @@ public class AccessTheatresTest extends TestCase {
 
     @Test
     public void testInvalidTheatre(){
-
 
         Services.closeDataAccess();
         System.out.println("Starting AccessTheatreTest: testInvalidTheatre");

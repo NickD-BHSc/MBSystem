@@ -6,21 +6,22 @@ public class TheatreMovies {
     private int moviePoster;
     private String movieDescription;
 
-    //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatreMovies class.
+    /**
+     * TheatreMovies constructor for implementing Parcelable interface in the ParcelableTheatreMovies class.
+     */
     public TheatreMovies(){}
-
 
     /**
      * TheatreMovies Constructor - This is mainly used when we only need the theatre name and not the movie information.
-     *
+     * There is no movie poster and no description needed.
      * @param theatreName is the given theatre name.
      * @param movieName is the given movie name.
      */
     public TheatreMovies(String theatreName, String movieName) {
         this.theatreName = theatreName;
         this.movieName = movieName;
-        this.moviePoster = -1; //represents null or no poster.
-        this.movieDescription = null;//no movie description.
+        this.moviePoster = -1;
+        this.movieDescription = null;
     }//end TheatreMovies constructor
 
     /**
@@ -38,41 +39,39 @@ public class TheatreMovies {
         this.movieDescription = movieDescription;
     }//end TheatreMovies constructor
 
-
     //================================================================
     //Getter methods
-    public String getTheatreName() {
+    public String getTheatreName(){
         return theatreName;
     }
 
-    public String getMovieName() {
+    public String getMovieName(){
         return movieName;
     }
 
-    public int getMoviePoster() {
+    public int getMoviePoster(){
         return moviePoster;
     }
 
-    public String getMovieDescription() {
+    public String getMovieDescription(){
         return movieDescription;
     }
 
-
     //================================================================
     //Setter methods
-    public void setTheatreName(String theatreName) {
+    public void setTheatreName(String theatreName){
         this.theatreName = theatreName;
     }//end setTheatreName
 
-    public void setMovieName(String movieName) {
+    public void setMovieName(String movieName){
         this.movieName = movieName;
     }//end setMovieName
 
-    public void setMoviePoster(int moviePoster) {
+    public void setMoviePoster(int moviePoster){
         this.moviePoster = moviePoster;
     }//end setMoviePoster
 
-    public void setMovieDescription(String movieDescription) {
+    public void setMovieDescription(String movieDescription){
         this.movieDescription = movieDescription;
     }//end setMovieDescription
 
@@ -86,10 +85,10 @@ public class TheatreMovies {
         boolean result = false;
 
         if(object instanceof TheatreMovies){
-            TheatreMovies tm = (TheatreMovies)object;
+            TheatreMovies theatreMovie = (TheatreMovies)object;
 
-            if((((tm.theatreName == null) && (theatreName == null)) || ((tm.theatreName != null) && (tm.theatreName.equals(theatreName))))
-                && (((tm.movieName == null) && (movieName == null)) || ((tm.movieName != null) && (tm.movieName.equals(movieName))))){
+            if((((theatreMovie.theatreName == null) && (theatreName == null)) || ((theatreMovie.theatreName != null) && (theatreMovie.theatreName.equals(theatreName))))
+                && (((theatreMovie.movieName == null) && (movieName == null)) || ((theatreMovie.movieName != null) && (theatreMovie.movieName.equals(movieName))))){
                 result = true;
             }
 

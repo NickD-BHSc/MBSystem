@@ -18,7 +18,6 @@ public class Main {
         Services.createDataAccess(dbName);
     }//end startUp
 
-
     /**
      * shutDown - a static method that closes the database.
      */
@@ -30,7 +29,7 @@ public class Main {
      * getDBPathName - a getter method that returns the database name.
      * @return it will either return the database name or the path name.
      */
-    public static String getDBPathName() {
+    public static String getDBPathName(){
         if (dbPathName == null)
             return dbName;
         else
@@ -41,7 +40,7 @@ public class Main {
      * setDBPathName - a setter method that sets the dbPathName to the new path.
      * @param pathName is the new pathName that will be assigned to the dbPathName.
      */
-    public static void setDBPathName(String pathName) {
+    public static void setDBPathName(String pathName){
         System.out.println("Setting DB path to: " + pathName);
         dbPathName = pathName;
     }//end setDBPathName
