@@ -103,7 +103,6 @@ public class DataAccessObject implements DataAccess {
         theatreList = new ArrayList<>();
         String name;
         String address;
-        String distance;
 
         try {
             cmdString = "SELECT * FROM THEATRES"; // selecting all the fields from the THEATRES Table
@@ -112,8 +111,7 @@ public class DataAccessObject implements DataAccess {
             while(rs2.next()){
                 name =rs2.getString("NAME");
                 address = rs2.getString("ADDRESS");
-                distance = rs2.getString("DISTANCE");
-                Theatre theatre = new Theatre(name,address,distance);
+                Theatre theatre = new Theatre(name,address);
                 theatreList.add(theatre);
             }
 

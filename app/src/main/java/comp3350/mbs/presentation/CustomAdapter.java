@@ -93,7 +93,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 //set the following info about the theatre to the TextViews.
                 holder.theatreNameTxtView.setText(item.getName());
                 holder.theatreAddressTxtView.setText(item.getAddress());
-                holder.theatreDistTxtView.setText(item.getDistance());
 
                 //Moves to the MovieActivity when a theatre is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +138,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 //set the following info about the ViewingTime to the TextViews.
                 final ViewingTime item = (ViewingTime)itemLists.get(position);
                 holder.viewTimeTextView.setText(item.getShowTime() + "\n" + item.getShowDate());
-
 
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
