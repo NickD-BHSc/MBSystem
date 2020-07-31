@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +34,14 @@ public class TicketStubActivity extends AppCompatActivity{
         init();
         addTicketStubInfo();
     }//end onCreate
+
+    /**
+     * onBackPressed - don't let the user go back once they have submitted their order.
+     */
+    @Override
+    public void onBackPressed(){
+        Toast.makeText(TicketStubActivity.this,"This order has already been completed.",Toast.LENGTH_SHORT).show();
+    }//end onBackPressed
 
     /**
      * init - a method that initializes the widgets
