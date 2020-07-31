@@ -38,12 +38,7 @@ public class AccessOrdersTest extends TestCase {
         accessOrders = new AccessOrders();
         orderList = accessOrders.getOrderList();
 
-        int beforeSize = 0;
-
-        if(orderList != null)
-        {
-            beforeSize =  orderList.size();
-        }
+        int beforeSize = orderList.size();
 
         order = new Order("testMovie","testShowTime", "testShowDate", "testTheatre", 1);
         accessOrders.insertNewOrder(order);
@@ -60,9 +55,127 @@ public class AccessOrdersTest extends TestCase {
         assertEquals(beforeSize, afterDeleteSize);
 
         Services.closeDataAccess();
-        System.out.println("Finished AccessSeatingTest: testValidInsert");
+        System.out.println("Finished AccessOrderTest: testValidInsert");
 
     }//end testValidInsert
 
 
+    @Test
+    public void testInvalidInsertNull(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessOrderTest: testInvalidInsertNull");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessOrders = new AccessOrders();
+        orderList = accessOrders.getOrderList();
+
+        int beforeSize = orderList.size();
+        accessOrders.insertNewOrder(null);
+
+        orderList = accessOrders.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessOrderTest: testInvalidInsertNull");
+
+    }//end testValidInsertNull
+
+    @Test
+    public void testInvalidInsertMovieName(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessOrderTest: testInvalidInsertMovieName");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessOrders = new AccessOrders();
+        orderList = accessOrders.getOrderList();
+
+        int beforeSize = orderList.size();
+        order = new Order(null,"testShowTime", "testShowDate", "testTheatre", 1);
+        accessOrders.insertNewOrder(order);
+
+        orderList = accessOrders.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessOrderTest: testInvalidInsertMovieName");
+
+    }//end testInvalidInsertMovieName
+
+    @Test
+    public void testInvalidInsertShowTime(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessOrderTest: testInvalidInsertShowTime");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessOrders = new AccessOrders();
+        orderList = accessOrders.getOrderList();
+
+        int beforeSize = orderList.size();
+        order = new Order("testMovie",null, "testShowDate", "testTheatre", 1);
+        accessOrders.insertNewOrder(order);
+
+        orderList = accessOrders.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessOrderTest: testInvalidInsertShowTime");
+
+    }//end testInvalidInsertShowTime
+
+    @Test
+    public void testInvalidInsertShowDate(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessOrderTest: testInvalidInsertShowDate");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessOrders = new AccessOrders();
+        orderList = accessOrders.getOrderList();
+
+        int beforeSize = orderList.size();
+        order = new Order("testMovie", "testShowTime", null,  "testTheatre", 1);
+        accessOrders.insertNewOrder(order);
+
+        orderList = accessOrders.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessOrderTest: testInvalidInsertShowDate");
+
+    }//end testInvalidInsertShowDate
+
+    @Test
+    public void testInvalidInsertTheatreName(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessOrderTest: testInvalidInsertTheatreName");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessOrders = new AccessOrders();
+        orderList = accessOrders.getOrderList();
+
+        int beforeSize = orderList.size();
+        order = new Order("testMovie", "testShowTime", "testShowDate",  null, 1);
+        accessOrders.insertNewOrder(order);
+
+        orderList = accessOrders.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessOrderTest: testInvalidInsertTheatreName");
+
+    }//end testInvalidInsertTheatreName
 }

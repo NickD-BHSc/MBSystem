@@ -368,8 +368,8 @@ public class DataAccessStub implements DataAccess{
     public void insertNewOrder(Order order){
         if(order != null)
         {
-            orderList.add(order);
-
+            if(order.getMovieName() != null && order.getShowTime() != null && order.getShowDate() != null && order.getTheatreName() != null)
+                orderList.add(order);
         }
     }//end insertNewOrder
 
@@ -391,6 +391,6 @@ public class DataAccessStub implements DataAccess{
     @Override
     public List<Order> getOrderList(){
         return orderList;
-    }//end insertNewOrder
+    }//end getOrderList
 
 }//end DataAccessStub

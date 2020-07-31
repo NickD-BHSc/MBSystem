@@ -41,7 +41,7 @@ public class AllTests {
 
     private static void testObjects(){
 
-        suite.addTestSuite( SeatingTest.class);
+        suite.addTestSuite(SeatingTest.class);
         suite.addTestSuite(TheatreMoviesTest.class);
         suite.addTestSuite(TheatreTest.class);
         suite.addTestSuite(TicketTest.class);
