@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
-
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.objects.Order;
@@ -65,20 +63,18 @@ public class TicketStubActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         order = intent.getParcelableExtra("Order");
-        //int ticketQuantity = intent.getIntExtra("Quantity", 0);
-        //String quantity = Integer.toString(ticketQuantity);
         chosenTicketQuantityTextView.setText(Integer.toString(order.getTicketQuantity()));
         chosenMovieTitleTextView.setText(order.getMovieName());
         chosenShowTimeTextView.setText(order.getShowTime());
         chosenTheatreLocationTextView.setText(order.getTheatreName());
     }//end addTicketStubInfo
 
-    private void insertOrderToTable()
-    {
+    /**
+     * insertOrderToTable- inserts a new entry into the ORDERS table
+     */
+    private void insertOrderToTable(){
         AccessOrders accessOrders = new AccessOrders();
         accessOrders.insertNewOrder(order);
-        List<Order> list1 = accessOrders.getOrderList();
-    }
-
+    }//end insertOrderToTable
 
 }//end TicketStubActivity class

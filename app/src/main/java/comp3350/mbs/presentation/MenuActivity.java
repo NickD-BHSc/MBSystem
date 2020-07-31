@@ -20,7 +20,7 @@ import comp3350.mbs.application.Main;
 public class MenuActivity  extends AppCompatActivity {
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
         copyDatabaseToDevice();
@@ -51,7 +51,7 @@ public class MenuActivity  extends AppCompatActivity {
     /**
      * copyDatabaseToDevice - a method that copies the database to the app.
      */
-    private void copyDatabaseToDevice() {
+    private void copyDatabaseToDevice(){
 
         final String DB_PATH = "db";
 
@@ -60,17 +60,17 @@ public class MenuActivity  extends AppCompatActivity {
         File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
         AssetManager assetManager = getAssets();
 
-        try {
+        try{
 
             assetNames = assetManager.list(DB_PATH);
-            for (int i = 0; i < assetNames.length; i++) {
+            for (int i = 0; i < assetNames.length; i++){
                 assetNames[i] = DB_PATH + "/" + assetNames[i];
             }
 
             copyAssetsToDirectory(assetNames, dataDirectory);
             Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
 
-        } catch (IOException ioe) {
+        } catch (IOException ioe){
             comp3350.mbs.presentation.Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
         }
 
@@ -83,11 +83,11 @@ public class MenuActivity  extends AppCompatActivity {
      * @param directory is the file directory.
      * @throws IOException is the IOException when file is not found.
      */
-    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException{
 
         AssetManager assetManager = getAssets();
 
-        for (String asset : assets) {
+        for (String asset : assets){
             String[] components = asset.split("/");
             String copyPath = directory.toString() + "/" + components[components.length - 1];
             char[] buffer = new char[1024];
@@ -95,12 +95,12 @@ public class MenuActivity  extends AppCompatActivity {
 
             File outFile = new File(copyPath);
 
-            if (!outFile.exists()) {
+            if (!outFile.exists()){
                 InputStreamReader in = new InputStreamReader(assetManager.open(asset));
                 FileWriter out = new FileWriter(outFile);
 
                 count = in.read(buffer);
-                while (count != -1) {
+                while (count != -1){
                     out.write(buffer, 0, count);
                     count = in.read(buffer);
                 }

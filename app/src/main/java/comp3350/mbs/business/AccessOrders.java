@@ -14,7 +14,7 @@ public class AccessOrders {
     /**
      * AccessTheatres Constructor - gets the data/service stored in the database Main.dbName.
      */
-    public AccessOrders() {
+    public AccessOrders(){
         dataAccess = Services.getDataAccessService(Main.dbName);
     }//end constructor
 
@@ -26,8 +26,10 @@ public class AccessOrders {
         return dataAccess.getOrderList();
     }//end getTheatreList
 
-    public void insertNewOrder(Order order)
-    {
+    /**
+     * insertNewOrder - Inserts an entry into the ORDERS table.
+     */
+    public void insertNewOrder(Order order){
         dataAccess.insertNewOrder(order);
     }
 
