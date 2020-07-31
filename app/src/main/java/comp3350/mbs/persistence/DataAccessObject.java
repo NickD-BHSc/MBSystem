@@ -321,9 +321,13 @@ public class DataAccessObject implements DataAccess {
     public void insertNewOrder(Order order){
 
         try{
-            cmdString = "INSERT INTO ORDERS VALUES('" + order.getMovieName() + "', '" + order.getTheatreName() +"' , '" + order.getTicketQuantity() + "', '" + order.getShowTime() +"' , '" + order.getShowDate() + "') ";
-            st1.executeUpdate(cmdString);
-
+            if(order != null)
+            {
+                if(order.getMovieName() != null && order.getShowTime() != null && order.getShowDate() != null && order.getTheatreName() != null) {
+                    cmdString = "INSERT INTO ORDERS VALUES('" + order.getMovieName() + "', '" + order.getTheatreName() + "' , '" + order.getTicketQuantity() + "', '" + order.getShowTime() + "' , '" + order.getShowDate() + "') ";
+                    st1.executeUpdate(cmdString);
+                }
+            }
         }
         catch(Exception exception){
             result = processSQLError(exception);
@@ -360,7 +364,7 @@ public class DataAccessObject implements DataAccess {
     }//end deleteOrder
 
     /**
-     * processSQError - a method that processes the error when dealing with the database SQL.
+     * processSQLError - a method that processes the error when dealing with the database SQL.
      * @param exception is the given exception.
      * @return it will return an SQL error from the exception in string.
      */
