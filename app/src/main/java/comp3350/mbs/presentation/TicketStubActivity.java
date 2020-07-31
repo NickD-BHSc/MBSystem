@@ -10,13 +10,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.mbs.R;
-import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.business.AccessOrders;
+import comp3350.mbs.objects.Order;
 
 public class TicketStubActivity extends AppCompatActivity{
     private TextView chosenMovieTitleTextView;
     private TextView chosenShowTimeTextView;
     private TextView chosenTicketQuantityTextView;
     private TextView chosenTheatreLocationTextView;
+
+    private Order order;
 
     protected void onCreate(Bundle savedInstanceState){
 
@@ -27,14 +30,15 @@ public class TicketStubActivity extends AppCompatActivity{
         backToMain.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent startIntent = new Intent(getApplicationContext(), TheatreActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), MenuActivity.class);
                 startActivity(startIntent);
             }
         });
         init();
         addTicketStubInfo();
+        insertOrderToTable();
     }//end onCreate
-
+    
     /**
      * onBackPressed - don't let the user go back once they have submitted their order.
      */
@@ -46,7 +50,7 @@ public class TicketStubActivity extends AppCompatActivity{
     /**
      * init - a method that initializes the widgets
      */
-    private void init() {
+    private void init(){
 
         chosenMovieTitleTextView = findViewById(R.id.movieTitleText);
         chosenShowTimeTextView = findViewById(R.id.showTimeText);
@@ -61,13 +65,19 @@ public class TicketStubActivity extends AppCompatActivity{
     private void addTicketStubInfo(){
 
         Intent intent = getIntent();
-        ViewingTime viewingTime = intent.getParcelableExtra("ViewingTime_Selected");
-        int ticketQuantity = intent.getIntExtra("Quantity", 0);
-        String quantity = Integer.toString(ticketQuantity);
-        chosenTicketQuantityTextView.setText(quantity);
-        chosenMovieTitleTextView.setText(viewingTime.getMovieName());
-        chosenShowTimeTextView.setText(viewingTime.getShowTime());
-        chosenTheatreLocationTextView.setText(viewingTime.getTheatreName());
+        order = intent.getParcelableExtra("Order");
+        chosenTicketQuantityTextView.setText(Integer.toString(order.getTicketQuantity()));
+        chosenMovieTitleTextView.setText(order.getMovieName());
+        chosenShowTimeTextView.setText(order.getShowTime());
+        chosenTheatreLocationTextView.setText(order.getTheatreName());
     }//end addTicketStubInfo
+
+    /**
+     * insertOrderToTable- inserts a new entry into the ORDERS table
+     */
+    private void insertOrderToTable(){
+        AccessOrders accessOrders = new AccessOrders();
+        accessOrders.insertNewOrder(order);
+    }//end insertOrderToTable
 
 }//end TicketStubActivity class

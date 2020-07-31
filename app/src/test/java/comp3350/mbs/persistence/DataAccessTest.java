@@ -8,6 +8,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
+import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -322,5 +323,152 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished DataAccessTest: testGetViewingTimeList");
 
     }//end testGetViewingTimeList
+
+    @Test
+    public void testInsertValidOrder(){
+
+        System.out.println("Starting DataAccessTest: testInsertValidOrder");
+
+        List<Order> orderList;
+
+        orderList = dataAccess.getOrderList();
+
+        int beforeSize = 0;
+        if(orderList != null)
+        {
+            orderList.size();
+        }
+
+        Order order = new Order("testMovie","testShowTime", "testShowDate", "testTheatre", 1);
+        dataAccess.insertNewOrder(order);
+
+        orderList = dataAccess.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals( beforeSize+1, afterInsertSize);
+
+        dataAccess.deleteOrder(order);
+        orderList = dataAccess.getOrderList();
+        int afterDeleteSize = orderList.size();
+
+        assertEquals(beforeSize, afterDeleteSize);
+
+        System.out.println("Finished DataAccessTest: testInsertValidOrder");
+
+    }//end testInsertValidOrder
+
+    @Test
+    public void testInsertInvalidOrder(){
+
+        System.out.println("Starting DataAccessTest: testInsertInvalidOrder");
+
+        List<Order> orderList;
+
+        orderList = dataAccess.getOrderList();
+
+        int beforeSize = orderList.size();
+
+        dataAccess.insertNewOrder(null);
+
+        orderList = dataAccess.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        System.out.println("Finished DataAccessTest: testInsertInvalidOrder");
+
+    }//end testInsertInvalidOrder
+
+    @Test
+    public void testInsertInvalidOrderMovieName(){
+
+        System.out.println("Starting DataAccessTest: testInsertInvalidOrderMovieName");
+
+        List<Order> orderList;
+
+        orderList = dataAccess.getOrderList();
+
+        int beforeSize = orderList.size();
+
+        Order order = new Order(null,"testShowTime", "testShowDate", "testTheatre", 1);
+        dataAccess.insertNewOrder(order);
+
+        orderList = dataAccess.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        System.out.println("Finished DataAccessTest: testInsertInvalidOrderMovieName");
+
+    }//end testInsertInvalidOrderMovieName
+
+    @Test
+    public void testInsertInvalidOrderShowTime(){
+
+        System.out.println("Starting DataAccessTest: testInsertInvalidOrderShowTime");
+
+        List<Order> orderList;
+
+        orderList = dataAccess.getOrderList();
+
+        int beforeSize = orderList.size();
+
+        Order order = new Order("testMovie", null, "testShowDate", "testTheatre", 1);
+        dataAccess.insertNewOrder(order);
+
+        orderList = dataAccess.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        System.out.println("Finished DataAccessTest: testInsertInvalidOrderShowTime");
+
+    }//end testInsertInvalidOrderShowTime
+
+    @Test
+    public void testInsertInvalidOrderShowDate(){
+
+        System.out.println("Starting DataAccessTest: testInsertInvalidOrderShowDate");
+
+        List<Order> orderList;
+
+        orderList = dataAccess.getOrderList();
+
+        int beforeSize = orderList.size();
+
+        Order order = new Order("testMovie", "testShowTime", null,  "testTheatre", 1);
+        dataAccess.insertNewOrder(order);
+
+        orderList = dataAccess.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        System.out.println("Finished DataAccessTest: testInsertInvalidOrderShowDate");
+
+    }//end testInsertInvalidOrderShowDate
+
+    @Test
+    public void testInsertInvalidOrderTheatreName(){
+
+        System.out.println("Starting DataAccessTest: testInsertInvalidOrderTheatreName");
+
+        List<Order> orderList;
+
+        orderList = dataAccess.getOrderList();
+
+        int beforeSize = orderList.size();
+
+        Order order = new Order("testMovie", "testShowTime", "testShowDate", null,   1);
+        dataAccess.insertNewOrder(order);
+
+        orderList = dataAccess.getOrderList();
+        int afterInsertSize = orderList.size();
+
+        assertEquals(beforeSize, afterInsertSize);
+
+        System.out.println("Finished DataAccessTest: testInsertInvalidOrderTheatreName");
+
+    }//end testInsertInvalidOrderTheatreName
 
 }//end DataAccessTest

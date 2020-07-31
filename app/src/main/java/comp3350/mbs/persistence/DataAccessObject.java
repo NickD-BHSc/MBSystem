@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessObject implements DataAccess {
 
@@ -33,7 +34,7 @@ public class DataAccessObject implements DataAccess {
     private List<Theatre> theatreList;
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
-    private List<Ticket> ticketList;
+    private List<Order> orderList;
 
     /**
      * DatAccessObject Constructor - assign its field dbName to the given dbName.
@@ -189,7 +190,7 @@ public class DataAccessObject implements DataAccess {
         String seatString;
 
         try{
-            cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'" + " ORDER BY TIME ASC";
+            cmdString = "SELECT * FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'" + " AND MOVIENAME = " + "'" + theatreMovie.getMovieName() + "'" + " ORDER BY DATE, TIME ASC";
             rs2 = st3.executeQuery(cmdString);
 
             while(rs2.next()){
@@ -278,9 +279,92 @@ public class DataAccessObject implements DataAccess {
 
     }//end updateSeatList
 
+    /**
+     * getOrderList -a getter method for the orderList field. Gets alls order from the orders table
+     * @return it will return the field orderList.
+     */
+    @Override
+    public List<Order> getOrderList(){
+
+        orderList = new ArrayList<>();
+        String movieName;
+        String theatreName;
+        String showTime;
+        String showDate;
+        int quantity;
+
+        try{
+            cmdString = "SELECT * FROM ORDERS";
+            rs2 =st1.executeQuery(cmdString);
+
+            while(rs2.next()){
+                movieName =rs2.getString("MOVIENAME");
+                theatreName= rs2.getString("THEATRENAME");
+                showTime = rs2.getString("SHOWTIME");
+                showDate = rs2.getString("SHOWDATE");
+                quantity = rs2.getInt("QUANTITY");
+                Order order = new Order(movieName, showTime, showDate, theatreName, quantity);
+                orderList.add(order);
+            }
+
+        }catch(Exception exception){
+            processSQLError(exception);
+        }
+        return orderList;
+    }//end getOrderList
 
     /**
-     * processSQError - a method that processes the error when dealing with the database SQL.
+     * insertNewOrder - a method that adds an order to the ORDER table
+     * @param order - the order object we want to insert into ORDERS
+     */
+    @Override
+    public void insertNewOrder(Order order){
+
+        try{
+            if(order != null)
+            {
+                if(order.getMovieName() != null && order.getShowTime() != null && order.getShowDate() != null && order.getTheatreName() != null) {
+                    cmdString = "INSERT INTO ORDERS VALUES('" + order.getMovieName() + "', '" + order.getTheatreName() + "' , '" + order.getTicketQuantity() + "', '" + order.getShowTime() + "' , '" + order.getShowDate() + "') ";
+                    st1.executeUpdate(cmdString);
+                }
+            }
+        }
+        catch(Exception exception){
+            result = processSQLError(exception);
+        }
+
+    }//end insertNewOrder
+
+    /**
+     * deleteOrder - a method that removes an order from the ORDER table (for testing purposes)
+     * @param order - the order object we want to remove from ORDERS
+     */
+    @Override
+    public void deleteOrder(Order order){
+
+        String where;
+
+        try{
+
+            where = "where THEATRENAME='"+ order.getTheatreName()
+                    +"' and MOVIENAME='" + order.getMovieName()
+                    +"' and SHOWTIME='" + order.getShowTime()
+                    +"' and SHOWDATE='" + order.getShowDate()
+                    +"' and QUANTITY='" + order.getTicketQuantity()
+                    +"'";
+
+            cmdString = "DELETE FROM ORDERS " + where;
+            st1.executeUpdate(cmdString);
+
+        }
+        catch(Exception exception){
+            result = processSQLError(exception);
+        }
+
+    }//end deleteOrder
+
+    /**
+     * processSQLError - a method that processes the error when dealing with the database SQL.
      * @param exception is the given exception.
      * @return it will return an SQL error from the exception in string.
      */

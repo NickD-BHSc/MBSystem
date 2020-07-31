@@ -2,11 +2,13 @@ package comp3350.mbs.business;
 
 import android.os.Parcelable;
 
+import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.presentation.ParcelableOrder;
 import comp3350.mbs.presentation.ParcelableSeat;
 import comp3350.mbs.presentation.ParcelableTheatre;
 import comp3350.mbs.presentation.ParcelableTheatreMovies;
@@ -43,6 +45,10 @@ public class ParcelableFactory {
         }else if(object instanceof Ticket){
             Ticket ticket = (Ticket)object;
             parcObject = new ParcelableTicket(ticket.getPrice(),ticket.getMovieName());
+
+        }else if(object instanceof Order){
+            Order order = (Order)object;
+            parcObject = new ParcelableOrder(order.getMovieName(), order.getShowTime(), order.getShowDate(), order.getTheatreName(), order.getTicketQuantity());
 
         }
 

@@ -2,19 +2,18 @@ package comp3350.mbs;
 
 import junit.framework.TestSuite;
 
+import comp3350.mbs.business.AccessOrdersTest;
 import comp3350.mbs.business.AccessSeatsTest;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.AccessTheatresTest;
 import comp3350.mbs.business.AccessTicketsTest;
+import comp3350.mbs.business.AccessTrailerTest;
 import comp3350.mbs.business.AccessViewingTimesTest;
 import comp3350.mbs.business.CalculateTest;
-
 import comp3350.mbs.business.CreditCardValidationTest;
-
 import comp3350.mbs.business.ParcelableFactoryTest;
-import comp3350.mbs.business.AccessTrailerTest;
-
 import comp3350.mbs.business.SeatEncodingTest;
+import comp3350.mbs.objects.OrderTest;
 import comp3350.mbs.objects.SeatingTest;
 import comp3350.mbs.objects.TheatreMoviesTest;
 import comp3350.mbs.objects.TheatreTest;
@@ -48,6 +47,7 @@ public class AllTests {
         suite.addTestSuite(TheatreTest.class);
         suite.addTestSuite(TicketTest.class);
         suite.addTestSuite(ViewingTimeTest.class);
+        suite.addTestSuite(OrderTest.class);
 
     }
 
@@ -61,6 +61,7 @@ public class AllTests {
         suite.addTestSuite(AccessTicketsTest.class);
         suite.addTestSuite(AccessTrailerTest.class);
         suite.addTestSuite(AccessViewingTimesTest.class);
+        suite.addTestSuite(AccessOrdersTest.class);
         suite.addTestSuite(ParcelableFactoryTest.class);
         suite.addTestSuite(SeatEncodingTest.class);
 
