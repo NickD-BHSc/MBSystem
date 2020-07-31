@@ -314,15 +314,13 @@ public class DataAccessObject implements DataAccess {
     }//end getOrderList
 
     /**
-     * updateSeatList - a method that updates the seat string of the given viewing time object.
+     * insertNewOrder - a method that adds an order to the ORDER table
      * @param order - the order object we want to insert into ORDERS
      */
     @Override
     public void insertNewOrder(Order order){
 
         try{
-            //INSERT INTO THEATRES VALUES('Silver City St.Vital Cinemas','160-1225 St Mary''s Rd','19.8km')
-            //THEATRENAME VARCHAR(20) NOT NULL, QUANTITY INT, SHOWTIME VARCHAR(20) NOT NULL, SHOWDATE VARCHAR(20) NOT NULL)
             cmdString = "INSERT INTO ORDERS VALUES('" + order.getMovieName() + "', '" + order.getTheatreName() +"' , '" + order.getTicketQuantity() + "', '" + order.getShowTime() +"' , '" + order.getShowDate() + "') ";
             st1.executeUpdate(cmdString);
 
@@ -331,8 +329,35 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(exception);
         }
 
-    }//end updateSeatList
+    }//end insertNewOrder
 
+    /**
+     * deleteOrder - a method that removes an order from the ORDER table (for testing purposes)
+     * @param order - the order object we want to remove from ORDERS
+     */
+    @Override
+    public void deleteOrder(Order order){
+
+        String where;
+
+        try{
+
+            where = "where THEATRENAME='"+ order.getTheatreName()
+                    +"' and MOVIENAME='" + order.getMovieName()
+                    +"' and SHOWTIME='" + order.getShowTime()
+                    +"' and SHOWDATE='" + order.getShowDate()
+                    +"' and QUANTITY='" + order.getTicketQuantity()
+                    +"'";
+
+            cmdString = "DELETE FROM ORDERS " + where;
+            st1.executeUpdate(cmdString);
+
+        }
+        catch(Exception exception){
+            result = processSQLError(exception);
+        }
+
+    }//end deleteOrder
 
     /**
      * processSQError - a method that processes the error when dealing with the database SQL.

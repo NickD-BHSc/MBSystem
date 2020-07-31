@@ -27,4 +27,6 @@ public interface DataAccess {
     String updateSeatList( ViewingTime viewingTime, String seatList);
 
     void insertNewOrder(Order order);
+
+    void deleteOrder(Order order);
 }
