@@ -5,6 +5,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
+import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -19,6 +20,7 @@ public class DataAccessStub implements DataAccess{
     private List<Ticket> ticketList;
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
+    private List<Order> orderList;
 
     /**
      * DataAccessStub Constructor - assign its field dbName to the Main.dbName.
@@ -44,6 +46,7 @@ public class DataAccessStub implements DataAccess{
 
         //Theatres to be displayed in the TheatreActivity
         theatreList = new ArrayList<>();
+        orderList = new ArrayList<>();
         createTheatres();
 
         //Movies to be displayed when a specific theatre is selected. Movies to be displayed in the MovieActivity.
@@ -354,5 +357,40 @@ public class DataAccessStub implements DataAccess{
 
         return "Failure";
     }//end updateSeatList
+
+    /**
+     * insertNewOrder - a method that updates the seat string of the given viewing time object.
+     * @param order is the order that needs to be added to the list
+     * @return it will return "Success" if the seat in the ViewingTime got updated.
+     *          Otherwise, it will return Failure.
+     */
+    @Override
+    public void insertNewOrder(Order order){
+        if(order != null)
+        {
+            orderList.add(order);
+
+        }
+    }//end insertNewOrder
+
+    /**
+     * deleteOrder - a method that updates the seat string of the given viewing time object.
+     * @param order is the order that needs to be added to the list
+     * @return it will return "Success" if the seat in the ViewingTime got updated.
+     *          Otherwise, it will return Failure.
+     */
+    @Override
+    public void deleteOrder(Order order){
+        orderList.remove(order);
+    }//end deleteOrder
+
+    /**
+     * getOrderList - a method that returns the list of orders.
+     * @return it will return the list of orders
+     */
+    @Override
+    public List<Order> getOrderList(){
+        return orderList;
+    }//end insertNewOrder
 
 }//end DataAccessStub

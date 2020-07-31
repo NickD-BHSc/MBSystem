@@ -33,4 +33,11 @@ public class AccessOrders {
         dataAccess.insertNewOrder(order);
     }
 
+    /**
+     * deleteOrder - Removes an order from the table (for testing)
+     */
+    public void deleteOrder(Order order){
+        dataAccess.deleteOrder(order);
+    }
+
 }
