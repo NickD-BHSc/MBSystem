@@ -33,7 +33,6 @@ public class TicketActivity extends AppCompatActivity {
     private TheatreMovies theatreMovie;
     private List<Parcelable> bookedSeats;
     private ViewingTime movieDetails;
-    private int seatCount;
     private Order order;
 
     @Override
@@ -51,9 +50,6 @@ public class TicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
-              //  ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(movieDetails);
-             //   startIntent.putExtra("ViewingTime_Selected", pvt);
-             //   startIntent.putExtra("Quantity", seatCount);
                 ParcelableOrder parcelableOrder = (ParcelableOrder) ParcelableFactory.createParcelableObject(order);
                 startIntent.putExtra("Order", parcelableOrder);
                 startActivity(startIntent);
@@ -76,7 +72,6 @@ public class TicketActivity extends AppCompatActivity {
         movieTitleTextView = findViewById(R.id.movieTitleTextView);
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
-        seatCount= intent.getIntExtra("seats", 0);
         bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
 
         movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
@@ -92,7 +87,6 @@ public class TicketActivity extends AppCompatActivity {
     private void addTicketInfo(){
 
         Intent intent = getIntent();
-        bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
         theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
 
         if(theatreMovie == null){

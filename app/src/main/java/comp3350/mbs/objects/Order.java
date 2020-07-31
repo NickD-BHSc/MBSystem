@@ -19,7 +19,7 @@ public class Order {
      * @param movieName is the type of the ticket.
      * @param showTime is the price of one of this type of ticket.
      */
-    public Order(String movieName, String showTime, String showDate, String theatreName, int ticketQuantity) {
+    public Order(String movieName, String showTime, String showDate, String theatreName, int ticketQuantity){
         this.movieName = movieName;
         this.showTime = showTime;
         this.showDate = showDate;
@@ -29,40 +29,44 @@ public class Order {
 
 
     //Getter methods
-    public String getMovieName() {
+    public String getMovieName(){
         return movieName;
     }//end getType
 
-    public int getTicketQuantity() {
+    public int getTicketQuantity(){
         return ticketQuantity;
     }//end getQuantity
 
-    public String getShowTime() { return showTime; }//end getShowTime
+    public String getShowTime(){
+        return showTime;
+    }//end getShowTime
 
-    public String getTheatreName() { return theatreName; }//end getTheatreLocation
+    public String getTheatreName(){
+        return theatreName;
+    }//end getTheatreLocation
 
-    public String getShowDate() {
+    public String getShowDate(){
         return showDate;
     }
 
     //Setter methods
-    public void setMovieName(String movieName) {
+    public void setMovieName(String movieName){
         this.movieName = movieName;
     }
 
-    public void setShowTime(String showTime) {
+    public void setShowTime(String showTime){
         this.showTime = showTime;
     }
 
-    public void setShowDate(String showDate) {
+    public void setShowDate(String showDate){
         this.showDate = showDate;
     }
 
-    public void setTheatreName(String theatreName) {
+    public void setTheatreName(String theatreName){
         this.theatreName = theatreName;
     }
 
-    public void setTicketQuantity(int ticketQuantity) {
+    public void setTicketQuantity(int ticketQuantity){
         this.ticketQuantity = ticketQuantity;
     }
 }
