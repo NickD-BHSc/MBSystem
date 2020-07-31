@@ -7,8 +7,7 @@ import comp3350.mbs.objects.Theatre;
 
 public class ParcelableTheatre extends Theatre implements Parcelable {
     /**
-     * Constructor of ParcelableTheatre class.
-     *
+     * ParcelableTheatre Constructor
      * @param name is the name of the theatre.
      * @param address is the address of the theatre.
      */
@@ -20,6 +19,7 @@ public class ParcelableTheatre extends Theatre implements Parcelable {
         super.setName(in.readString());
         super.setAddress(in.readString());
     }
+
 
     public static final Creator<ParcelableTheatre> CREATOR = new Creator<ParcelableTheatre>() {
         @Override
@@ -33,6 +33,7 @@ public class ParcelableTheatre extends Theatre implements Parcelable {
         }
     };
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -44,6 +45,4 @@ public class ParcelableTheatre extends Theatre implements Parcelable {
         parcel.writeString(super.getAddress());
     }
 
-
-
-}
+}//end ParcelableTheatre class

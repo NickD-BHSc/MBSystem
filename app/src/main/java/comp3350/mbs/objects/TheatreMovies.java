@@ -9,8 +9,10 @@ public class TheatreMovies {
     //needed an empty constructor when implementing Parcelable interface in the ParcelableTheatreMovies class.
     public TheatreMovies(){}
 
+
     /**
-     * Constructor
+     * TheatreMovies Constructor - This is mainly used when we only need the theatre name and not the movie information.
+     *
      * @param theatreName is the given theatre name.
      * @param movieName is the given movie name.
      */
@@ -18,11 +20,12 @@ public class TheatreMovies {
         this.theatreName = theatreName;
         this.movieName = movieName;
         this.moviePoster = -1; //represents null or no poster.
-        this.movieDescription = "";//no movie description.
+        this.movieDescription = null;//no movie description.
     }//end TheatreMovies constructor
 
     /**
-     * Constructor
+     * TheatreMovies Constructor
+     *
      * @param theatreName is the given theatre name.
      * @param movieName is the given movie name.
      * @param moviePoster is the picture/poster of the movie.
@@ -88,9 +91,9 @@ public class TheatreMovies {
             if((((tm.theatreName == null) && (theatreName == null)) || ((tm.theatreName != null) && (tm.theatreName.equals(theatreName))))
                 && (((tm.movieName == null) && (movieName == null)) || ((tm.movieName != null) && (tm.movieName.equals(movieName))))){
                 result = true;
-            }//end nested if
+            }
 
-        }//end if
+        }
         return result;
 
     }//end equals

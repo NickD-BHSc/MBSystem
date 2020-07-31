@@ -28,9 +28,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
     private List itemLists;
 
     /**
-     * Constructor
-     * @param context is the context that the CustomAdapter is currently using. (i.e. MovieActivity, MovieInfoActivity or TheatreActivity).
-     * @param itemLists is the data stored in a list which could be a list of theatres, movies or viewing time.
+     * CustomAdapter Constructor
+     * @param context is the context that the CustomAdapter is currently using. (i.e. MovieActivity, MovieInfoActivity or TheatreActivity etc).
+     * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
      */
     public CustomAdapter(Context context, List itemLists) {
         this.context = context;
@@ -66,7 +66,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_seat, parent, false);
         }else {
             throw new Error("given context is neither Theatre, Movie, or Seating Activity.");
-        }//end if-else
+        }
+
         cvh = new CustomViewHolder(view);
 
         return cvh;
@@ -98,14 +99,15 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, MovieActivity.class);
-                        ParcelableTheatre pt = (ParcelableTheatre) ParcelableFactory.createParcelableObject(item);
-                        intent.putExtra("Chosen_Theatre", pt);
+                        Parcelable parcTheatre  = ParcelableFactory.createParcelableObject(item);
+                        intent.putExtra("Chosen_Theatre", parcTheatre);
                         context.startActivity(intent);
                     }
                 });
+
             }else{
                 throw new Error("an item from the list is expected to be a Theatre object.");
-            }//end nested if-else
+            }
 
         }else if(context instanceof MovieActivity){
 
@@ -120,19 +122,20 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
-                        ParcelableTheatreMovies ptm = (ParcelableTheatreMovies)ParcelableFactory.createParcelableObject(item);
-                        intent.putExtra("Movie_Selected", ptm);//the item also contains the theatre name since it is a TheatreMovies object.
+                        Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(item);
+                        intent.putExtra("Movie_Selected", parcTheatreMovie);//the item also contains the theatre name since it is a TheatreMovies object.
                         context.startActivity(intent);
                     }
                 });
+
             }else{
                 throw new Error("an item from the list is expected to be a Movie object.");
-            }//end nested if-else
+            }
 
         }else if(context instanceof MovieInfoActivity){
 
             if(itemLists.get(position) instanceof ViewingTime){
-                //seat the following info about the ViewingTime to the TextViews.
+                //set the following info about the ViewingTime to the TextViews.
                 final ViewingTime item = (ViewingTime)itemLists.get(position);
                 holder.viewTimeTextView.setText(item.getShowTime() + "\n" + item.getShowDate());
 
@@ -140,11 +143,13 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
-                        TheatreMovies tm = ((MovieInfoActivity)context).getTheatreMovieItem();
-                        ParcelableTheatreMovies ptm = (ParcelableTheatreMovies)ParcelableFactory.createParcelableObject(tm);
-                        ParcelableViewingTime pvt = (ParcelableViewingTime)ParcelableFactory.createParcelableObject(item);
-                        intent.putExtra("TheatreMovie_Selected", ptm);
-                        intent.putExtra( "VT", pvt);
+                        Parcelable parcViewingTime = ParcelableFactory.createParcelableObject(item);
+
+                        TheatreMovies theatreMovie = ((MovieInfoActivity)context).getTheatreMovieItem();
+                        Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
+
+                        intent.putExtra( "ViewingTime_Selected", parcViewingTime);
+                        intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
                         context.startActivity(intent);
                     }
                 });
@@ -152,7 +157,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
             }else{
                 throw new Error("an item from the list is expected to be a ViewingTime object.");
-            }//end nested if-else
+            }
 
         }else if(context instanceof SeatingActivity){
 
@@ -165,6 +170,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 if(item.isBooked()){
                     holder.seatImageView.setImageResource(item.getSeatImage());
                     holder.relativeLayout.setClickable(false);//make the seat non-clickable since the seat is already booked!
+
                 }else{
                     //seat is available since it is not booked yet.
                     holder.seatImageView.setImageResource(item.getSeatImage());
@@ -188,20 +194,20 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
                                 //we remove the seat that has been selected to the bookedSeats from the SeatingActivity.
                                 ((SeatingActivity)context).removeSeat( item );
-                            }//end nested-nested if-else
+                            }
                         }
                     });
 
-                }//end nested if-else
+                }
 
             }else{
                 throw new Error("an item from the list is expected to be a Seat object.");
-            }//end nested if-else
+            }
 
         }else{
-            throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
-        }//end if-else
+            throw new Error("given context is neither Theatre, Movie, MovieInfo, or Seating Activity.");
 
+        }
 
     }//end onBindViewHolder
 
@@ -239,7 +245,10 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         private ImageView seatImageView;
         private TextView seatNumberTextView;
 
-
+        /**
+         * CustomViewHolder Constructor - assign the widgets depending on the context.
+         * @param itemView
+         */
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -266,10 +275,12 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 relativeLayout = itemView.findViewById(R.id.seatRelativeLayout);
 
             }else{
-                throw new Error("given context is neither Theatre, Movie, or MovieInfo Activity.");
-            }//end if-else
-
+                throw new Error("given context is neither Theatre, Movie, MovieInfo, or Seating Activity.");
+            }
 
         }//end constructor
+
     }//end CustomViewHolder class
+
+
 }//end CustomAdapter class

@@ -10,6 +10,7 @@ import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
+import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.objects.ViewingTime;
 
 public class DataAccessTest extends TestCase {
@@ -20,11 +21,11 @@ public class DataAccessTest extends TestCase {
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
         // Use the following statements to run with the stub database:
-        dataAccess = new DataAccessStub();
-        dataAccess.open("Stub");
+        //dataAccess = new DataAccessStub();
+        //dataAccess.open("Stub");
         // or switch to the real database:
-         //dataAccess = new DataAccessObject(Main.dbName);
-         //dataAccess.open(Main.getDBPathName());
+         dataAccess = new DataAccessObject(Main.dbName);
+         dataAccess.open(Main.getDBPathName());
         // Note the increase in test execution time.
     }
 
@@ -182,18 +183,37 @@ public class DataAccessTest extends TestCase {
         List<TheatreMovies> theatreMoviesList = dataAccess.getMoviesFromTheatre(new TheatreMovies("Scotiabank Theatre",null));
 
         ViewingTime vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get(0);
+        String showTime = vt.getShowTime();
 
         assertNotNull(vt);
-        assertEquals( vt.getSeatString(), "00000000000000000000000000000000");
+        //assertEquals( vt.getSeatString(), "00000000000000000000000000000000");
 
         String updateResult = dataAccess.updateSeatList( vt, "11111111111111111111111111111111");
 
         assertEquals( updateResult, "Success");
+
+        //vt = dataAccess.getViewingTimeList( theatreMoviesList.get(0)).get((0));
+        List<ViewingTime> vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0) );
+        for( int i = 0; i < vtList.size(); i++ ){
+            if( vtList.get(i).getShowTime().equals( showTime )){
+                vt = vtList.get(i);
+            }
+        }
+        System.out.println( vt.getShowTime() + " " + vt.getSeatString() );
         assertEquals( vt.getSeatString(), "11111111111111111111111111111111");
 
         System.out.println("Finished DataAccessTest: testValidViewingTimeUpdate");
 
-    }
+        //reset viewing time status and order
+        dataAccess.updateSeatList( vt, "00000000000000000000000000000000");
+        vtList = dataAccess.getViewingTimeList( theatreMoviesList.get(0));
+        for( int i = 0; i < vtList.size()-1; i++ ){
+            dataAccess.updateSeatList( vtList.get(i), "00000000000000000000000000000000");
+        }
+
+
+    }//end testValidViewingTimeUpdate
+
 
     @Test
     public void testInvalidViewingtimeUpdate(){
@@ -208,5 +228,88 @@ public class DataAccessTest extends TestCase {
         assertEquals( updateResult, "Failure");
 
         System.out.println("Finished DataAccessTest: testInvalidViewingTimeUpdate");
-    }
-}
+    }//end testInvalidViewingtimeUpdate
+
+
+    @Test
+    public void testGetValidTicket(){
+        System.out.println("Starting DataAccessTest: testGetValidTicket");
+
+        //attempt to retrieve a ticket that is in the db
+       Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
+
+        assertEquals(10.00, ticketResult.getPrice());
+        assertEquals("Avengers Endgame", ticketResult.getMovieName());
+
+        System.out.println("Finished DataAccessTest: testGetValidTicket");
+    }//end testGetValidTicket
+
+
+    @Test
+    public void testGetInvalidTicket(){
+        System.out.println("Starting DataAccessTest: testGetInvalidTicket");
+
+        //attempt to retrieve a ticket that is in the db
+        Ticket ticketResult = dataAccess.getTicket("Avengers Endgame");
+
+        assertEquals(10.00, ticketResult.getPrice());
+        assertEquals("Avengers Endgame", ticketResult.getMovieName());
+
+        System.out.println("Finished DataAccessTest: testGetInvalidTicket");
+    }//end testGetInvalidTicket
+
+
+    @Test
+    public void testGetViewingTimeList(){
+        System.out.println("Starting DataAccessTest: testGetViewingTimeList");
+
+        List<ViewingTime> viewingTimeList;
+        ViewingTime viewingTime;
+        TheatreMovies theatreMovie;
+
+        theatreMovie = new TheatreMovies("Scotiabank Theatre","Superman");
+        viewingTimeList = dataAccess.getViewingTimeList(theatreMovie);
+        assertNotNull(viewingTimeList);
+        assertEquals(4,viewingTimeList.size());
+
+        //first viewing time
+        viewingTime = viewingTimeList.get(0);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
+        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //second viewing time
+        viewingTime = viewingTimeList.get(1);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //third viewing time
+        viewingTime = viewingTimeList.get(2);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("5:00 to 7:00 PM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        //fourth viewing time
+        viewingTime = viewingTimeList.get(3);
+        assertNotNull(viewingTime);
+        assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
+        assertEquals("Superman",viewingTime.getMovieName());
+        assertEquals("9:00 to 11:00 PM",viewingTime.getShowTime());
+        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
+
+        System.out.println("Finished DataAccessTest: testGetViewingTimeList");
+    }//end testGetViewingTimeList
+
+
+}//end DataAccessTest

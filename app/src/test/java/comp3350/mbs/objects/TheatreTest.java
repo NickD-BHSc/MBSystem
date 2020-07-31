@@ -8,7 +8,10 @@ import org.junit.Test;
 
 public class TheatreTest extends TestCase {
 
-    public TheatreTest(String arg0){super(arg0);}
+    public TheatreTest(String arg0) {
+        super(arg0);
+    }
+
 
     @Test
     public void testOneTheatre(){
@@ -43,8 +46,8 @@ public class TheatreTest extends TestCase {
 
         System.out.println("Finished TheatreTest: testOneTheatre\n");
 
-
     }//end testOneTheatre
+
 
     @Test
     public void testDistinctTheatres(){
@@ -96,6 +99,7 @@ public class TheatreTest extends TestCase {
 
     }//end testDistinctTheatres
 
+
     @Test
     public void testSameTheatres(){
         System.out.println("Starting TheatreTest: testSameTheatres");
@@ -143,6 +147,25 @@ public class TheatreTest extends TestCase {
 
     }//end testSameTheatres
 
+
+    @Test
+    public void testNullTheatre(){
+        System.out.println("Starting TheatreTest: testNullTheatre");
+
+        Theatre theatre = new Theatre(null,null,null);
+        assertNotNull(theatre);
+
+        assertNull(theatre.getName());
+        assertEquals(null,theatre.getName());
+
+        assertNull(theatre.getAddress());
+        assertEquals(null,theatre.getAddress());
+
+        assertNull(theatre.getDistance());
+        assertEquals(null,theatre.getDistance());
+        System.out.println("Finished TheatreTest: testNullTheatre\n");
+
+    }//end testNullTheatre
 
 
 }//end TheatreTest class

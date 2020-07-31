@@ -7,7 +7,7 @@ import comp3350.mbs.objects.ViewingTime;
 public class ParcelableViewingTime extends ViewingTime implements Parcelable {
 
     /**
-     * Constructor of ParcelableViewingTime
+     * ParcelableViewingTime Constructor
      * @param theatreName is the name of the theatre.
      * @param movieName is the name of the movie.
      * @param showTime is the show time of the movie.
@@ -52,4 +52,4 @@ public class ParcelableViewingTime extends ViewingTime implements Parcelable {
         parcel.writeString(super.getSeatString());
     }
 
-}
+}//end ParcelableViewingTime class

@@ -7,8 +7,6 @@ public class Main {
 
     public static void main(String [] args){
         startUp();
-
-        //CLI.java? CLI.run();
         shutDown();
         System.out.println("All done.");
     }//end main

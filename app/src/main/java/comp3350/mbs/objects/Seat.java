@@ -11,6 +11,7 @@ public class Seat{
 
     /**
      * Seat constructor
+     *
      * @param seatNumber is the number of the seat.
      * @param isBooked determines if the seat object is booked or not.
      * @param seatImage is the image of the seat.
@@ -19,7 +20,7 @@ public class Seat{
         this.seatNumber = seatNumber;
         this.isBooked = isBooked;
         this.seatImage = seatImage;
-    }//end Seat
+    }//end constructor
 
 
     //================================================================

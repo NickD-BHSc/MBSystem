@@ -13,7 +13,7 @@ public class Ticket {
     public Ticket(){}
 
     /**
-     * Constructor of Ticket class.
+     * Ticket Constructor
      *
      * @param price is the price of one of this type of ticket.
      * @param movieName is the type of the ticket.
@@ -25,7 +25,7 @@ public class Ticket {
     }//end Constructor
 
     /**
-     * Constructor of Ticket class.
+     * Ticket Constructor
      *
      * @param price is the price of one of this type of ticket.
      * @param movieName is the type of the ticket.
@@ -36,6 +36,7 @@ public class Ticket {
         this.movieName = movieName;
         this.quantity = quantity;
     }//end Constructor
+
 
     //================================================================
     //Getter methods
@@ -67,4 +68,4 @@ public class Ticket {
         this.quantity = quantity;
     }
 
-}//end Ticket
+}//end Ticket class
