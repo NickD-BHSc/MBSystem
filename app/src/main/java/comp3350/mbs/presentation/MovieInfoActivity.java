@@ -2,11 +2,16 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +20,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessViewingTimes;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 
@@ -101,13 +107,12 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void buildRecyclerView(){
 
         viewingTimeRecyclerView = findViewById(R.id.movieInfoRecyclerView);
-        customAdapter = new CustomAdapter(MovieInfoActivity.this,viewingTimeList);
+        customAdapter = new ViewingTimeAdapter(viewingTimeList);
         viewingTimeRecyclerView.setAdapter(customAdapter);
         layoutManager = new LinearLayoutManager(this);
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
-
 
     /**
      * getTheatreMovieItem - a getter method for theatreMovieItem.
@@ -116,5 +121,102 @@ public class MovieInfoActivity extends AppCompatActivity {
     public TheatreMovies getTheatreMovieItem(){
         return theatreMovieItem;
     }//end getTheatreMovieItem
+
+
+    /**
+     * ViewingTimeAdapter class - a class that displays a list of ViewingTime objects in the recycler view.
+     */
+    private class ViewingTimeAdapter extends CustomAdapter {
+
+        /**
+         * ViewingTimeAdapter Constructor
+         * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+         */
+        public ViewingTimeAdapter(List itemLists) {
+            super(itemLists);
+        }//end constructor
+
+        /**
+         * onCreateViewHolder - method used to display the content of the items to the assigned layout activity.
+         * @param parent   is the ViewGroup into which the new View will be added after it is bounded to an adapter
+         *                 position.
+         * @param viewType is the view type of the new View.
+         * @return it will return a new ViewHolder (CustomViewHolder) that holds a View of the given type.
+         */
+        @NonNull
+        @Override
+        public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            CustomViewHolder customViewHolder;
+            View view;
+
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_viewing_time, parent, false);
+            customViewHolder = new ViewingTimeHolder(view);
+
+            return customViewHolder;
+        }//end CustomViewHolder
+
+        /**
+         * onBindViewHolder - a method called by the RecyclerView to display the data at the specified position.
+         * This method should update the contents of the CustomViewHolder (item) to reflect the item
+         * at the given position.
+         * @param holder   is the view holder which should be updated to represent the contents of the item at the
+         *                 given position in the data set.
+         * @param position is the position of the item within the adapter's data set.
+         */
+        @Override
+        public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+
+            if(super.getItemList().get(position) instanceof ViewingTime) {
+
+                if (holder instanceof ViewingTimeHolder) {
+                    final ViewingTime item = (ViewingTime)super.getItemList().get(position);
+                    ViewingTimeHolder viewingTimeHolder = (ViewingTimeHolder)holder;
+
+                    viewingTimeHolder.viewTimeTextView.setText(item.getShowTime() + "\n" + item.getShowDate());
+
+
+                    viewingTimeHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(MovieInfoActivity.this,SeatingActivity.class);
+                            Parcelable parcViewingTime = ParcelableFactory.createParcelableObject(item);
+
+                            TheatreMovies theatreMovie = getTheatreMovieItem();
+                            Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
+
+                            intent.putExtra( "ViewingTime_Selected", parcViewingTime);
+                            intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
+                            startActivity(intent);
+                        }
+                    });
+
+                } else {
+                    throw new Error("an item from the list is expected to be a ViewingTime object.");
+                }
+            }
+
+        }//end onBindViewHolder
+
+        /**
+         * ViewingTimeHolder class - a class that displays each ViewingTime object from the list in the activity_viewing_time xml.
+         */
+        private class ViewingTimeHolder extends CustomViewHolder{
+
+            private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
+            private TextView viewTimeTextView;
+
+
+            public ViewingTimeHolder(@NonNull View itemView) {
+                super(itemView);
+                viewTimeTextView = itemView.findViewById(R.id.viewTimeTextView);
+                relativeLayout = itemView.findViewById(R.id.viewingTimeRelativeLayout);
+            }//end constructor
+
+        }//end ViewingTimeHolder class
+
+
+
+    }//end ViewingTimeAdapter class
+
 
 }//end MovieInfoActivity class
