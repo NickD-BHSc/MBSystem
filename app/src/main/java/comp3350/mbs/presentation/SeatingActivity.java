@@ -144,22 +144,21 @@ public class SeatingActivity extends AppCompatActivity {
     }//end addParcBookedSeats
 
     /**
-     * addSeat - a method that adds the chosen seat in the bookedSeats.
+     * addSeat - a method that adds the chosen seat in the bookedSeats. (Used in SeatingAdapter)
      * @param seat is the object that is going to be added.
      */
-    public void addSeat( Seat seat ){
+    private void addSeat( Seat seat ){
         bookedSeats.add( seat );
     }//end addSeat
 
     /**
-     * removeSeat - a method that removes the chosen seat in the bookedList.
+     * removeSeat - a method that removes the chosen seat in the bookedList. (Used in SeatingAdapter)
      * @param seat is the object that is going to be removed.
      */
-    public void removeSeat( Seat seat ){
+    private void removeSeat( Seat seat ){
         bookedSeats.remove(seat);
     }//end removeSeat
-
-
+    
 
     /**
      * SeatingAdapter class - a class that displays a list of Seat objects in the recycler view.
@@ -168,10 +167,10 @@ public class SeatingActivity extends AppCompatActivity {
 
         /**
          * SeatingAdapter Constructor
-         * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+         * @param itemList contains the list of Seats.
          */
-        public SeatingAdapter(List itemLists) {
-            super(itemLists);
+        public SeatingAdapter(List itemList) {
+            super(itemList);
         }//end constructor
 
         /**
@@ -251,14 +250,14 @@ public class SeatingActivity extends AppCompatActivity {
         }//end onBindViewHolder
 
         /**
-         * SeatViewHolder class - a class that displays each Seat object from the list in the activity_viewing_seat xml.
+         * SeatViewHolder class - a class that assigns the widgets from activity_seat xml so that it
+         *          could display each Seat object from the list.
          */
         private class SeatViewHolder extends CustomViewHolder {
 
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private ImageView seatImageView;
             private TextView seatNumberTextView;
-
 
             public SeatViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -268,8 +267,6 @@ public class SeatingActivity extends AppCompatActivity {
             }//end constructor
 
         }//end SeatViewHolder class
-
-
 
     }//end SeatingAdapter class
 
