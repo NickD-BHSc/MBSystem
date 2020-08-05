@@ -200,7 +200,7 @@ public class MovieInfoActivity extends AppCompatActivity {
         /**
          * ViewingTimeHolder class - a class that displays each ViewingTime object from the list in the activity_viewing_time xml.
          */
-        private class ViewingTimeHolder extends CustomViewHolder{
+        private class ViewingTimeHolder extends CustomViewHolder {
 
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private TextView viewTimeTextView;

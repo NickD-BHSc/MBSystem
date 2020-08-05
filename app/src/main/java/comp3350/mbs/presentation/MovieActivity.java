@@ -152,7 +152,7 @@ public class MovieActivity extends AppCompatActivity {
         /**
          * MovieViewHolder class - a class that displays each TheatreMovie object from the list in the activity_movie xml.
          */
-        private class MovieViewHolder extends CustomViewHolder{
+        private class MovieViewHolder extends CustomViewHolder {
 
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private ImageView movieImageView;

@@ -1,6 +1,5 @@
 package comp3350.mbs.presentation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -148,7 +147,7 @@ public class TheatreActivity extends AppCompatActivity {
         /**
          * TheatreViewHolder class - a class that displays each Theatre object from the list in the activity_theatre xml.
          */
-        private class TheatreViewHolder extends CustomViewHolder{
+        private class TheatreViewHolder extends CustomViewHolder {
 
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private TextView theatreNameTxtView;

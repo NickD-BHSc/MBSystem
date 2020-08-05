@@ -253,7 +253,7 @@ public class SeatingActivity extends AppCompatActivity {
         /**
          * SeatViewHolder class - a class that displays each Seat object from the list in the activity_viewing_seat xml.
          */
-        private class SeatViewHolder extends CustomViewHolder{
+        private class SeatViewHolder extends CustomViewHolder {
 
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private ImageView seatImageView;

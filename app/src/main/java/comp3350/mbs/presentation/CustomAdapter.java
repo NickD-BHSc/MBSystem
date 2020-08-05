@@ -23,7 +23,7 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 
-public abstract class CustomAdapter extends RecyclerView.Adapter <CustomViewHolder> {
+public abstract class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
     private List itemList;
 
@@ -73,4 +73,16 @@ public abstract class CustomAdapter extends RecyclerView.Adapter <CustomViewHold
     protected List getItemList() {
         return itemList;
     }//end getItemList
+
+
+    /**
+     * Class responsible for assigning the widgets depending on the given context (activity).
+     */
+    public abstract class CustomViewHolder extends RecyclerView.ViewHolder {
+
+        //TODO put this class in the CustomAdapter
+        public CustomViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }//end CustomViewHolder class
 }//end CustomAdapter class

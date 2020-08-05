@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +16,6 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.objects.Order;
-import comp3350.mbs.objects.Seat;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -144,7 +141,7 @@ public class OrderActivity extends AppCompatActivity {
         /**
          * OrderViewHolder class - a class that displays each Order object from the list in the activity_order xml.
          */
-        private class OrderViewHolder extends CustomViewHolder{
+        private class OrderViewHolder extends CustomViewHolder {
 
             private TextView movieNameTextView;
             private TextView theatreNameTextView;
