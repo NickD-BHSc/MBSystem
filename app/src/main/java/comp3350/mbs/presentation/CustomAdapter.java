@@ -1,27 +1,10 @@
 package comp3350.mbs.presentation;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
-import comp3350.mbs.R;
-import comp3350.mbs.business.ParcelableFactory;
-import comp3350.mbs.objects.Order;
-import comp3350.mbs.objects.Seat;
-import comp3350.mbs.objects.Theatre;
-import comp3350.mbs.objects.TheatreMovies;
-import comp3350.mbs.objects.ViewingTime;
 
 public abstract class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomViewHolder> {
 
@@ -29,7 +12,7 @@ public abstract class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.
 
     /**
      * CustomAdapter Constructor
-     * @param itemList is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+     * @param itemList is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime, Seats, or Order.
      */
     public CustomAdapter(List itemList){
         this.itemList = itemList;
@@ -79,10 +62,11 @@ public abstract class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.
      * Class responsible for assigning the widgets depending on the given context (activity).
      */
     public abstract class CustomViewHolder extends RecyclerView.ViewHolder {
-
-        //TODO put this class in the CustomAdapter
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-        }
+        }//end constructor
+
     }//end CustomViewHolder class
+
+
 }//end CustomAdapter class
