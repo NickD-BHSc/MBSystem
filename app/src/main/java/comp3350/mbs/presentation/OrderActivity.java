@@ -84,10 +84,10 @@ public class OrderActivity extends AppCompatActivity {
 
         /**
          * OrderAdapter Constructor
-         * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+         * @param itemList contains the list of Order.
          */
-        public OrderAdapter(List itemLists) {
-            super(itemLists);
+        public OrderAdapter(List itemList) {
+            super(itemList);
         }//end constructor
 
         /**
@@ -139,7 +139,8 @@ public class OrderActivity extends AppCompatActivity {
         }//end onBindViewHolder
 
         /**
-         * OrderViewHolder class - a class that displays each Order object from the list in the activity_order xml.
+         * OrderViewHolder class - a class that assigns the widgets from activity_order xml so that it
+         *          could display each Seat object from the list.
          */
         private class OrderViewHolder extends CustomViewHolder {
 
@@ -148,7 +149,6 @@ public class OrderActivity extends AppCompatActivity {
             private TextView showTimeTextView;
             private TextView showDateTextView;
             private TextView quantityTextView;
-
 
             public OrderViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -160,8 +160,6 @@ public class OrderActivity extends AppCompatActivity {
             }//end constructor
 
         }//end OrderViewHolder class
-
-
 
     }//end OrderAdapter class
 
