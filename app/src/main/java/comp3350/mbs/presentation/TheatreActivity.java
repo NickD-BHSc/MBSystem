@@ -80,10 +80,10 @@ public class TheatreActivity extends AppCompatActivity {
 
         /**
          * TheatreAdapter Constructor
-         * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+         * @param itemList contains the list of theatres.
          */
-        public TheatreAdapter(List itemLists) {
-            super(itemLists);
+        public TheatreAdapter(List itemList) {
+            super(itemList);
         }//end constructor
 
         /**
@@ -107,8 +107,8 @@ public class TheatreActivity extends AppCompatActivity {
 
         /**
          * onBindViewHolder - a method called by the RecyclerView to display the data at the specified position.
-         * This method should update the contents of the CustomViewHolder (item) to reflect the item
-         * at the given position.
+         *          This method should update the contents of the CustomViewHolder (item) to reflect the item
+         *          at the given position.
          * @param holder   is the view holder which should be updated to represent the contents of the item at the
          *                 given position in the data set.
          * @param position is the position of the item within the adapter's data set.
@@ -142,10 +142,12 @@ public class TheatreActivity extends AppCompatActivity {
                     throw new Error("an item from the list is expected to be a Theatre object.");
                 }
             }
+
         }//end onBindViewHolder
 
         /**
-         * TheatreViewHolder class - a class that displays each Theatre object from the list in the activity_theatre xml.
+         * TheatreViewHolder class - a class that assigns the widgets from activity_theatre xml so that it
+         *          could display each Theatre object from the list.
          */
         private class TheatreViewHolder extends CustomViewHolder {
 
@@ -163,8 +165,6 @@ public class TheatreActivity extends AppCompatActivity {
             }//end constructor
 
         }//end TheatreViewHolder class
-
-
 
     }//end TheatreAdapter class
 
