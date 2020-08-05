@@ -70,7 +70,7 @@ public class MovieActivity extends AppCompatActivity {
 
         movieRecyclerView = findViewById(R.id.movieRecyclerView);
 
-        customAdapter = new TheatreMovieAdapter(movieLists);
+        customAdapter = new TheatreMoviesAdapter(movieLists);
         movieRecyclerView.setAdapter(customAdapter);
         layoutManager = new GridLayoutManager(this,1);
         movieRecyclerView.setLayoutManager(layoutManager);
@@ -79,16 +79,16 @@ public class MovieActivity extends AppCompatActivity {
 
 
     /**
-     * TheatreMovieAdapter class - a class that displays a list of TheatreMovie objects in the recycler view.
+     * TheatreMoviesAdapter class - a class that displays a list of TheatreMovies objects in the recycler view.
      */
-    private class TheatreMovieAdapter extends CustomAdapter {
+    private class TheatreMoviesAdapter extends CustomAdapter {
 
         /**
-         * TheatreMovieAdapter Constructor
-         * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+         * TheatreMoviesAdapter Constructor
+         * @param itemList contains the list of TheatreMovies.
          */
-        public TheatreMovieAdapter(List itemLists) {
-            super(itemLists);
+        public TheatreMoviesAdapter(List itemList) {
+            super(itemList);
         }//end constructor
 
         /**
@@ -150,10 +150,11 @@ public class MovieActivity extends AppCompatActivity {
         }//end onBindViewHolder
 
         /**
-         * MovieViewHolder class - a class that displays each TheatreMovie object from the list in the activity_movie xml.
+         * MovieViewHolder class - a class that assigns the widgets from activity_movie xml so that it
+         *          could display each TheatreMovies object from the list.
          */
         private class MovieViewHolder extends CustomViewHolder {
-
+            //TODO rename MovieViewHolder to TheatreMoviesViewHolder? If not able to remove the theatre name from the movie table in db.
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private ImageView movieImageView;
             private TextView titleTxtView;
@@ -169,6 +170,6 @@ public class MovieActivity extends AppCompatActivity {
 
 
 
-    }//end TheatreMovieAdapter class
+    }//end TheatreMoviesAdapter class
 
 }//end MainActivity class
