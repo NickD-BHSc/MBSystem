@@ -130,10 +130,10 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         /**
          * ViewingTimeAdapter Constructor
-         * @param itemLists is the data stored in a list which could be a list of theatres, TheatreMovies, ViewingTime etc.
+         * @param itemList contains the list of ViewingTime.
          */
-        public ViewingTimeAdapter(List itemLists) {
-            super(itemLists);
+        public ViewingTimeAdapter(List itemList) {
+            super(itemList);
         }//end constructor
 
         /**
@@ -198,7 +198,8 @@ public class MovieInfoActivity extends AppCompatActivity {
         }//end onBindViewHolder
 
         /**
-         * ViewingTimeHolder class - a class that displays each ViewingTime object from the list in the activity_viewing_time xml.
+         * ViewingTimeHolder class -  a class that assigns the widgets from activity_viewing_time xml so that it
+         *          could display each ViewingTime object from the list.
          */
         private class ViewingTimeHolder extends CustomViewHolder {
 
@@ -214,9 +215,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
         }//end ViewingTimeHolder class
 
-
-
     }//end ViewingTimeAdapter class
-
 
 }//end MovieInfoActivity class
