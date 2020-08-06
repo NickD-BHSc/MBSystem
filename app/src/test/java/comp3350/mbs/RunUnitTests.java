@@ -26,7 +26,7 @@ import comp3350.mbs.persistence.DataAccessTest;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class AllTests {
+public class RunUnitTests {
 
     public static TestSuite suite;
 

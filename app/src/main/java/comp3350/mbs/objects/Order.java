@@ -69,4 +69,13 @@ public class Order {
     public void setTicketQuantity(int ticketQuantity){
         this.ticketQuantity = ticketQuantity;
     }
+
+    //equals methods
+    public boolean equals( Order o ) {
+        return (this.getMovieName().equals(o.getMovieName()) &&
+                this.getShowTime().equals(o.getShowTime()) &&
+                this.getTheatreName().equals(o.getTheatreName()) &&
+                this.getShowDate().equals(o.getShowDate()) &&
+                this.getTicketQuantity() == (o.getTicketQuantity()));
+    }
 }
