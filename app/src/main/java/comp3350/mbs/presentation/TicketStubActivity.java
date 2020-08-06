@@ -65,7 +65,14 @@ public class TicketStubActivity extends AppCompatActivity{
     private void addTicketStubInfo(){
 
         Intent intent = getIntent();
-        order = intent.getParcelableExtra("Order");
+
+        String getTheatreName = intent.getStringExtra("Order_Theatre");
+        String getMovieName = intent.getStringExtra("Order_Movie");
+        String getShowTime = intent.getStringExtra("Order_Show_Time");
+        String getShowDate = intent.getStringExtra("Order_Show_Date");
+        int getNumTickets = intent.getIntExtra("Order_Num_Tickets",0);
+
+        order = new Order(getMovieName,getShowTime,getShowDate,getTheatreName,getNumTickets);
         chosenTicketQuantityTextView.setText(Integer.toString(order.getTicketQuantity()));
         chosenMovieTitleTextView.setText(order.getMovieName());
         chosenShowTimeTextView.setText(order.getShowTime());

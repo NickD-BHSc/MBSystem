@@ -101,8 +101,12 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context, MovieActivity.class);
-                        Parcelable parcTheatre  = ParcelableFactory.createParcelableObject(item);
-                        intent.putExtra("Chosen_Theatre", parcTheatre);
+                        //Parcelable parcTheatre  = ParcelableFactory.createParcelableObject(item);
+                        //intent.putExtra("Chosen_Theatre", parcTheatre);
+
+                        //New changes
+                        //Only need the name of the theatre to access the movies.
+                        intent.putExtra("Chosen_Theatre_Name",item.getName());
                         context.startActivity(intent);
                     }
                 });
@@ -124,8 +128,14 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,MovieInfoActivity.class);
-                        Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(item);
-                        intent.putExtra("Movie_Selected", parcTheatreMovie);//the item also contains the theatre name since it is a TheatreMovies object.
+                        //Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(item);
+                        //intent.putExtra("Movie_Selected", parcTheatreMovie);//the item also contains the theatre name since it is a TheatreMovies object.
+
+                        //New changes
+                        intent.putExtra("Chosen_Theatre_Name",item.getTheatreName());
+                        intent.putExtra("Chosen_Movie_Name",item.getMovieName());
+                        intent.putExtra("Movie_Poster",item.getMoviePoster());
+                        intent.putExtra("Movie_Description",item.getMovieDescription());
                         context.startActivity(intent);
                     }
                 });
@@ -146,6 +156,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(context,SeatingActivity.class);
+                        /*
                         Parcelable parcViewingTime = ParcelableFactory.createParcelableObject(item);
 
                         TheatreMovies theatreMovie = ((MovieInfoActivity)context).getTheatreMovieItem();
@@ -153,6 +164,14 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
 
                         intent.putExtra( "ViewingTime_Selected", parcViewingTime);
                         intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
+                         */
+
+                        //New changes
+                        intent.putExtra("Chosen_Theatre_Name",item.getTheatreName());
+                        intent.putExtra("Chosen_Movie_Name",item.getMovieName());
+                        intent.putExtra("Show_Time",item.getShowTime());
+                        intent.putExtra("Show_Date",item.getShowDate());
+                        intent.putExtra("Seats",item.getSeatString());
                         context.startActivity(intent);
                     }
                 });

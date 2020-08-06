@@ -73,7 +73,12 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo(){
 
         Intent intent = getIntent();
-        theatreMovieItem = intent.getParcelableExtra("Movie_Selected");
+        //theatreMovieItem = intent.getParcelableExtra("Movie_Selected");
+        String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
+        String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
+        int getMoviePoster = intent.getIntExtra("Movie_Poster",0);
+        String getMovieDescription = intent.getStringExtra("Movie_Description");
+        theatreMovieItem = new TheatreMovies(getTheatreName,getMovieName,getMoviePoster,getMovieDescription);
 
         if(theatreMovieItem == null){
             throw new Error("No movie selected");

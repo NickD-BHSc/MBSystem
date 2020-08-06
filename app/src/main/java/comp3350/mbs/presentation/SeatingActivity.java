@@ -36,6 +36,8 @@ public class SeatingActivity extends AppCompatActivity {
     private List<Seat> seatingList;
     private List<Seat> bookedSeats;
     private List<Parcelable> parcBookedSeats;
+    private String chosenSeats;
+    private int chosenNumSeats;
 
     private TheatreMovies theatreMovie;
     private ViewingTime viewingTime;
@@ -57,6 +59,7 @@ public class SeatingActivity extends AppCompatActivity {
                     Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
+                    /*
                     addParcBookedSeats();
                     intent.putParcelableArrayListExtra("Booked_Seats", (ArrayList<? extends Parcelable>) parcBookedSeats);
                     Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
@@ -71,7 +74,25 @@ public class SeatingActivity extends AppCompatActivity {
                     seatString = seatEncoding.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
                     accessSeats.updateSeatList(viewingTime, seatString );
+                     */
+                    addParcBookedSeats();
+                    accessSeats = new AccessSeats();
+                    seatEncoding = new SeatEncoding();
+                    seatString = seatEncoding.encodeSeatList(seatingList, bookedSeats);
+                    System.out.println("Updated Seat String:"+seatString);
+                    accessSeats.updateSeatList(viewingTime, seatString );
+
+                    //New changes
+                    intent.putExtra("Chosen_Seats",chosenSeats);
+                    intent.putExtra("Chosen_Num_Seats",chosenNumSeats);
+                    intent.putExtra("Chosen_Theatre_Name",viewingTime.getTheatreName());
+                    intent.putExtra("Chosen_Movie_Name",viewingTime.getMovieName());
+                    intent.putExtra("Show_Time",viewingTime.getShowTime());
+                    intent.putExtra("Show_Date",viewingTime.getShowDate());
+                    intent.putExtra("Seats",viewingTime.getSeatString());
+
                     startActivity(intent);
+
                 }
             }
         });
@@ -87,27 +108,31 @@ public class SeatingActivity extends AppCompatActivity {
         parcBookedSeats = new ArrayList<>();
 
         Intent intent = getIntent();
-        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
-        viewingTime = intent.getParcelableExtra( "ViewingTime_Selected");
+        //theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
+        //viewingTime = intent.getParcelableExtra( "ViewingTime_Selected");
 
-        if(theatreMovie == null){
-            throw new Error("No chosen movie");
+        String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
+        String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
+        String getShowTime = intent.getStringExtra("Show_Time");
+        String getShowDate = intent.getStringExtra("Show_Date");
+        String getSeats = intent.getStringExtra("Seats");
+
+
+        if(getTheatreName == null || getMovieName == null || getShowTime == null || getShowDate == null ||getSeats == null){
+            throw new Error("No available viewing times for the movie:");
+
         }else{
+            viewingTime = new ViewingTime(getTheatreName,getMovieName,getShowTime,getShowDate,getSeats);
 
-            if(viewingTime == null){
-                throw new Error("No available viewing times for the movie:" + theatreMovie.getMovieName());
+            bookedSeats = new ArrayList<>();//list that contains the booked seats.
+            accessSeats = new AccessSeats();
+            seatEncoding = new SeatEncoding();
 
-            }else{
-
-                bookedSeats = new ArrayList<>();//list that contains the booked seats.
-                accessSeats = new AccessSeats();
-                seatEncoding = new SeatEncoding();
-
-                seatString = viewingTime.getSeatString();
-                seatingList = seatEncoding.decodeSeatList(viewingTime.getSeatString());//data that will be passed to the CustomAdapter.
-            }
-
+            seatString = viewingTime.getSeatString();
+            seatingList = seatEncoding.decodeSeatList(viewingTime.getSeatString());//data that will be passed to the CustomAdapter.
         }
+
+
     }//end init
 
     /**
@@ -127,13 +152,24 @@ public class SeatingActivity extends AppCompatActivity {
      * addParcBookedSeats - a method that adds the booked seats to a parcelable list
      */
     private void addParcBookedSeats(){
-
+        /*
         parcBookedSeats = new ArrayList<Parcelable>();
         for(int i = 0; i < bookedSeats.size(); i++){
             Seat seat = bookedSeats.get(i);
             Parcelable parcSeats = ParcelableFactory.createParcelableObject(seat);
             parcBookedSeats.add(parcSeats);
         }
+
+         */
+        chosenSeats = "";
+        chosenNumSeats = bookedSeats.size();
+        for(int i =0; i < bookedSeats.size(); i++){
+            chosenSeats += bookedSeats.get(i).getSeatNumber() + ", ";
+        }
+
+        int lastCommaPosition = chosenSeats.lastIndexOf(", ");
+        chosenSeats = chosenSeats.substring(0, lastCommaPosition);
+
 
     }//end addParcBookedSeats
 

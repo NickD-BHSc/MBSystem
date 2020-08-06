@@ -37,15 +37,15 @@ public class MovieActivity extends AppCompatActivity {
     private void init(){
 
         Intent intent = getIntent();
-        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
-
-        if(theatreItem == null){
+        //Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
+        String theatreName = intent.getStringExtra("Chosen_Theatre_Name");
+        if(theatreName == null){
             throw new Error("No chosen theatre");
         }else{
-            AccessTheatreMovies accessMovies = new AccessTheatreMovies();
-            movieLists = accessMovies.getMoviesFromTheatre(theatreItem.getName());
+            AccessTheatreMovies accessMovies = new AccessTheatreMovies ();
+            movieLists = accessMovies.getMoviesFromTheatre(theatreName);
             if(movieLists == null){
-                throw new Error("no available movies for chosen theatre: " + theatreItem.getName());
+                throw new Error("no available movies for chosen theatre: " + theatreName);
 
             }else{
                 buildRecyclerView();
