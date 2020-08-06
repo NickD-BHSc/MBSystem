@@ -44,13 +44,10 @@ public class OrderActivity extends AppCompatActivity {
         accessOrders = new AccessOrders();
         orderList = accessOrders.getOrderList();
 
-        if(orderList == null){
-            throw new Error("No list of orders available.");
-        }else if(orderList.size() == 0){
+        if(orderList.size() == 0){
             noOrdersAvailable = findViewById(R.id.noOrderstextView);
             noOrdersAvailable.setVisibility(View.VISIBLE);
-        }
-        else{
+        }else{
             noOrdersAvailable = findViewById(R.id.noOrderstextView);
             noOrdersAvailable.setVisibility(View.INVISIBLE);
             buildRecyclerView();

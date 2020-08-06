@@ -73,30 +73,27 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo(){
 
         Intent intent = getIntent();
-        //theatreMovieItem = intent.getParcelableExtra("Movie_Selected");
+        //get information from the previous activity (which movie was selected)
         String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
         String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
         int getMoviePoster = intent.getIntExtra("Movie_Poster",0);
         String getMovieDescription = intent.getStringExtra("Movie_Description");
+
         theatreMovieItem = new TheatreMovies(getTheatreName,getMovieName,getMoviePoster,getMovieDescription);
 
-        if(theatreMovieItem == null){
-            throw new Error("No movie selected");
+        movieTitleTextView.setText(theatreMovieItem.getMovieName());
+        moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
+        movieDescTextView.setText(theatreMovieItem.getMovieDescription());
+
+        AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
+        viewingTimeList = accessViewingTimes.getViewingTimeList(theatreMovieItem.getTheatreName(),theatreMovieItem.getMovieName());
+
+        if(viewingTimeList == null){
+            throw new Error("No available viewing time for movie: " + theatreMovieItem.getMovieName());
         }else{
-
-            movieTitleTextView.setText(theatreMovieItem.getMovieName());
-            moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
-            movieDescTextView.setText(theatreMovieItem.getMovieDescription());
-
-            AccessViewingTimes accessViewingTimes = new AccessViewingTimes();
-            viewingTimeList = accessViewingTimes.getViewingTimeList(theatreMovieItem.getTheatreName(),theatreMovieItem.getMovieName());
-
-            if(viewingTimeList == null){
-                throw new Error("No available viewing time for movie: " + theatreMovieItem.getMovieName());
-            }else{
-                buildRecyclerView();
-            }
+            buildRecyclerView();
         }
+
 
     }//end addMovieInfo
 
@@ -112,14 +109,5 @@ public class MovieInfoActivity extends AppCompatActivity {
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
-
-
-    /**
-     * getTheatreMovieItem - a getter method for theatreMovieItem.
-     * @return it will return the field theatreMovieItem.
-     */
-    public TheatreMovies getTheatreMovieItem(){
-        return theatreMovieItem;
-    }//end getTheatreMovieItem
 
 }//end MovieInfoActivity class

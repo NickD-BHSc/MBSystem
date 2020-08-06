@@ -11,7 +11,6 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTheatreMovies;
-import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 
 public class MovieActivity extends AppCompatActivity {
@@ -39,18 +38,16 @@ public class MovieActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
         String theatreName = intent.getStringExtra("Chosen_Theatre_Name");
-        if(theatreName == null){
-            throw new Error("No chosen theatre");
-        }else{
-            AccessTheatreMovies accessMovies = new AccessTheatreMovies ();
-            movieLists = accessMovies.getMoviesFromTheatre(theatreName);
-            if(movieLists == null){
-                throw new Error("no available movies for chosen theatre: " + theatreName);
 
-            }else{
-                buildRecyclerView();
-            }
+        AccessTheatreMovies accessMovies = new AccessTheatreMovies ();
+        movieLists = accessMovies.getMoviesFromTheatre(theatreName);
+        if(movieLists == null){
+            throw new Error("no available movies for chosen theatre: " + theatreName);
+
+        }else{
+            buildRecyclerView();
         }
+
 
     }//end init
 
