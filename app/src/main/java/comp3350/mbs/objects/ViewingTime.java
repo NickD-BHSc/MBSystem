@@ -9,11 +9,6 @@ public class ViewingTime {
     private String seatString;
 
     /**
-     * ViewingTime constructor for implementing Parcelable interface in the ParcelableViewingTime class.
-     */
-    public ViewingTime(){}
-
-    /**
      * ViewingTime Constructor
      *
      * @param theatreName is the name of the theatre.

@@ -7,11 +7,6 @@ public class Theatre{
     private String distance;
 
     /**
-     * Theatre constructor for implementing Parcelable interface in the ParcelableTheatre class.
-     */
-    public Theatre(){}
-
-    /**
      * Theatre Constructor
      *
      * @param name is the name of the theatre.
