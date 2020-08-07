@@ -2,7 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTheatres;
-import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Theatre;
 
 public class TheatreActivity extends AppCompatActivity {
@@ -131,8 +129,7 @@ public class TheatreActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(TheatreActivity.this, MovieActivity.class);
-                            Parcelable parcTheatre = ParcelableFactory.createParcelableObject(item);
-                            intent.putExtra("Chosen_Theatre", parcTheatre);
+                            intent.putExtra("Chosen_Theatre_Name",item.getName());
                             TheatreActivity.this.startActivity(intent);
                         }
                     });

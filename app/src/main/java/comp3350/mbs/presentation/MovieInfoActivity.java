@@ -2,7 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessViewingTimes;
-import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 
@@ -79,7 +77,12 @@ public class MovieInfoActivity extends AppCompatActivity {
     private void addMovieInfo(){
 
         Intent intent = getIntent();
-        theatreMovieItem = intent.getParcelableExtra("Movie_Selected");
+
+        String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
+        String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
+        int getMoviePoster = intent.getIntExtra("Movie_Poster",0);
+        String getMovieDescription = intent.getStringExtra("Movie_Description");
+        theatreMovieItem = new TheatreMovies(getTheatreName,getMovieName,getMoviePoster,getMovieDescription);
 
         if(theatreMovieItem == null){
             throw new Error("No movie selected");
@@ -178,13 +181,11 @@ public class MovieInfoActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(MovieInfoActivity.this,SeatingActivity.class);
-                            Parcelable parcViewingTime = ParcelableFactory.createParcelableObject(item);
-
-                            TheatreMovies theatreMovie = getTheatreMovieItem();
-                            Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
-
-                            intent.putExtra( "ViewingTime_Selected", parcViewingTime);
-                            intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
+                            intent.putExtra("Chosen_Theatre_Name",item.getTheatreName());
+                            intent.putExtra("Chosen_Movie_Name",item.getMovieName());
+                            intent.putExtra("Show_Time",item.getShowTime());
+                            intent.putExtra("Show_Date",item.getShowDate());
+                            intent.putExtra("Seats",item.getSeatString());
                             startActivity(intent);
                         }
                     });

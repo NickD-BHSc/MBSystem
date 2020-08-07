@@ -2,7 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTheatreMovies;
-import comp3350.mbs.business.ParcelableFactory;
-import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 
 public class MovieActivity extends AppCompatActivity {
@@ -46,17 +43,18 @@ public class MovieActivity extends AppCompatActivity {
     private void init(){
 
         Intent intent = getIntent();
-        Theatre theatreItem = intent.getParcelableExtra("Chosen_Theatre");
+        String theatreName = intent.getStringExtra("Chosen_Theatre_Name");
 
-        if(theatreItem == null){
+        if (theatreName == null) {
             throw new Error("No chosen theatre");
-        }else{
-            AccessTheatreMovies accessMovies = new AccessTheatreMovies();
-            movieLists = accessMovies.getMoviesFromTheatre(theatreItem.getName());
-            if(movieLists == null){
-                throw new Error("no available movies for chosen theatre: " + theatreItem.getName());
+        } else {
 
-            }else{
+            AccessTheatreMovies accessMovies = new AccessTheatreMovies();
+            movieLists = accessMovies.getMoviesFromTheatre(theatreName);
+            if (movieLists == null) {
+                throw new Error("no available movies for chosen theatre: " + theatreName);
+
+            } else {
                 buildRecyclerView();
             }
         }
@@ -135,8 +133,10 @@ public class MovieActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(MovieActivity.this, MovieInfoActivity.class);
-                            Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(item);
-                            intent.putExtra("Movie_Selected", parcTheatreMovie);//the item also contains the theatre name since it is a TheatreMovies object.
+                            intent.putExtra("Chosen_Theatre_Name",item.getTheatreName());
+                            intent.putExtra("Chosen_Movie_Name",item.getMovieName());
+                            intent.putExtra("Movie_Poster",item.getMoviePoster());
+                            intent.putExtra("Movie_Description",item.getMovieDescription());
                             MovieActivity.this.startActivity(intent);
                         }
                     });

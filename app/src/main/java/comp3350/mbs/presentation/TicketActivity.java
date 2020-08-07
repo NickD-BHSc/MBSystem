@@ -17,7 +17,6 @@ import comp3350.mbs.R;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.business.CreditCardValidation;
-import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -41,6 +40,8 @@ public class TicketActivity extends AppCompatActivity {
     private List<Parcelable> bookedSeats;
     private ViewingTime movieDetails;
     private Order order;
+    private String chosenSeats;
+    private int numBookedSeats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -68,8 +69,11 @@ public class TicketActivity extends AppCompatActivity {
                     Toast.makeText(TicketActivity.this,"Please enter a valid credit card.",Toast.LENGTH_SHORT).show();
                 }else {
                     Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
-                    ParcelableOrder parcelableOrder = (ParcelableOrder) ParcelableFactory.createParcelableObject(order);
-                    startIntent.putExtra("Order", parcelableOrder);
+                    startIntent.putExtra("Order_Theatre",order.getTheatreName());
+                    startIntent.putExtra("Order_Movie",order.getMovieName());
+                    startIntent.putExtra("Order_Show_Time",order.getShowTime());
+                    startIntent.putExtra("Order_Show_Date",order.getShowDate());
+                    startIntent.putExtra("Order_Num_Tickets",order.getTicketQuantity());
                     startActivity(startIntent);
                 }
             }
@@ -92,10 +96,17 @@ public class TicketActivity extends AppCompatActivity {
         chosenSeatsTextView = findViewById(R.id.chosenSeatsTextView);
 
         Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
-        bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
+        String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
+        String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
+        String getShowTime = intent.getStringExtra("Show_Time");
+        String getShowDate = intent.getStringExtra("Show_Date");
+        String getSeats = intent.getStringExtra("Seats");
+        numBookedSeats = intent.getIntExtra("Chosen_Num_Seats", 0);
+        chosenSeats = intent.getStringExtra("Chosen_Seats");
 
-        movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
-        order = new Order(movieDetails.getMovieName(), movieDetails.getShowTime(), movieDetails.getShowDate(), movieDetails.getTheatreName(), bookedSeats.size());
+        theatreMovie = new TheatreMovies(getTheatreName,getMovieName);
+        movieDetails = new ViewingTime(getTheatreName,getMovieName,getShowTime,getShowDate,getSeats);
+        order = new Order(movieDetails.getMovieName(), movieDetails.getShowTime(), movieDetails.getShowDate(), movieDetails.getTheatreName(),numBookedSeats);
 
     }//end init
 
@@ -106,42 +117,21 @@ public class TicketActivity extends AppCompatActivity {
      */
     private void addTicketInfo(){
 
-        Intent intent = getIntent();
-        theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected");
+        AccessTickets accessTickets = new AccessTickets();
+        List<Ticket> ticketList = new ArrayList<>();
 
-        if(theatreMovie == null){
-            throw new Error("No chosen TheatreMovie");
-
-        }else{
-            AccessTickets accessTickets = new AccessTickets();
-            ArrayList<Ticket> ticketList = new ArrayList<>();
-
-            Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
-            for (int i = 0; i < bookedSeats.size(); i++){
-                ticketList.add(ticket);
-            }
-
-            ticketPriceTextView.setText(ticket.getPriceAsString());
-            ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
-            ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
-            ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
-            ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
-
-            //Displays the chosen seats (not in sorted order)
-            String seatNumbers = "";
-            for(int i = 0; i < bookedSeats.size(); i++){
-                if(bookedSeats.get(i) instanceof ParcelableSeat){
-                    ParcelableSeat seat = (ParcelableSeat)bookedSeats.get(i);
-                    seatNumbers += seat.getSeatNumber() + ", ";
-                }
-            }
-            int lastCommaPosition = seatNumbers.lastIndexOf(", ");
-            seatNumbers = seatNumbers.substring(0, lastCommaPosition);
-
-            movieTitleTextView.setText(theatreMovie.getTheatreName() + "\n" + theatreMovie.getMovieName() +"\nSeats: " + seatNumbers);
-            movieTitleTextView.setText(theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
-            chosenSeatsTextView.setText(seatNumbers);
+        Ticket ticket = accessTickets.getTicket(theatreMovie.getMovieName());
+        for (int i = 0; i < numBookedSeats; i++){
+            ticketList.add(ticket);
         }
+        ticketPriceTextView.setText(ticket.getPriceAsString());
+        ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
+        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
+        ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
+        ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
+
+        movieTitleTextView.setText(theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
+        chosenSeatsTextView.setText(chosenSeats);
 
     }//end addTicketInfo
 
