@@ -150,7 +150,7 @@ public class TheatreActivity extends AppCompatActivity {
          */
         private class TheatreViewHolder extends CustomViewHolder {
 
-            private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
+            private RelativeLayout relativeLayout;//used for the a click event
             private TextView theatreNameTxtView;
             private TextView theatreAddressTxtView;
             private TextView theatreDistTxtView;

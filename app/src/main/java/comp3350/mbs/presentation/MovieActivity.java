@@ -105,7 +105,7 @@ public class MovieActivity extends AppCompatActivity {
             View view;
 
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_movie,parent,false);
-            customViewHolder = new MovieViewHolder(view);
+            customViewHolder = new TheatreMoviesViewHolder(view);
 
             return customViewHolder;
         }//end CustomViewHolder
@@ -124,7 +124,7 @@ public class MovieActivity extends AppCompatActivity {
             if(super.getItemList().get(position) instanceof TheatreMovies) {
 
                     final TheatreMovies item = (TheatreMovies) super.getItemList().get(position); // get the item using the given position.
-                    MovieViewHolder movieViewHolder = (MovieViewHolder)holder;
+                    TheatreMoviesViewHolder movieViewHolder = (TheatreMoviesViewHolder)holder;
 
                     //set the following info about Movie to the TextViews.
                     movieViewHolder.titleTxtView.setText(item.getMovieName());
@@ -148,23 +148,23 @@ public class MovieActivity extends AppCompatActivity {
         }//end onBindViewHolder
 
         /**
-         * MovieViewHolder class - a class that assigns the widgets from activity_movie xml so that it
+         * TheatreMoviesViewHolder class - a class that assigns the widgets from activity_movie xml so that it
          *          could display each TheatreMovies object from the list.
          */
-        private class MovieViewHolder extends CustomViewHolder {
-            //TODO rename MovieViewHolder to TheatreMoviesViewHolder? If not able to remove the theatre name from the movie table in db.
-            private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
+        private class TheatreMoviesViewHolder extends CustomViewHolder {
+
+            private RelativeLayout relativeLayout;//used for the a click event
             private ImageView movieImageView;
             private TextView titleTxtView;
 
-            public MovieViewHolder(@NonNull View itemView) {
+            public TheatreMoviesViewHolder(@NonNull View itemView) {
                 super(itemView);
                 movieImageView = itemView.findViewById(R.id.moviePicImageView);
                 titleTxtView = itemView.findViewById(R.id.movieTitleTxtView);
                 relativeLayout = itemView.findViewById(R.id.movieRelativeLayout);
             }//end constructor
 
-        }//end MovieViewHolder class
+        }//end TheatreMoviesViewHolder class
 
     }//end TheatreMoviesAdapter class
 

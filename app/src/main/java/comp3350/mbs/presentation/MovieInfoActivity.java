@@ -201,7 +201,7 @@ public class MovieInfoActivity extends AppCompatActivity {
          */
         private class ViewingTimeHolder extends CustomViewHolder {
 
-            private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
+            private RelativeLayout relativeLayout;//used for the a click event
             private TextView viewTimeTextView;
 
             public ViewingTimeHolder(@NonNull View itemView) {

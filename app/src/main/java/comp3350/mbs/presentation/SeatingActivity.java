@@ -255,7 +255,7 @@ public class SeatingActivity extends AppCompatActivity {
          */
         private class SeatViewHolder extends CustomViewHolder {
 
-            private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
+            private RelativeLayout relativeLayout;//used for the a click event
             private ImageView seatImageView;
             private TextView seatNumberTextView;
 
