@@ -121,16 +121,15 @@ public class OrderActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
             if(super.getItemList().get(position) instanceof Order){
-                if(holder instanceof OrderViewHolder) {
-                    final Order item = (Order) super.getItemList().get(position);
-                    OrderViewHolder orderViewHolder = (OrderViewHolder)holder;
+                final Order item = (Order) super.getItemList().get(position);
+                OrderViewHolder orderViewHolder = (OrderViewHolder)holder;
 
-                    orderViewHolder.movieNameTextView.setText(item.getMovieName());
-                    orderViewHolder.theatreNameTextView.setText(item.getTheatreName());
-                    orderViewHolder.showTimeTextView.setText(item.getShowTime());
-                    orderViewHolder.showDateTextView.setText(item.getShowDate());
-                    orderViewHolder.quantityTextView.setText("Tickets: " + Integer.toString(item.getTicketQuantity()));
-                }
+                orderViewHolder.movieNameTextView.setText(item.getMovieName());
+                orderViewHolder.theatreNameTextView.setText(item.getTheatreName());
+                orderViewHolder.showTimeTextView.setText(item.getShowTime());
+                orderViewHolder.showDateTextView.setText(item.getShowDate());
+                orderViewHolder.quantityTextView.setText("Tickets: " + Integer.toString(item.getTicketQuantity()));
+
 
             }else{
                 throw new Error("an item from the list is expected to be a Order object.");
@@ -140,7 +139,7 @@ public class OrderActivity extends AppCompatActivity {
 
         /**
          * OrderViewHolder class - a class that assigns the widgets from activity_order xml so that it
-         *          could display each Seat object from the list.
+         *          could display each Order object from the list.
          */
         private class OrderViewHolder extends CustomViewHolder {
 

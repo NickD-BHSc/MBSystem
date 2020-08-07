@@ -168,7 +168,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
             if(super.getItemList().get(position) instanceof ViewingTime) {
 
-                if (holder instanceof ViewingTimeHolder) {
                     final ViewingTime item = (ViewingTime)super.getItemList().get(position);
                     ViewingTimeHolder viewingTimeHolder = (ViewingTimeHolder)holder;
 
@@ -190,9 +189,8 @@ public class MovieInfoActivity extends AppCompatActivity {
                         }
                     });
 
-                } else {
-                    throw new Error("an item from the list is expected to be a ViewingTime object.");
-                }
+            } else {
+                throw new Error("an item from the list is expected to be a ViewingTime object.");
             }
 
         }//end onBindViewHolder
@@ -205,7 +203,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
             private RelativeLayout relativeLayout;//layout for each activity (used for the a click event)
             private TextView viewTimeTextView;
-
 
             public ViewingTimeHolder(@NonNull View itemView) {
                 super(itemView);

@@ -123,7 +123,6 @@ public class MovieActivity extends AppCompatActivity {
 
             if(super.getItemList().get(position) instanceof TheatreMovies) {
 
-                if (holder instanceof MovieViewHolder) {
                     final TheatreMovies item = (TheatreMovies) super.getItemList().get(position); // get the item using the given position.
                     MovieViewHolder movieViewHolder = (MovieViewHolder)holder;
 
@@ -142,9 +141,8 @@ public class MovieActivity extends AppCompatActivity {
                         }
                     });
 
-                } else {
-                    throw new Error("an item from the list is expected to be a Movie object.");
-                }
+            } else {
+                throw new Error("an item from the list is expected to be a Movie object.");
             }
 
         }//end onBindViewHolder
@@ -167,8 +165,6 @@ public class MovieActivity extends AppCompatActivity {
             }//end constructor
 
         }//end MovieViewHolder class
-
-
 
     }//end TheatreMoviesAdapter class
 
