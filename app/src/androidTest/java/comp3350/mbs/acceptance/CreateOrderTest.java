@@ -47,8 +47,8 @@ public class CreateOrderTest {
         onView(withText("Avengers Endgame")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("1:00 to 4:00PM June 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("1:00 to 4:00PM June 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("1:00 to 4:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 4:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //select a seat(s)
         onView(withText("#0")).check(matches(isDisplayed()));
