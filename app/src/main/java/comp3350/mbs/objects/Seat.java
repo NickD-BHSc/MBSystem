@@ -8,11 +8,6 @@ public class Seat{
     private int seatImage;
 
     /**
-     * Seat constructor for implementing Parcelable interface in the ParcelableSeat class.
-     */
-    public Seat(){}
-
-    /**
      * Seat constructor
      *
      * @param seatNumber is the number of the seat.

@@ -7,11 +7,6 @@ public class TheatreMovies {
     private String movieDescription;
 
     /**
-     * TheatreMovies constructor for implementing Parcelable interface in the ParcelableTheatreMovies class.
-     */
-    public TheatreMovies(){}
-
-    /**
      * TheatreMovies Constructor - This is mainly used when we only need the theatre name and not the movie information.
      * There is no movie poster and no description needed.
      * @param theatreName is the given theatre name.

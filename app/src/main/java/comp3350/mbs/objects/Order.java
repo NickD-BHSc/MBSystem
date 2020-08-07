@@ -9,11 +9,6 @@ public class Order {
     private int ticketQuantity;
 
     /**
-     * Theatre constructor for implementing Parcelable interface in the ParcelableTheatre class.
-     */
-    public Order(){}
-
-    /**
      * Constructor of Order class.
      *
      * @param movieName is the type of the ticket.
