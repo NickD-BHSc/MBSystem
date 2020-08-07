@@ -36,14 +36,5 @@ public class Ticket {
 
     public String getPriceAsString(){ return moneyFormat.format(price); }
 
-    //================================================================
-    //Setter methods
-    public void setPrice(double price) {
-        this.price = price;
-    }//end setPrice
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }//end setMovieName
 
 }//end Ticket class

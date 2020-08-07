@@ -52,28 +52,6 @@ public class ViewingTime {
         return seatString;
     }//end getSeatString
 
-    //================================================================
-    //Setter methods
-    public void setTheatreName(String theatreName) {
-        this.theatreName = theatreName;
-    }//end setTheatreName
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }//end setMovieName
-
-    public void setShowTime(String showTime) {
-        this.showTime = showTime;
-    }//end setShowTime
-
-    public void setShowDate(String showDate) {
-        this.showDate = showDate;
-    }//end setShowDate
-
-    public void setSeatString( String seatString){
-        this.seatString = seatString;
-    }//end setSeatString
-
     /**
      * equals - a method that checks if the given object and this object are the same.
      * @param object is the object that will be compared to this object.

@@ -49,24 +49,4 @@ public class Order {
         return showDate;
     }
 
-    //Setter methods
-    public void setMovieName(String movieName){
-        this.movieName = movieName;
-    }
-
-    public void setShowTime(String showTime){
-        this.showTime = showTime;
-    }
-
-    public void setShowDate(String showDate){
-        this.showDate = showDate;
-    }
-
-    public void setTheatreName(String theatreName){
-        this.theatreName = theatreName;
-    }
-
-    public void setTicketQuantity(int ticketQuantity){
-        this.ticketQuantity = ticketQuantity;
-    }
-}
+}//end Order
