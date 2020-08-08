@@ -45,6 +45,16 @@ public class MenuActivity  extends AppCompatActivity {
             }
         });
 
+        Button viewReviewsButton = (Button) findViewById(R.id.viewReviewsButton);
+        viewReviewsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent startIntent = new Intent(getApplicationContext(), ReviewActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+
     }//end onCreate
 
 
