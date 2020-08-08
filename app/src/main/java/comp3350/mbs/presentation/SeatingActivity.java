@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.business.AccessSeats;
+import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
@@ -30,7 +30,7 @@ public class SeatingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button seatConfirmButton;
 
-    private AccessSeats accessSeats;
+    private AccessViewingTimes accessViewingTime;
     private SeatEncoding seatEncoding;
 
     private List<Seat> seatingList;
@@ -63,14 +63,14 @@ public class SeatingActivity extends AppCompatActivity {
                     intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
 
                     intent.putExtra("seats", bookedSeats.size());
-                    accessSeats = new AccessSeats();
+                    accessViewingTime = new AccessViewingTimes();
                     seatEncoding = new SeatEncoding();
                     ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(viewingTime);
                     intent.putExtra("ViewingTime_Selected", pvt);
 
                     seatString = seatEncoding.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
-                    accessSeats.updateSeatList(viewingTime, seatString );
+                    accessViewingTime.updateSeatList(viewingTime, seatString );
                     startActivity(intent);
                 }
             }
@@ -100,7 +100,7 @@ public class SeatingActivity extends AppCompatActivity {
             }else{
 
                 bookedSeats = new ArrayList<>();//list that contains the booked seats.
-                accessSeats = new AccessSeats();
+                accessViewingTime = new AccessViewingTimes();
                 seatEncoding = new SeatEncoding();
 
                 seatString = viewingTime.getSeatString();

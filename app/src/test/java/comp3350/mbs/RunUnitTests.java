@@ -3,7 +3,6 @@ package comp3350.mbs;
 import junit.framework.TestSuite;
 
 import comp3350.mbs.business.AccessOrdersTest;
-import comp3350.mbs.business.AccessSeatsTest;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.AccessTheatresTest;
 import comp3350.mbs.business.AccessTicketsTest;
@@ -55,7 +54,6 @@ public class RunUnitTests {
 
         suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(CreditCardValidationTest.class);
-        suite.addTestSuite(AccessSeatsTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
         suite.addTestSuite(AccessTicketsTest.class);

@@ -10,8 +10,6 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.objects.Order;
 
-
-
 public class accessOrdersTest extends TestCase {
 
     public accessOrdersTest(String arg0){
