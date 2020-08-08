@@ -258,7 +258,40 @@ public class CreateOrderTest {
                 inRoot(withDecorView(not(is(menuActivity.getActivity().getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
 
-
     }//end testUndoOrderForTheatre1Avengers
+
+    @Test
+    public void testSelectSameSeatMultipleTimes(){
+        //Silver City St.Vital Cinemas Theatre
+        onView(withText("Buy Tickets")).perform(click());
+
+        //select Silver City St.Vital Cinemas Theatre
+        onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed()));
+        onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed())).perform(click());
+
+        //select Star Wars movie
+        onView(ViewMatchers.withId(R.id.movieRecyclerView)).perform(ViewActions.swipeUp()); //need to scroll down so that it can see the textview for star wars
+        onView(withText("Star Wars")).check(matches(isDisplayed()));
+        onView(withText("Star Wars")).check(matches(isDisplayed())).perform(click());
+
+        //select a viewing time
+        onView(withText("7:00 to 9:30 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("7:00 to 9:30 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+
+        //select the same seat 4 times
+        for(int i = 0; i < 4; i++){
+            onView(withText("#20")).check(matches(isDisplayed()));
+            onView(withText("#20")).check(matches(isDisplayed())).perform(click());
+        }
+
+        //Will not proceed to next page since the seat is still not chosen.
+        onView(withText("Next")).check(matches(isDisplayed())).perform(click());
+
+        //this checks the toast message
+        onView(withText("Please select a seat.")).
+                inRoot(withDecorView(not(is(menuActivity.getActivity().getWindow().getDecorView())))).
+                check(matches(isDisplayed()));
+
+    }//end testSelectSameSeatMultipleTimes
 
 }//end CreateOrderTest
