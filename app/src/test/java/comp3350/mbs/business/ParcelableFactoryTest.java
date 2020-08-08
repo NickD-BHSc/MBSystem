@@ -37,11 +37,10 @@ public class ParcelableFactoryTest extends TestCase {
 
         System.out.println("Starting TestParcelableFactory: testCreateParcelableTheatre");
 
-        Theatre theatre = new Theatre("theatre1","address1","distance1");
+        Theatre theatre = new Theatre("theatre1","address1");
         assertNotNull(theatre);
         assertEquals("theatre1",theatre.getName());
         assertEquals("address1",theatre.getAddress());
-        assertEquals("distance1",theatre.getDistance());
 
         parcelableObject = ParcelableFactory.createParcelableObject(theatre);
         assertNotNull(parcelableObject);
@@ -49,7 +48,6 @@ public class ParcelableFactoryTest extends TestCase {
 
         assertEquals("theatre1",((ParcelableTheatre)parcelableObject).getName());
         assertEquals("address1",((ParcelableTheatre)parcelableObject).getAddress());
-        assertEquals("distance1",((ParcelableTheatre)parcelableObject).getDistance());
 
         System.out.println("Finished TestParcelableFactory: testCreateParcelableTheatre\n");
 
@@ -205,114 +203,112 @@ public class ParcelableFactoryTest extends TestCase {
         Order order;
 
         //Theatre
-        theatre = new Theatre(null,null,null);
+        theatre = new Theatre(null,null);
         assertNotNull(theatre);
-        assertEquals(null,theatre.getName());
-        assertEquals(null,theatre.getAddress());
-        assertEquals(null,theatre.getDistance());
+        assertNull(theatre.getName());
+        assertNull(theatre.getAddress());
 
         parcelableObject = ParcelableFactory.createParcelableObject(theatre);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableTheatre);
 
-        assertEquals(null,((ParcelableTheatre)parcelableObject).getName());
-        assertEquals(null,((ParcelableTheatre)parcelableObject).getAddress());
-        assertEquals(null,((ParcelableTheatre)parcelableObject).getDistance());
+        assertNull(((ParcelableTheatre)parcelableObject).getName());
+        assertNull(((ParcelableTheatre)parcelableObject).getAddress());
 
         //theatreMovie
         theatreMovie = new TheatreMovies(null,null);
         assertNotNull(theatreMovie);
-        assertEquals(null,theatreMovie.getTheatreName());
-        assertEquals(null,theatreMovie.getMovieName());
+        assertNull(theatreMovie.getTheatreName());
+        assertNull(theatreMovie.getMovieName());
         assertEquals(-1, theatreMovie.getMoviePoster());
-        assertEquals(null,theatreMovie.getMovieDescription());
+        assertNull(theatreMovie.getMovieDescription());
 
         parcelableObject = ParcelableFactory.createParcelableObject(theatreMovie);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableTheatreMovies);
 
-        assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getTheatreName());
-        assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieName());
+        assertNull(((ParcelableTheatreMovies)parcelableObject).getTheatreName());
+        assertNull(((ParcelableTheatreMovies)parcelableObject).getMovieName());
         assertEquals(-1,((ParcelableTheatreMovies)parcelableObject).getMoviePoster());
-        assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieDescription());
+        assertNull(((ParcelableTheatreMovies)parcelableObject).getMovieDescription());
 
         theatreMovie = new TheatreMovies(null,null,-1,null);
         assertNotNull(theatreMovie);
-        assertEquals(null,theatreMovie.getTheatreName());
-        assertEquals(null,theatreMovie.getMovieName());
+        assertNull(theatreMovie.getTheatreName());
+        assertNull(theatreMovie.getMovieName());
         assertEquals(-1, theatreMovie.getMoviePoster());
-        assertEquals(null,theatreMovie.getMovieDescription());
+        assertNull(theatreMovie.getMovieDescription());
 
         parcelableObject = ParcelableFactory.createParcelableObject(theatreMovie);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableTheatreMovies);
 
-        assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getTheatreName());
-        assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieName());
+        assertNull(((ParcelableTheatreMovies)parcelableObject).getTheatreName());
+        assertNull(((ParcelableTheatreMovies)parcelableObject).getMovieName());
         assertEquals(-1,((ParcelableTheatreMovies)parcelableObject).getMoviePoster());
-        assertEquals(null,((ParcelableTheatreMovies)parcelableObject).getMovieDescription());
+        assertNull(((ParcelableTheatreMovies)parcelableObject).getMovieDescription());
 
         //Viewing time
         viewingTime = new ViewingTime(null,null,null,null,null);
         assertNotNull(viewingTime);
-        assertEquals(null, viewingTime.getTheatreName());
-        assertEquals(null,viewingTime.getMovieName());
-        assertEquals(null, viewingTime.getShowTime());
-        assertEquals(null, viewingTime.getShowDate());
-        assertEquals(null, viewingTime.getSeatString());
+        assertNull( viewingTime.getTheatreName());
+        assertNull(viewingTime.getMovieName());
+        assertNull( viewingTime.getShowTime());
+        assertNull( viewingTime.getShowDate());
+        assertNull( viewingTime.getSeatString());
 
         parcelableObject = ParcelableFactory.createParcelableObject(viewingTime);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableViewingTime);
 
-        assertEquals(null, ((ParcelableViewingTime)parcelableObject).getTheatreName());
-        assertEquals(null,((ParcelableViewingTime)parcelableObject).getMovieName());
-        assertEquals(null, ((ParcelableViewingTime)parcelableObject).getShowTime());
-        assertEquals(null, ((ParcelableViewingTime)parcelableObject).getShowDate());
-        assertEquals(null, ((ParcelableViewingTime)parcelableObject).getSeatString());
+        assertNull( ((ParcelableViewingTime)parcelableObject).getTheatreName());
+        assertNull(((ParcelableViewingTime)parcelableObject).getMovieName());
+        assertNull( ((ParcelableViewingTime)parcelableObject).getShowTime());
+        assertNull( ((ParcelableViewingTime)parcelableObject).getShowDate());
+        assertNull( ((ParcelableViewingTime)parcelableObject).getSeatString());
 
         //Ticket
         ticket = new Ticket(0.0,null);
         assertNotNull(ticket);
         assertEquals(0.0,ticket.getPrice());
-        assertEquals(null,ticket.getMovieName());
+        assertNull(ticket.getMovieName());
 
         parcelableObject = ParcelableFactory.createParcelableObject(ticket);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableTicket);
 
         assertEquals(0.0,((ParcelableTicket)parcelableObject).getPrice());
-        assertEquals(null,((ParcelableTicket)parcelableObject).getMovieName());
+        assertNull(((ParcelableTicket)parcelableObject).getMovieName());
 
         ticket = new Ticket(0.0,null);
         assertNotNull(ticket);
         assertEquals(0.0,ticket.getPrice());
-        assertEquals(null,ticket.getMovieName());
+        assertNull(ticket.getMovieName());
 
         parcelableObject = ParcelableFactory.createParcelableObject(ticket);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableTicket);
 
         assertEquals(0.0,((ParcelableTicket)parcelableObject).getPrice());
-        assertEquals(null,((ParcelableTicket)parcelableObject).getMovieName());
+        assertNull(((ParcelableTicket)parcelableObject).getMovieName());
 
         //Order
         order = new Order(null,null,null,null,0);
         assertNotNull(order);
-        assertEquals(null,order.getMovieName());
-        assertEquals(null,order.getShowTime());
-        assertEquals(null,order.getShowDate());
-        assertEquals(null,order.getTheatreName());
+        assertNull(order.getMovieName());
+        assertNull(order.getShowTime());
+        assertNull(order.getShowDate());
+        assertNull(order.getTheatreName());
         assertEquals(0,order.getTicketQuantity());
 
         parcelableObject = ParcelableFactory.createParcelableObject(order);
         assertNotNull(parcelableObject);
         assertTrue(parcelableObject instanceof ParcelableOrder);
 
-        assertEquals(null,((ParcelableOrder)parcelableObject).getMovieName());
-        assertEquals(null,((ParcelableOrder)parcelableObject).getShowTime());
-        assertEquals(null,((ParcelableOrder)parcelableObject).getShowDate());
-        assertEquals(null,((ParcelableOrder)parcelableObject).getTheatreName());
+        assertNull(((ParcelableOrder)parcelableObject).getMovieName());
+        assertNull(((ParcelableOrder)parcelableObject).getShowTime());
+        assertNull(((ParcelableOrder)parcelableObject).getShowDate());
+        assertNull(((ParcelableOrder)parcelableObject).getTheatreName());
         assertEquals(0,((ParcelableOrder)parcelableObject).getTicketQuantity());
 
 
@@ -333,7 +329,6 @@ public class ParcelableFactoryTest extends TestCase {
 
         parcelableObject = ParcelableFactory.createParcelableObject(testInput);
         assertNull(parcelableObject);
-        assertEquals(null,parcelableObject);
 
         //test 2
         testInput = "test";
@@ -342,12 +337,10 @@ public class ParcelableFactoryTest extends TestCase {
 
         parcelableObject = ParcelableFactory.createParcelableObject(testInput);
         assertNull(parcelableObject);
-        assertEquals(null,parcelableObject);
 
         //test3
         parcelableObject = ParcelableFactory.createParcelableObject(null);
         assertNull(parcelableObject);
-        assertEquals(null,parcelableObject);
 
         System.out.println("Finished TestParcelableFactory: testInvalidParcelable\n");
 

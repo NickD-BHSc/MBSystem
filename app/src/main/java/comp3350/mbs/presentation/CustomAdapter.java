@@ -94,7 +94,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 //set the following info about the theatre to the TextViews.
                 holder.theatreNameTxtView.setText(item.getName());
                 holder.theatreAddressTxtView.setText(item.getAddress());
-                holder.theatreDistTxtView.setText(item.getDistance());
 
                 //Moves to the MovieActivity when a theatre is selected.
                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +243,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
         //for TheatreActivity
         private TextView theatreNameTxtView;
         private TextView theatreAddressTxtView;
-        private TextView theatreDistTxtView;
 
         //for MovieActivity
         private ImageView movieImageView;
@@ -275,7 +273,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
             if(context instanceof TheatreActivity){
                 theatreNameTxtView = itemView.findViewById(R.id.theatreNameTextView);
                 theatreAddressTxtView = itemView.findViewById(R.id.theatreAddressTextView);
-                theatreDistTxtView = itemView.findViewById(R.id.theatreDistTextView);
                 relativeLayout = itemView.findViewById(R.id.theatreRelativeLayout);
 
             }else if(context instanceof MovieActivity){
@@ -299,7 +296,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.CustomVie
                 showTimeTextView = itemView.findViewById(R.id.showTimeTextView);
                 showDateTextView = itemView.findViewById(R.id.showDateTextView);
                 quantityTextView = itemView.findViewById(R.id.quantityTextView);
-                //relativeLayout = itemView.findViewById(R.id.orderRelativeLayout);
 
             }else{
                 throw new Error("given context is neither Theatre, Movie, MovieInfo, or Seating Activity.");

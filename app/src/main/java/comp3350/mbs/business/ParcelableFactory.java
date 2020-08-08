@@ -28,7 +28,7 @@ public class ParcelableFactory {
 
         if(object instanceof Theatre){
             Theatre theatre = (Theatre)object;
-            parcObject = new ParcelableTheatre(theatre.getName(),theatre.getAddress(),theatre.getDistance());
+            parcObject = new ParcelableTheatre(theatre.getName(),theatre.getAddress());
 
         }else if(object instanceof TheatreMovies){
             TheatreMovies theatreMovie = (TheatreMovies)object;
