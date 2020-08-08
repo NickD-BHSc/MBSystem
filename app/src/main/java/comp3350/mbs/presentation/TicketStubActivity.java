@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessOrders;
+import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Order;
 
 public class TicketStubActivity extends AppCompatActivity{
@@ -34,6 +35,18 @@ public class TicketStubActivity extends AppCompatActivity{
                 startActivity(startIntent);
             }
         });
+
+        Button createReviewButton = findViewById(R.id.createReviewButton);
+        createReviewButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent startIntent = new Intent(getApplicationContext(), CreateReviewActivity.class);
+                ParcelableOrder parcelableOrder = (ParcelableOrder) ParcelableFactory.createParcelableObject(order);
+                startIntent.putExtra("Order", parcelableOrder);
+                startActivity(startIntent);
+            }
+        });
+
         init();
         addTicketStubInfo();
         insertOrderToTable();

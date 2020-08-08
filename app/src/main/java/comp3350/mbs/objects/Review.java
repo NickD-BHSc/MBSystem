@@ -5,7 +5,7 @@ public class Review {
 
     private String movieName;
     private String customerName;
-    private int rating;
+    private String rating;
     private String comments;
 
     /**
@@ -21,7 +21,7 @@ public class Review {
      * @param rating is a 1-5 rating of the movie
      * @param comments are the comments left by te reviewer
      */
-    public Review(String movieName, String customerName, int rating, String comments){
+    public Review(String movieName, String customerName, String rating, String comments){
         this.movieName = movieName;
         this.customerName = customerName;
         this.rating = rating;
@@ -38,7 +38,7 @@ public class Review {
         return customerName;
     }//end getCustomerName
 
-    public int getRating(){
+    public String getRating(){
         return rating;
     }//end getRating
 
@@ -55,7 +55,7 @@ public class Review {
         this.customerName = customerName;
     }//end setCustomerName
 
-    public void setRating(int rating){
+    public void setRating(String rating){
         this.rating = rating;
     }//end setRating
 

@@ -21,7 +21,7 @@ import comp3350.mbs.R;
 import comp3350.mbs.business.AccessReviews;
 import comp3350.mbs.objects.Review;
 
-public class ReviewActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ReviewActivity extends AppCompatActivity {
 
     private RecyclerView reviewRecyclerView;
     private CustomAdapter customAdapter;
@@ -55,7 +55,7 @@ public class ReviewActivity extends AppCompatActivity implements AdapterView.OnI
         movieNames.add("Star Wars");
         movieNames.add("The Incredibles");
         movieNames.add("Superman");
-        movieNames.add("Lion King");
+        movieNames.add("The Lion King");
 
         ArrayAdapter<String> movieNameAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, movieNames);
         movieNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//https://www.tutorialspoint.com/android/android_spinner_control.htm
@@ -194,8 +194,8 @@ public class ReviewActivity extends AppCompatActivity implements AdapterView.OnI
                     ReviewViewHolder reviewViewHolder = (ReviewViewHolder)holder;
 
                     reviewViewHolder.movieNameTextView.setText(item.getMovieName());
-                    reviewViewHolder.customerNameTextView.setText("Rating From: " + item.getCustomerName());
-                    reviewViewHolder.ratingTextView.setText(Integer.toString(item.getRating()) + "/5");
+                    reviewViewHolder.customerNameTextView.setText("Review From: " + item.getCustomerName());
+                    reviewViewHolder.ratingTextView.setText(item.getRating() + "/5");
                     reviewViewHolder.commentsTextView.setText(item.getComments());
                 }
 
@@ -227,16 +227,5 @@ public class ReviewActivity extends AppCompatActivity implements AdapterView.OnI
         }//end ReviewViewHolder class
 
     }//end ReviewAdapter class
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        String item = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        String item = "nothing";
-    }
-
+    
 }//end ReviewActivity class
