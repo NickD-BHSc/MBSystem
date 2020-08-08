@@ -44,6 +44,9 @@
         <activity
             android:name=".presentation.ReviewActivity"
             android:label="View Reviews" />
+        <activity
+            android:name=".presentation.CreateReviewActivity"
+            android:label="Write a Review" />
 
 
     </application>
