@@ -26,11 +26,11 @@ public class AccessReviews {
         return dataAccess.getReviewList(movieName, rating);
     }//end getReviewList
 
-//    /**
-//     * insertNewReview - Inserts an entry into the Reviews table.
-//     */
-//    public void insertNewReview(Review order){
-//        dataAccess.insertNewOrder(order);
-//    }
+    /**
+     * insertNewReview - Inserts an entry into the Reviews table.
+     */
+    public void insertNewReview(Review review){
+        dataAccess.insertNewReview(review);
+    }
 
 }

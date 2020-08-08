@@ -376,7 +376,7 @@ public class DataAccessObject implements DataAccess {
         reviewList = new ArrayList<>();
         String movieName;
         String customerName;
-        int rating;
+        String rating;
         String comments;
 
         String whereClause = "";
@@ -404,7 +404,7 @@ public class DataAccessObject implements DataAccess {
             while(rs3.next()){
                 movieName =rs3.getString("MOVIENAME");
                 customerName= rs3.getString("CUSTOMERNAME");
-                rating = rs3.getInt("RATING");
+                rating = rs3.getString("RATING");
                 comments = rs3.getString("COMMENTS");
                 Review review = new Review(movieName, customerName, rating, comments);
                 reviewList.add(review);
@@ -415,6 +415,25 @@ public class DataAccessObject implements DataAccess {
         }
         return reviewList;
     }//end getReviewList
+
+    /**
+     * insertNewReview - a method that adds an order to the REVIEWS table
+     * @param review - the review object we want to insert
+     */
+    @Override
+    public void insertNewReview(Review review){
+
+        try{
+
+            cmdString = "INSERT INTO REVIEWS VALUES('" + review.getMovieName() + "', '" + review.getCustomerName() + "' , '" + review.getRating() + "', '" + review.getComments() +  "') ";
+            st1.executeUpdate(cmdString);
+
+        }
+        catch(Exception exception){
+            result = processSQLError(exception);
+        }
+
+    }//end insertNewReview
 
     /**
      * processSQLError - a method that processes the error when dealing with the database SQL.

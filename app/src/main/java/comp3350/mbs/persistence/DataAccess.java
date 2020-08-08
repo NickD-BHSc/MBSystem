@@ -33,4 +33,6 @@ public interface DataAccess {
 
     List<Review> getReviewList(String movieName, String rating);
 
+    void insertNewReview(Review review);
+
 }
