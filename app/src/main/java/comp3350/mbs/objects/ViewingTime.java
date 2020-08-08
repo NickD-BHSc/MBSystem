@@ -47,6 +47,11 @@ public class ViewingTime {
         return seatString;
     }//end getSeatString
 
+    //Setter method
+    public void setSeatString(String seatString) {
+        this.seatString = seatString;
+    }//end setSeatString
+
     /**
      * equals - a method that checks if the given object and this object are the same.
      * @param object is the object that will be compared to this object.
