@@ -41,6 +41,9 @@
         <activity
             android:name=".presentation.OrderActivity"
             android:label="View Orders" />
+        <activity
+            android:name=".presentation.ReviewActivity"
+            android:label="View Reviews" />
 
 
     </application>
