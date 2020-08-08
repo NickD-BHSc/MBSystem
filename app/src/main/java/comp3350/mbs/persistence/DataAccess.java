@@ -3,6 +3,7 @@ package comp3350.mbs.persistence;
 import java.util.List;
 
 import comp3350.mbs.objects.Order;
+import comp3350.mbs.objects.Review;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -29,4 +30,7 @@ public interface DataAccess {
     void insertNewOrder(Order order);
 
     void deleteOrder(Order order);
+
+    List<Review> getReviewList();
+
 }
