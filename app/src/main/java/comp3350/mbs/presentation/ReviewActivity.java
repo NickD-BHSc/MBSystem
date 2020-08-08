@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,21 +14,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessReviews;
 import comp3350.mbs.objects.Review;
 
-public class ReviewActivity extends AppCompatActivity {
+public class ReviewActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private RecyclerView reviewRecyclerView;
     private CustomAdapter customAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private TextView noReviewsAvailable;
+    private TextView filterByTextView;
 
     private AccessReviews accessReviews;
     private List<Review> reviewList;
+    private Spinner movieNameSpinner;
+    private Spinner ratingSpinner;
+    private String movieNameSelected;
+    private String ratingSelected;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -33,6 +43,62 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
 
+        movieNameSpinner = (Spinner)findViewById(R.id.movieNameSpinner);
+        ratingSpinner = (Spinner)findViewById(R.id.ratingsSpinner);
+        movieNameSelected = "All Movies";
+        ratingSelected = "All Ratings";
+
+
+        List<String> movieNames = new ArrayList<String>();
+        movieNames.add("All Movies");
+        movieNames.add("Avengers Endgame");
+        movieNames.add("Star Wars");
+        movieNames.add("The Incredibles");
+        movieNames.add("Superman");
+        movieNames.add("Lion King");
+
+        ArrayAdapter<String> movieNameAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, movieNames);
+        movieNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//https://www.tutorialspoint.com/android/android_spinner_control.htm
+        movieNameSpinner.setAdapter(movieNameAdapter);
+
+
+        List<String> ratings = new ArrayList<String>();
+        ratings.add("All Ratings");
+        ratings.add("5");
+        ratings.add("4");
+        ratings.add("3");
+        ratings.add("2");
+        ratings.add("1");
+
+        ArrayAdapter<String> ratingsAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, ratings);
+        ratingsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//https://www.tutorialspoint.com/android/android_spinner_control.htm
+        ratingSpinner.setAdapter(ratingsAdapter);
+
+        movieNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                movieNameSelected = parent.getItemAtPosition(position).toString();
+                init();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                movieNameSelected = "All Movies";
+            }
+        });
+
+        ratingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ratingSelected = parent.getItemAtPosition(position).toString();
+                init();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ratingSelected = "All Ratings";
+            }
+        });
         init();
 
     }//end onCreate
@@ -45,17 +111,20 @@ public class ReviewActivity extends AppCompatActivity {
     private void init(){
 
         accessReviews = new AccessReviews();
-        reviewList = accessReviews.getReviewList();
+        reviewList = accessReviews.getReviewList(movieNameSelected, ratingSelected);
+        noReviewsAvailable = findViewById(R.id.noReviewstextView);
+        reviewRecyclerView = findViewById(R.id.reviewRecyclerView);
+
 
         if(reviewList == null){
             throw new Error("No list of review available.");
         }else if(reviewList.size() == 0){
-            noReviewsAvailable = findViewById(R.id.noReviewstextView);
             noReviewsAvailable.setVisibility(View.VISIBLE);
+            reviewRecyclerView.setVisibility(View.INVISIBLE);
         }
         else{
-            noReviewsAvailable = findViewById(R.id.noReviewstextView);
             noReviewsAvailable.setVisibility(View.INVISIBLE);
+            reviewRecyclerView.setVisibility(View.VISIBLE);
             buildRecyclerView();
         }
 
@@ -67,7 +136,6 @@ public class ReviewActivity extends AppCompatActivity {
     private void buildRecyclerView(){
 
         reviewRecyclerView = findViewById(R.id.reviewRecyclerView);
-
         customAdapter = new ReviewActivity.ReviewAdapter(reviewList);
         reviewRecyclerView.setAdapter(customAdapter);
 
@@ -104,7 +172,7 @@ public class ReviewActivity extends AppCompatActivity {
             View view;
 
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_review, parent, false);
-            customViewHolder = new ReviewActivity.ReviewAdapter.ReviewViewHolder(view);
+            customViewHolder = new ReviewViewHolder(view);
 
             return customViewHolder;
         }//end CustomViewHolder
@@ -126,7 +194,7 @@ public class ReviewActivity extends AppCompatActivity {
                     ReviewViewHolder reviewViewHolder = (ReviewViewHolder)holder;
 
                     reviewViewHolder.movieNameTextView.setText(item.getMovieName());
-                    reviewViewHolder.customerNameTextView.setText(item.getCustomerName());
+                    reviewViewHolder.customerNameTextView.setText("Rating From: " + item.getCustomerName());
                     reviewViewHolder.ratingTextView.setText(Integer.toString(item.getRating()) + "/5");
                     reviewViewHolder.commentsTextView.setText(item.getComments());
                 }
@@ -159,5 +227,16 @@ public class ReviewActivity extends AppCompatActivity {
         }//end ReviewViewHolder class
 
     }//end ReviewAdapter class
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        String item = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        String item = "nothing";
+    }
 
 }//end ReviewActivity class

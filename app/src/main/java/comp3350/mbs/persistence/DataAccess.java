@@ -31,6 +31,6 @@ public interface DataAccess {
 
     void deleteOrder(Order order);
 
-    List<Review> getReviewList();
+    List<Review> getReviewList(String movieName, String rating);
 
 }

@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reviewRelativeLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="7dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         app:cardCornerRadius="15dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
 
             <TextView
@@ -37,8 +38,8 @@
                 android:id="@+id/customerNameTextView"
                 android:layout_width="161dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="500dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="125dp"
                 android:text="Customer Name"
                 android:visibility="visible" />
 

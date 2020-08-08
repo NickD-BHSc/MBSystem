@@ -22,8 +22,8 @@ public class AccessReviews {
      * getReviewList -a getter method that returns a list of reviews.
      * @return it will return the reviewList from the dataAccess.
      */
-    public List<Review> getReviewList(){
-        return dataAccess.getReviewList();
+    public List<Review> getReviewList(String movieName, String rating){
+        return dataAccess.getReviewList(movieName, rating);
     }//end getReviewList
 
 //    /**

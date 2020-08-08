@@ -371,7 +371,7 @@ public class DataAccessObject implements DataAccess {
      * @return it will return the field reviewList.
      */
     @Override
-    public List<Review> getReviewList(){
+    public List<Review> getReviewList(String movieNameSelected, String ratingSelected){
 
         reviewList = new ArrayList<>();
         String movieName;
@@ -379,10 +379,28 @@ public class DataAccessObject implements DataAccess {
         int rating;
         String comments;
 
+        String whereClause = "";
+
+        if(!movieNameSelected.equals("All Movies"))
+        {
+            if(!ratingSelected.equals("All Ratings"))
+            {
+                whereClause += "WHERE MOVIENAME = '"+ movieNameSelected +"' AND RATING = " + ratingSelected;
+            }
+            else
+            {
+                whereClause += "WHERE MOVIENAME = '"+ movieNameSelected +"' ";
+            }
+        }
+        else if(!ratingSelected.equals("All Ratings"))
+        {
+            whereClause += "WHERE RATING = " + ratingSelected;
+        }
+
         try{
-            cmdString = "SELECT * FROM REVIEWS";
-            rs3 =st5.executeQuery(cmdString);
-            String badString = "noppe";
+            cmdString = "SELECT * FROM REVIEWS " + whereClause;
+            rs3 = st5.executeQuery(cmdString);
+
             while(rs3.next()){
                 movieName =rs3.getString("MOVIENAME");
                 customerName= rs3.getString("CUSTOMERNAME");
