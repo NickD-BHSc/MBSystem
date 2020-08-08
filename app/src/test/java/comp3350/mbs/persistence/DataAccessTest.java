@@ -40,6 +40,27 @@ public class DataAccessTest extends TestCase {
         System.out.println("Finished Persistence test DataAccess (using stub)");
     }//end tearDown
 
+    public static void dataAccessTest(DataAccess dataAccess) {
+        DataAccessTest dataAccessTest = new DataAccessTest("");
+        dataAccessTest.dataAccess = dataAccess;
+        dataAccessTest.testGetTheatreList();
+        dataAccessTest.testGetMoviesFromTheatre1();
+        dataAccessTest.testGetMoviesFromTheatre2();
+        dataAccessTest.testGetMoviesFromTheatre3();
+        dataAccessTest.testValidViewingTimeUpdate();
+        dataAccessTest.testInvalidViewingtimeUpdate();
+        dataAccessTest.testGetValidTicket();
+        dataAccessTest.testGetInvalidTicket();
+        dataAccessTest.testGetNullTicket();
+        dataAccessTest.testGetViewingTimeList();
+        dataAccessTest.testInsertValidOrder();
+        dataAccessTest.testInsertInvalidOrder();
+        dataAccessTest.testInsertInvalidOrderMovieName();
+        dataAccessTest.testInsertInvalidOrderShowTime();
+        dataAccessTest.testInsertInvalidOrderShowDate();
+        dataAccessTest.testInsertInvalidOrderTheatreName();
+    }
+
     @Test
     public void testGetTheatreList(){
 
