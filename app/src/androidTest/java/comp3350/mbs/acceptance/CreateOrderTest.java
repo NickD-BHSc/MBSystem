@@ -219,4 +219,46 @@ public class CreateOrderTest {
 
     }//end testInvalidCardOrderForTheatre3LionKing
 
+    @Test
+    public void testUndoOrderForTheatre1Avengers(){
+        //Scotiabank Theatre
+        onView(withText("Buy Tickets")).perform(click());
+
+        //select Scotiabank Theatre
+        onView(withText("Scotiabank Theatre")).check(matches(isDisplayed()));
+        onView(withText("Scotiabank Theatre")).check(matches(isDisplayed())).perform(click());
+
+        //select Avengers Endgame movie
+        onView(withText("Avengers Endgame")).check(matches(isDisplayed()));
+        onView(withText("Avengers Endgame")).check(matches(isDisplayed())).perform(click());
+
+        //select a viewing time
+        onView(ViewMatchers.withId(R.id.movieInfoScrollView)).perform(ViewActions.swipeUp()); //need to scroll down so that it can see the textview for viewing time
+        onView(withText("5:00 to 8:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("5:00 to 8:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed())).perform(click());
+
+        //select a seat
+        onView(withText("#20")).check(matches(isDisplayed()));
+        onView(withText("#20")).check(matches(isDisplayed())).perform(click());
+        onView(withText("Next")).check(matches(isDisplayed())).perform(click());
+
+        //input a valid card information
+        onView(withId(R.id.cardInput)).perform(clearText(), typeText("1234123412341234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.expiryInput)).perform(clearText(), typeText("1120"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.codeInput)).perform(clearText(), typeText("123"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Submit Order")).check(matches(isDisplayed())).perform(click());
+
+        Espresso.pressBack();//press the back button
+        
+        //this checks the toast message
+        onView(withText("This order has already been completed.")).
+                inRoot(withDecorView(not(is(menuActivity.getActivity().getWindow().getDecorView())))).
+                check(matches(isDisplayed()));
+
+
+    }//end testUndoOrderForTheatre1Avengers
+
 }//end CreateOrderTest
