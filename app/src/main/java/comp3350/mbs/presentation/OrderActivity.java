@@ -38,9 +38,7 @@ public class OrderActivity extends AppCompatActivity {
     }//end onCreate
 
     /**
-     * init - a method that gets the sample data from the database (located at AccessTheatres) and
-     *          assign it to the field theatreList. It will then create a recycler view to display
-     *          the sample data to the layout activity.
+     * init - a method that gets the order from the database and also builds the recyclerview if order exists.
      */
     private void init(){
 
@@ -129,7 +127,6 @@ public class OrderActivity extends AppCompatActivity {
                 orderViewHolder.showTimeTextView.setText(item.getShowTime());
                 orderViewHolder.showDateTextView.setText(item.getShowDate());
                 orderViewHolder.quantityTextView.setText("Tickets: " + Integer.toString(item.getTicketQuantity()));
-
 
             }else{
                 throw new Error("an item from the list is expected to be a Order object.");

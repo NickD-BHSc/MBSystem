@@ -2,7 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessSeats;
 import comp3350.mbs.objects.Seat;
-import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.business.SeatEncoding;
 
@@ -37,17 +35,10 @@ public class SeatingActivity extends AppCompatActivity {
 
     private AccessSeats accessSeats;
     private SeatEncoding seatEncoding;
-
     private List<Seat> seatingList;
     private List<Seat> bookedSeats;
-    private List<Parcelable> parcBookedSeats;
-
-    private TheatreMovies theatreMovie;
     private ViewingTime viewingTime;
     private String seatString;
-
-    private String chosenSeats;
-    private int chosenNumSeats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -65,21 +56,18 @@ public class SeatingActivity extends AppCompatActivity {
                     Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-                    addParcBookedSeats();
                     accessSeats = new AccessSeats();
                     seatEncoding = new SeatEncoding();
                     seatString = seatEncoding.encodeSeatList(seatingList, bookedSeats);
                     System.out.println("Updated Seat String:"+seatString);
                     accessSeats.updateSeatList(viewingTime, seatString );
 
-                    //New changes
-                    intent.putExtra("Chosen_Seats",chosenSeats);
-                    intent.putExtra("Chosen_Num_Seats",chosenNumSeats);
+                    intent.putExtra("Chosen_Seats",bookedSeatsInfo());
+                    intent.putExtra("Chosen_Num_Seats",bookedSeats.size());
                     intent.putExtra("Chosen_Theatre_Name",viewingTime.getTheatreName());
                     intent.putExtra("Chosen_Movie_Name",viewingTime.getMovieName());
                     intent.putExtra("Show_Time",viewingTime.getShowTime());
                     intent.putExtra("Show_Date",viewingTime.getShowDate());
-                    intent.putExtra("Seats",viewingTime.getSeatString());
                     startActivity(intent);
                 }
             }
@@ -92,8 +80,7 @@ public class SeatingActivity extends AppCompatActivity {
      */
     private void init(){
 
-        seatConfirmButton = (Button)findViewById(R.id.seatConfirmButton);
-        parcBookedSeats = new ArrayList<>();
+        seatConfirmButton = findViewById(R.id.seatConfirmButton);
 
         Intent intent = getIntent();
         String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
@@ -104,16 +91,13 @@ public class SeatingActivity extends AppCompatActivity {
 
 
         if (getTheatreName == null || getMovieName == null || getShowTime == null || getShowDate == null || getSeats == null) {
-            throw new Error("No available viewing times for the movie:");
-
+            throw new Error("No available viewing times for the chosen movie");
 
         } else {
             viewingTime = new ViewingTime(getTheatreName, getMovieName, getShowTime, getShowDate, getSeats);
 
-
             bookedSeats = new ArrayList<>();//list that contains the booked seats.
             accessSeats = new AccessSeats();
-
             seatEncoding = new SeatEncoding();
 
             seatString = viewingTime.getSeatString();
@@ -136,22 +120,22 @@ public class SeatingActivity extends AppCompatActivity {
     }//end buildRecyclerView
 
     /**
-     * addParcBookedSeats - a method that adds the booked seats to a parcelable list
+     * bookedSeatsInfo - a method that has the seat number of the chosen seats in string.
+     * @return it will return the seat numbers in string.
      */
-    private void addParcBookedSeats(){
+    private String bookedSeatsInfo(){
 
-        chosenSeats = "";
-        chosenNumSeats = bookedSeats.size();
+        String chosenSeats = "";
         for(int i =0; i < bookedSeats.size(); i++){
             chosenSeats += bookedSeats.get(i).getSeatNumber() + ", ";
         }
 
-        int lastCommaPosition = chosenSeats.lastIndexOf(", ");
+        int lastCommaPosition = chosenSeats.lastIndexOf(", "); //removes the last comma
         chosenSeats = chosenSeats.substring(0, lastCommaPosition);
 
+        return chosenSeats;
 
-
-    }//end addParcBookedSeats
+    }//end bookedSeatsInfo
 
     /**
      * addSeat - a method that adds the chosen seat in the bookedSeats. (Used in SeatingAdapter)

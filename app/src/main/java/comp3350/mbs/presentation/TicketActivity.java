@@ -2,7 +2,6 @@ package comp3350.mbs.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,7 +19,6 @@ import comp3350.mbs.business.CreditCardValidation;
 import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
-import comp3350.mbs.objects.ViewingTime;
 
 public class TicketActivity extends AppCompatActivity {
 
@@ -37,8 +35,6 @@ public class TicketActivity extends AppCompatActivity {
 
 
     private TheatreMovies theatreMovie;
-    private List<Parcelable> bookedSeats;
-    private ViewingTime movieDetails;
     private Order order;
     private String chosenSeats;
     private int numBookedSeats;
@@ -82,8 +78,8 @@ public class TicketActivity extends AppCompatActivity {
     }//end onCreate
 
     /**
-     * init - a method that initialize the widgets from the activity_ticket which are
-     *      6 textViews.
+     * init - a method that initialize the widgets from the activity_ticket xml.
+     *         Also gets the information from the preceding Activity.
      */
     private void init(){
 
@@ -95,18 +91,16 @@ public class TicketActivity extends AppCompatActivity {
         movieTitleTextView = findViewById(R.id.movieTitleTextView);
         chosenSeatsTextView = findViewById(R.id.chosenSeatsTextView);
 
-        Intent intent = getIntent();  //getting the number of seats booked in the previous activity.
+        Intent intent = getIntent();
         String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
         String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
         String getShowTime = intent.getStringExtra("Show_Time");
         String getShowDate = intent.getStringExtra("Show_Date");
-        String getSeats = intent.getStringExtra("Seats");
         numBookedSeats = intent.getIntExtra("Chosen_Num_Seats", 0);
         chosenSeats = intent.getStringExtra("Chosen_Seats");
 
         theatreMovie = new TheatreMovies(getTheatreName,getMovieName);
-        movieDetails = new ViewingTime(getTheatreName,getMovieName,getShowTime,getShowDate,getSeats);
-        order = new Order(movieDetails.getMovieName(), movieDetails.getShowTime(), movieDetails.getShowDate(), movieDetails.getTheatreName(),numBookedSeats);
+        order = new Order(getMovieName,getShowTime, getShowDate,getTheatreName,numBookedSeats);
 
     }//end init
 

@@ -41,7 +41,7 @@ public class MovieInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
-        Button viewTrailerBtn = (Button) findViewById(R.id.trailerViewBtn);
+        Button viewTrailerBtn = findViewById(R.id.trailerViewBtn);
         viewTrailerBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -82,12 +82,11 @@ public class MovieInfoActivity extends AppCompatActivity {
         String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
         int getMoviePoster = intent.getIntExtra("Movie_Poster",0);
         String getMovieDescription = intent.getStringExtra("Movie_Description");
-        theatreMovieItem = new TheatreMovies(getTheatreName,getMovieName,getMoviePoster,getMovieDescription);
 
-        if(theatreMovieItem == null){
+        if(getTheatreName == null || getMovieName == null || getMovieDescription == null){
             throw new Error("No movie selected");
         }else{
-
+            theatreMovieItem = new TheatreMovies(getTheatreName,getMovieName,getMoviePoster,getMovieDescription);
             movieTitleTextView.setText(theatreMovieItem.getMovieName());
             moviePosterImageView.setImageResource(theatreMovieItem.getMoviePoster());
             movieDescTextView.setText(theatreMovieItem.getMovieDescription());
@@ -116,15 +115,6 @@ public class MovieInfoActivity extends AppCompatActivity {
         viewingTimeRecyclerView.setLayoutManager(layoutManager);
 
     }//end buildRecyclerView
-
-    /**
-     * getTheatreMovieItem - a getter method for theatreMovieItem.
-     * @return it will return the field theatreMovieItem.
-     */
-    public TheatreMovies getTheatreMovieItem(){
-        return theatreMovieItem;
-    }//end getTheatreMovieItem
-
 
     /**
      * ViewingTimeAdapter class - a class that displays a list of ViewingTime objects in the recycler view.
@@ -175,7 +165,6 @@ public class MovieInfoActivity extends AppCompatActivity {
                     ViewingTimeHolder viewingTimeHolder = (ViewingTimeHolder)holder;
 
                     viewingTimeHolder.viewTimeTextView.setText(item.getShowTime() + "\n" + item.getShowDate());
-
 
                     viewingTimeHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
