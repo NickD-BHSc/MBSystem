@@ -172,15 +172,15 @@ public class ReviewValidationTest extends TestCase {
         assertNotNull(review);
         assertTrue(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
-        review = new Review(null,"User1","5","This is a review");
+        review = new Review(null,"User1","4","This is a review");
         assertNotNull(review);
         assertTrue(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
-        review = new Review(" "," ","5","    ");
+        review = new Review(" "," ","3","    ");
         assertNotNull(review);
         assertTrue(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
-        review = new Review("Movie1","__User1","5","COmmEnnnnnnnt");
+        review = new Review("Movie1","__User1","2","COmmEnnnnnnnt");
         assertNotNull(review);
         assertTrue(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
