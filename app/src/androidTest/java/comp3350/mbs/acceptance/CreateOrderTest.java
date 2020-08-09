@@ -33,6 +33,8 @@ public class CreateOrderTest {
         onView(withText("Welcome to the Movie Booking System")).check(matches(isDisplayed()));
         onView(withId(R.id.buyTicketsButton)).check(matches(isDisplayed())).check(matches((isEnabled())));
         onView(withId(R.id.viewTicketsButton)).check(matches(isDisplayed())).check(matches((isEnabled())));
+        onView(withId(R.id.viewReviewsButton)).check(matches(isDisplayed())).check(matches((isEnabled())));
+
     }//end testMenuScreen
 
     @Test
