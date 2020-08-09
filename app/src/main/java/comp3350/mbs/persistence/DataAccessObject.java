@@ -297,7 +297,7 @@ public class DataAccessObject implements DataAccess {
         int quantity;
 
         try{
-            cmdString = "SELECT * FROM ORDERS WHERE MOVIENAME = 'Star Wars'";
+            cmdString = "SELECT * FROM ORDERS";
             rs2 =st1.executeQuery(cmdString);
 
             while(rs2.next()){
