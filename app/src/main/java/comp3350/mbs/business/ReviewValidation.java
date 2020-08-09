@@ -23,10 +23,14 @@ public class ReviewValidation {
 
         if(rating != null){
 
-            if(rating.length() != 0) {
-                int ratingValue = Integer.valueOf(rating);
-                checkRating = ratingValue >= 1 && ratingValue <= 5;
-            }
+            try {
+                //need a try-catch. What if the rating is not numeric?
+                if (rating.length() != 0) {
+                    int ratingValue = Integer.valueOf(rating);
+                    checkRating = ratingValue >= 1 && ratingValue <= 5;
+                }
+            }catch(Exception e){}
+
         }
         return checkRating;
 
