@@ -11,6 +11,7 @@ import comp3350.mbs.business.AccessTrailerTest;
 import comp3350.mbs.business.AccessViewingTimesTest;
 import comp3350.mbs.business.CalculateTest;
 import comp3350.mbs.business.CreditCardValidationTest;
+import comp3350.mbs.business.ReviewValidationTest;
 import comp3350.mbs.business.SeatEncodingTest;
 import comp3350.mbs.objects.OrderTest;
 import comp3350.mbs.objects.ReviewTest;
@@ -56,6 +57,7 @@ public class AllTests {
 
         suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(CreditCardValidationTest.class);
+        suite.addTestSuite(ReviewValidationTest.class);
         suite.addTestSuite(AccessSeatsTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
