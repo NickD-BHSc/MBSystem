@@ -5,7 +5,9 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
+import comp3350.mbs.business.ReviewValidation;
 import comp3350.mbs.objects.Order;
+import comp3350.mbs.objects.Review;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -21,6 +23,7 @@ public class DataAccessStub implements DataAccess{
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
     private List<Order> orderList;
+    private List<Review> reviewList;
 
     /**
      * DataAccessStub Constructor - assign its field dbName to the Main.dbName.
@@ -359,25 +362,20 @@ public class DataAccessStub implements DataAccess{
     }//end updateSeatList
 
     /**
-     * insertNewOrder - a method that updates the seat string of the given viewing time object.
-     * @param order is the order that needs to be added to the list
-     * @return it will return "Success" if the seat in the ViewingTime got updated.
-     *          Otherwise, it will return Failure.
+     * insertNewOrder - a method that inserts a new order in the orderList.
+     * @param order is the order that will be added.
      */
     @Override
     public void insertNewOrder(Order order){
-        if(order != null)
-        {
+        if(order != null) {
             if(order.getMovieName() != null && order.getShowTime() != null && order.getShowDate() != null && order.getTheatreName() != null)
                 orderList.add(order);
         }
     }//end insertNewOrder
 
     /**
-     * deleteOrder - a method that updates the seat string of the given viewing time object.
-     * @param order is the order that needs to be added to the list
-     * @return it will return "Success" if the seat in the ViewingTime got updated.
-     *          Otherwise, it will return Failure.
+     * deleteOrder - a method that deletes an order from the orderList.
+     * @param order is the order that needs to be deleted from the list.
      */
     @Override
     public void deleteOrder(Order order){
@@ -392,5 +390,42 @@ public class DataAccessStub implements DataAccess{
     public List<Order> getOrderList(){
         return orderList;
     }//end getOrderList
+
+    /**
+     * getReviewList - a method that returns all the reviews for the given movie and rating.
+     * @param movieName is the name of the movie.
+     * @param rating is the rating of the movie.
+     * @return it will return the list of reviews that contain the movie and rating.
+     */
+    @Override
+    public List<Review> getReviewList(String movieName, String rating) {
+        List<Review> reviewList = new ArrayList<>();
+        Review review;
+
+        for(int i = 0; i < this.reviewList.size(); i++){
+            review = this.reviewList.get(i);
+            if(review.getMovieName().equals(movieName) && review.getRating().equals(rating)){
+                reviewList.add(review);
+            }
+        }
+
+        return reviewList;
+    }//end getReviewList
+
+    @Override
+    public void insertNewReview(Review review) {
+        String name;
+        String rating;
+        String comment;
+
+        name = review.getCustomerName();
+        rating = review.getRating();
+        comment = review.getComments();
+
+        if(ReviewValidation.isReviewValid(name,rating,comment)){
+            this.reviewList.add(review);
+        }
+
+    }//end insertNewReview
 
 }//end DataAccessStub
