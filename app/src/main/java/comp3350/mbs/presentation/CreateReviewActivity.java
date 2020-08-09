@@ -11,9 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessReviews;
-import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.business.ReviewValidation;
-import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Review;
 
 public class CreateReviewActivity extends AppCompatActivity {
@@ -23,14 +21,14 @@ public class CreateReviewActivity extends AppCompatActivity {
     private TextView commentsTextView;
     private TextView movieNameTextView;
 
-
-    private Order order;
+    private String getOrderMovie;
 
     protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_review);
 
+        init();
         Button submitReviewButton = findViewById(R.id.submitReviewbutton);
         submitReviewButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -44,12 +42,9 @@ public class CreateReviewActivity extends AppCompatActivity {
                 String comments = commentsTextView.getText().toString();
 
                 if(ReviewValidation.isReviewValid(customerName, rating, comments)) {
-                    Review review = new Review(order.getMovieName(), customerName, rating, comments);
+                    Review review = new Review(getOrderMovie, customerName, rating, comments);
                     insertReviewToTable(review);
-                    Intent startIntent = new Intent(getApplicationContext(), TicketStubActivity.class);
-                    ParcelableOrder parcelableOrder = (ParcelableOrder) ParcelableFactory.createParcelableObject(order);
-                    startIntent.putExtra("Order", parcelableOrder);
-                    startActivity(startIntent);
+                    finish();//moves back to the previous activity which still contains the order information.
                 }
                 else{
                     Toast.makeText(CreateReviewActivity.this,"Please enter info in all fields.",Toast.LENGTH_SHORT).show();
@@ -57,18 +52,16 @@ public class CreateReviewActivity extends AppCompatActivity {
             }
         });
 
-        init();
     }//end onCreate
 
     /**
-     * init - a method that initializes the widgets
+     * init - a method that initializes the widget and get the name of the ordered movie.
      */
     private void init(){
-
-        Intent intent = getIntent();
-        order = intent.getParcelableExtra("Order");
         movieNameTextView = findViewById(R.id.movieNameInput);
-        movieNameTextView.setText(order.getMovieName());
+        Intent intent = getIntent();
+        getOrderMovie = intent.getStringExtra("Order_Movie_Name");
+        movieNameTextView.setText(getOrderMovie);
     }//end init
 
     /**
@@ -79,5 +72,4 @@ public class CreateReviewActivity extends AppCompatActivity {
         accessReviews.insertNewReview(review);
     }//end insertOrderToTable
 
-
-}
+}//end CreateReviewActivity

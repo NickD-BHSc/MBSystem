@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.mbs.R;
 import comp3350.mbs.business.AccessOrders;
-import comp3350.mbs.business.ParcelableFactory;
 import comp3350.mbs.objects.Order;
 
 public class TicketStubActivity extends AppCompatActivity{
@@ -27,6 +26,10 @@ public class TicketStubActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_stub);
 
+        init();
+        addTicketStubInfo();
+        insertOrderToTable();
+
         Button backToMain = findViewById(R.id.backToMainScreenView);
         backToMain.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -41,15 +44,12 @@ public class TicketStubActivity extends AppCompatActivity{
             @Override
             public void onClick(View view){
                 Intent startIntent = new Intent(getApplicationContext(), CreateReviewActivity.class);
-                ParcelableOrder parcelableOrder = (ParcelableOrder) ParcelableFactory.createParcelableObject(order);
-                startIntent.putExtra("Order", parcelableOrder);
+
+                startIntent.putExtra("Order_Movie_Name", order.getMovieName());
                 startActivity(startIntent);
             }
         });
 
-        init();
-        addTicketStubInfo();
-        insertOrderToTable();
     }//end onCreate
     
     /**
