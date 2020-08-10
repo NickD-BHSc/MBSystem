@@ -12,12 +12,9 @@ import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.*;
 import static androidx.test.espresso.action.ViewActions.*;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 import static androidx.test.espresso.assertion.ViewAssertions.*;
 
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.is;
 import comp3350.mbs.R;
 import comp3350.mbs.presentation.MenuActivity;
 
@@ -53,8 +50,8 @@ public class ViewTicketTest {
         onView(withText("The Lion King")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("4:00 to 6:30 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed()));
-        onView(withText("4:00 to 6:30 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("4:00 to 6:30 PM\nJune 13, 2020, Thursday")).check(matches(isDisplayed()));
+        onView(withText("4:00 to 6:30 PM\nJune 13, 2020, Thursday")).check(matches(isDisplayed())).perform(click());
 
         //select a seat
         onView(withText("#12")).check(matches(isDisplayed()));
@@ -78,9 +75,109 @@ public class ViewTicketTest {
         onView(withText("Scotiabank Theatre")).check(matches(isDisplayed()));
         onView(withText("The Lion King")).check(matches(isDisplayed()));
         onView(withText("4:00 to 6:30 PM")).check(matches(isDisplayed()));
-        onView(withText("June 12, 2020, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("June 13, 2020, Thursday")).check(matches(isDisplayed()));
         onView(withText("Tickets: 1")).check(matches(isDisplayed()));
 
     }//end testViewBoughtTicket
+
+    @Test
+    public void testViewBoughtMultipleTickets(){
+        //Buy multiple tickets
+        //Cinema City Northgate Theatre
+        onView(withText("Buy Tickets")).perform(click());
+
+        //select Cinema City Northgate Theatre
+        onView(withText("Cinema City Northgate")).check(matches(isDisplayed()));
+        onView(withText("Cinema City Northgate")).check(matches(isDisplayed())).perform(click());
+
+        //select Avengers Endgame movie
+        onView(withText("Avengers Endgame")).check(matches(isDisplayed()));
+        onView(withText("Avengers Endgame")).check(matches(isDisplayed())).perform(click());
+
+        //select a viewing time
+        onView(withText("5:00 to 8:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("5:00 to 8:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed())).perform(click());
+
+        //Select seats
+        onView(withText("#0")).check(matches(isDisplayed()));
+        onView(withText("#0")).check(matches(isDisplayed())).perform(click());
+        onView(withText("#7")).check(matches(isDisplayed()));
+        onView(withText("#7")).check(matches(isDisplayed())).perform(click());
+        onView(withText("#24")).check(matches(isDisplayed()));
+        onView(withText("#24")).check(matches(isDisplayed())).perform(click());
+        onView(withText("#31")).check(matches(isDisplayed()));
+        onView(withText("#31")).check(matches(isDisplayed())).perform(click());
+
+        onView(withText("Next")).check(matches(isDisplayed())).perform(click());
+
+        //input a valid card information
+        onView(withId(R.id.cardInput)).perform(clearText(), typeText("1234123412341234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.expiryInput)).perform(clearText(), typeText("1120"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.codeInput)).perform(clearText(), typeText("123"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Submit Order")).check(matches(isDisplayed())).perform(click());
+
+        //go back to main menu
+        onView(withText("BACK TO MAIN")).check(matches(isDisplayed())).perform(click());
+
+        //buy more tickets at the same theatre, same movie but different viewing time.
+        //Silver City St.Vital Cinemas Theatre
+        onView(withText("Buy Tickets")).perform(click());
+
+        //select Silver City St.Vital Cinemas Theatre
+        onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed()));
+        onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed())).perform(click());
+
+        //select Superman movie
+        onView(withText("Superman")).check(matches(isDisplayed()));
+        onView(withText("Superman")).check(matches(isDisplayed())).perform(click());
+
+        //select a viewing time
+        onView(withText("1:00 to 3:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 3:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+
+        //select seats
+        onView(withText("#18")).check(matches(isDisplayed()));
+        onView(withText("#18")).check(matches(isDisplayed())).perform(click());
+        onView(withText("#21")).check(matches(isDisplayed()));
+        onView(withText("#21")).check(matches(isDisplayed())).perform(click());
+        onView(withText("#30")).check(matches(isDisplayed()));
+        onView(withText("#30")).check(matches(isDisplayed())).perform(click());
+
+        onView(withText("Next")).check(matches(isDisplayed())).perform(click());
+
+        //input a valid card information
+        onView(withId(R.id.cardInput)).perform(clearText(), typeText("1234123412341234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.expiryInput)).perform(clearText(), typeText("1120"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.codeInput)).perform(clearText(), typeText("123"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Submit Order")).check(matches(isDisplayed())).perform(click());
+
+        //go back to main menu
+        onView(withText("BACK TO MAIN")).check(matches(isDisplayed())).perform(click());
+
+        //Check the ticket information that have been purchased by clicking the View My Tickets button
+        //first ticket
+        onView(withText("View my Tickets")).perform(click());
+        onView(withText("Cinema City Northgate")).check(matches(isDisplayed()));
+        onView(withText("Avengers Endgame")).check(matches(isDisplayed()));
+        onView(withText("5:00 to 8:00 PM")).check(matches(isDisplayed()));
+        onView(withText("June 12, 2020, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("Tickets: 4")).check(matches(isDisplayed()));
+
+        //second ticket
+        onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed()));
+        onView(withText("Superman")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 3:00 PM")).check(matches(isDisplayed()));
+        onView(withText("June 11, 2020, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("Tickets: 3")).check(matches(isDisplayed()));
+
+    }//end testViewBoughtMultipleTickets
+
+
 
 }//end ViewTicketTest
