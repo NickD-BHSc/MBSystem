@@ -3,6 +3,7 @@ package comp3350.mbs;
 import junit.framework.TestSuite;
 
 import comp3350.mbs.integration.accessOrdersTest;
+import comp3350.mbs.integration.accessTicketsTest;
 import comp3350.mbs.integration.accessViewingTimesTest;
 
 public class RunIntegrationTests {
@@ -20,6 +21,7 @@ public class RunIntegrationTests {
     private static void testIntegration(){
         suite.addTestSuite( accessOrdersTest.class);
         suite.addTestSuite( accessViewingTimesTest.class);
+        suite.addTestSuite( accessTicketsTest.class);
 
     }
 }

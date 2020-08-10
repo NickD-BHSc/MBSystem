@@ -58,6 +58,6 @@ public class accessViewingTimesTest extends TestCase {
 
         Services.closeDataAccess();
 
-        System.out.println( "\nFinished Integration test of AccessViewingTimes and persistence layer" );
+        System.out.println( "\nFinished Integration test of AccessViewingTimes and persistence layer\n" );
     }
 }
