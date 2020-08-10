@@ -40,7 +40,14 @@ public class accessOrdersTest extends TestCase {
         orderList = ao.getOrderList();
         assertTrue( orderList.get(0).equals( order ) ); //order from get call should be the same as ours
 
-        //test deleteOrder()
+        //test invalid order deletion
+        Order order2 = new Order( "Superman", "1:00 to 3:00PM", "Saturday, August 15th", "Happy Theatre", 3 );
+        ao.deleteOrder( order2 );
+        orderList = ao.getOrderList();
+        assertTrue( orderList.size() == 1); //order list shouldn't have changed
+        assertTrue( orderList.get(0).equals( order ) ); //order in the list should be the same
+
+        //test valid order deletion
         ao.deleteOrder( order );
         orderList = ao.getOrderList();
         assertTrue( orderList.isEmpty() ); //our order should be removed so the list should be empty

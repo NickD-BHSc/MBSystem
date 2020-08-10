@@ -31,7 +31,7 @@ public class RunUnitTests {
 
     public static junit.framework.Test suite() {
 
-        suite = new TestSuite("All tests");
+        suite = new TestSuite("Unit tests");
         testObjects();
         testBusiness();
         testPersistence();

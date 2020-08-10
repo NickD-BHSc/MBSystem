@@ -12,7 +12,7 @@ public class RunIntegrationTests {
 
     public static junit.framework.Test suite() {
 
-        suite = new TestSuite("All tests");
+        suite = new TestSuite("Integration tests");
         testIntegration();
         return suite;
 

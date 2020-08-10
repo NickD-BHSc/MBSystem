@@ -30,6 +30,7 @@ public class accessViewingTimesTest extends TestCase {
 
         avt = new AccessViewingTimes();
 
+        //test initial viewing time list
         vtList = avt.getViewingTimeList("Scotiabank Theatre", "Avengers Endgame");
         assertNotNull(vtList);
         vt = vtList.get(0);
@@ -41,17 +42,19 @@ public class accessViewingTimesTest extends TestCase {
         assertEquals("June 11, 2020, Tuesday", vt.getShowDate());
         assertEquals("00000000000000000000000000000000", vt.getSeatString());
 
+        //test seatlist update
         avt.updateSeatList(vt, "11111111111111111111111111111111");
 
         vtList = avt.getViewingTimeList("Scotiabank Theatre", "Avengers Endgame");
         assertNotNull(vtList);
         vt = vtList.get(0);
 
+        //everything should be the same as before
         assertEquals("Scotiabank Theatre", vt.getTheatreName());
         assertEquals("Avengers Endgame", vt.getMovieName());
         assertEquals("1:00 to 4:00 PM", vt.getShowTime());
         assertEquals("June 11, 2020, Tuesday", vt.getShowDate());
-        assertEquals("11111111111111111111111111111111", vt.getSeatString());
+        assertEquals("11111111111111111111111111111111", vt.getSeatString()); //but the seatlist should have changed
 
         //testing complete: reset viewing time
         avt.updateSeatList( vt, "00000000000000000000000000000000");
