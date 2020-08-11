@@ -34,6 +34,18 @@ public class ReviewValidationTest extends TestCase {
         assertNotNull(review);
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
+        review = new Review("Movie1","\t\t\t\t","5","This is a review");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review("Movie1","\t\t\t \t                  ","5","This is a review");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review("Movie1","                              ","5","This is a review");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
         review = new Review("Movie1",null,"5","This is a review");
         assertNotNull(review);
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
@@ -67,6 +79,10 @@ public class ReviewValidationTest extends TestCase {
         assertNotNull(review);
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
+        review = new Review("Movie1","User1","3.5","This is a review");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
         review = new Review("Movie1","User1","1000","This is a review");
         assertNotNull(review);
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
@@ -96,6 +112,18 @@ public class ReviewValidationTest extends TestCase {
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
         review = new Review("Movie1","User1","5",null);
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review("Movie1","User1","5","                      ");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review("Movie1","User1","5","\t\t\t\t");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review("Movie1","User1","5","\t\t\t \t             ");
         assertNotNull(review);
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
