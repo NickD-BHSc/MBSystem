@@ -64,6 +64,7 @@ public class DataAccessStub implements DataAccess{
         ticketList = new ArrayList<>();
         createTickets();
 
+        reviewList = new ArrayList<>();
         System.out.println("Opened " + dbType + " database " + dbName + ".");
 
     }//end open
@@ -418,12 +419,16 @@ public class DataAccessStub implements DataAccess{
         String rating;
         String comment;
 
-        name = review.getCustomerName();
-        rating = review.getRating();
-        comment = review.getComments();
+        if(review != null) {
 
-        if(ReviewValidation.isReviewValid(name,rating,comment)){
-            this.reviewList.add(review);
+            name = review.getCustomerName();
+            rating = review.getRating();
+            comment = review.getComments();
+
+            if (ReviewValidation.isReviewValid(name, rating, comment)) {
+                this.reviewList.add(review);
+            }
+
         }
 
     }//end insertNewReview

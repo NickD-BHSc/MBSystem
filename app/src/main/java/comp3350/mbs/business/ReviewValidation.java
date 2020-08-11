@@ -45,6 +45,7 @@ public class ReviewValidation {
         boolean checkComment = false;
 
         if(comment != null){
+            comment = comment.replaceAll("\\s","");//removed white spaces
             checkComment = comment.length() != 0;
         }
         return checkComment;
@@ -58,6 +59,7 @@ public class ReviewValidation {
     private static boolean isNameValid(String name) {
         boolean checkName = false;
         if(name != null){
+            name = name.replaceAll("\\s","");//removed white spaces
             checkName = name.length() != 0;
         }
         return checkName;
