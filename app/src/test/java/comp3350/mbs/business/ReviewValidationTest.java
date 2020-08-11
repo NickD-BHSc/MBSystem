@@ -159,6 +159,17 @@ public class ReviewValidationTest extends TestCase {
         assertNotNull(review);
         assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
+        review = new Review(" "," ","3","    ");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review(" ","            ","                 ",  "            ");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
+
+        review = new Review(" ","\t\t\t\t\t\t\t","                 ",  "\t\t\t\t\t\t\t\t");
+        assertNotNull(review);
+        assertFalse(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
         System.out.println("Starting ReviewValidationTest: testInvalidReviews\n");
     }//end testInvalidReviews
@@ -176,9 +187,6 @@ public class ReviewValidationTest extends TestCase {
         assertNotNull(review);
         assertTrue(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
-        review = new Review(" "," ","3","    ");
-        assertNotNull(review);
-        assertTrue(ReviewValidation.isReviewValid(review.getCustomerName(),review.getRating(),review.getComments()));
 
         review = new Review("Movie1","__User1","2","COmmEnnnnnnnt");
         assertNotNull(review);
