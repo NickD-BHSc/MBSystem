@@ -28,7 +28,6 @@ public class TicketStubActivity extends AppCompatActivity{
 
         init();
         addTicketStubInfo();
-        insertOrderToTable();
 
         Button backToMain = findViewById(R.id.backToMainScreenView);
         backToMain.setOnClickListener(new View.OnClickListener(){
@@ -91,12 +90,5 @@ public class TicketStubActivity extends AppCompatActivity{
         chosenTheatreLocationTextView.setText(order.getTheatreName());
     }//end addTicketStubInfo
 
-    /**
-     * insertOrderToTable- inserts a new entry into the ORDERS table
-     */
-    private void insertOrderToTable(){
-        AccessOrders accessOrders = new AccessOrders();
-        accessOrders.insertNewOrder(order);
-    }//end insertOrderToTable
 
 }//end TicketStubActivity class
