@@ -1,9 +1,11 @@
 package comp3350.mbs.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -128,6 +130,18 @@ public class OrderActivity extends AppCompatActivity {
                 orderViewHolder.showDateTextView.setText(item.getShowDate());
                 orderViewHolder.quantityTextView.setText("Tickets: " + Integer.toString(item.getTicketQuantity()));
 
+                //Moves to the CreateReviewActivity activity.
+                orderViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(OrderActivity.this,CreateReviewActivity.class);
+                        //pass the movie name that the user wants to make a review of.
+                        intent.putExtra("Order_Movie_Name",item.getMovieName());
+                        startActivity(intent);
+                    }
+                });
+
+
             }else{
                 throw new Error("an item from the list is expected to be a Order object.");
             }
@@ -140,6 +154,7 @@ public class OrderActivity extends AppCompatActivity {
          */
         private class OrderViewHolder extends CustomViewHolder {
 
+            private RelativeLayout relativeLayout;//used for click event
             private TextView movieNameTextView;
             private TextView theatreNameTextView;
             private TextView showTimeTextView;
@@ -153,6 +168,7 @@ public class OrderActivity extends AppCompatActivity {
                 showTimeTextView = itemView.findViewById(R.id.showTimeTextView);
                 showDateTextView = itemView.findViewById(R.id.showDateTextView);
                 quantityTextView = itemView.findViewById(R.id.quantityTextView);
+                relativeLayout = itemView.findViewById(R.id.orderRelativeLayout);
             }//end constructor
 
         }//end OrderViewHolder class
