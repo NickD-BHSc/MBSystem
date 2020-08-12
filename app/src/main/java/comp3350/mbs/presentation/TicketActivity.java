@@ -62,7 +62,7 @@ public class TicketActivity extends AppCompatActivity {
 
                 if(!CreditCardValidation.isCardValid(cardInput, expiryDate, securityCode)){
                     Toast.makeText(TicketActivity.this,"Please enter a valid credit card.",Toast.LENGTH_SHORT).show();
-                }else {
+       }else {
                     Intent startIntent = new Intent(TicketActivity.this, TicketStubActivity.class);
                     startIntent.putExtra("Order_Theatre",order.getTheatreName());
                     startIntent.putExtra("Order_Movie",order.getMovieName());

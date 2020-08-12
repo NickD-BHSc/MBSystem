@@ -18,7 +18,7 @@ public class AccessSnack{
     }//end constructor
 
     /**
-     * getTicket - a getter method for the ticket when given a movie name.
+     * getTicket - a getter method for the snack when given a movie name.
      * @param movieName is the name of the movie associated with the ticket.
      * @return it will return a Ticket object that has the given movie.
      */

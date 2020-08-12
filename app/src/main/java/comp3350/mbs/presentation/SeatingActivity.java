@@ -1,3 +1,4 @@
+//end SeatActivity class
 package comp3350.mbs.presentation;
 
 import android.content.Intent;
@@ -48,33 +49,15 @@ public class SeatingActivity extends AppCompatActivity {
         init();
         buildRecyclerView();
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 8a1c2d84ecc87bc327e771367586fc21d5ef347f
         seatConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //make sure that the user has chosen at least one seat to be able to move to the next page.
                 if(bookedSeats.size() == 0){
                     Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
                 }else{
-                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-=======
-                }else {
 //                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
-                    addParcBookedSeats();
                     Intent intent = new Intent(SeatingActivity.this, SnackActivity.class);
-
-                    intent.putParcelableArrayListExtra("Booked_Seats", (ArrayList<? extends Parcelable>) parcBookedSeats);
-                    Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
-                    intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);
-
-                    //passing the whole list.
-                    intent.putExtra("seats", bookedSeats.size());
->>>>>>> 8a1c2d84ecc87bc327e771367586fc21d5ef347f
                     accessSeats = new AccessSeats();
                     seatEncoding = new SeatEncoding();
                     seatString = seatEncoding.encodeSeatList(seatingList, bookedSeats);

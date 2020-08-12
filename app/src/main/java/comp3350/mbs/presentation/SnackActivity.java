@@ -9,13 +9,16 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
-import comp3350.mbs.business.ParcelableFactory;
+import comp3350.mbs.business.AccessSeats;
+import comp3350.mbs.business.SeatEncoding;
+import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
+
+//import comp3350.mbs.business.ParcelableFactory;
 //import comp3350.mbs.objects.Movie;
 
 public class SnackActivity extends AppCompatActivity {
@@ -30,6 +33,7 @@ private List<Parcelable> parcBookedSeats;
     private EditText noodleQuantityEt;
     private EditText chipsQuantityEt;
 
+
     final private int hotdogPrice = 2;
     final private int popcornPrice =3;
     final private int friesPrice = 3;
@@ -37,13 +41,22 @@ private List<Parcelable> parcBookedSeats;
     final private int noodlePrice = 5;
     final private int chipsPrice = 4;
 
-    private List<Parcelable> bookedSeats;
+    private List<Seat> bookedSeats;
 
     private ViewingTime movieDetails;
 
     private TheatreMovies theatreMovie;
     private ViewingTime vt;
 
+
+    private AccessSeats accessSeats;
+    private SeatEncoding seatEncoding;
+    private List<Seat> seatingList;
+//    private List<Seat> bookedSeats;
+    private ViewingTime viewingTime;
+    private String seatString;
+    private String chosenSeats;
+    private int numBookedSeats;
 
 
     private Button confirmBtn;
@@ -59,15 +72,16 @@ private List<Parcelable> parcBookedSeats;
         noodleQuantityEt = findViewById(R.id.noodle_edit);
         chipsQuantityEt = findViewById(R.id.chips_edit);
 
+
         confirmBtn =( Button) findViewById(R.id.snackConfirm);
         confirmBtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick( View v)
                  {
 
-                     Intent intent = getIntent();
+//                     Intent intent = getIntent();
                      int hotdogQuantity = 0;
-                     String hStr = hotdogQuantityEt.getText().toString();
+                     String hStr = hotdogQuantityEt.getText().toString(); // does getText() return null if no input ? 
                      if (hStr != null)
                           hotdogQuantity = Integer.parseInt( hStr ) ;
 
@@ -98,27 +112,38 @@ private List<Parcelable> parcBookedSeats;
 
                      int total =hotdogQuantity*hotdogPrice+popcornQuantity*popcornPrice+friesQuantity*friesPrice+drinkQuantity*drinkPrice+noodleQuantity*noodlePrice+chipsQuantity*noodlePrice;
 
-                     seatCounts = intent.getIntExtra("seats",0);
-//                     movie = intent.getParcelableExtra( "movie ");
-                     movieDetails = intent.getParcelableExtra("ViewingTime_Selected");
-                     bookedSeats = intent.getParcelableArrayListExtra("Booked_Seats");
-                     theatreMovie = intent.getParcelableExtra("TheatreMovie_Selected"); //get the theatreMovie so we know the theatre, movie, and price
-                     Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
-                     ParcelableViewingTime pvt = (ParcelableViewingTime) ParcelableFactory.createParcelableObject(vt);
+                     Intent intent = getIntent();
+                     String getTheatreName = intent.getStringExtra("Chosen_Theatre_Name");
+                     String getMovieName = intent.getStringExtra("Chosen_Movie_Name");
+                     String getShowTime = intent.getStringExtra("Show_Time");
+                     String getShowDate = intent.getStringExtra("Show_Date");
+                     numBookedSeats = intent.getIntExtra("Chosen_Num_Seats", 0);
+                     chosenSeats = intent.getStringExtra("Chosen_Seats");
 
-
-
-                     intent.putExtra("ViewingTime_Selected", pvt);
                      Intent i = new Intent(SnackActivity.this, TicketActivity.class);
-                     i.putExtra("TheatreMovie_Selected", parcTheatreMovie);
-                     i.putExtra("ViewingTime_Selected", pvt);
-                     i.putParcelableArrayListExtra("Booked_Seats", (ArrayList<? extends Parcelable>) bookedSeats);
-                     i.putExtra("seats", seatCounts );
-//                     i.putExtra( "movie" , movie );
-                     i.putExtra("price",total );
+                     i.putExtra("Chosen_Seats",chosenSeats);
+                     i.putExtra("Chosen_Num_Seats",numBookedSeats);
+                     i.putExtra("Chosen_Theatre_Name",getTheatreName);
+                     i.putExtra("Chosen_Movie_Name",getMovieName);
+                     i.putExtra("Show_Time",getShowTime);
+                     i.putExtra("Show_Date",getShowDate);
                      startActivity(i);
-                }
-        }
+
+		}
+
+					   private String bookedSeatsInfo(){
+
+						   String chosenSeats = "";
+						   for(int i =0; i < bookedSeats.size(); i++){
+							   chosenSeats += bookedSeats.get(i).getSeatNumber() + ", ";
+						   }
+						   int lastCommaPosition = chosenSeats.lastIndexOf(", "); //removes the last comma
+						   chosenSeats = chosenSeats.substring(0, lastCommaPosition);
+
+					   return chosenSeats;
+
+						   }//end bookedSeatsInfo
+					   }
         );
     }
 }
