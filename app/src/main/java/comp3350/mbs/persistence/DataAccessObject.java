@@ -9,8 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
+<<<<<<< HEAD
 import comp3350.mbs.objects.Order;
 import comp3350.mbs.objects.Review;
+=======
+import comp3350.mbs.objects.Snack;
+import comp3350.mbs.objects.ViewingTime;
+>>>>>>> 8a1c2d84ecc87bc327e771367586fc21d5ef347f
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -282,6 +287,7 @@ public class DataAccessObject implements DataAccess {
 
     }//end updateSeatList
 
+<<<<<<< HEAD
     /**
      * getOrderList -a getter method for the orderList field. Gets alls order from the orders table
      * @return it will return the field orderList.
@@ -315,6 +321,13 @@ public class DataAccessObject implements DataAccess {
         }
         return orderList;
     }//end getOrderList
+=======
+    @Override
+    public Snack getSnack(String movieName) {
+        return null;
+    }
+
+>>>>>>> 8a1c2d84ecc87bc327e771367586fc21d5ef347f
 
     /**
      * insertNewOrder - a method that adds an order to the ORDER table

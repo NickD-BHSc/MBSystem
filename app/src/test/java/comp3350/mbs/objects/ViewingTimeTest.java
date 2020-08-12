@@ -24,6 +24,7 @@ public class ViewingTimeTest extends TestCase {
         assertTrue("Movie1".equals(viewingTime1.getMovieName()));
         assertEquals("Movie1",viewingTime1.getMovieName());
 
+
         assertTrue("1:30 to 3:30 PM".equals(viewingTime1.getShowTime()));
         assertEquals("1:30 to 3:30 PM", viewingTime1.getShowTime());
 

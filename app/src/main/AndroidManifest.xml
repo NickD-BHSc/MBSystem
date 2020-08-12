@@ -21,6 +21,11 @@
         <activity android:name=".presentation.SeatingActivity"
             android:label="@string/title_activity_seating"></activity>
 
+
+        <activity android:name=".presentation.SnackActivity"></activity>
+
+
+
         <activity android:name=".presentation.TicketActivity"
             android:label="@string/title_activity_ticket"></activity>
         <activity
