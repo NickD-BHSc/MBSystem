@@ -10,9 +10,9 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.ViewingTime;
 
-public class accessViewingTimesTest extends TestCase {
+public class AccessViewingTimesTest extends TestCase {
 
-    public accessViewingTimesTest( String arg0 ){
+    public AccessViewingTimesTest(String arg0 ){
         super( arg0 );
     }
 
