@@ -9,6 +9,7 @@ import comp3350.mbs.application.Services;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.ViewingTime;
+import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessViewingTimesTest extends TestCase {
 
@@ -26,7 +27,7 @@ public class AccessViewingTimesTest extends TestCase {
 
         System.out.println("Starting Integration test of AccessViewingTimes and persistence layer\n");
 
-        Services.createDataAccess(Main.dbName);
+        Services.createDataAccess(new DataAccessStub() );
 
         avt = new AccessViewingTimes();
 

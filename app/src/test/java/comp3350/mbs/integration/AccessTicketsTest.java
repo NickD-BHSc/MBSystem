@@ -9,6 +9,7 @@ import comp3350.mbs.application.Services;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.objects.Ticket;
+import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTicketsTest extends TestCase {
 
@@ -25,7 +26,7 @@ public class AccessTicketsTest extends TestCase {
 
         System.out.println("Starting Integration test of AccessTickets to persistence layer\n");
 
-        Services.createDataAccess(Main.dbName);
+        Services.createDataAccess(new DataAccessStub() );
 
         at = new AccessTickets();
 
