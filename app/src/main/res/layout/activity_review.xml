@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reviewRelativeLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="7dp">
+    android:paddingTop="2dp"
+    android:background="#3A3A3A"
+    android:layout_marginTop="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:cardCornerRadius="15dp">
+        android:layout_height="wrap_content"
+        app:contentPadding="1dp">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <TextView
-                android:id="@+id/commentsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="50dp"
-                android:text="Comments" />
 
             <TextView
                 android:id="@+id/movieNameTextView"
@@ -31,17 +24,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
+                android:textSize="20dp"
                 android:text="Movie Name"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/customerNameTextView"
-                android:layout_width="161dp"
+                android:id="@+id/commentsTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="125dp"
-                android:text="Customer Name"
-                android:visibility="visible" />
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/movieNameTextView"
+                android:text="Comments" />
+
+
+            <TextView
+                android:id="@+id/customerNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:layout_below="@id/commentsTextView"
+                android:text="Customer Name" />
 
             <TextView
                 android:id="@+id/ratingTextView"
@@ -50,6 +56,7 @@
                 android:layout_marginLeft="500dp"
                 android:layout_marginTop="10dp"
                 android:text="Rating"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

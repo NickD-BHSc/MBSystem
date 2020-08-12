@@ -6,12 +6,42 @@
     android:layout_height="match_parent"
     android:layout_marginTop="15dp">
 
+    <RelativeLayout
+        android:id="@+id/filterRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/filterByTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="60dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="Filter by:" />
+
+        <Spinner
+            android:id="@+id/movieNameSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="200dp" />
+
+        <Spinner
+            android:id="@+id/ratingsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="400dp" />
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/noReviewstextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="200dp"
+        android:layout_centerInParent="true"
         android:text="There are no reviews to view."
         android:visibility="invisible" />
 
@@ -22,25 +52,5 @@
         android:layout_marginTop="50dp">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-    <TextView
-        android:id="@+id/filterByTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Filter by:" />
-
-    <Spinner
-        android:id="@+id/movieNameSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp" />
-
-    <Spinner
-        android:id="@+id/ratingsSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="300dp" />
 
 </RelativeLayout>

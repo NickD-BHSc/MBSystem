@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TicketStubActivity">
+    tools:context=".presentation.TicketStubActivity">
 
     <Button
         android:id="@+id/createReviewButton"
@@ -132,5 +132,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.802" />
+
+    <TextView
+        android:id="@+id/showDateDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Show Date"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showTimeDescriptionText"
+        app:layout_constraintVertical_bias="0.164" />
+
+    <TextView
+        android:id="@+id/showDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="@+id/showDateDescriptionText"
+        app:layout_constraintTop_toBottomOf="@+id/showDateDescriptionText"
+        app:layout_constraintVertical_bias="0.062" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

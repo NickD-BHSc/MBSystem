@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.business.Calculate;
 import comp3350.mbs.business.CreditCardValidation;
@@ -70,6 +71,7 @@ public class TicketActivity extends AppCompatActivity {
                     startIntent.putExtra("Order_Show_Time",order.getShowTime());
                     startIntent.putExtra("Order_Show_Date",order.getShowDate());
                     startIntent.putExtra("Order_Num_Tickets",order.getTicketQuantity());
+                    insertOrderToTable();
                     startActivity(startIntent);
                 }
             }
@@ -128,5 +130,13 @@ public class TicketActivity extends AppCompatActivity {
         chosenSeatsTextView.setText(chosenSeats);
 
     }//end addTicketInfo
+
+    /**
+     * insertOrderToTable- inserts a new entry into the ORDERS table
+     */
+    private void insertOrderToTable(){
+        AccessOrders accessOrders = new AccessOrders();
+        accessOrders.insertNewOrder(order);
+    }//end insertOrderToTable
 
 }//end TicketActivity class
