@@ -11,7 +11,10 @@ import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 
 import static org.junit.Assert.assertNotEquals;
-
+import comp3350.mbs.business.AccessOrders;
+import comp3350.mbs.objects.Order;
+import comp3350.mbs.persistence.DataAccessObject;
+import comp3350.mbs.persistence.DataAccessStub;
 
 public class accessOrdersTest extends TestCase {
 
@@ -58,7 +61,10 @@ public class accessOrdersTest extends TestCase {
 
         System.out.println("Starting Integration test for AccessTheatreMovies to persistence layer\n");
 
-        Services.createDataAccess(Main.dbName);
+        if( true )
+            Services.createDataAccess(new DataAccessStub() );
+        else
+            Services.createDataAccess(new DataAccessObject( Main.dbName) );
 
         atm = new AccessTheatreMovies();
         tml = atm.getMoviesFromTheatre("Cinema City Northgate");
@@ -79,7 +85,6 @@ public class accessOrdersTest extends TestCase {
         }
         //make sure list is empty
         assertTrue(tml.isEmpty());
-
         //assert that invalid theatre name does not add anything to the list of theatre movies
         tml = atm.getMoviesFromTheatre("Non-existent theatre");
         assertTrue(tml.isEmpty());

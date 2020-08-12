@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/submitReviewbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.898" />
+
+    <TextView
+        android:id="@+id/movieNameTextView"
+        android:layout_width="86dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="160dp"
+        android:text="Movie Name: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/YourNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:text="Your Name:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieNameTextView" />
+
+    <TextView
+        android:id="@+id/ratingTextView"
+        android:layout_width="103dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:text="Rating (1-5): "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/YourNameTextView" />
+
+    <TextView
+        android:id="@+id/commentsTextView"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:text="Additional Comments (Max 300 characters):"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingTextView" />
+
+    <TextView
+        android:id="@+id/movieNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="160dp"
+        android:clickable="false"
+        android:editable="false"
+        android:text="Movie Name"
+        app:layout_constraintStart_toEndOf="@+id/movieNameTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/yourNameInput"
+        android:layout_width="137dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:maxLength="50"
+        app:layout_constraintStart_toEndOf="@+id/YourNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/movieNameInput" />
+
+    <EditText
+        android:id="@+id/ratingInput"
+        android:layout_width="188dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="1"
+        app:layout_constraintStart_toEndOf="@+id/ratingTextView"
+        app:layout_constraintTop_toBottomOf="@+id/yourNameInput" />
+
+    <EditText
+        android:id="@+id/commentsInput"
+        android:layout_width="171dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="95dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:maxLength="300"
+        app:layout_constraintStart_toEndOf="@+id/commentsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ratingInput" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

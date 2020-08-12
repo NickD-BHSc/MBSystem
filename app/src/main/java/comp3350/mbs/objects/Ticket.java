@@ -9,11 +9,6 @@ public class Ticket {
     DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
     /**
-     * Ticket constructor for implementing Parcelable interface in the ParcelableTicket class.
-     */
-    public Ticket(){}
-
-    /**
      * Ticket Constructor
      *
      * @param price is the price of one of this type of ticket.
@@ -36,14 +31,5 @@ public class Ticket {
 
     public String getPriceAsString(){ return moneyFormat.format(price); }
 
-    //================================================================
-    //Setter methods
-    public void setPrice(double price) {
-        this.price = price;
-    }//end setPrice
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }//end setMovieName
 
 }//end Ticket class

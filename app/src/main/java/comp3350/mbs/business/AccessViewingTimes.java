@@ -32,4 +32,13 @@ public class AccessViewingTimes {
         return dataAccess.getViewingTimeList(theatreMovie);
     }//end getViewingTimeList
 
+    /**
+     * updateSeatList - a method to update the seatlist's of viewing time objects in the database
+     * @param viewingTime - ViewingTime to update
+     * @param seatString - Seat string to change
+     */
+    public String updateSeatList(ViewingTime viewingTime, String seatString){
+        return dataAccess.updateSeatList(viewingTime, seatString);
+    }//end updateSeatList
+
 }//end AccessViewingTimes

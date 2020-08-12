@@ -28,4 +28,20 @@ public class OrderTest extends TestCase {
 
     }//end testOrder1
 
+    @Test
+    public void testEquals(){
+        System.out.println("\nStaring testEquals");
+
+        Order order1 = new Order("Avengers Endgame", "1:30 to 3:30 PM", "July 8, 2020, Wednesday", "xTheatre", 3);
+        Order order2 = new Order("Avengers Endgame", "1:30 to 3:30 PM", "July 8, 2020, Wednesday", "xTheatre", 3);
+
+        assertTrue( order1.equals( order2 ) );
+
+        order2.setTicketQuantity( 10 );
+
+        assertFalse( order1.equals( order2 ) );
+
+        System.out.println( "Finished testEquals");
+    }
+
 }
