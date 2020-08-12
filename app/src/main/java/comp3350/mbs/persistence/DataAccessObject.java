@@ -424,8 +424,10 @@ public class DataAccessObject implements DataAccess {
     public void insertNewReview(Review review){
 
         try{
-
-            cmdString = "INSERT INTO REVIEWS VALUES('" + review.getMovieName() + "', '" + review.getCustomerName() + "' , '" + review.getRating() + "', '" + review.getComments() +  "') ";
+            String movieName =  review.getMovieName().replaceAll("'","''");
+            String customerName = review.getCustomerName().replaceAll("'","''");
+            String comments = review.getComments().replaceAll("'", "''");
+            cmdString = "INSERT INTO REVIEWS VALUES('" + movieName + "', '" + customerName + "' , '" + review.getRating() + "', '" + comments +  "') ";
             st1.executeUpdate(cmdString);
 
         }
