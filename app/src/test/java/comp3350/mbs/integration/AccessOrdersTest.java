@@ -12,9 +12,9 @@ import comp3350.mbs.objects.Order;
 import comp3350.mbs.persistence.DataAccessObject;
 import comp3350.mbs.persistence.DataAccessStub;
 
-public class accessOrdersTest extends TestCase {
+public class AccessOrdersTest extends TestCase {
 
-    public accessOrdersTest(String arg0){
+    public AccessOrdersTest(String arg0){
         super( arg0 );
     }
 

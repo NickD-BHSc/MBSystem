@@ -2,9 +2,9 @@ package comp3350.mbs;
 
 import junit.framework.TestSuite;
 
-import comp3350.mbs.integration.accessOrdersTest;
-import comp3350.mbs.integration.accessTicketsTest;
-import comp3350.mbs.integration.accessViewingTimesTest;
+import comp3350.mbs.integration.AccessOrdersTest;
+import comp3350.mbs.integration.AccessTicketsTest;
+import comp3350.mbs.integration.AccessViewingTimesTest;
 
 public class RunIntegrationTests {
 
@@ -19,9 +19,9 @@ public class RunIntegrationTests {
     }
 
     private static void testIntegration(){
-        suite.addTestSuite( accessOrdersTest.class);
-        suite.addTestSuite( accessViewingTimesTest.class);
-        suite.addTestSuite( accessTicketsTest.class);
+        suite.addTestSuite( AccessOrdersTest.class);
+        suite.addTestSuite( AccessViewingTimesTest.class);
+        suite.addTestSuite( AccessTicketsTest.class);
 
     }
 }

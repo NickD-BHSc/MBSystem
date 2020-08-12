@@ -10,9 +10,9 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.objects.Ticket;
 
-public class accessTicketsTest extends TestCase {
+public class AccessTicketsTest extends TestCase {
 
-    public accessTicketsTest(String arg0){
+    public AccessTicketsTest(String arg0){
         super( arg0 );
     }
 
