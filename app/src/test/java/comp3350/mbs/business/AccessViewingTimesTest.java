@@ -42,7 +42,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("1:00 to 4:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -51,7 +51,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("4:30 to 7:30 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -60,7 +60,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("8:00 to 11:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fourth viewing time
@@ -69,7 +69,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("5:00 to 8:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fifth viewing time
@@ -78,7 +78,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("9:00 to 12:00 AM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -104,7 +104,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("The Incredibles",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -113,7 +113,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("The Incredibles",viewingTime.getMovieName());
         assertEquals("4:00 to 6:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -122,7 +122,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("The Incredibles",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -148,7 +148,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -157,7 +157,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -166,7 +166,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("5:00 to 7:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fourth viewing time
@@ -175,7 +175,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("9:00 to 11:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -201,7 +201,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("The Lion King",viewingTime.getMovieName());
         assertEquals("4:00 to 6:30 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -210,7 +210,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("The Lion King",viewingTime.getMovieName());
         assertEquals("7:00 to 9:30 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -219,7 +219,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("The Lion King",viewingTime.getMovieName());
         assertEquals("4:00 to 6:30 PM",viewingTime.getShowTime());
-        assertEquals("June 13, 2020, Thursday",viewingTime.getShowDate());
+        assertEquals("June 13, 2021, Thursday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -245,7 +245,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Star Wars",viewingTime.getMovieName());
         assertEquals("11:30 to 2:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -254,7 +254,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Star Wars",viewingTime.getMovieName());
         assertEquals("5:00 to 7:30 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -280,7 +280,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Cinema City Northgate",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("5:00 to 8:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -289,7 +289,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Cinema City Northgate",viewingTime.getTheatreName());
         assertEquals("Avengers Endgame",viewingTime.getMovieName());
         assertEquals("7:00 to 10:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -315,7 +315,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Cinema City Northgate",viewingTime.getTheatreName());
         assertEquals("The Incredibles",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -324,7 +324,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Cinema City Northgate",viewingTime.getTheatreName());
         assertEquals("The Incredibles",viewingTime.getMovieName());
         assertEquals("4:00 to 6:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -333,7 +333,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Cinema City Northgate",viewingTime.getTheatreName());
         assertEquals("The Incredibles",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -359,7 +359,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -368,7 +368,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("8:00 to 10:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -377,7 +377,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fourth viewing time
@@ -386,7 +386,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("5:00 to 7:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -413,7 +413,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("The Lion King",viewingTime.getMovieName());
         assertEquals("12:00 to 2:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -422,7 +422,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("The Lion King",viewingTime.getMovieName());
         assertEquals("7:00 to 9:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();
@@ -448,7 +448,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Silver City St.Vital Cinemas",viewingTime.getTheatreName());
         assertEquals("Star Wars",viewingTime.getMovieName());
         assertEquals("7:00 to 9:30 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         Services.closeDataAccess();

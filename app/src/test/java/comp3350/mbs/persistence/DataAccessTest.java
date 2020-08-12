@@ -55,19 +55,16 @@ public class DataAccessTest extends TestCase {
         assertNotNull(theatre);
         assertEquals("Scotiabank Theatre",theatre.getName());
         assertEquals("817 St.James",theatre.getAddress());
-        assertEquals("15.7km",theatre.getDistance());
 
         theatre = theatreList.get(1);//get theatre2 (Cinema City Northgate)
         assertNotNull(theatre);
         assertEquals("Cinema City Northgate",theatre.getName());
         assertEquals("1399 McPhillips St.",theatre.getAddress());
-        assertEquals("10km",theatre.getDistance());
 
         theatre = theatreList.get(2);//get theatre3 (Silver City St.Vital Cinemas)
         assertNotNull(theatre);
         assertEquals("Silver City St.Vital Cinemas",theatre.getName());
         assertEquals("160-1225 St Mary's Rd",theatre.getAddress());
-        assertEquals("19.8km",theatre.getDistance());
 
         System.out.println("Finished DataAccessTest: testGetTheatreList");
 
@@ -290,7 +287,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 11, 2020, Tuesday",viewingTime.getShowDate());
+        assertEquals("June 11, 2021, Tuesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //second viewing time
@@ -299,7 +296,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("1:00 to 3:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //third viewing time
@@ -308,7 +305,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("5:00 to 7:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         //fourth viewing time
@@ -317,7 +314,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("Scotiabank Theatre",viewingTime.getTheatreName());
         assertEquals("Superman",viewingTime.getMovieName());
         assertEquals("9:00 to 11:00 PM",viewingTime.getShowTime());
-        assertEquals("June 12, 2020, Wednesday",viewingTime.getShowDate());
+        assertEquals("June 12, 2021, Wednesday",viewingTime.getShowDate());
         assertEquals("00000000000000000000000000000000",viewingTime.getSeatString());
 
         System.out.println("Finished DataAccessTest: testGetViewingTimeList");

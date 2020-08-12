@@ -17,7 +17,7 @@ public class TheatreTest extends TestCase {
     public void testOneTheatre(){
 
         System.out.println("Starting TheatreTest: testOneTheatre");
-        Theatre theatre1 = new Theatre("Theatre1","Address1","15km");
+        Theatre theatre1 = new Theatre("Theatre1","Address1");
         assertNotNull(theatre1);
 
         //theatre1 fields
@@ -27,13 +27,10 @@ public class TheatreTest extends TestCase {
         assertTrue("Address1".equals(theatre1.getAddress()));
         assertEquals("Address1",theatre1.getAddress());
 
-        assertTrue("15km".equals(theatre1.getDistance()));
-        assertEquals("15km",theatre1.getDistance());
-
         assertTrue(theatre1.equals(theatre1));
         assertEquals(theatre1, theatre1);
 
-        Theatre theatre2 = new Theatre("Theatre2","Address2", "10km");
+        Theatre theatre2 = new Theatre("Theatre2","Address2");
         assertNotNull(theatre2);
 
         //theatre2 fields
@@ -42,9 +39,6 @@ public class TheatreTest extends TestCase {
 
         assertTrue("Address2".equals(theatre2.getAddress()));
         assertEquals("Address2",theatre2.getAddress());
-
-        assertTrue("10km".equals(theatre2.getDistance()));
-        assertEquals("10km", theatre2.getDistance());
 
         assertTrue(theatre2.equals(theatre2));
         assertEquals(theatre2,theatre2);
@@ -58,8 +52,8 @@ public class TheatreTest extends TestCase {
 
         System.out.println("Starting TheatreTest: testDistinctTheatres");
 
-        Theatre theatre1 = new Theatre("Theatre1","Address1","15km");
-        Theatre theatre2 = new Theatre("Theatre2","Address2","10km");
+        Theatre theatre1 = new Theatre("Theatre1","Address1");
+        Theatre theatre2 = new Theatre("Theatre2","Address2");
 
         assertNotNull(theatre1);
         assertNotNull(theatre2);
@@ -71,9 +65,6 @@ public class TheatreTest extends TestCase {
         assertTrue("Address1".equals(theatre1.getAddress()));
         assertEquals("Address1",theatre1.getAddress());
 
-        assertTrue("15km".equals(theatre1.getDistance()));
-        assertEquals("15km",theatre1.getDistance());
-
         assertTrue(theatre1.equals(theatre1));
         assertEquals(theatre1, theatre1);
 
@@ -83,9 +74,6 @@ public class TheatreTest extends TestCase {
 
         assertTrue("Address2".equals(theatre2.getAddress()));
         assertEquals("Address2",theatre2.getAddress());
-
-        assertTrue("10km".equals(theatre2.getDistance()));
-        assertEquals("10km", theatre2.getDistance());
 
         assertTrue(theatre2.equals(theatre2));
         assertEquals(theatre2,theatre2);
@@ -111,8 +99,8 @@ public class TheatreTest extends TestCase {
 
         System.out.println("Starting TheatreTest: testSameTheatres");
 
-        Theatre theatre1 = new Theatre("Theatre1","Address1","15km");
-        Theatre theatre2 = new Theatre("Theatre1","Address1","15km");
+        Theatre theatre1 = new Theatre("Theatre1","Address1");
+        Theatre theatre2 = new Theatre("Theatre1","Address1");
 
         assertNotNull(theatre1);
         assertNotNull(theatre2);
@@ -124,9 +112,6 @@ public class TheatreTest extends TestCase {
         assertTrue("Address1".equals(theatre1.getAddress()));
         assertEquals("Address1",theatre1.getAddress());
 
-        assertTrue("15km".equals(theatre1.getDistance()));
-        assertEquals("15km",theatre1.getDistance());
-
         assertTrue(theatre1.equals(theatre1));
         assertEquals(theatre1, theatre1);
 
@@ -136,9 +121,6 @@ public class TheatreTest extends TestCase {
 
         assertTrue("Address1".equals(theatre2.getAddress()));
         assertEquals("Address1",theatre2.getAddress());
-
-        assertTrue("15km".equals(theatre2.getDistance()));
-        assertEquals("15km",theatre2.getDistance());
 
         assertTrue(theatre2.equals(theatre2));
         assertEquals(theatre2, theatre2);
@@ -164,17 +146,15 @@ public class TheatreTest extends TestCase {
 
         System.out.println("Starting TheatreTest: testNullTheatre");
 
-        Theatre theatre = new Theatre(null,null,null);
+        Theatre theatre = new Theatre(null,null);
         assertNotNull(theatre);
 
         assertNull(theatre.getName());
-        assertEquals(null,theatre.getName());
+        assertNull(theatre.getName());
 
         assertNull(theatre.getAddress());
-        assertEquals(null,theatre.getAddress());
+        assertNull(theatre.getAddress());
 
-        assertNull(theatre.getDistance());
-        assertEquals(null,theatre.getDistance());
         System.out.println("Finished TheatreTest: testNullTheatre\n");
 
     }//end testNullTheatre

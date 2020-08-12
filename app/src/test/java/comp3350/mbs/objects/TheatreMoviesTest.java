@@ -168,13 +168,13 @@ public class TheatreMoviesTest extends TestCase {
 
         //theatreMovies1 fields
         assertNull(theatreMovies1.getTheatreName());
-        assertEquals(null,theatreMovies1.getTheatreName());
+        assertNull(theatreMovies1.getTheatreName());
 
         assertNull(theatreMovies1.getMovieName());
-        assertEquals(null,theatreMovies1.getMovieName());
+        assertNull(theatreMovies1.getMovieName());
 
         assertNull(theatreMovies1.getMovieDescription());
-        assertEquals(null,theatreMovies1.getMovieDescription());
+        assertNull(theatreMovies1.getMovieDescription());
 
         assertTrue(-1 == theatreMovies1.getMoviePoster());
         assertEquals(-1,theatreMovies1.getMoviePoster());
@@ -184,13 +184,13 @@ public class TheatreMoviesTest extends TestCase {
 
         //theatreMovie2 fields
         assertNull(theatreMovies2.getTheatreName());
-        assertEquals(null,theatreMovies2.getTheatreName());
+        assertNull(theatreMovies2.getTheatreName());
 
         assertNull(theatreMovies2.getMovieName());
-        assertEquals(null,theatreMovies2.getMovieName());
+        assertNull(theatreMovies2.getMovieName());
 
         assertNull(theatreMovies2.getMovieDescription());
-        assertEquals(null,theatreMovies2.getMovieDescription());
+        assertNull(theatreMovies2.getMovieDescription());
 
         assertTrue(-1 == theatreMovies2.getMoviePoster());
         assertEquals(-1,theatreMovies2.getMoviePoster());
