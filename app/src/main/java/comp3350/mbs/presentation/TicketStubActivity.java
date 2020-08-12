@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.mbs.R;
-import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.objects.Order;
 
 public class TicketStubActivity extends AppCompatActivity{
@@ -18,6 +17,7 @@ public class TicketStubActivity extends AppCompatActivity{
     private TextView chosenShowTimeTextView;
     private TextView chosenTicketQuantityTextView;
     private TextView chosenTheatreLocationTextView;
+    private TextView chosenShowDateTextView;
 
     private Order order;
 
@@ -68,6 +68,7 @@ public class TicketStubActivity extends AppCompatActivity{
         chosenShowTimeTextView = findViewById(R.id.showTimeText);
         chosenTicketQuantityTextView = findViewById(R.id.ticketNumberText);
         chosenTheatreLocationTextView = findViewById(R.id.theatreLocationText);
+        chosenShowDateTextView = findViewById(R.id.showDateText);
     }//end init
 
     /**
@@ -88,6 +89,8 @@ public class TicketStubActivity extends AppCompatActivity{
         chosenMovieTitleTextView.setText(order.getMovieName());
         chosenShowTimeTextView.setText(order.getShowTime());
         chosenTheatreLocationTextView.setText(order.getTheatreName());
+        chosenShowDateTextView.setText(order.getShowDate());
+
     }//end addTicketStubInfo
 
 
