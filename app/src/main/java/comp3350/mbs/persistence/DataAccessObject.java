@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.objects.Snack;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
@@ -335,6 +336,11 @@ public class DataAccessObject implements DataAccess {
         }
 
     }//end updateSeatList
+
+    @Override
+    public Snack getSnack(String movieName) {
+        return null;
+    }
 
 
     /**

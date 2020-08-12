@@ -50,6 +50,7 @@ public class SeatingActivity extends AppCompatActivity {
         buildRecyclerView();
 
 
+
         seatConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +58,10 @@ public class SeatingActivity extends AppCompatActivity {
                 if(bookedSeats.size() == 0){
                     Toast.makeText(SeatingActivity.this,"Please select a seat.",Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
+//                    Intent intent = new Intent(SeatingActivity.this, TicketActivity.class);
                     addParcBookedSeats();
+                    Intent intent = new Intent(SeatingActivity.this, SnackActivity.class);
+
                     intent.putParcelableArrayListExtra("Booked_Seats", (ArrayList<? extends Parcelable>) parcBookedSeats);
                     Parcelable parcTheatreMovie = ParcelableFactory.createParcelableObject(theatreMovie);
                     intent.putExtra("TheatreMovie_Selected", parcTheatreMovie);

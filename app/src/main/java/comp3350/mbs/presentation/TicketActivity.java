@@ -35,7 +35,6 @@ public class TicketActivity extends AppCompatActivity {
     private TextView cardSecurityCodeTextView;
     private TextView chosenSeatsTextView;
 
-
     private TheatreMovies theatreMovie;
     private List<Parcelable> bookedSeats;
     private ViewingTime movieDetails;
