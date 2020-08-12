@@ -9,6 +9,8 @@ import comp3350.mbs.application.Services;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessOrders;
 import comp3350.mbs.objects.Order;
+import comp3350.mbs.persistence.DataAccessObject;
+import comp3350.mbs.persistence.DataAccessStub;
 
 public class accessOrdersTest extends TestCase {
 
@@ -26,7 +28,10 @@ public class accessOrdersTest extends TestCase {
 
         System.out.println("Starting Integration test of AccessOrders to persistence layer\n");
 
-        Services.createDataAccess(Main.dbName);
+        if( true )
+            Services.createDataAccess(new DataAccessStub() );
+        else
+            Services.createDataAccess(new DataAccessObject( Main.dbName) );
 
         ao = new AccessOrders();
 
