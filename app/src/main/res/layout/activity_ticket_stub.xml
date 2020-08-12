@@ -10,7 +10,7 @@
         android:id="@+id/createReviewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Review"
+        android:text="Add Review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,15 +60,16 @@
         android:id="@+id/theatreLocationDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="Theatre Location"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numberOfTicketsDescriptionText"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintVertical_bias="0.204" />
 
     <TextView
         android:id="@+id/numberOfTicketsDescriptionText"
