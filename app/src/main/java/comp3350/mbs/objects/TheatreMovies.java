@@ -7,11 +7,6 @@ public class TheatreMovies {
     private String movieDescription;
 
     /**
-     * TheatreMovies constructor for implementing Parcelable interface in the ParcelableTheatreMovies class.
-     */
-    public TheatreMovies(){}
-
-    /**
      * TheatreMovies Constructor - This is mainly used when we only need the theatre name and not the movie information.
      * There is no movie poster and no description needed.
      * @param theatreName is the given theatre name.
@@ -57,23 +52,6 @@ public class TheatreMovies {
         return movieDescription;
     }
 
-    //================================================================
-    //Setter methods
-    public void setTheatreName(String theatreName){
-        this.theatreName = theatreName;
-    }//end setTheatreName
-
-    public void setMovieName(String movieName){
-        this.movieName = movieName;
-    }//end setMovieName
-
-    public void setMoviePoster(int moviePoster){
-        this.moviePoster = moviePoster;
-    }//end setMoviePoster
-
-    public void setMovieDescription(String movieDescription){
-        this.movieDescription = movieDescription;
-    }//end setMovieDescription
 
     /**
      * equals - a method that determines if the given object is equal to this object.

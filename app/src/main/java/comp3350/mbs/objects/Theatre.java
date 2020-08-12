@@ -7,11 +7,6 @@ public class Theatre{
     private String distance;
 
     /**
-     * Theatre constructor for implementing Parcelable interface in the ParcelableTheatre class.
-     */
-    public Theatre(){}
-
-    /**
      * Theatre Constructor
      *
      * @param name is the name of the theatre.
@@ -38,19 +33,6 @@ public class Theatre{
         return distance;
     }//end getDistance
 
-    //================================================================
-    //Setter methods
-    public void setName(String name) {
-        this.name = name;
-    }//end setName
-
-    public void setAddress(String address) {
-        this.address = address;
-    }//end setAddress
-
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }//end setDistance
 
     /**
      * equals - a method that determines if the given object (Theatre) has the same theatre name as the instance name.

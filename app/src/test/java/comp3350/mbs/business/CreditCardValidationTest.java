@@ -23,7 +23,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: testEmpty");
+        System.out.println("Finished testCreditCardValidation: testEmpty");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: EmptySecurityCode");
+        System.out.println("Finished testCreditCardValidation: EmptySecurityCode");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: EmptyExpiryDate");
+        System.out.println("Finished testCreditCardValidation: EmptyExpiryDate");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: EmptyCardNumber");
+        System.out.println("Finished testCreditCardValidation: EmptyCardNumber");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: InvalidCardNumberLength");
+        System.out.println("Finished testCreditCardValidation: InvalidCardNumberLength");
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: InvalidSecurityCodeLength");
+        System.out.println("Finished testCreditCardValidation: InvalidSecurityCodeLength");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: InvalidExpiryLength");
+        System.out.println("Finished testCreditCardValidation: InvalidExpiryLength");
     }
 
     @Test
@@ -105,7 +105,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: CardNumberShortBy1");
+        System.out.println("Finished testCreditCardValidation: CardNumberShortBy1");
     }
 
     @Test
@@ -116,7 +116,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: SecurityCodeShortBy1");
+        System.out.println("Finished testCreditCardValidation: SecurityCodeShortBy1");
     }
 
 
@@ -128,7 +128,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: ExpiryDateCurrentYearJulyInvalid");
+        System.out.println("Finished testCreditCardValidation: ExpiryDateCurrentYearJulyInvalid");
     }
 
     @Test
@@ -139,7 +139,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertTrue(valid);
 
-        System.out.println("Finished testCalculateTotals: ExpiryDateCurrentYearAugustValid");
+        System.out.println("Finished testCreditCardValidation: ExpiryDateCurrentYearAugustValid");
     }
 
     @Test
@@ -150,7 +150,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertTrue(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateCurrentYearDecemberValid");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateCurrentYearDecemberValid");
     }
 
     @Test
@@ -161,7 +161,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateCurrentYearMonth13Invalid");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateCurrentYearMonth13Invalid");
     }
 
     @Test
@@ -172,7 +172,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDatePreviousYear");
+        System.out.println("Finished testCreditCardValidation: testExpiryDatePreviousYear");
     }
 
     @Test
@@ -183,7 +183,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertTrue(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateFutureYearValid");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateFutureYearValid");
     }
 
     @Test
@@ -194,7 +194,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateFutureYearValid");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateFutureYearValid");
     }
 
     @Test
@@ -205,7 +205,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertTrue(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateFutureYearJanuary");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateFutureYearJanuary");
     }
 
     @Test
@@ -216,7 +216,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertTrue(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateFutureYearJanuary");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateFutureYearJanuary");
     }
 
     @Test
@@ -227,7 +227,7 @@ public class CreditCardValidationTest extends TestCase {
 
         assertFalse(valid);
 
-        System.out.println("Finished testCalculateTotals: testExpiryDateFutureYearJanuary");
+        System.out.println("Finished testCreditCardValidation: testExpiryDateFutureYearJanuary");
     }
 
 }

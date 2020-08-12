@@ -1,5 +1,7 @@
 package comp3350.mbs.presentation;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -45,6 +47,16 @@ public class MenuActivity  extends AppCompatActivity {
             }
         });
 
+        Button viewReviewsButton = (Button) findViewById(R.id.viewReviewsButton);
+        viewReviewsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent startIntent = new Intent(getApplicationContext(), ReviewActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+
     }//end onCreate
 
 
@@ -71,7 +83,7 @@ public class MenuActivity  extends AppCompatActivity {
             Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
 
         } catch (IOException ioe){
-            comp3350.mbs.presentation.Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
+            warning(this, "Unable to access application data: " + ioe.getMessage());
         }
 
     }//end copyDatabaseToDevice
@@ -111,5 +123,19 @@ public class MenuActivity  extends AppCompatActivity {
         }
 
     }//end copyAssetsToDirectory
+
+    /**
+     * warning - a method that shows a warning because the activity is unable to access application data.
+     * @param owner is the activity that has an error/warning.
+     * @param message is the message that will be shown.
+     */
+    public void warning(Activity owner, String message){
+        AlertDialog alertDialog = new AlertDialog.Builder(owner).create();
+
+        alertDialog.setTitle("Warning");
+        alertDialog.setMessage(message);
+
+        alertDialog.show();
+    }//end warning
 
 }//end menuActivity
