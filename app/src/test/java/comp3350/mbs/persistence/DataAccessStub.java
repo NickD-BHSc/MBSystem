@@ -70,13 +70,13 @@ public class DataAccessStub implements DataAccess{
      */
     private void createTheatres(){
         Theatre theatre;
-        theatre = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
+        theatre = new Theatre("Scotiabank Theatre", "817 St.James");
         theatreList.add(theatre);//theatre1
 
-        theatre = new Theatre("Cinema City Northgate", "1399 McPhillips St.","10km");
+        theatre = new Theatre("Cinema City Northgate", "1399 McPhillips St.");
         theatreList.add(theatre);//theatre2
 
-        theatre = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd","19.8km");
+        theatre = new Theatre("Silver City St.Vital Cinemas", "160-1225 St Mary's Rd");
         theatreList.add(theatre);//theatre3
 
     }//end createTheatres
@@ -149,90 +149,90 @@ public class DataAccessStub implements DataAccess{
 
         //For first movie (avengers) in theatre1
         theatreMovie = theatreMoviesList.get(0);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 4:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 4:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:30 to 7:30 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:30 to 7:30 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"8:00 to 11:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"8:00 to 11:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 8:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 8:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"9:00 to 12:00 AM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"9:00 to 12:00 AM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For second movie (The Incredibles) in theatre1
         theatreMovie = theatreMoviesList.get(1);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For third movie (Superman) in theatre1
         theatreMovie = theatreMoviesList.get(2);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 7:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 7:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"9:00 to 11:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"9:00 to 11:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For fourth movie (The Lion King) in theatre1
         theatreMovie = theatreMoviesList.get(3);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:30 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:30 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 9:30 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 9:30 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:30 PM", "June 13, 2020, Thursday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:30 PM", "June 13, 2021, Thursday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For fifth movie (Star wars) in theatre1
         theatreMovie = theatreMoviesList.get(4);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"11:30 to 2:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"11:30 to 2:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 7:30 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 7:30 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For first movie (Avengers) in theatre2
         theatreMovie = theatreMoviesList.get(5);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 8:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 8:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 10:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 10:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For second movie (The Incredibles) in theatre2
         theatreMovie = theatreMoviesList.get(6);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"4:00 to 6:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For first movie (Superman) in theatre3
         theatreMovie = theatreMoviesList.get(7);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"8:00 to 10:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"8:00 to 10:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"1:00 to 3:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 7:00 PM", "June 12, 2020, Wednesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"5:00 to 7:00 PM", "June 12, 2021, Wednesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For second movie (The Lion King) in theatre3
         theatreMovie = theatreMoviesList.get(8);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"12:00 to 2:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"12:00 to 2:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 9:00 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 9:00 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
 
         //For second movie (Star Wars) in theatre3
         theatreMovie = theatreMoviesList.get(9);
-        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 9:30 PM", "June 11, 2020, Tuesday", "00000000000000000000000000000000");
+        viewingTime = new ViewingTime(theatreMovie.getTheatreName(),theatreMovie.getMovieName(),"7:00 to 9:30 PM", "June 11, 2021, Tuesday", "00000000000000000000000000000000");
         viewingTimeList.add(viewingTime);
     }//end createViewingTimes
 
