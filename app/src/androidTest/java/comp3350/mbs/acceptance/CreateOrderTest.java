@@ -97,7 +97,7 @@ public class CreateOrderTest {
         //Cinema City Northgate Theatre
         onView(withText("Buy Tickets")).perform(click());
 
-        //select Scotiabank Theatre
+        //select Cinema City Northgate Theatre
         onView(withText("Cinema City Northgate")).check(matches(isDisplayed()));
         onView(withText("Cinema City Northgate")).check(matches(isDisplayed())).perform(click());
 
