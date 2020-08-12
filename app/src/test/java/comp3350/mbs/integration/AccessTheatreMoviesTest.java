@@ -10,9 +10,9 @@ import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.persistence.DataAccessObject;
 import comp3350.mbs.persistence.DataAccessStub;
 
-public class AccessTheatreMovies extends TestCase{
+public class AccessTheatreMoviesTest extends TestCase{
 
-    public AccessTheatreMovies(String arg0){
+    public AccessTheatreMoviesTest(String arg0){
         super( arg0 );
     }
 
