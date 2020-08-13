@@ -65,6 +65,8 @@ public class DataAccessStub implements DataAccess{
         createTickets();
 
         reviewList = new ArrayList<>();
+        createReviews();
+
         System.out.println("Opened " + dbType + " database " + dbName + ".");
 
     }//end open
@@ -258,6 +260,23 @@ public class DataAccessStub implements DataAccess{
         ticketList.add(ticket5);
 
     }//end createTickets
+
+    /**
+     * createReviews - a methods that creates a list of reviews and adds them to the reviewList field.
+     */
+    private void createReviews(){
+        Review review1 = new Review( "Avengers Endgame","amy","4","pretty good flick." );
+        Review review2 = new Review( "Avengers Endgame","notAmy","5","pretty good." );
+        Review review3 = new Review( "Star Wars","amy2","1","pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick.pretty good flick." );
+        Review review4 = new Review( "Superman","amySuper","3","pretty good flick." );
+        Review review5 = new Review( "Superman","amySuper","2","pretty good flick.");
+
+        reviewList.add( review1 );
+        reviewList.add( review2 );
+        reviewList.add( review3 );
+        reviewList.add( review4 );
+        reviewList.add( review5 );
+    }
 
     /**
      * close - a method that closes the database.
