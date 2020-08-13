@@ -9,6 +9,7 @@ import java.util.List;
 import comp3350.mbs.R;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.objects.Order;
+import comp3350.mbs.objects.Review;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -328,27 +329,17 @@ public class DataAccessTest extends TestCase {
 
         List<Order> orderList;
 
-        orderList = dataAccess.getOrderList();
-
-        int beforeSize = 0;
-        if(orderList != null)
-        {
-            orderList.size();
-        }
-
         Order order = new Order("testMovie","testShowTime", "testShowDate", "testTheatre", 1);
         dataAccess.insertNewOrder(order);
 
         orderList = dataAccess.getOrderList();
-        int afterInsertSize = orderList.size();
-
-        assertEquals( beforeSize+1, afterInsertSize);
+        assertNotNull(orderList);
+        assertEquals( 1, orderList.size());
 
         dataAccess.deleteOrder(order);
         orderList = dataAccess.getOrderList();
-        int afterDeleteSize = orderList.size();
-
-        assertEquals(beforeSize, afterDeleteSize);
+        assertNotNull(orderList);
+        assertEquals(0, orderList.size());
 
         System.out.println("Finished DataAccessTest: testInsertValidOrder");
 
@@ -361,16 +352,11 @@ public class DataAccessTest extends TestCase {
 
         List<Order> orderList;
 
-        orderList = dataAccess.getOrderList();
-
-        int beforeSize = orderList.size();
-
         dataAccess.insertNewOrder(null);
 
         orderList = dataAccess.getOrderList();
-        int afterInsertSize = orderList.size();
-
-        assertEquals(beforeSize, afterInsertSize);
+        assertNotNull(orderList);
+        assertEquals(0, orderList.size());
 
         System.out.println("Finished DataAccessTest: testInsertInvalidOrder");
 
@@ -383,17 +369,11 @@ public class DataAccessTest extends TestCase {
 
         List<Order> orderList;
 
-        orderList = dataAccess.getOrderList();
-
-        int beforeSize = orderList.size();
-
         Order order = new Order(null,"testShowTime", "testShowDate", "testTheatre", 1);
         dataAccess.insertNewOrder(order);
 
         orderList = dataAccess.getOrderList();
-        int afterInsertSize = orderList.size();
-
-        assertEquals(beforeSize, afterInsertSize);
+        assertEquals(0, orderList.size());
 
         System.out.println("Finished DataAccessTest: testInsertInvalidOrderMovieName");
 
@@ -406,17 +386,11 @@ public class DataAccessTest extends TestCase {
 
         List<Order> orderList;
 
-        orderList = dataAccess.getOrderList();
-
-        int beforeSize = orderList.size();
-
         Order order = new Order("testMovie", null, "testShowDate", "testTheatre", 1);
         dataAccess.insertNewOrder(order);
 
         orderList = dataAccess.getOrderList();
-        int afterInsertSize = orderList.size();
-
-        assertEquals(beforeSize, afterInsertSize);
+        assertEquals(0, orderList.size());
 
         System.out.println("Finished DataAccessTest: testInsertInvalidOrderShowTime");
 
@@ -429,17 +403,12 @@ public class DataAccessTest extends TestCase {
 
         List<Order> orderList;
 
-        orderList = dataAccess.getOrderList();
-
-        int beforeSize = orderList.size();
-
         Order order = new Order("testMovie", "testShowTime", null,  "testTheatre", 1);
         dataAccess.insertNewOrder(order);
 
         orderList = dataAccess.getOrderList();
-        int afterInsertSize = orderList.size();
-
-        assertEquals(beforeSize, afterInsertSize);
+        assertNotNull(orderList);
+        assertEquals(0, orderList.size());
 
         System.out.println("Finished DataAccessTest: testInsertInvalidOrderShowDate");
 
@@ -449,23 +418,106 @@ public class DataAccessTest extends TestCase {
     public void testInsertInvalidOrderTheatreName(){
 
         System.out.println("Starting DataAccessTest: testInsertInvalidOrderTheatreName");
-
         List<Order> orderList;
-
-        orderList = dataAccess.getOrderList();
-
-        int beforeSize = orderList.size();
 
         Order order = new Order("testMovie", "testShowTime", "testShowDate", null,   1);
         dataAccess.insertNewOrder(order);
 
         orderList = dataAccess.getOrderList();
-        int afterInsertSize = orderList.size();
-
-        assertEquals(beforeSize, afterInsertSize);
+        assertNotNull(orderList);
+        assertEquals(0, orderList.size());
 
         System.out.println("Finished DataAccessTest: testInsertInvalidOrderTheatreName");
 
     }//end testInsertInvalidOrderTheatreName
+
+    @Test
+    public void testInsertValidReviews(){
+        System.out.println("Starting DataAccessTest: testInsertValidReviews");
+        List<Review> reviewList;
+        Review review;
+
+        //Insert reviews for Superman with rating 4 from 2 different users
+        review = new Review("Superman","Clark Kent","4","This movie is okay..");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("Superman","4");
+        assertNotNull(reviewList);
+        assertEquals(1,reviewList.size());
+
+        review = new Review("Superman","suPerGurl","4","This movie is okay..");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("Superman","4");
+        assertNotNull(reviewList);
+        assertEquals(2,reviewList.size());
+
+        //Insert review from Superman with rating 1 from one user.
+        review = new Review("Superman","batman101","1","This movie is not good.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("Superman","1");
+        assertNotNull(reviewList);
+        assertEquals(1,reviewList.size());
+
+        //Insert reviews for The Lion King with rating 5 from 2 different users
+        review = new Review("The Lion King","simba404","5","This movie is a must watch.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("The Lion King","5");
+        assertNotNull(reviewList);
+        assertEquals(1,reviewList.size());
+
+        review = new Review("The Lion King","MyNameIsKing","5","good flick'flick  gooooooood fl'i'l'kca.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("The Lion King","5");
+        assertNotNull(reviewList);
+        assertEquals(2,reviewList.size());
+
+
+        System.out.println("Finished DataAccessTest: testInsertValidReviews");
+
+    }//end testInsertValidReviews
+
+    @Test
+    public void testInsertInvalidReviews(){
+        System.out.println("Starting DataAccessTest: testInsertInvalidReviews");
+        List<Review> reviewList;
+        Review review;
+
+        review = new Review(null,null,null,null);
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList(null,null);
+        assertNotNull(reviewList);
+        assertEquals(0,reviewList.size());
+
+        review = new Review(null,"SoftEngBoi","5","This movie is null.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList(null,"5");
+        assertNotNull(reviewList);
+        assertEquals(0,reviewList.size());
+
+        review = new Review(null,"SoftEngBoi","5","This movie is null.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList(null,"5");
+        assertNotNull(reviewList);
+        assertEquals(0,reviewList.size());
+
+        review = new Review("Movie Comp3350","SoftEngBoi",null,"This movie is null.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("Movie Comp3350",null);
+        assertNotNull(reviewList);
+        assertEquals(0,reviewList.size());
+
+        review = new Review("MovieX",null,"3","This movie is eh.");
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("Movie X","3");
+        assertNotNull(reviewList);
+        assertEquals(0,reviewList.size());
+
+        review = new Review("MovieY","CustomerY","3",null);
+        dataAccess.insertNewReview(review);
+        reviewList = dataAccess.getReviewList("Movie Y","3");
+        assertNotNull(reviewList);
+        assertEquals(0,reviewList.size());
+
+        System.out.println("Finished DataAccessTest: testInsertInvalidReviews");
+    }//end testInsertInvalidReviews
 
 }//end DataAccessTest

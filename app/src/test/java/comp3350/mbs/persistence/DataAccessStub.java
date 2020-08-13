@@ -405,8 +405,10 @@ public class DataAccessStub implements DataAccess{
 
         for(int i = 0; i < this.reviewList.size(); i++){
             review = this.reviewList.get(i);
-            if(review.getMovieName().equals(movieName) && review.getRating().equals(rating)){
-                reviewList.add(review);
+            if(movieName != null && rating != null) {
+                if (movieName.equals(review.getMovieName()) && rating.equals(review.getRating())) {
+                    reviewList.add(review);
+                }
             }
         }
 

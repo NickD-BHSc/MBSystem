@@ -379,22 +379,17 @@ public class DataAccessObject implements DataAccess {
 
         String whereClause = "";
 
-        if(!movieNameSelected.equals("All Movies"))
-        {
-            if(!ratingSelected.equals("All Ratings"))
-            {
-                whereClause += "WHERE MOVIENAME = '"+ movieNameSelected +"' AND RATING = " + ratingSelected;
-            }
-            else
-            {
-                whereClause += "WHERE MOVIENAME = '"+ movieNameSelected +"' ";
+        if(movieNameSelected != null && ratingSelected != null) {
+            if (!movieNameSelected.equals("All Movies")) {
+                if (!ratingSelected.equals("All Ratings")) {
+                    whereClause += "WHERE MOVIENAME = '" + movieNameSelected + "' AND RATING = " + ratingSelected;
+                } else {
+                    whereClause += "WHERE MOVIENAME = '" + movieNameSelected + "' ";
+                }
+            } else if (!ratingSelected.equals("All Ratings")) {
+                whereClause += "WHERE RATING = " + ratingSelected;
             }
         }
-        else if(!ratingSelected.equals("All Ratings"))
-        {
-            whereClause += "WHERE RATING = " + ratingSelected;
-        }
-
         try{
             cmdString = "SELECT * FROM REVIEWS " + whereClause;
             rs3 = st5.executeQuery(cmdString);
@@ -422,14 +417,20 @@ public class DataAccessObject implements DataAccess {
     public void insertNewReview(Review review){
 
         try{
-            String movieName =  review.getMovieName().replaceAll("'","''");
-            String customerName = review.getCustomerName().replaceAll("'","''");
-            String comments = review.getComments().replaceAll("'", "''");
-            cmdString = "INSERT INTO REVIEWS VALUES('" + movieName + "', '" + customerName + "' , '" + review.getRating() + "', '" + comments +  "') ";
-            st1.executeUpdate(cmdString);
 
-        }
-        catch(Exception exception){
+            if(review != null){
+
+                if(review.getMovieName() != null && review.getCustomerName() != null && review.getRating() != null && review.getComments() != null) {
+
+                    String movieName = review.getMovieName().replaceAll("'", "''");
+                    String customerName = review.getCustomerName().replaceAll("'", "''");
+                    String comments = review.getComments().replaceAll("'", "''");
+                    cmdString = "INSERT INTO REVIEWS VALUES('" + movieName + "', '" + customerName + "' , '" + review.getRating() + "', '" + comments + "') ";
+                    st1.executeUpdate(cmdString);
+                }
+            }
+
+        } catch(Exception exception){
             result = processSQLError(exception);
         }
 
