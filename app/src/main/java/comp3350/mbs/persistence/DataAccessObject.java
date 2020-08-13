@@ -436,6 +436,21 @@ public class DataAccessObject implements DataAccess {
     }//end insertNewReview
 
     /**
+     * deleteReview - Deletes an entry in the Reviews table.
+     */
+    @Override
+    public void deleteReview( Review review){
+        try{
+
+            cmdString = "DELETE from REVIEWS WHERE MOVIENAME = '" + review.getMovieName() + "', CUSTOMERNAME='" + review.getCustomerName() + ", RATING = '" + review.getRating() + "', COMMENTS = '" + review.getComments() + "'";
+            st1.executeUpdate( cmdString );
+        }
+        catch(Exception exception){
+            result = processSQLError(exception);
+        }
+    }
+
+    /**
      * processSQLError - a method that processes the error when dealing with the database SQL.
      * @param exception is the given exception.
      * @return it will return an SQL error from the exception in string.
