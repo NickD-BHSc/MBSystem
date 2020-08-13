@@ -45,8 +45,8 @@ public class CreateReviewTest {
         onView(withText("Superman")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("8:00 to 10:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("8:00 to 10:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("8:00 to 10:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("8:00 to 10:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //select seats
         onView(withText("#16")).check(matches(isDisplayed()));
@@ -115,8 +115,8 @@ public class CreateReviewTest {
         onView(withText("The Incredibles")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("4:00 to 6:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("4:00 to 6:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("4:00 to 6:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("4:00 to 6:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //select seats
         onView(withText("#4")).check(matches(isDisplayed()));

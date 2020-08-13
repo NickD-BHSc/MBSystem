@@ -51,8 +51,8 @@ public class CreateOrderTest {
         onView(withText("Avengers Endgame")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("1:00 to 4:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("1:00 to 4:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("1:00 to 4:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 4:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //select a seat
         onView(withText("#0")).check(matches(isDisplayed()));
@@ -91,8 +91,8 @@ public class CreateOrderTest {
         onView(withText("Avengers Endgame")).check(matches(isDisplayed())).perform(click());
 
         //select the same viewing time
-        onView(withText("1:00 to 4:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("1:00 to 4:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("1:00 to 4:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 4:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //check seat #0 if its not clickable
         onView(withText("#0")).check(matches(isDisplayed()));
@@ -114,8 +114,8 @@ public class CreateOrderTest {
         onView(withText("The Incredibles")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("1:00 to 3:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed()));
-        onView(withText("1:00 to 3:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("1:00 to 3:00 PM\nJune 12, 2021, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 3:00 PM\nJune 12, 2021, Wednesday")).check(matches(isDisplayed())).perform(click());
 
         //select all seats
         for(int i = 0; i < 32; i++){
@@ -149,8 +149,8 @@ public class CreateOrderTest {
         onView(withText("The Incredibles")).check(matches(isDisplayed())).perform(click());
 
         //select the same viewing time
-        onView(withText("1:00 to 3:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed()));
-        onView(withText("1:00 to 3:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("1:00 to 3:00 PM\nJune 12, 2021, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 3:00 PM\nJune 12, 2021, Wednesday")).check(matches(isDisplayed())).perform(click());
 
         //select all seats
         for(int i = 0; i < 32; i++){
@@ -175,8 +175,8 @@ public class CreateOrderTest {
         onView(withText("Star Wars")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("7:00 to 9:30 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("7:00 to 9:30 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("7:00 to 9:30 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("7:00 to 9:30 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         onView(withText("Next")).check(matches(isDisplayed())).perform(click());
 
@@ -201,8 +201,8 @@ public class CreateOrderTest {
         onView(withText("The Lion King")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("7:00 to 9:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("7:00 to 9:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("7:00 to 9:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("7:00 to 9:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //Select seats
         onView(withText("#0")).check(matches(isDisplayed()));
@@ -244,8 +244,8 @@ public class CreateOrderTest {
         onView(withText("Star Wars")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("7:00 to 9:30 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("7:00 to 9:30 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("7:00 to 9:30 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("7:00 to 9:30 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //select the same seat 4 times
         for(int i = 0; i < 4; i++){

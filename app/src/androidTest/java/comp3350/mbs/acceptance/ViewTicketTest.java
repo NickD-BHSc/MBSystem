@@ -50,8 +50,8 @@ public class ViewTicketTest {
         onView(withText("The Lion King")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("4:00 to 6:30 PM\nJune 13, 2020, Thursday")).check(matches(isDisplayed()));
-        onView(withText("4:00 to 6:30 PM\nJune 13, 2020, Thursday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("4:00 to 6:30 PM\nJune 13, 2021, Thursday")).check(matches(isDisplayed()));
+        onView(withText("4:00 to 6:30 PM\nJune 13, 2021, Thursday")).check(matches(isDisplayed())).perform(click());
 
         //select a seat
         onView(withText("#12")).check(matches(isDisplayed()));
@@ -110,8 +110,8 @@ public class ViewTicketTest {
         onView(withText("Avengers Endgame")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("5:00 to 8:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed()));
-        onView(withText("5:00 to 8:00 PM\nJune 12, 2020, Wednesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("5:00 to 8:00 PM\nJune 12, 2021, Wednesday")).check(matches(isDisplayed()));
+        onView(withText("5:00 to 8:00 PM\nJune 12, 2021, Wednesday")).check(matches(isDisplayed())).perform(click());
 
         //Select seats
         onView(withText("#0")).check(matches(isDisplayed()));
@@ -150,8 +150,8 @@ public class ViewTicketTest {
         onView(withText("Superman")).check(matches(isDisplayed())).perform(click());
 
         //select a viewing time
-        onView(withText("1:00 to 3:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed()));
-        onView(withText("1:00 to 3:00 PM\nJune 11, 2020, Tuesday")).check(matches(isDisplayed())).perform(click());
+        onView(withText("1:00 to 3:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed()));
+        onView(withText("1:00 to 3:00 PM\nJune 11, 2021, Tuesday")).check(matches(isDisplayed())).perform(click());
 
         //select seats
         onView(withText("#18")).check(matches(isDisplayed()));
