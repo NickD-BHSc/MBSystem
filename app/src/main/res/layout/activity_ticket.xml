@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/SubtotalLabel"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="328dp"
         android:layout_marginRight="328dp"
         android:duplicateParentState="false"
@@ -24,15 +24,15 @@
         app:layout_constraintBottom_toTopOf="@+id/TaxLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/QuantityLabel"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.466" />
 
     <TextView
         android:id="@+id/ticketSubtotalTextView"
         android:layout_width="111dp"
-        android:layout_height="39dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/_0_00"
         android:textColor="#0E0D0D"
         android:textSize="24sp"
@@ -42,7 +42,7 @@
     <TextView
         android:id="@+id/ticketTaxTextView"
         android:layout_width="111dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
         android:layout_marginTop="16dp"
@@ -56,7 +56,7 @@
     <EditText
         android:id="@+id/TaxLabel"
         android:layout_width="208dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="328dp"
         android:layout_marginRight="328dp"
@@ -73,14 +73,16 @@
     <TextView
         android:id="@+id/ticketTotalTextView"
         android:layout_width="109dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
+        android:layout_marginTop="8dp"
         android:text="@string/_0_00"
         android:textColor="#000000"
         android:textIsSelectable="false"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/ticketTaxTextView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/TotalLabel"
         app:layout_constraintTop_toTopOf="@+id/TotalLabel" />
 
@@ -105,7 +107,7 @@
     <TextView
         android:id="@+id/ticketPriceTextView"
         android:layout_width="113dp"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
         android:text="@string/_0_00"
@@ -118,9 +120,10 @@
     <TextView
         android:id="@+id/ticketQuantityTextView"
         android:layout_width="113dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
         android:layout_marginLeft="136dp"
+        android:layout_marginTop="8dp"
         android:text="@string/_0"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -129,7 +132,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/ticketPriceTextView"
         app:layout_constraintTop_toBottomOf="@+id/ticketPriceTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.315" />
 
     <EditText
         android:id="@+id/TotalLabel"
@@ -153,7 +156,7 @@
         android:id="@+id/QuantityLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="328dp"
         android:layout_marginRight="328dp"
         android:editable="false"

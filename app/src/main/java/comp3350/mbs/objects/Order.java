@@ -9,11 +9,6 @@ public class Order {
     private int ticketQuantity;
 
     /**
-     * Theatre constructor for implementing Parcelable interface in the ParcelableTheatre class.
-     */
-    public Order(){}
-
-    /**
      * Constructor of Order class.
      *
      * @param movieName is the type of the ticket.
@@ -49,24 +44,4 @@ public class Order {
         return showDate;
     }
 
-    //Setter methods
-    public void setMovieName(String movieName){
-        this.movieName = movieName;
-    }
-
-    public void setShowTime(String showTime){
-        this.showTime = showTime;
-    }
-
-    public void setShowDate(String showDate){
-        this.showDate = showDate;
-    }
-
-    public void setTheatreName(String theatreName){
-        this.theatreName = theatreName;
-    }
-
-    public void setTicketQuantity(int ticketQuantity){
-        this.ticketQuantity = ticketQuantity;
-    }
-}
+}//end Order

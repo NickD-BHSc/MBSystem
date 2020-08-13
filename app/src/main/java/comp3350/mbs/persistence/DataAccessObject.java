@@ -10,6 +10,7 @@ import java.util.List;
 
 import comp3350.mbs.R;
 import comp3350.mbs.objects.Order;
+import comp3350.mbs.objects.Review;
 import comp3350.mbs.objects.Theatre;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.Ticket;
@@ -18,9 +19,9 @@ import comp3350.mbs.objects.ViewingTime;
 public class DataAccessObject implements DataAccess {
 
     //for database
-    private Statement st1, st2, st3, st4;
+    private Statement st1, st2, st3, st4, st5;
     private Connection c1;
-    private ResultSet rs2;
+    private ResultSet rs2, rs3;
 
     private String dbName;
     private String dbType;
@@ -35,6 +36,7 @@ public class DataAccessObject implements DataAccess {
     private List<TheatreMovies> theatreMoviesList;
     private List<ViewingTime> viewingTimeList;
     private List<Order> orderList;
+    private List<Review> reviewList;
 
     /**
      * DatAccessObject Constructor - assign its field dbName to the given dbName.
@@ -62,6 +64,7 @@ public class DataAccessObject implements DataAccess {
             st2 = c1.createStatement();//MOVIES TABLE
             st3 = c1.createStatement();//VIEWINGTIMES TABLE
             st4 = c1.createStatement();//TICKETS TABLE
+            st5 = c1.createStatement();//REVIEWS TABLE
 
         }catch (Exception exception){
             processSQLError(exception);
@@ -360,6 +363,77 @@ public class DataAccessObject implements DataAccess {
         }
 
     }//end deleteOrder
+
+    /**
+     * getReviewList -a getter method for the reviewList field. Gets all review from the reviews table
+     * @return it will return the field reviewList.
+     */
+    @Override
+    public List<Review> getReviewList(String movieNameSelected, String ratingSelected){
+
+        reviewList = new ArrayList<>();
+        String movieName;
+        String customerName;
+        String rating;
+        String comments;
+
+        String whereClause = "";
+
+        if(!movieNameSelected.equals("All Movies"))
+        {
+            if(!ratingSelected.equals("All Ratings"))
+            {
+                whereClause += "WHERE MOVIENAME = '"+ movieNameSelected +"' AND RATING = " + ratingSelected;
+            }
+            else
+            {
+                whereClause += "WHERE MOVIENAME = '"+ movieNameSelected +"' ";
+            }
+        }
+        else if(!ratingSelected.equals("All Ratings"))
+        {
+            whereClause += "WHERE RATING = " + ratingSelected;
+        }
+
+        try{
+            cmdString = "SELECT * FROM REVIEWS " + whereClause;
+            rs3 = st5.executeQuery(cmdString);
+
+            while(rs3.next()){
+                movieName =rs3.getString("MOVIENAME");
+                customerName= rs3.getString("CUSTOMERNAME");
+                rating = rs3.getString("RATING");
+                comments = rs3.getString("COMMENTS");
+                Review review = new Review(movieName, customerName, rating, comments);
+                reviewList.add(review);
+            }
+
+        }catch(Exception exception){
+            processSQLError(exception);
+        }
+        return reviewList;
+    }//end getReviewList
+
+    /**
+     * insertNewReview - a method that adds an order to the REVIEWS table
+     * @param review - the review object we want to insert
+     */
+    @Override
+    public void insertNewReview(Review review){
+
+        try{
+            String movieName =  review.getMovieName().replaceAll("'","''");
+            String customerName = review.getCustomerName().replaceAll("'","''");
+            String comments = review.getComments().replaceAll("'", "''");
+            cmdString = "INSERT INTO REVIEWS VALUES('" + movieName + "', '" + customerName + "' , '" + review.getRating() + "', '" + comments +  "') ";
+            st1.executeUpdate(cmdString);
+
+        }
+        catch(Exception exception){
+            result = processSQLError(exception);
+        }
+
+    }//end insertNewReview
 
     /**
      * processSQLError - a method that processes the error when dealing with the database SQL.

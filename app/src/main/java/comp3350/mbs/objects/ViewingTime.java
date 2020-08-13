@@ -9,11 +9,6 @@ public class ViewingTime {
     private String seatString;
 
     /**
-     * ViewingTime constructor for implementing Parcelable interface in the ParcelableViewingTime class.
-     */
-    public ViewingTime(){}
-
-    /**
      * ViewingTime Constructor
      *
      * @param theatreName is the name of the theatre.
@@ -52,25 +47,8 @@ public class ViewingTime {
         return seatString;
     }//end getSeatString
 
-    //================================================================
-    //Setter methods
-    public void setTheatreName(String theatreName) {
-        this.theatreName = theatreName;
-    }//end setTheatreName
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }//end setMovieName
-
-    public void setShowTime(String showTime) {
-        this.showTime = showTime;
-    }//end setShowTime
-
-    public void setShowDate(String showDate) {
-        this.showDate = showDate;
-    }//end setShowDate
-
-    public void setSeatString( String seatString){
+    //Setter method
+    public void setSeatString(String seatString) {
         this.seatString = seatString;
     }//end setSeatString
 

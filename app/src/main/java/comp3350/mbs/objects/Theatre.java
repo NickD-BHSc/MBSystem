@@ -6,11 +6,6 @@ public class Theatre{
     private String address;
 
     /**
-     * Theatre constructor for implementing Parcelable interface in the ParcelableTheatre class.
-     */
-    public Theatre(){}
-
-    /**
      * Theatre Constructor
      *
      * @param name is the name of the theatre.
@@ -31,15 +26,6 @@ public class Theatre{
         return address;
     }//end getAddress
 
-    //================================================================
-    //Setter methods
-    public void setName(String name) {
-        this.name = name;
-    }//end setName
-
-    public void setAddress(String address) {
-        this.address = address;
-    }//end setAddress
 
     /**
      * equals - a method that determines if the given object (Theatre) has the same theatre name as the instance name.
