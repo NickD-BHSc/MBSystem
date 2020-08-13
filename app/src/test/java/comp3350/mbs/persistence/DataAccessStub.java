@@ -433,4 +433,34 @@ public class DataAccessStub implements DataAccess{
 
     }//end insertNewReview
 
+    @Override
+    public void deleteReview( Review review ){
+        String name;
+        String rating;
+        String comment;
+        String movie;
+
+
+        if( review != null ){
+
+            name = review.getCustomerName();
+            rating = review.getRating();
+            comment = review.getComments();
+            movie = review.getMovieName();
+
+            if (ReviewValidation.isReviewValid(name, rating, comment)) {
+                for( int i = 0; i < this.reviewList.size(); i++){
+                    Review check = reviewList.get(i);
+                    if( check.getCustomerName().equals( name ) && check.getComments().equals( comment ) &&
+                            check.getRating().equals( rating ) && check.getMovieName().equals( movie ) ){
+
+                        reviewList.remove( i );
+                        break;
+                    }
+
+                }
+            }
+        }
+    }
+
 }//end DataAccessStub

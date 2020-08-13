@@ -28,10 +28,7 @@ public class AccessOrdersTest extends TestCase {
 
         System.out.println("Starting Integration test of AccessOrders to persistence layer\n");
 
-        if( true )
-            Services.createDataAccess(new DataAccessStub() );
-        else
-            Services.createDataAccess(new DataAccessObject( Main.dbName) );
+        Services.createDataAccess(new DataAccessStub() );
 
         ao = new AccessOrders();
 

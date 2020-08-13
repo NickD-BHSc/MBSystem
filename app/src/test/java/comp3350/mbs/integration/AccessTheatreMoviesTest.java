@@ -25,10 +25,7 @@ public class AccessTheatreMoviesTest extends TestCase{
 
         System.out.println("Starting Integration test for AccessTheatreMovies to persistence layer\n");
 
-        if( true )
-            Services.createDataAccess(new DataAccessStub() );
-        else
-            Services.createDataAccess(new DataAccessObject( Main.dbName) );
+        Services.createDataAccess(new DataAccessStub() );
 
         atm = new comp3350.mbs.business.AccessTheatreMovies();
         tml = atm.getMoviesFromTheatre("Cinema City Northgate");

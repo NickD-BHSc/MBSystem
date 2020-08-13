@@ -10,6 +10,7 @@ import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.business.AccessTheatres;
 import comp3350.mbs.objects.Theatre;
+import comp3350.mbs.persistence.DataAccessStub;
 
 import static org.junit.Assert.assertNotEquals;
 
@@ -29,7 +30,7 @@ public class AccessTheatresTest extends TestCase {
 
         System.out.println("Starting Integration test for AccessTheatres to persistence layer\n");
 
-        Services.createDataAccess(Main.dbName);
+        Services.createDataAccess( new DataAccessStub() );
 
         at = new AccessTheatres();
         theatreList = at.getTheatreList();

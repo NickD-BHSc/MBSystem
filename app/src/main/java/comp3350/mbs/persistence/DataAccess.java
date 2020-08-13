@@ -35,4 +35,6 @@ public interface DataAccess {
 
     void insertNewReview(Review review);
 
+    void deleteReview( Review review);
+
 }
