@@ -365,8 +365,11 @@ public class DataAccessObject implements DataAccess {
     }//end deleteOrder
 
     /**
-     * getReviewList -a getter method for the reviewList field. Gets all review from the reviews table
-     * @return it will return the field reviewList.
+     * getReviewList -a getter method for the reviewList field. Gets all review from the reviews table,
+     * based on if filters have been applied for the rating and movieName
+     * @param movieNameSelected the movie a user wants to see reviews for
+     * @param ratingSelected the rating a user wants to see reviews for
+     * @return it will return the field reviewList, which are reviews matching the filters.
      */
     @Override
     public List<Review> getReviewList(String movieNameSelected, String ratingSelected){
