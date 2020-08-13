@@ -122,7 +122,6 @@ public class TheatreActivity extends AppCompatActivity {
                     //set the following info about the theatre to the TextViews.
                     theatreViewHolder.theatreNameTxtView.setText(item.getName());
                     theatreViewHolder.theatreAddressTxtView.setText(item.getAddress());
-                    theatreViewHolder.theatreDistTxtView.setText(item.getDistance());
 
                     //Moves to the MovieActivity when a theatre is selected.
                     theatreViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -150,13 +149,11 @@ public class TheatreActivity extends AppCompatActivity {
             private RelativeLayout relativeLayout;//used for the a click event
             private TextView theatreNameTxtView;
             private TextView theatreAddressTxtView;
-            private TextView theatreDistTxtView;
 
             public TheatreViewHolder(@NonNull View itemView) {
                 super(itemView);
                 theatreNameTxtView = itemView.findViewById(R.id.theatreNameTextView);
                 theatreAddressTxtView = itemView.findViewById(R.id.theatreAddressTextView);
-                theatreDistTxtView = itemView.findViewById(R.id.theatreDistTextView);
                 relativeLayout = itemView.findViewById(R.id.theatreRelativeLayout);
             }//end constructor
 
