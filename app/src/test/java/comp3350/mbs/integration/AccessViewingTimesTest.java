@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.List;
 import comp3350.mbs.application.Services;
-import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessViewingTimes;
 import comp3350.mbs.objects.ViewingTime;
 import comp3350.mbs.persistence.DataAccessStub;

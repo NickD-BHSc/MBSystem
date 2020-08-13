@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.business.AccessTheatres;
 import comp3350.mbs.objects.Theatre;
@@ -32,6 +31,7 @@ public class AccessTheatresTest extends TestCase {
 
         Services.createDataAccess( new DataAccessStub() );
 
+        //create new AccessTheatres object and retrieve list of theatres
         at = new AccessTheatres();
         theatreList = at.getTheatreList();
         Theatre expected = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
@@ -48,6 +48,6 @@ public class AccessTheatresTest extends TestCase {
 
         Services.closeDataAccess();
 
-        System.out.println("\nFinished Integration test of AccessViewingTimes to persistence layer\n");
+        System.out.println("\nFinished Integration test of AccessTheatres to persistence layer\n");
     }
 }

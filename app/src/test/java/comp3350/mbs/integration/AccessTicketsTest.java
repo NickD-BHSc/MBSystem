@@ -4,9 +4,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import java.util.List;
 import comp3350.mbs.application.Services;
-import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessTickets;
 import comp3350.mbs.objects.Ticket;
 import comp3350.mbs.persistence.DataAccessStub;
@@ -28,8 +26,10 @@ public class AccessTicketsTest extends TestCase {
 
         Services.createDataAccess(new DataAccessStub());
 
+        //create new accessTicket object
         at = new AccessTickets();
 
+        //retrieve ticket information for Avengers Endgame
         ticket = at.getTicket("Avengers Endgame");
         assertNotNull( ticket );
 
@@ -37,6 +37,7 @@ public class AccessTicketsTest extends TestCase {
         assertTrue( ticket.getPrice() == 10.0);
         assertTrue( ticket.getPriceAsString().equals( "10.00") );
 
+        //retrieve ticket information for non-existent movie
         ticket = at.getTicket( "Garfield"); //the movie "Garfield" doesn't exist
         assertNull( ticket );
 
