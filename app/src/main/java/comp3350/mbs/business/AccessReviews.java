@@ -33,4 +33,10 @@ public class AccessReviews {
         dataAccess.insertNewReview(review);
     }
 
+    /**
+     * deleteReview - Deletes an entry in the Reviews table.
+     */
+
+    public void deleteReview( Review review) { dataAccess.deleteReview( review ); }
+
 }

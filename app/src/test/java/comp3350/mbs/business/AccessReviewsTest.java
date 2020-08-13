@@ -372,4 +372,34 @@ public class AccessReviewsTest extends TestCase {
 
     }//end testInvalidInsertReviews
 
+    @Test
+    public void testValidDeletion(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessReviewsTest: testValidDeletion");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessReviews = new AccessReviews();
+
+        reviewList = accessReviews.getReviewList( "Avengers Endgame", "5");
+        int size = reviewList.size();
+        System.out.println( size );
+
+        review = new Review( "Avengers Endgame", "CH", "5", "GOATED");
+
+        accessReviews.insertNewReview( review );
+        reviewList = accessReviews.getReviewList( "Avengers Endgame", "5");
+        System.out.println( reviewList.size() );
+        assertTrue( size == reviewList.size()-1 );//only added one review
+        assertTrue( reviewList.contains( review ) );
+
+        accessReviews.deleteReview( review );
+
+        reviewList = accessReviews.getReviewList( "Avengers Engame", "5");
+        assertTrue( size == reviewList.size() );
+        assertFalse( reviewList.contains( review ) );
+
+
+
+    }
+
 }//end AccessReviewsTest
