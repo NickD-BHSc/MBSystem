@@ -1,24 +1,27 @@
 package comp3350.mbs.presentation;
 
 // addig comment 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
 import comp3350.mbs.R;
+import comp3350.mbs.application.Main;
 import comp3350.mbs.business.AccessSeats;
 import comp3350.mbs.business.SeatEncoding;
 import comp3350.mbs.objects.Seat;
 import comp3350.mbs.objects.TheatreMovies;
 import comp3350.mbs.objects.ViewingTime;
-
 //import comp3350.mbs.business.ParcelableFactory;
 //import comp3350.mbs.objects.Movie;
 
@@ -33,7 +36,7 @@ public class SnackActivity extends AppCompatActivity {
 	private EditText drinkQuantityEt;
 	private EditText noodleQuantityEt;
 	private EditText chipsQuantityEt;
-
+	private TextView tv;
 
 	final private int hotdogPrice = 2;
 	final private int popcornPrice =3;
@@ -48,6 +51,12 @@ public class SnackActivity extends AppCompatActivity {
 
 	private TheatreMovies theatreMovie;
 	private ViewingTime vt;
+//	private ViewingTime popcornVt;
+//	private ViewingTime friesVt;
+//	private ViewingTime drinkVt;
+//	private ViewingTime noodleVt;
+//	private ViewingTime chipsVt;
+//
 
 
 	private AccessSeats accessSeats;
@@ -58,6 +67,7 @@ public class SnackActivity extends AppCompatActivity {
 	private String seatString;
 	private String chosenSeats;
 	private int numBookedSeats;
+	int hotdogQuantity = 0;
 
 
 	private Button confirmBtn;
@@ -65,6 +75,13 @@ public class SnackActivity extends AppCompatActivity {
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_snack);
+//			AccessSnack accessSnack = new AccessSnack(  );
+//			DataAccess dataAccess = new DataAccessObject( );
+//			Snack snack = dataaccessobject.
+//			int hdp =
+			tv = findViewById(R.id.price_hotdog);
+			tv.setText("00");
+
 
 			hotdogQuantityEt = findViewById(R.id.hotdog_eidt);
 			popcornQuantityEt = findViewById(R.id.popcorn_edit);
@@ -72,55 +89,69 @@ public class SnackActivity extends AppCompatActivity {
 			drinkQuantityEt = findViewById(R.id.drink_edit);
 			noodleQuantityEt = findViewById(R.id.noodle_edit);
 			chipsQuantityEt = findViewById(R.id.chips_edit);
-
-
 			confirmBtn =( Button) findViewById(R.id.snackConfirm);
+					String hStr = null;
+					if( hotdogQuantityEt.getText() != null)
+						hStr = hotdogQuantityEt.getText().toString();
+//					if (hStr != null)
+					if( Main.isInt( hStr ) )
+					hotdogQuantity = Integer.parseInt( hStr ) ;
+					else
+                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
+
+
 			confirmBtn.setOnClickListener( new View.OnClickListener() {
 					@Override
 					public void onClick( View v)
 					{
 
-					int hotdogQuantity = 0;
-					String hStr = null;
-					if( hotdogQuantityEt.getText() != null) 
-						hStr = hotdogQuantityEt.getText().toString();
-					if (hStr != null)
-					hotdogQuantity = Integer.parseInt( hStr ) ;
-
+				
 					int popcornQuantity = 0;
 					String pStr = null;
 					if( popcornQuantityEt.getText() != null) 
 						pStr = popcornQuantityEt.getText().toString();
-					if (pStr != null)
+//					if (pStr != null)
+					if( Main.isInt( pStr ) )
 						popcornQuantity = Integer.parseInt( pStr) ;
+					else
+                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
 
 					int friesQuantity = 0;
 					String fStr = null;
 					if( friesQuantityEt.getText() != null) 
 						fStr = friesQuantityEt.getText().toString();
-					if (fStr != null)
+//					if (fStr != null)
+					if( Main.isInt( fStr ) )
 						friesQuantity = Integer.parseInt( fStr ) ;
+                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
 
 					int drinkQuantity = 0;
 					String dStr = null ;
 					if( drinkQuantityEt.getText() != null) 
 						dStr = drinkQuantityEt.getText().toString();
-					if (dStr != null)
+//					if (dStr != null)
+					if( Main.isInt( dStr ) )
 						drinkQuantity = Integer.parseInt( dStr ) ;
+					else
+                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
 
 					int noodleQuantity =0;
 					String nStr = null; 
 					if( noodleQuantityEt.getText() != null) 
 						nStr = noodleQuantityEt.getText().toString();
-					if (nStr != null)
+//					if (nStr != null)
+					if( Main.isInt( nStr ) )
 						noodleQuantity = Integer.parseInt( nStr ) ;
+                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
 
 					int chipsQuantity = 0;
 					String cStr = null;
 					if( chipsQuantityEt.getText() != null) 
 						cStr = chipsQuantityEt.getText().toString();
-					if (cStr != null)
+//					if (cStr != null)
+					if( Main.isInt( cStr ) )
 						chipsQuantity = Integer.parseInt( cStr ) ;
+                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
 
 					int total =hotdogQuantity*hotdogPrice+popcornQuantity*popcornPrice+friesQuantity*friesPrice+drinkQuantity*drinkPrice+noodleQuantity*noodlePrice+chipsQuantity*noodlePrice;
 
@@ -140,7 +171,6 @@ public class SnackActivity extends AppCompatActivity {
 					i.putExtra("Show_Time",getShowTime);
 					i.putExtra("Show_Date",getShowDate);
 					startActivity(i);
-
 					}
 
 					private String bookedSeatsInfo(){

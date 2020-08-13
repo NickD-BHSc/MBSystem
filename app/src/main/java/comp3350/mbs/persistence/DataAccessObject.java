@@ -20,7 +20,7 @@ import comp3350.mbs.objects.ViewingTime;
 public class DataAccessObject implements DataAccess {
 
     //for database
-    private Statement st1, st2, st3, st4, st5;
+    private Statement st1, st2, st3, st4, st5, st6;
     private Connection c1;
     private ResultSet rs2, rs3;
 
@@ -66,6 +66,7 @@ public class DataAccessObject implements DataAccess {
             st3 = c1.createStatement();//VIEWINGTIMES TABLE
             st4 = c1.createStatement();//TICKETS TABLE
             st5 = c1.createStatement();//REVIEWS TABLE
+			st6 = c1.createStatement();//SNACK TABLE
 
         }catch (Exception exception){
             processSQLError(exception);
@@ -283,10 +284,41 @@ public class DataAccessObject implements DataAccess {
 
     }//end updateSeatList
 
+
+    /**
+     * getSnack -a getter method for the Snack field. 
+     * @return it will return the field snack.
+     */
     @Override
-    public Snack getSnack(String movieName) {
-        return null;
-    }
+    public Snack getSnack() {
+		int hotdogPrice ;
+		int popcornPrice ;
+		int friesPrice ;
+		int drinkPrice ;
+		int noodlePrice ;
+		int chipsPrice ;
+
+		Snack snack = null;
+        try{
+            cmdString = "SELECT * FROM SNACK";
+            rs2 = st3.executeQuery(cmdString);
+            while(rs2.next()){
+			
+				hotdogPrice = rs2.getInt( "PRICE"); 
+				popcornPrice   = rs2.getInt( "PRICE"); 
+				friesPrice = rs2.getInt( "PRICE"); 
+				drinkPrice = rs2.getInt( "PRICE"); 
+				noodlePrice = rs2.getInt( "PRICE"); 
+				 chipsPrice = rs2.getInt("PRICE" ); 
+				 
+				snack = new Snack(hotdogPrice,popcornPrice,friesPrice,drinkPrice,noodlePrice,chipsPrice); 
+			  }
+        }catch (Exception exception){
+            processSQLError(exception);
+        }
+
+        return snack;
+    } // get snack
 
     /**
      * getOrderList -a getter method for the orderList field. Gets alls order from the orders table
@@ -419,17 +451,12 @@ public class DataAccessObject implements DataAccess {
         }catch(Exception exception){
             processSQLError(exception);
         }
-        return reviewList;
-    }//end getReviewList
+		return reviewList;
+    }//end insertNewReview
 
-    /**
-     * insertNewReview - a method that adds an order to the REVIEWS table
-     * @param review - the review object we want to insert
-     */
     @Override
-    public void insertNewReview(Review review){
-
-        try{
+    public void insertNewReview(Review review) {
+  try{
             String movieName =  review.getMovieName().replaceAll("'","''");
             String customerName = review.getCustomerName().replaceAll("'","''");
             String comments = review.getComments().replaceAll("'", "''");
@@ -441,7 +468,7 @@ public class DataAccessObject implements DataAccess {
             result = processSQLError(exception);
         }
 
-    }//end insertNewReview
+    }
 
     /**
      * processSQLError - a method that processes the error when dealing with the database SQL.

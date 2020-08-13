@@ -45,4 +45,20 @@ public class Main {
         dbPathName = pathName;
     }//end setDBPathName
 
+
+	public static boolean isInt( String str) {
+		int le = str.length( );
+		int count = 0 ;
+		if(	le >= 1 ) {
+			for( int i = 0; i < le ; i ++ ){
+				if( str.charAt( i ) >= 48 && str.charAt( i) <= 57 )  
+					count ++;
+			}
+			if( count == le) 
+				return true;
+			else 
+				return false;
+		}
+		return false;
+	}
 }//end Main class

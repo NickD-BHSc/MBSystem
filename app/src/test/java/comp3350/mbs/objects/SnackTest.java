@@ -10,13 +10,12 @@ public class SnackTest extends TestCase {
 	public SnackTest( String arg0) {
 		super( arg0);
 	}
-	
+
 	@Test
 	public void testSnack1() {
 		Snack snack;
 
-		System.out.println("\nStarting test1");
-
+		System.out.println("\nStarting testSnack1");
 		snack = new Snack(0, 0,0,0,0,0,0,0,0,0,0,0);
 		assertNotNull(snack);
 		assertEquals(0.0,snack.getHotdogPrice());

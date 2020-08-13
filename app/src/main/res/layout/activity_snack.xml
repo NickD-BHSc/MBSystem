@@ -24,7 +24,7 @@
         android:layout_marginLeft="15dp"/>
 
     <TextView
-        android:id="@+id/prince_hotdog"
+        android:id="@+id/price_hotdog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/hotdogView"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/hotdogView"
-        android:layout_toRightOf="@id/prince_hotdog"
+        android:layout_toRightOf="@id/price_hotdog"
         android:ems="3"
         />
 
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:text="drink"
         android:textSize="25dp"
-        android:layout_below="@id/prince_hotdog"
+        android:layout_below="@id/price_hotdog"
         android:layout_marginLeft="15dp"
         android:layout_marginTop= "22dp"/>
 

@@ -36,5 +36,5 @@ public interface DataAccess {
 
     void insertNewReview(Review review);
 
-    Snack getSnack(String movieName);
+    Snack getSnack( );
 }
