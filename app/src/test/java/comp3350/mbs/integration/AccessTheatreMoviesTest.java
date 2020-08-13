@@ -7,7 +7,6 @@ import java.util.List;
 import comp3350.mbs.application.Main;
 import comp3350.mbs.application.Services;
 import comp3350.mbs.objects.TheatreMovies;
-import comp3350.mbs.persistence.DataAccessObject;
 import comp3350.mbs.persistence.DataAccessStub;
 
 public class AccessTheatreMoviesTest extends TestCase{
@@ -25,10 +24,7 @@ public class AccessTheatreMoviesTest extends TestCase{
 
         System.out.println("Starting Integration test for AccessTheatreMovies to persistence layer\n");
 
-        if( true )
-            Services.createDataAccess(new DataAccessStub() );
-        else
-            Services.createDataAccess(new DataAccessObject( Main.dbName) );
+        Services.createDataAccess(new DataAccessStub() );
 
         atm = new comp3350.mbs.business.AccessTheatreMovies();
         tml = atm.getMoviesFromTheatre("Cinema City Northgate");
@@ -39,9 +35,9 @@ public class AccessTheatreMoviesTest extends TestCase{
 
         assertNotNull(actual);
 
-        assertEquals(actual.getMovieName(), expected.getMovieName());
-        assertEquals(actual.getMovieDescription(), expected.getMovieDescription());
-        assertEquals(actual.getTheatreName(), expected.getTheatreName());
+        assertEquals(expected.getMovieName(), actual.getMovieName());
+        assertEquals(expected.getMovieDescription(), actual.getMovieDescription());
+        assertEquals(expected.getTheatreName(), actual.getTheatreName());
 
         //remove current TheatreMovie from list to make sure invalid case does not get added
         while(!tml.isEmpty()){
