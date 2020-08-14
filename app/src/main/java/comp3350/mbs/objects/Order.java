@@ -44,4 +44,18 @@ public class Order {
         return showDate;
     }
 
+    //Setter Methods
+
+    public void setTicketQuantity( int tq ){ this.ticketQuantity = tq;} //used for testing
+
+    //equals method
+    public boolean equals( Order order ){
+        return  this.getShowDate().equals( order.getShowDate() ) &&
+                this.getShowTime().equals( order.getShowTime() ) &&
+                this.getMovieName().equals( order.getMovieName() ) &&
+                this.getTheatreName().equals( order.getTheatreName() ) &&
+                this.getTicketQuantity() == order.getTicketQuantity();
+
+    }
+
 }//end Order

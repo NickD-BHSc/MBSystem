@@ -3,8 +3,6 @@ package comp3350.mbs;
 import junit.framework.TestSuite;
 
 import comp3350.mbs.business.AccessOrdersTest;
-import comp3350.mbs.business.AccessReviewsTest;
-import comp3350.mbs.business.AccessSeatsTest;
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.business.AccessTheatresTest;
 import comp3350.mbs.business.AccessTicketsTest;
@@ -28,7 +26,7 @@ import comp3350.mbs.persistence.DataAccessTest;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class AllTests {
+public class RunUnitTests {
 
     public static TestSuite suite;
 
@@ -59,14 +57,12 @@ public class AllTests {
         suite.addTestSuite(CalculateTest.class);
         suite.addTestSuite(CreditCardValidationTest.class);
         suite.addTestSuite(ReviewValidationTest.class);
-        suite.addTestSuite(AccessSeatsTest.class);
         suite.addTestSuite(AccessTheatreMoviesTest.class);
         suite.addTestSuite(AccessTheatresTest.class);
         suite.addTestSuite(AccessTicketsTest.class);
         suite.addTestSuite(AccessTrailerTest.class);
         suite.addTestSuite(AccessViewingTimesTest.class);
         suite.addTestSuite(AccessOrdersTest.class);
-        suite.addTestSuite(AccessReviewsTest.class);
         suite.addTestSuite(SeatEncodingTest.class);
 
     }

@@ -508,4 +508,47 @@ public class AccessViewingTimesTest extends TestCase {
 
     }//end testGetViewingTimeListForNull
 
+    @Test
+    public void testValidUpdate(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessViewingTimeTest: testValidUpdate");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessViewingTime = new AccessViewingTimes();
+
+        List<ViewingTime> viewingTimeList = accessViewingTime.getViewingTimeList( "Scotiabank Theatre", "Avengers Endgame" );
+        ViewingTime vt = viewingTimeList.get(0);
+        accessViewingTime.updateSeatList( vt, "11111111111111111111111111111111");
+
+        assertEquals( vt.getSeatString(), "11111111111111111111111111111111");
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessViewingTimeTest: testValidUpdate");
+
+    }//end testValidUpdate
+
+    @Test
+    public void testInvalidUpdate(){
+
+        Services.closeDataAccess();
+        System.out.println("Starting AccessViewingTimeTest: testInvalidUpdate");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessViewingTime = new AccessViewingTimes();
+
+        ViewingTime vt = new ViewingTime("Xtheatre", "Xmovie", "Right Now", "Today", "1234567890");
+
+        String updateResult;
+
+        updateResult = accessViewingTime.updateSeatList(vt, "0987654321");
+
+        assertNotNull( updateResult );
+        assertEquals(updateResult, "Failure");
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessViewingTimeTest: testInvalidUpdate");
+
+    }//end testInvalidUpdate
+
 }//end AccessViewingTimeTests

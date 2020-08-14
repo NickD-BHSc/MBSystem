@@ -372,4 +372,56 @@ public class AccessReviewsTest extends TestCase {
 
     }//end testInvalidInsertReviews
 
+    @Test
+    public void testValidDeletion(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessReviewsTest: testValidDeletion");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessReviews = new AccessReviews();
+
+        reviewList = accessReviews.getReviewList( "Avengers Endgame", "5");
+        int size = reviewList.size();
+
+        review = new Review( "Avengers Endgame", "CH", "5", "GOATED");
+
+        accessReviews.insertNewReview( review );
+        reviewList = accessReviews.getReviewList( "Avengers Endgame", "5");
+
+        assertTrue( size == reviewList.size()-1 );//only added one review
+        assertTrue( reviewList.contains( review ) );
+
+        accessReviews.deleteReview( review );
+        reviewList = accessReviews.getReviewList( "Avengers Endgame", "5");
+
+        assertTrue( size == reviewList.size() );
+        assertFalse( reviewList.contains( review ) );
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessReviewsTest: testValidDeletion\n");
+
+    }
+
+    @Test
+    public void testInvalidDeletion(){
+        Services.closeDataAccess();
+        System.out.println("Starting AccessReviewsTest: testValidDeletion");
+        Services.createDataAccess(new DataAccessStub(dbName));
+
+        accessReviews = new AccessReviews();
+
+        reviewList = accessReviews.getReviewList( "Avengers Endgame", "5" );
+        int size = reviewList.size();
+        assertFalse( size == 0); //size should be non-zero
+
+        review = new Review( "Avengers Endgame", "CH", "5", "GOATED");
+
+        accessReviews.deleteReview( review ); //can't delete this review, we didn't insert it
+
+        assertTrue( reviewList.size() == size );//assures that didn't delete any reviews
+
+        Services.closeDataAccess();
+        System.out.println("Finished AccessReviewsTest: testInvalidDeletion\n");
+    }
+
 }//end AccessReviewsTest
