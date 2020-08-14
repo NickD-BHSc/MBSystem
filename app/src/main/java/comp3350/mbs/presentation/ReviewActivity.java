@@ -27,7 +27,6 @@ public class ReviewActivity extends AppCompatActivity {
     private CustomAdapter customAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private TextView noReviewsAvailable;
-    private TextView filterByTextView;
 
     private AccessReviews accessReviews;
     private List<Review> reviewList;
@@ -43,13 +42,13 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
 
-        movieNameSpinner = (Spinner)findViewById(R.id.movieNameSpinner);
-        ratingSpinner = (Spinner)findViewById(R.id.ratingsSpinner);
+        movieNameSpinner = findViewById(R.id.movieNameSpinner);
+        ratingSpinner = findViewById(R.id.ratingsSpinner);
         movieNameSelected = "All Movies";
         ratingSelected = "All Ratings";
 
 
-        List<String> movieNames = new ArrayList<String>();
+        List<String> movieNames = new ArrayList<>();
         movieNames.add("All Movies");
         movieNames.add("Avengers Endgame");
         movieNames.add("Star Wars");
@@ -57,12 +56,12 @@ public class ReviewActivity extends AppCompatActivity {
         movieNames.add("Superman");
         movieNames.add("The Lion King");
 
-        ArrayAdapter<String> movieNameAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, movieNames);
+        ArrayAdapter<String> movieNameAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, movieNames);
         movieNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//https://www.tutorialspoint.com/android/android_spinner_control.htm
         movieNameSpinner.setAdapter(movieNameAdapter);
 
 
-        List<String> ratings = new ArrayList<String>();
+        List<String> ratings = new ArrayList<>();
         ratings.add("All Ratings");
         ratings.add("5");
         ratings.add("4");
@@ -70,7 +69,7 @@ public class ReviewActivity extends AppCompatActivity {
         ratings.add("2");
         ratings.add("1");
 
-        ArrayAdapter<String> ratingsAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, ratings);
+        ArrayAdapter<String> ratingsAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, ratings);
         ratingsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//https://www.tutorialspoint.com/android/android_spinner_control.htm
         ratingSpinner.setAdapter(ratingsAdapter);
 
