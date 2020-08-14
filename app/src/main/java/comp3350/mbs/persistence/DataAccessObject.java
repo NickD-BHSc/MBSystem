@@ -454,7 +454,11 @@ public class DataAccessObject implements DataAccess {
     public void deleteReview( Review review){
         try{
 
-            cmdString = "DELETE from REVIEWS WHERE MOVIENAME = '" + review.getMovieName() + "', CUSTOMERNAME='" + review.getCustomerName() + ", RATING = '" + review.getRating() + "', COMMENTS = '" + review.getComments() + "'";
+            String movieName = review.getMovieName().replaceAll("'", "''");
+            String customerName = review.getCustomerName().replaceAll("'", "''");
+            String comments = review.getComments().replaceAll("'", "''");
+
+            cmdString = "DELETE from REVIEWS WHERE MOVIENAME = '" + movieName + "'and CUSTOMERNAME='" + customerName + "'and RATING = '" + review.getRating() + "'and COMMENTS = '" + comments + "'";
             st1.executeUpdate( cmdString );
         }
         catch(Exception exception){
