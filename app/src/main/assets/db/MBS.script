@@ -9,7 +9,6 @@ CREATE USER SA PASSWORD ""
 GRANT DBA TO SA
 SET WRITE_DELAY 20
 SET SCHEMA PUBLIC
-
 INSERT INTO THEATRES VALUES('Scotiabank Theatre','817 St.James')
 INSERT INTO THEATRES VALUES('Cinema City Northgate','1399 McPhillips St.')
 INSERT INTO THEATRES VALUES('Silver City St.Vital Cinemas','160-1225 St Mary''s Rd')
@@ -45,8 +44,8 @@ INSERT INTO VIEWINGTIMES VALUES('Silver City St.Vital Cinemas','The Lion King','
 INSERT INTO VIEWINGTIMES VALUES('Silver City St.Vital Cinemas','Star Wars','7:00 to 9:30 PM','June 11, 2021, Tuesday','00000000000000000000000000000000')
 INSERT INTO VIEWINGTIMES VALUES('Scotiabank Theatre','Avengers Endgame','1:00 to 4:00 PM','June 11, 2021, Tuesday','00000000000000000000000000000000')
 INSERT INTO VIEWINGTIMES VALUES('Scotiabank Theatre','Avengers Endgame','4:30 to 7:30 PM','June 11, 2021, Tuesday','00000000000000000000000000000000')
-INSERT INTO VIEWINGTIMES VALUES('Scotiabank Theatre','Avengers Endgame','5:00 to 8:00 PM','June 12, 2021, Wednesday','00000000000000000000000000000000')
 INSERT INTO VIEWINGTIMES VALUES('Scotiabank Theatre','Avengers Endgame','8:00 to 11:00 PM','June 11, 2021, Tuesday','00000000000000000000000000000000')
+INSERT INTO VIEWINGTIMES VALUES('Scotiabank Theatre','Avengers Endgame','5:00 to 8:00 PM','June 12, 2021, Wednesday','00000000000000000000000000000000')
 INSERT INTO TICKETS VALUES(10.0E0,'Avengers Endgame')
 INSERT INTO TICKETS VALUES(15.0E0,'Star Wars')
 INSERT INTO TICKETS VALUES(3.0E0,'Superman')
@@ -57,4 +56,3 @@ INSERT INTO REVIEWS VALUES('Avengers Endgame','Bob','1','This was the worst movi
 INSERT INTO REVIEWS VALUES('Star Wars','Carl','2','Meant to buy a ticket for Star Trek, disappointing. I will repeat my comment til I run out of room. Meant to buy a ticket for Star Trek, disappointing. I will repeat my comment til I run out of room. Meant to buy a ticket for Star Trek, disappointing. I will repeat my comment til I run out of room.')
 INSERT INTO REVIEWS VALUES('Superman','Dave','5','This movie was SUPER!')
 INSERT INTO REVIEWS VALUES('Superman','Edna','3','If you like superhero movies this would be a good movie, Henry Cavill does a pretty good job in it too.')
-
