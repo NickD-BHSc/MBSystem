@@ -11,7 +11,17 @@ public class Snack {
 
 
 	public Snack(){}
-
+	/**
+	 * Seat constructor
+	 *
+	 * @param hotdogPrice is the number of the seat.
+	 * @param popcornPrice determines if the seat object is booked or not.
+	 * @param friesPrice is the image of the seat.
+	 * @param drinkPrice is the number of the seat.
+	 * @param noodlePrice determines if the seat object is booked or not.
+	 * @param chipsPrice is the image of the seat.
+	 *
+	 */
 	public Snack( int hotdogPrice,  int popcornPrice,  int friesPrice,  int drinkPrice,int noodlePrice, int chipsPrice)
 	{
 		this.hotdogPrice = hotdogPrice;
@@ -22,13 +32,17 @@ public class Snack {
 		this.chipsPrice = chipsPrice;
 	}
 
+
+// getter method
 	public int getHotdogPrice(){
 		return hotdogPrice;
 	}
 
+
 	public int getPopcornPrice(){
 		return popcornPrice;
 	}
+
 
 	public int getFriesPrice(){
 		return friesPrice;
@@ -40,7 +54,7 @@ public class Snack {
 		return drinkPrice;
 	}
 
-		public int getNoodlePrice(){
+	public int getNoodlePrice(){
 		return noodlePrice;
 	}
 
@@ -50,38 +64,5 @@ public class Snack {
 		return chipsPrice;
 	}
 
-
-
-
-//
-//	//setter
-//	public void setHotdogQuantity( int hotgotQuantity){
-//		this.hotgotQuantity = hotgotQuantity;
-//	}
-//
-//	public void setPopcornQuantity(int popconQuantity){
-//		this.popconQuantity = popconQuantity;
-//	}
-//
-//	public void setFriesQuantity( int friesQuantity){
-//		this.friesQuantity = friesQuantity;
-//	}
-//
-//	public void setDrinkQuantity(int drinkQuantity){
-//		this.drinkQuantity = drinkQuantity;
-//	}
-//
-//	public void setNoodleQuantity( int noodleQuantity){
-//		this.noodleQuantity = noodleQuantity;
-//	}
-//
-//	public void setChipsQuantity(int chipsQuantity){
-//		this.chipsQuantity = chipsQuantity;
-//	}
-
-	//
-	//    public boolean equals(Seat object){
-	//        return seatNumber == object.getSeatNumber();
-	//    }//end equals
 
 }

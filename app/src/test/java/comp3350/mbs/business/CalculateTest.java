@@ -30,7 +30,7 @@ public class CalculateTest extends TestCase {
 
         System.out.println("Starting CalculateTest: testNullListTotal");
 
-        resultTotal = Calculate.calculateTotal(null);
+        resultTotal = Calculate.calculateTotal(null, 0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -43,7 +43,7 @@ public class CalculateTest extends TestCase {
 
         System.out.println("Starting CalculateTest: testNullListSubtotal");
 
-        resultTotal = Calculate.calculateSubtotal(null);
+        resultTotal = Calculate.calculateSubtotal(null,0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -56,7 +56,7 @@ public class CalculateTest extends TestCase {
 
         System.out.println("Starting CalculateTest: testNullListTax");
 
-        resultTotal = Calculate.calculateTax(null);
+        resultTotal = Calculate.calculateTax(null,0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -71,7 +71,8 @@ public class CalculateTest extends TestCase {
 
         resultTotal = " ";
         list = new ArrayList<>();
-        resultTotal = Calculate.calculateTotal(list);
+        int totalSnackPrice = 0;
+        resultTotal = Calculate.calculateTotal(list, totalSnackPrice);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -86,7 +87,7 @@ public class CalculateTest extends TestCase {
 
         resultTotal = " ";
         list = new ArrayList<>();
-        resultTotal = Calculate.calculateSubtotal(list);
+        resultTotal = Calculate.calculateSubtotal(list, 0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -101,7 +102,7 @@ public class CalculateTest extends TestCase {
 
         resultTotal = " ";
         list = new ArrayList<>();
-        resultTotal = Calculate.calculateTax(list);
+        resultTotal = Calculate.calculateTax(list, 0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -116,7 +117,7 @@ public class CalculateTest extends TestCase {
 
         list = new ArrayList<>();
         list.add(null);
-        resultTotal = Calculate.calculateTotal(list);
+        resultTotal = Calculate.calculateTotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -132,7 +133,7 @@ public class CalculateTest extends TestCase {
         resultTotal = " ";
         list = new ArrayList<>();
         list.add(null);
-        resultTotal = Calculate.calculateSubtotal(list);
+        resultTotal = Calculate.calculateSubtotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -148,7 +149,7 @@ public class CalculateTest extends TestCase {
         resultTotal = " ";
         list = new ArrayList<>();
         list.add(null);
-        resultTotal = Calculate.calculateTax(list);
+        resultTotal = Calculate.calculateTax(list,0);
         assertNotNull(resultTotal);
         assertTrue("0.00".equals(resultTotal));
 
@@ -165,7 +166,7 @@ public class CalculateTest extends TestCase {
         list = new ArrayList<>();
         ticket = new Ticket(10.00, "Avengers Endgame");
         list.add(ticket);
-        resultTotal = Calculate.calculateTotal(list);
+        resultTotal = Calculate.calculateTotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("11.50".equals(resultTotal));
 
@@ -182,7 +183,7 @@ public class CalculateTest extends TestCase {
         list = new ArrayList<>();
         ticket = new Ticket(10.00, "Avengers Endgame");
         list.add(ticket);
-        resultTotal = Calculate.calculateSubtotal(list);
+        resultTotal = Calculate.calculateSubtotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("10.00".equals(resultTotal));
 
@@ -199,7 +200,7 @@ public class CalculateTest extends TestCase {
         list = new ArrayList<>();
         ticket = new Ticket(10.00, "Avengers Endgame");
         list.add(ticket);
-        resultTotal = Calculate.calculateTax(list);
+        resultTotal = Calculate.calculateTax(list,0);
         assertNotNull(resultTotal);
         assertTrue("1.50".equals(resultTotal));
 
@@ -219,7 +220,7 @@ public class CalculateTest extends TestCase {
         list.add(ticket);
         list.add(ticket);
         list.add(ticket);
-        resultTotal = Calculate.calculateTotal(list);
+        resultTotal = Calculate.calculateTotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("34.50".equals(resultTotal));
 
@@ -238,7 +239,7 @@ public class CalculateTest extends TestCase {
         list.add(ticket);
         list.add(ticket);
         list.add(ticket);
-        resultTotal = Calculate.calculateSubtotal(list);
+        resultTotal = Calculate.calculateSubtotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("30.00".equals(resultTotal));
 
@@ -257,7 +258,7 @@ public class CalculateTest extends TestCase {
         list.add(ticket);
         list.add(ticket);
         list.add(ticket);
-        resultTotal = Calculate.calculateTax(list);
+        resultTotal = Calculate.calculateTax(list,0);
         assertNotNull(resultTotal);
         assertTrue("4.50".equals(resultTotal));
 
@@ -274,7 +275,7 @@ public class CalculateTest extends TestCase {
         list = new ArrayList<>();
         ticket = new Ticket(-10.00, "Avengers Endgame");
         list.add(ticket);
-        resultTotal = Calculate.calculateTotal(list);
+        resultTotal = Calculate.calculateTotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("11.50".equals(resultTotal));
 
@@ -291,7 +292,7 @@ public class CalculateTest extends TestCase {
         list = new ArrayList<>();
         ticket = new Ticket(8.99, "Avengers Endgame");
         list.add(ticket);
-        resultTotal = Calculate.calculateTotal(list);
+        resultTotal = Calculate.calculateTotal(list,0);
         assertNotNull(resultTotal);
         assertTrue("10.34".equals(resultTotal));
         System.out.println("Finished CalculateTest: testValidTicketDecimalPlaces\n");
@@ -307,7 +308,7 @@ public class CalculateTest extends TestCase {
         list = new ArrayList<>();
         ticket = new Ticket(8.99, "Avengers Endgame");
         list.add(ticket);
-        resultTotal = Calculate.calculateTax(list);
+        resultTotal = Calculate.calculateTax(list,0);
         assertNotNull(resultTotal);
         assertTrue("1.35".equals(resultTotal));
 
