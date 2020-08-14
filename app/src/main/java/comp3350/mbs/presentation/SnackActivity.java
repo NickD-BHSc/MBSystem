@@ -79,7 +79,7 @@ public class SnackActivity extends AppCompatActivity {
 					if( Main.isInt( hStr ) )
 					hotdogQuantity = Integer.parseInt( hStr ) ;
 					else
-                    Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SnackActivity.this,"Please enter a valid digit.",Toast.LENGTH_SHORT).show();
 
 
 			confirmBtn.setOnClickListener( new View.OnClickListener() {
