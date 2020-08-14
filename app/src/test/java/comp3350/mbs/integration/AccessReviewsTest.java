@@ -121,6 +121,26 @@ public class AccessReviewsTest extends TestCase {
         reviewList = accessReviews.getReviewList("Star Wars", "4");
         assertTrue(reviewList.isEmpty());
 
+        //add null reviews
+        Review noInfo;
+        noInfo = new Review("Star Wars", "Jacob", "4", null);
+        //insert null review into table
+        accessReviews.insertNewReview(noInfo);
+        reviewList = accessReviews.getReviewList("Star Wars", "4");
+        assertTrue(reviewList.isEmpty());
+        noInfo = new Review(null, null, "4", null);
+        //insert null names into table
+        accessReviews.insertNewReview(noInfo);
+        reviewList = accessReviews.getReviewList("Star Wars", "4");
+        assertTrue(reviewList.isEmpty());
+        reviewList = accessReviews.getReviewList(null, "4");
+        assertTrue(reviewList.isEmpty());
+        noInfo = new Review(null, null, null, null);
+        //insert null everything into table
+        accessReviews.insertNewReview(noInfo);
+        reviewList = accessReviews.getReviewList(null, null);
+        assertTrue(reviewList.isEmpty());
+
         Services.closeDataAccess();
 
         System.out.println("\nFinished Integration test of AccessReviews to persistence layer\n");
