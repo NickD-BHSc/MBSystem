@@ -170,7 +170,6 @@ public class CreateOrderTest {
         onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed())).perform(click());
 
         //select Star Wars movie
-        onView(ViewMatchers.withId(R.id.movieRecyclerView)).perform(ViewActions.swipeUp()); //need to scroll down so that it can see the textview for star wars
         onView(withText("Star Wars")).check(matches(isDisplayed()));
         onView(withText("Star Wars")).check(matches(isDisplayed())).perform(click());
 
@@ -197,6 +196,7 @@ public class CreateOrderTest {
         onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed())).perform(click());
 
         //select The Lion King movie
+        onView(ViewMatchers.withId(R.id.movieRecyclerView)).perform(ViewActions.swipeUp()); //need to scroll down so that it can see the textview for The Lion King
         onView(withText("The Lion King")).check(matches(isDisplayed()));
         onView(withText("The Lion King")).check(matches(isDisplayed())).perform(click());
 
@@ -239,7 +239,6 @@ public class CreateOrderTest {
         onView(withText("Silver City St.Vital Cinemas")).check(matches(isDisplayed())).perform(click());
 
         //select Star Wars movie
-        onView(ViewMatchers.withId(R.id.movieRecyclerView)).perform(ViewActions.swipeUp()); //need to scroll down so that it can see the textview for star wars
         onView(withText("Star Wars")).check(matches(isDisplayed()));
         onView(withText("Star Wars")).check(matches(isDisplayed())).perform(click());
 

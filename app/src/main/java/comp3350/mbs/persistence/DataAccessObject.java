@@ -21,7 +21,7 @@ public class DataAccessObject implements DataAccess {
     //for database
     private Statement st1, st2, st3, st4, st5;
     private Connection c1;
-    private ResultSet rs2, rs3;
+    private ResultSet rs1,rs2, rs3;
 
     private String dbName;
     private String dbType;
@@ -134,37 +134,44 @@ public class DataAccessObject implements DataAccess {
         String movieDescription;
 
         try{
-            cmdString = "SELECT * FROM MOVIES WHERE THEATRENAME = " + "'" +theatreMovie.getTheatreName() + "'";
-            rs2 = st2.executeQuery(cmdString);
+            cmdString = "SELECT DISTINCT MOVIENAME, THEATRENAME FROM VIEWINGTIMES WHERE THEATRENAME = " + "'" + theatreMovie.getTheatreName() + "'"; //Selecting all the fields from the MOVIES table from the given theatre.
+            rs2 = st3.executeQuery(cmdString);
 
-            while(rs2.next()){
+            while(rs2.next()) {
+
+                movieName = rs2.getString("MOVIENAME");
                 theatreName = rs2.getString("THEATRENAME");
-                movieName = rs2.getString("TITLE");
-                moviePoster = rs2.getInt("POSTER");
-                movieDescription = rs2.getString("DESCRIPTION");
 
-                if(moviePoster == 0){
-                    moviePoster = R.drawable.avengers_endgame;
+                cmdString = "SELECT * FROM MOVIES WHERE TITLE = " + "'" + movieName + "'"; //Selecting all the fields from the MOVIES table from the given theatre.
+                rs1 = st2.executeQuery(cmdString);
 
-                }else if(moviePoster == 1){
-                    moviePoster = R.drawable.incredibles;
+                while (rs1.next()) {
+                    moviePoster = rs1.getInt("POSTER");
+                    movieDescription = rs1.getString("DESCRIPTION");
 
-                }else if(moviePoster == 2){
-                    moviePoster = R.drawable.lion_king;
+                    if (moviePoster == 0) {
+                        moviePoster = R.drawable.avengers_endgame;
 
-                }else if(moviePoster == 3){
-                    moviePoster = R.drawable.starwars;
+                    } else if (moviePoster == 1) {
+                        moviePoster = R.drawable.incredibles;
 
-                }else if(moviePoster == 4){
-                    moviePoster = R.drawable.superman;
+                    } else if (moviePoster == 2) {
+                        moviePoster = R.drawable.lion_king;
 
-                }else{
-                    moviePoster = R.drawable.ic_launcher_foreground;//show this to represent that the movie has no specific image.
+                    } else if (moviePoster == 3) {
+                        moviePoster = R.drawable.starwars;
 
+                    } else if (moviePoster == 4) {
+                        moviePoster = R.drawable.superman;
+
+                    } else {
+                        moviePoster = R.drawable.ic_launcher_foreground;//show this to represent that the movie has no specific image.
+
+                    }
+
+                    theatreMovies = new TheatreMovies(theatreName, movieName, moviePoster, movieDescription);
+                    theatreMoviesList.add(theatreMovies);
                 }
-
-                theatreMovies = new TheatreMovies(theatreName,movieName,moviePoster,movieDescription);
-                theatreMoviesList.add(theatreMovies);
             }
         }catch(Exception exception){
             processSQLError(exception);
