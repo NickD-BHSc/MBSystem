@@ -1,6 +1,7 @@
 package comp3350.mbs.presentation;
 
-// addig comment 
+// addig comment
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -170,6 +171,7 @@ public class SnackActivity extends AppCompatActivity {
 					i.putExtra("Chosen_Movie_Name",getMovieName);
 					i.putExtra("Show_Time",getShowTime);
 					i.putExtra("Show_Date",getShowDate);
+					i.putExtra("Total_Snack_Price", Integer.toString(total) );
 					startActivity(i);
 					}
 

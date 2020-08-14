@@ -37,6 +37,7 @@ public class TicketActivity extends AppCompatActivity {
     private Order order;
     private String chosenSeats;
     private int numBookedSeats;
+	private int totalSnackPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -97,6 +98,8 @@ public class TicketActivity extends AppCompatActivity {
         String getShowDate = intent.getStringExtra("Show_Date");
         numBookedSeats = intent.getIntExtra("Chosen_Num_Seats", 0);
         chosenSeats = intent.getStringExtra("Chosen_Seats");
+		String snackPrice  = intent.getStringExtra("Total_Snack_Price");
+		totalSnackPrice = Integer.parseInt( snackPrice );
 
         theatreMovie = new TheatreMovies(getTheatreName,getMovieName);
         order = new Order(getMovieName,getShowTime, getShowDate,getTheatreName,numBookedSeats);
@@ -119,9 +122,9 @@ public class TicketActivity extends AppCompatActivity {
         }
         ticketPriceTextView.setText(ticket.getPriceAsString());
         ticketQuantityTextView.setText(String.valueOf(ticketList.size()));
-        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList));
-        ticketTaxTextView.setText(Calculate.calculateTax(ticketList));
-        ticketTotalTextView.setText(Calculate.calculateTotal(ticketList));
+        ticketSubtotalTextView.setText(Calculate.calculateSubtotal(ticketList, totalSnackPrice));
+        ticketTaxTextView.setText(Calculate.calculateTax(ticketList,totalSnackPrice));
+        ticketTotalTextView.setText(Calculate.calculateTotal(ticketList, totalSnackPrice));
 
         movieTitleTextView.setText(theatreMovie.getTheatreName() + ", " + theatreMovie.getMovieName());
         chosenSeatsTextView.setText(chosenSeats);

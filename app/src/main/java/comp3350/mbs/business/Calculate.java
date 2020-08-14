@@ -15,14 +15,14 @@ public class Calculate {
      * @param tickets is the given list of tickets.
      * @return it will return a subtotal of the given tickets in string.
      */
-    public static String calculateSubtotal(List<Ticket> tickets){
+    public static String calculateSubtotal(List<Ticket> tickets, int totalSnackPrice){
         Ticket ticket;
         double subtotal = 0.0;
         if(tickets != null) {
             for (int i = 0; i < tickets.size(); i++) {
                 ticket = tickets.get(i);
                 if(ticket != null) {
-                    subtotal += Math.abs(ticket.getPrice());
+                    subtotal += Math.abs(ticket.getPrice())+ totalSnackPrice;
                 }
             }
         }
@@ -35,9 +35,9 @@ public class Calculate {
      * @param tickets is the given list of tickets.
      * @return it will return the tax total of the given tickets in string.
      */
-    public static String calculateTax(List<Ticket> tickets){
+    public static String calculateTax(List<Ticket> tickets, int totalSnackPrice){
 
-        double subtotal = Double.valueOf(calculateSubtotal(tickets));
+       double subtotal = Double.valueOf(calculateSubtotal(tickets,totalSnackPrice));
         double taxTotal = TAX_RATE * subtotal;
         return moneyFormat.format(taxTotal);
     }//end calculateTax
@@ -47,9 +47,9 @@ public class Calculate {
      * @param tickets is the given list of tickets.
      * @return it will return the total cost of the given tickets in string.
      */
-    public static String calculateTotal(List<Ticket> tickets){
-        double subtotal = Double.valueOf(calculateSubtotal(tickets));
-        double taxTotal = Double.valueOf(calculateTax(tickets));
+    public static String calculateTotal(List<Ticket> tickets, int totalSnackPrice){
+        double subtotal = Double.valueOf(calculateSubtotal(tickets, totalSnackPrice));
+        double taxTotal = Double.valueOf(calculateTax(tickets,totalSnackPrice));
         double total = subtotal + taxTotal;
         return moneyFormat.format(total);
     }//end calculateTotal
