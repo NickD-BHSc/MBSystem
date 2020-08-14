@@ -4,9 +4,11 @@ import junit.framework.TestSuite;
 
 import comp3350.mbs.business.AccessTheatreMoviesTest;
 import comp3350.mbs.integration.AccessOrdersTest;
+import comp3350.mbs.integration.AccessReviewsTest;
 import comp3350.mbs.integration.AccessTheatresTest;
 import comp3350.mbs.integration.AccessTicketsTest;
 import comp3350.mbs.integration.AccessViewingTimesTest;
+import comp3350.mbs.integration.DataAccessHSQLDBTest;
 
 public class RunIntegrationTests {
 
@@ -26,7 +28,7 @@ public class RunIntegrationTests {
         suite.addTestSuite( AccessOrdersTest.class);
         suite.addTestSuite( AccessTheatreMoviesTest.class);
         suite.addTestSuite( AccessTheatresTest.class);
-
-
+        suite.addTestSuite( AccessReviewsTest.class);
+        suite.addTestSuite( DataAccessHSQLDBTest.class);
     }
 }

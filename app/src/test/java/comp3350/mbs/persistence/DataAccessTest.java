@@ -25,7 +25,7 @@ public class DataAccessTest extends TestCase {
 
     public void setUp(){
 
-        System.out.println("\nStarting Persistence test DataAccess (using stub)");
+        System.out.println("\nStarting Persistence test DataAccess");
 
         // Use the following statements to run with the stub database:
         //dataAccess = new DataAccessStub();
@@ -38,7 +38,7 @@ public class DataAccessTest extends TestCase {
 
     public void tearDown(){
         dataAccess.close();
-        System.out.println("Finished Persistence test DataAccess (using stub)");
+        System.out.println("Finished Persistence test DataAccess");
     }//end tearDown
 
     public static void dataAccessTest(DataAccess dataAccess) {

@@ -39,7 +39,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre", vt.getTheatreName());
         assertEquals("Avengers Endgame", vt.getMovieName());
         assertEquals("1:00 to 4:00 PM", vt.getShowTime());
-        assertEquals("June 11, 2020, Tuesday", vt.getShowDate());
+        assertEquals("June 11, 2021, Tuesday", vt.getShowDate());
         assertEquals("00000000000000000000000000000000", vt.getSeatString());
 
         //test seatlist update
@@ -53,7 +53,7 @@ public class AccessViewingTimesTest extends TestCase {
         assertEquals("Scotiabank Theatre", vt.getTheatreName());
         assertEquals("Avengers Endgame", vt.getMovieName());
         assertEquals("1:00 to 4:00 PM", vt.getShowTime());
-        assertEquals("June 11, 2020, Tuesday", vt.getShowDate());
+        assertEquals("June 11, 2021, Tuesday", vt.getShowDate());
         assertEquals("11111111111111111111111111111111", vt.getSeatString()); //but the seatlist should have changed
 
         //testing complete: reset viewing time
