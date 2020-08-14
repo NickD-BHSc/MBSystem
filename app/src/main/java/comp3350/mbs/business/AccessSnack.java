@@ -7,7 +7,6 @@ import comp3350.mbs.objects.Snack;
 import comp3350.mbs.persistence.DataAccess;
 
 public class AccessSnack{
-
     private DataAccess dataAccess;
 
     /**
@@ -24,7 +23,7 @@ public class AccessSnack{
      * @return it will return a Snack object that has the given movie.
      */
 //    public Snack getSnack(int h, int p, int f, int d, int n, int c) {
-        public Snack getSnack() {
+        public Snack getSnack( ) {
             return dataAccess.getSnack();
 	   }//end getSnack
 
