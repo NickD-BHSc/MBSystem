@@ -452,40 +452,49 @@ public class DataAccessTest extends TestCase {
     public void testInsertValidReviews(){
         System.out.println("Starting DataAccessTest: testInsertValidReviews");
         List<Review> reviewList;
-        Review review;
+        Review review1;
+        Review review2;
 
         //Insert reviews for Superman with rating 4 from 2 different users
-        review = new Review("Superman","Clark Kent","4","This movie is okay..");
-        dataAccess.insertNewReview(review);
+        review1 = new Review("Superman","Clark Kent","4","This movie is okay..");
+        dataAccess.insertNewReview(review1);
         reviewList = dataAccess.getReviewList("Superman","4");
         assertNotNull(reviewList);
         assertEquals(1,reviewList.size());
 
-        review = new Review("Superman","suPerGurl","4","This movie is okay..");
-        dataAccess.insertNewReview(review);
+        review2 = new Review("Superman","suPerGurl","4","This movie is okay..");
+        dataAccess.insertNewReview(review2);
         reviewList = dataAccess.getReviewList("Superman","4");
         assertNotNull(reviewList);
         assertEquals(2,reviewList.size());
 
+        dataAccess.deleteReview(review1);
+        dataAccess.deleteReview(review2);
+
         //Insert review from Superman with rating 1 from one user.
-        review = new Review("Superman","batman101","1","This movie is not good.");
-        dataAccess.insertNewReview(review);
+        review1 = new Review("Superman","batman101","1","This movie is not good.");
+        dataAccess.insertNewReview(review1);
         reviewList = dataAccess.getReviewList("Superman","1");
         assertNotNull(reviewList);
         assertEquals(1,reviewList.size());
 
+        dataAccess.deleteReview( review1 );
+
         //Insert reviews for The Lion King with rating 5 from 2 different users
-        review = new Review("The Lion King","simba404","5","This movie is a must watch.");
-        dataAccess.insertNewReview(review);
+        review1 = new Review("The Lion King","simba404","5","This movie is a must watch.");
+        dataAccess.insertNewReview(review1);
         reviewList = dataAccess.getReviewList("The Lion King","5");
         assertNotNull(reviewList);
         assertEquals(1,reviewList.size());
 
-        review = new Review("The Lion King","MyNameIsKing","5","good flick'flick  gooooooood fl'i'l'kca.");
-        dataAccess.insertNewReview(review);
+        review2 = new Review("The Lion King","MyNameIsKing","5","good flick'flick  gooooooood fl'i'l'kca.");
+        dataAccess.insertNewReview(review2);
         reviewList = dataAccess.getReviewList("The Lion King","5");
         assertNotNull(reviewList);
         assertEquals(2,reviewList.size());
+
+        dataAccess.deleteReview( review1 );
+        dataAccess.deleteReview( review2 );
 
 
         System.out.println("Finished DataAccessTest: testInsertValidReviews");

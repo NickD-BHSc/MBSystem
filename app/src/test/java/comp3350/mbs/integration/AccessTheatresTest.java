@@ -34,17 +34,15 @@ public class AccessTheatresTest extends TestCase {
         //create new AccessTheatres object and retrieve list of theatres
         at = new AccessTheatres();
         theatreList = at.getTheatreList();
-        Theatre expected = new Theatre("Scotiabank Theatre", "817 St.James", "15.7km");
+        Theatre expected = new Theatre("Scotiabank Theatre", "817 St.James");
         actual = theatreList.get(0);
 
         assertEquals(expected.getName(), actual.getName());
         assertEquals(expected.getAddress(), actual.getAddress());
-        assertEquals(expected.getDistance(), actual.getDistance());
 
-        expected = new Theatre("Scotiabank Theatre", "Some Address", "99km");
+        expected = new Theatre("Scotiabank Theatre", "Some Address");
         assertEquals(expected.getName(), actual.getName());
         assertNotEquals(expected.getAddress(), actual.getAddress());
-        assertNotEquals(expected.getDistance(), actual.getDistance());
 
         Services.closeDataAccess();
 

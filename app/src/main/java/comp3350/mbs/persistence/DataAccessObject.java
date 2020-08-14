@@ -372,7 +372,7 @@ public class DataAccessObject implements DataAccess {
      * @return it will return the field reviewList, which are reviews matching the filters.
      */
     @Override
-    public List<Review> getReviewList(String movieNameSelected, String ratingSelected){
+    public List<Review> getReviewList(String movieNameSelected, String ratingSelected) {
 
         reviewList = new ArrayList<>();
         String movieName;
@@ -382,7 +382,7 @@ public class DataAccessObject implements DataAccess {
 
         String whereClause = "";
 
-        if(movieNameSelected != null && ratingSelected != null) {
+        if (movieNameSelected != null && ratingSelected != null) {
             if (!movieNameSelected.equals("All Movies")) {
                 if (!ratingSelected.equals("All Ratings")) {
                     whereClause += "WHERE MOVIENAME = '" + movieNameSelected + "' AND RATING = " + ratingSelected;
@@ -392,23 +392,24 @@ public class DataAccessObject implements DataAccess {
             } else if (!ratingSelected.equals("All Ratings")) {
                 whereClause += "WHERE RATING = " + ratingSelected;
             }
-        }
-        try{
+        try {
             cmdString = "SELECT * FROM REVIEWS " + whereClause;
             rs3 = st5.executeQuery(cmdString);
 
-            while(rs3.next()){
-                movieName =rs3.getString("MOVIENAME");
-                customerName= rs3.getString("CUSTOMERNAME");
+            while (rs3.next()) {
+                movieName = rs3.getString("MOVIENAME");
+                customerName = rs3.getString("CUSTOMERNAME");
                 rating = rs3.getString("RATING");
                 comments = rs3.getString("COMMENTS");
                 Review review = new Review(movieName, customerName, rating, comments);
                 reviewList.add(review);
             }
 
-        }catch(Exception exception){
+        } catch (Exception exception) {
             processSQLError(exception);
         }
+
+    }
         return reviewList;
     }//end getReviewList
 
